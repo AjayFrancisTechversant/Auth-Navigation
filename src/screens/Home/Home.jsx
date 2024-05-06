@@ -1,4 +1,4 @@
-import { StyleSheet, Text, View, FlatList,TouchableOpacity } from 'react-native'
+import { StyleSheet, Text, View, FlatList,TouchableOpacity,TextInput, KeyboardAvoidingView } from 'react-native'
 import React from 'react'
 
 const Home = ({navigation}) => {
@@ -6,7 +6,7 @@ const Home = ({navigation}) => {
         navigation.push('Details',{item})
     }
     return (
-        <View style={styles.Container}>
+       <View style={styles.Container}>
             <Text style={{alignSelf:'center',fontSize:50}}>Product List</Text>
             <FlatList
                 data={[
@@ -69,8 +69,10 @@ const Home = ({navigation}) => {
                 </View>
             </TouchableOpacity>
                 }
+                
             />
-        </View>
+          
+          </View>
     )
 }
 
@@ -91,5 +93,6 @@ const styles = StyleSheet.create({
         padding: 20,  
         color: 'white',  
         fontSize: 18  
-    } 
+    } ,
+    textInput: {  borderWidth: 1, borderRadius: 10 }
 })

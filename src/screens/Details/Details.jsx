@@ -1,4 +1,4 @@
-import { StyleSheet, Text, View,Alert,Button,TouchableOpacity } from 'react-native'
+import { StyleSheet, Text, View,Alert,Button,TouchableOpacity, ScrollView } from 'react-native'
 import React, { useContext } from 'react'
 import AsyncStorage from '@react-native-async-storage/async-storage'
 import { LoginTokenContext } from '../../Contexts/TokenContext'
@@ -13,20 +13,25 @@ const Details = (props) => {
     const {title,description}=props.route.params.item
 
     return (
-        <View style={{alignItems:'center'}}>
-                <View style={styles.card}>
-                    <Text style={styles.title}>{title}</Text>
-                    <Text style={styles.description}>{description}</Text>
-                </View>
-                <TouchableOpacity onPress={handleLogout}>  
-                    <View style={styles.button}>  
-                        <Text style={styles.buttonText}>Logout</Text>  
-                    </View>  
-                </TouchableOpacity>  
-
-                
+       
+        <ScrollView>
+            <View style={{alignItems:'center'}}>
+              
+                    <View style={styles.card}>
+                        <Text style={styles.title}>{title}</Text>
+                        <Text style={styles.description}>{description}</Text>
+                    </View>
+                    <TouchableOpacity onPress={handleLogout}>  
+                        <View style={styles.button}>  
+                            <Text style={styles.buttonText}>Logout</Text>  
+                        </View>  
+                    </TouchableOpacity>  
+    
+                    
+             
             
         </View>
+        </ScrollView>
     )
 }
 
