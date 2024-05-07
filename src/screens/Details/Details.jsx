@@ -2,6 +2,8 @@ import { StyleSheet, Text, View,Alert,Button,TouchableOpacity, ScrollView } from
 import React, { useContext } from 'react'
 import AsyncStorage from '@react-native-async-storage/async-storage'
 import { LoginTokenContext } from '../../Contexts/TokenContext'
+import Listing from '../../Components/Listing'
+import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view'
 
 const Details = (props) => {
     const {tokenStatus,setTokenStatus}=useContext(LoginTokenContext)
@@ -14,24 +16,30 @@ const Details = (props) => {
 
     return (
        
-        <ScrollView>
-            <View style={{alignItems:'center'}}>
-              
-                    <View style={styles.card}>
-                        <Text style={styles.title}>{title}</Text>
-                        <Text style={styles.description}>{description}</Text>
-                    </View>
-                    <TouchableOpacity onPress={handleLogout}>  
-                        <View style={styles.button}>  
-                            <Text style={styles.buttonText}>Logout</Text>  
-                        </View>  
-                    </TouchableOpacity>  
-    
-                    
-             
+       <>
+            <KeyboardAwareScrollView>
+                <View style={{alignItems:'center'}}>
+                  
+                        <View style={styles.card}>
+                            <Text style={styles.title}>{title}</Text>
+                            <Text style={styles.description}>{description}</Text>
+                        </View>
+                        <TouchableOpacity onPress={handleLogout}>  
+                            <View style={styles.button}>  
+                                <Text style={styles.buttonText}>Logout</Text>  
+                            </View>  
+                        </TouchableOpacity>  
             
-        </View>
-        </ScrollView>
+                        
+                 
+                
+            </View>
+            
+        
+                <Listing/>
+            </KeyboardAwareScrollView>
+           
+       </>
     )
 }
 

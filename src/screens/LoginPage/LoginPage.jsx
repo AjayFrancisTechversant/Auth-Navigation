@@ -59,7 +59,7 @@ const LoginPage = ({ navigation }) => {
 export default LoginPage
 
 const styles = StyleSheet.create({
-    container: {flex:1,marginHorizontal:50,marginTop:450},
+    container: {flex:1,marginHorizontal:50,marginTop:50},
     textInput: { marginVertical: 15, borderWidth: 1, borderRadius: 10 },
     button: {
         alignSelf: 'center',
