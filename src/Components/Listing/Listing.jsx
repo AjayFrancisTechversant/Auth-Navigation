@@ -53,7 +53,7 @@ const Listing = () => {
             {items.length > 0 ? <FlatList extraData={refresh}
                 data={items}
                 renderItem={({ index, item }) =>
-                    <Card index={index} item={item} handleDelete={handleDelete}/>
+                    <Card index={index} item={item} handleDelete={handleDelete} Component={'Listing'}/>
                 }
 
             />

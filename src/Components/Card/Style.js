@@ -18,6 +18,16 @@ const styles =(screenContext, width, height) =>
         height: 'auto',
         width: '100%',
         alignItems:'center'
-    },
+    },button: {  alignSelf:'center',  
+    width:screenContext.isPortrait? width*0.7:height*0.7,  
+    alignItems: 'center',  
+    backgroundColor: '#5ead97' ,
+    borderRadius:10 ,margin:5
+},  
+buttonText: {  
+    padding: 20,  
+    color: 'white',  
+    fontSize: 18  
+}
 })
 export default styles

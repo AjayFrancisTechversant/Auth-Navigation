@@ -2,6 +2,8 @@ import {  Text, View, FlatList,TouchableOpacity,TextInput, KeyboardAvoidingView 
 import React from 'react'
 import styles from './Style'
 import { useScreenContext } from '../../Contexts/ScreenContext'
+import Card from '../../Components/Card/Card'
+
 
 
 const Home = ({navigation}) => {
@@ -74,9 +76,7 @@ const Home = ({navigation}) => {
                 data={constData}
                 renderItem={({ item }) =>
                 <TouchableOpacity onPress={()=>handlePress(item)}>
-                <View style={screenStyles.button}>
-                    <Text style={screenStyles.buttonText}>{item.title}</Text>
-                </View>
+                <Card Component={'Home'} item={item}/>
             </TouchableOpacity>
                 }
                 
