@@ -55,7 +55,7 @@ const Listing = () => {
                     <View style={screenStyles.itemContainer}>
                         
                             <View style={screenStyles.imageContainer} >
-                                <Image resizeMode='cover'
+                                <Image 
                                     style={screenStyles.image}
                                     source={{ uri: item.uri }}
                                 />

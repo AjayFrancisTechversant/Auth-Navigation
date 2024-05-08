@@ -27,8 +27,8 @@ const styles = (screenContext, width, height) =>
             marginTop: 15, backgroundColor: '#9edecc', borderRadius: 5
         },
         
-        imageContainer:{flex:0.3,alignItems:'center',margin:10,borderWidth:1,height:height*0.1},
-        image: { height: '100%', width:screenContext.isPortrait? '100%':'100%' },
+        imageContainer:{flex:0.3,alignItems:'center',margin:10,height:height*0.1},
+        image: { height: '100%', width:screenContext.isPortrait? '100%':'100%',borderRadius:5 },
         deleteContainer:{flex:0.2,justifyContent:'center',},
         deleteButton: {
             borderRadius: 4,
