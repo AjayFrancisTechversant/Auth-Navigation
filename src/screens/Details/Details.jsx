@@ -1,9 +1,12 @@
-import { StyleSheet, Text, View,Alert,Button,TouchableOpacity, ScrollView } from 'react-native'
+import {  Text, View,Alert,Button,TouchableOpacity, ScrollView } from 'react-native'
 import React, { useContext } from 'react'
 import AsyncStorage from '@react-native-async-storage/async-storage'
 import { LoginTokenContext } from '../../Contexts/TokenContext'
-import Listing from '../../Components/Listing'
+import Listing from '../../Components/Listing/Listing'
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view'
+import styles from './Style'
+import { useScreenContext } from '../../Contexts/ScreenContext'
+
 
 const Details = (props) => {
     const {tokenStatus,setTokenStatus}=useContext(LoginTokenContext)
@@ -11,6 +14,12 @@ const Details = (props) => {
         await AsyncStorage.removeItem("isLoggedin")
         setTokenStatus(false)
     }
+    const screenContext = useScreenContext();
+    const screenStyles = styles(
+      screenContext,
+      screenContext[screenContext.isPortrait ? 'windowWidth' : 'windowHeight'],
+      screenContext[screenContext.isPortrait ? 'windowHeight' : 'windowWidth'],
+    );
  
     const {title,description}=props.route.params.item
 
@@ -20,19 +29,16 @@ const Details = (props) => {
             <KeyboardAwareScrollView>
                 <View style={{alignItems:'center'}}>
                   
-                        <View style={styles.card}>
-                            <Text style={styles.title}>{title}</Text>
-                            <Text style={styles.description}>{description}</Text>
+                        <View style={screenStyles.card}>
+                            <Text style={screenStyles.title}>{title}</Text>
+                            <Text style={screenStyles.description}>{description}</Text>
                         </View>
                         <TouchableOpacity onPress={handleLogout}>  
-                            <View style={styles.button}>  
-                                <Text style={styles.buttonText}>Logout</Text>  
+                            <View style={screenStyles.button}>  
+                                <Text style={screenStyles.buttonText}>Logout</Text>  
                             </View>  
                         </TouchableOpacity>  
             
-                        
-                 
-                
             </View>
             
         
@@ -45,25 +51,3 @@ const Details = (props) => {
 
 export default Details
 
-const styles = StyleSheet.create({
-    Container: {
-        flex: 1,
-        color: 'black',
-        borderWidth: 3,
-    },
-    card:{
-    borderRadius:5,margin:20},
-    button: {    
-        width: 200,  
-        alignItems: 'center',  
-        backgroundColor: '#5ead97' ,
-        borderRadius:10 
-    },  
-    buttonText: {  
-        padding: 15,  
-        color: 'white',  
-        fontSize: 18  
-    } ,
-    title:{fontSize:30,color:'black'},
-    description:{fontSize:20}
-})

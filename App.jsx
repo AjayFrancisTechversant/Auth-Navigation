@@ -7,6 +7,7 @@ import { NavigationContainer } from '@react-navigation/native'
 import { createNativeStackNavigator } from '@react-navigation/native-stack'
 import AsyncStorage from '@react-native-async-storage/async-storage'
 import TokenContext, { LoginTokenContext } from './src/Contexts/TokenContext'
+import { ScreenContextProvider } from './src/Contexts/ScreenContext'
 
 
 const Stack = createNativeStackNavigator()
@@ -61,9 +62,11 @@ const App = () => {
 // export default App
 export default function Main(){
   return(
-    <TokenContext>
-      <App/>
-    </TokenContext>
+    <ScreenContextProvider>
+      <TokenContext>
+        <App/>
+      </TokenContext>
+    </ScreenContextProvider>
   )
 }
 
