@@ -1,8 +1,9 @@
 import { StyleSheet, Text, TextInput, View, TouchableOpacity, FlatList, Image } from 'react-native'
 import React, { useState } from 'react'
 import styles from './Style'
-import Icon from 'react-native-vector-icons/MaterialIcons';
+
 import { useScreenContext } from '../../Contexts/ScreenContext';
+import Card from '../Card/Card';
 
 const Listing = () => {
     const [newEntry, setNewEntry] = useState()
@@ -52,26 +53,7 @@ const Listing = () => {
             {items.length > 0 ? <FlatList extraData={refresh}
                 data={items}
                 renderItem={({ index, item }) =>
-                    <View style={screenStyles.itemContainer}>
-                        
-                            <View style={screenStyles.imageContainer} >
-                                <Image 
-                                    style={screenStyles.image}
-                                    source={{ uri: item.uri }}
-                                />
-                            </View>
-                            <View style={screenStyles.titleandDescContainer}>
-                                <Text style={screenStyles.itemTitle} >{item.title}</Text>
-                                <Text >{item.desc}</Text>
-                                </View>
-                            <View style={screenStyles.deleteContainer}>
-                                <TouchableOpacity onPress={() => handleDelete(index)} >
-                                    <View style={screenStyles.deleteButton}>
-                                        <Text ><Icon name='delete' size={30} color={'red'} /></Text>
-                                    </View>
-                                </TouchableOpacity>
-                            </View>
-                    </View>
+                    <Card index={index} item={item} handleDelete={handleDelete}/>
                 }
 
             />

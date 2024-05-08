@@ -1,4 +1,4 @@
-a=30
-b=20
-c=a>b
-console.log(c);
+a=10
+b=26
+c=a+b
+console.log(b);
