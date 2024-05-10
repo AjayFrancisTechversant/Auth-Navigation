@@ -36,7 +36,11 @@ const Listing = () => {
     );
     return (
         <View style={screenStyles.container}>
-            <Text style={screenStyles.title}>Listing</Text>
+            
+            <FlatList extraData={refresh} ListEmptyComponent={
+                <Text style={screenStyles.noItemsToDisplay}>No Items to Display!!</Text>
+            }
+            ListHeaderComponent={<><Text style={screenStyles.title}>Listing</Text>
             <View style={screenStyles.addContainer}>
                 <TextInput value={newEntry} style={screenStyles.textInput}
                     onChangeText={(e) => setNewEntry(e)}
@@ -50,18 +54,13 @@ const Listing = () => {
                 </TouchableOpacity>
             </View>
             <Text style={screenStyles.title} >Items:</Text>
-            {items.length > 0 ? <FlatList extraData={refresh}
+            </>}
                 data={items}
                 renderItem={({ index, item }) =>
                     <Card index={index} item={item} handleDelete={handleDelete} Component={'Listing'}/>
                 }
 
-            />
-                :
-                <Text style={screenStyles.noItemsToDisplay}>No Items to Display!!</Text>
-            }
-
-
+            />      
         </View>
     )
 }

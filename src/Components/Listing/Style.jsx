@@ -2,8 +2,8 @@ import { StyleSheet } from "react-native"
 
 const styles = (screenContext, width, height) =>
     StyleSheet.create({
-        container: { flex: 1 },
-        title: { fontSize: 40, alignSelf: 'center' },
+        container: { flex: 1,marginTop:20 },
+        title: { fontSize: 50, alignSelf: 'center',fontFamily:'helvetica-light-587ebe5a59211' },
         textInput: { backgroundColor: '#cdf7ec', borderRadius: 5, width: '80%', borderColor: '#5897fc', borderWidth: 0.5 },
         button: {
             alignSelf: 'center',

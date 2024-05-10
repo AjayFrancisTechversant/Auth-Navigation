@@ -7,18 +7,12 @@ const styles =(screenContext, width, height)=>
     },
     card:{
     borderRadius:5,margin:20},
-    button: {    
-        width: 200,  
-        alignItems: 'center',  
-        backgroundColor: '#5ead97' ,
-        borderRadius:10 
-    },  
-    buttonText: {  
-        padding: 15,  
-        color: 'white',  
-        fontSize: 18  
-    } ,
-    title:{fontSize:30,color:'black'},
-    description:{fontSize:20}
+    title:{fontSize:30,color:'black',fontFamily:'helvetica-light-587ebe5a59211' },
+    description:{fontSize:20,fontFamily:'Rajdhani-Medium'},
+    image:{marginVertical:20,
+        height:screenContext.isPortrait?200:400,
+        width:screenContext.isPortrait?200:400,
+        alignSelf:'center'
+    },
 })
 export default styles

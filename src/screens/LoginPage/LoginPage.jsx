@@ -15,7 +15,7 @@ const LoginPage = ({ navigation }) => {
     const handleLogin = async () => {
         if (!userData.username || !userData.password) { Alert.alert("Please fill the form ") }
         else {
-            await AsyncStorage.setItem("isLoggedin", "true")
+            await AsyncStorage.setItem("isLoggedin", userData.username)
             setTokenStatus(true)
         }
     }
