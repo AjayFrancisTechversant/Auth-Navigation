@@ -7,6 +7,6 @@ const styles =(screenContext, width, height)=>
         flex: 1,
       
     },
-    textInput: {  borderWidth: 1, borderRadius: 10 }
+    title:{alignSelf: 'center', fontSize: 50, fontFamily: 'helvetica-light-587ebe5a59211', marginTop:20}
 })
 export default styles

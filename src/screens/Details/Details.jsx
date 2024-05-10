@@ -1,19 +1,11 @@
 import { Text, View, Image } from 'react-native'
-import React, { useContext } from 'react'
-import AsyncStorage from '@react-native-async-storage/async-storage'
-import { LoginTokenContext } from '../../Contexts/TokenContext'
-import Listing from '../../Components/Listing/Listing'
+import React from 'react'
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view'
 import styles from './Style'
 import { useScreenContext } from '../../Contexts/ScreenContext'
 
 
 const Details = (props) => {
-    const { tokenStatus, setTokenStatus } = useContext(LoginTokenContext)
-    const handleLogout = async () => {
-        await AsyncStorage.removeItem("isLoggedin")
-        setTokenStatus(false)
-    }
     const screenContext = useScreenContext();
     const screenStyles = styles(
         screenContext,

@@ -1,4 +1,4 @@
-import { StyleSheet, View, Text, TextInput, Button, Alert, TouchableOpacity, useWindowDimensions, ScrollView } from 'react-native'
+import { View, Text, TextInput, Button, Alert, TouchableOpacity} from 'react-native'
 import React, { useContext, useState } from 'react'
 import AsyncStorage from '@react-native-async-storage/async-storage'
 import { LoginTokenContext } from '../../Contexts/TokenContext'

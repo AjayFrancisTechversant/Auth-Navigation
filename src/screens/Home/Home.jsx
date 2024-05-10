@@ -1,4 +1,4 @@
-import { Text, View, FlatList, TouchableOpacity, TextInput, KeyboardAvoidingView, ActivityIndicator } from 'react-native'
+import { Text, View, FlatList, TouchableOpacity, ActivityIndicator } from 'react-native'
 import React, { useEffect, useState } from 'react'
 import styles from './Style'
 import { useScreenContext } from '../../Contexts/ScreenContext'
@@ -31,7 +31,7 @@ const Home = ({ navigation }) => {
 
             <FlatList ListEmptyComponent={<ActivityIndicator size={50} color='#5ead97' />} onRefresh={()=>{getProducts()}}
             refreshing={false} 
-                ListHeaderComponent={<Text style={{ alignSelf: 'center', fontSize: 50, fontFamily: 'helvetica-light-587ebe5a59211' }}>Product List</Text>}
+                ListHeaderComponent={<Text style={screenStyles.title}>Product List</Text>}
                 data={products}
                 renderItem={({ item }) =>
                     <TouchableOpacity onPress={() => handlePress(item)}>

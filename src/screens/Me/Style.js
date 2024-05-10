@@ -6,11 +6,10 @@ const styles = (screenContext, width, height) =>
         container: { flex: 1, margin: 20 },
         headerContainer: {
             flexDirection: 'row',
-
         },
 
         headerTitleContainer: { flex: screenContext.isPortrait ? 0.9 : 0.95, alignItems: 'center' },
-        headerTitle: { fontFamily: 'helvetica-light-587ebe5a59211', fontSize: 50 },
+        headerTitle: { fontFamily:'helvetica-light-587ebe5a59211', fontSize: 50 },
         logoutIconContainer: { flex: screenContext.isPortrait ? 0.1 : 0.05 ,
             alignSelf:'center'
         },
