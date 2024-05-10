@@ -1,4 +1,4 @@
-import { View, Text, TouchableOpacity } from 'react-native'
+import { View, Text, TouchableOpacity, Image } from 'react-native'
 import React, { useContext, useEffect, useState } from 'react'
 import { useScreenContext } from '../../Contexts/ScreenContext';
 import styles from './Style';
@@ -37,13 +37,19 @@ const Me = () => {
                     <Text style={screenStyles.headerTitle}>Profile</Text>
                 </View>
                 <TouchableOpacity style={screenStyles.button} onPress={handleLogout}>
-                    <Text style={screenStyles.buttonText}>
-                        <MaterialIcons size={30} name="logout" />
-                    </Text>
-
+                        <MaterialIcons style={screenStyles.logoutIcon} size={30} name="logout" />
                 </TouchableOpacity>
             </View>
-            
+            <View style={screenStyles.userDetailsContainer} >
+                <Image
+                    style={screenStyles.profilePicture}
+                    source={require('../../Assets/Images/profilePicDummy.webp')}
+                />
+                <Text style={screenStyles.username}>{username}</Text>
+                <Text>+91 7478348881</Text>
+                <Text>ajay@email.com</Text>
+            </View>
+
             <View style={screenStyles.threeIconContainer}>
                 <TouchableOpacity >
                     <AntDesign style={screenStyles.threeIcon} name='heart' color='red' size={30} />

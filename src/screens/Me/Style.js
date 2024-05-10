@@ -13,20 +13,22 @@ const styles = (screenContext, width, height) =>
             justifyContent: 'center',
             alignItems: 'center',
             height: height * 0.1,
-            backgroundColor: '#5ead97',
-            borderRadius: 10
+            borderRadius: 10,
+            backgroundColor:'red',
         },
-        buttonText: {
-            padding: 10,
-            color: 'white',
+        logoutIcon: {
+            color: '#5ead97',
+
 
         },
         headerTitleContainer: { flex:screenContext.isPortrait? 0.8:0.9, alignItems: 'center' },
         headerTitle: { fontFamily:'helvetica-light-587ebe5a59211',fontSize: 50 },
         //userDetails
-        profilePicture:{height:100,width:100},
+        userDetailsContainer:{marginVertical:20,alignItems:'center'},
+        profilePicture:{height:100,width:100,borderRadius:50},
+        username:{fontSize:30,fontFamily:'Helvetica-Bold'},
+        phoneNumber:{},
 
-      
         // 3IconContainer
         threeIconContainer:{flexDirection:'row',justifyContent:'space-evenly',marginVertical:20},
         threeIcon:{alignSelf:'center'},
