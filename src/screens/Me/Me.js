@@ -35,10 +35,12 @@ const Me = () => {
             <View style={screenStyles.headerContainer}>
                 <View style={screenStyles.headerTitleContainer}>
                     <Text style={screenStyles.headerTitle}>Profile</Text>
+                </View >
+                <View style={screenStyles.logoutIconContainer}>
+                    <TouchableOpacity onPress={handleLogout}>
+                            <MaterialIcons style={screenStyles.logoutIcon} size={30} name="logout" />
+                    </TouchableOpacity>
                 </View>
-                <TouchableOpacity style={screenStyles.button} onPress={handleLogout}>
-                        <MaterialIcons style={screenStyles.logoutIcon} size={30} name="logout" />
-                </TouchableOpacity>
             </View>
             <View style={screenStyles.userDetailsContainer} >
                 <Image
