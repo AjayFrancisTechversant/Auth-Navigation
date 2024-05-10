@@ -31,7 +31,9 @@ const Me = () => {
         getUsername()
     }, [])
     return (
-        <KeyboardAwareScrollView style={screenStyles.container}>
+        <KeyboardAwareScrollView 
+        showsVerticalScrollIndicator={false}
+        style={screenStyles.container}>
             <View style={screenStyles.headerContainer}>
                 <View style={screenStyles.headerTitleContainer}>
                     <Text style={screenStyles.headerTitle}>Profile</Text>
