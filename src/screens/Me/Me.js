@@ -38,7 +38,7 @@ const Me = () => {
                 </View >
                 <View style={screenStyles.logoutIconContainer}>
                     <TouchableOpacity onPress={handleLogout}>
-                            <MaterialIcons style={screenStyles.logoutIcon} size={30} name="logout" />
+                        <MaterialIcons style={screenStyles.logoutIcon} size={30} name="logout" />
                     </TouchableOpacity>
                 </View>
             </View>
@@ -69,15 +69,12 @@ const Me = () => {
                     <Text style={screenStyles.threeIconSubtitle}>2</Text>
                 </TouchableOpacity>
             </View>
-
-
             <View style={screenStyles.OptionCardContainer}>
                 <OptionCard iconName={'boxes'} iconFamily={'FontAwesome5'} optionTitle={'My Orders'} />
                 <OptionCard iconName={'dollar'} iconFamily={'FontAwesome'} optionTitle={'Refer and Earn'} />
-                <OptionCard iconName={'help-with-circle'} iconFamily={'AntDesign'} optionTitle={'Help Center'} />
+                <OptionCard iconName={'help'} iconFamily={'Entypo'} optionTitle={'Help Center'} />
                 <OptionCard iconName={'edit'} iconFamily={'AntDesign'} optionTitle={'Edit Profile Details'} />
                 <OptionCard iconName={'setting'} iconFamily={'AntDesign'} optionTitle={'Settings'} />
-
             </View>
 
         </KeyboardAwareScrollView>

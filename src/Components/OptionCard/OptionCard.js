@@ -27,6 +27,8 @@ const OptionCard = ({iconName,optionTitle,iconFamily}) => {
           <FontAwesome name={iconName} size={20} style={screenStyles.icon} />
           :iconFamily=='FontAwesome5'?
           <FontAwesome5 name={iconName} size={20} style={screenStyles.icon} />
+          :iconFamily=='Entypo'?
+          <Entypo name={iconName} size={20} style={screenStyles.icon} />
           :''
         }
           <Text style={screenStyles.buttonText}>{optionTitle}</Text>
