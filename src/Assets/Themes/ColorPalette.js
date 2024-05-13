@@ -1,2 +1,2 @@
 
-export default ColorPalette={green:ColorPalette.green}
+export default ColorPalette={green:'#5ead97'}
