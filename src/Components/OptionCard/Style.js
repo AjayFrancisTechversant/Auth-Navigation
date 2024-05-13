@@ -10,9 +10,9 @@ const styles = (screenContext, width, height) =>
             borderRadius:5,
             borderColor:'#bad6ce'
         },
-        icon:{marginLeft:10,color:'#5ead97'},
-        buttonText:{marginLeft:20,color:'#5ead97'},
-        rightIcon:{marginRight:20,color:'#5ead97'}
+        icon:{marginLeft:10,color:ColorPalette.green},
+        buttonText:{marginLeft:20,color:ColorPalette.green},
+        rightIcon:{marginRight:20,color:ColorPalette.green}
 
     })
 export default styles

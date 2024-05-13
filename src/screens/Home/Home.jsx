@@ -29,7 +29,7 @@ const Home = ({ navigation }) => {
     return (
         <View style={screenStyles.Container}>
 
-            <FlatList ListEmptyComponent={<ActivityIndicator size={50} color='#5ead97' />} onRefresh={()=>{getProducts()}}
+            <FlatList ListEmptyComponent={<ActivityIndicator size={50} color='ColorPalette.green' />} onRefresh={()=>{getProducts()}}
             refreshing={false} 
                 ListHeaderComponent={<Text style={screenStyles.title}>Product List</Text>}
                 data={products}

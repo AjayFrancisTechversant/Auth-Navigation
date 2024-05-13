@@ -25,7 +25,7 @@ const Card = ({ index, item, handleDelete, Component }) => {
                 </View>
                 <View style={screenStyles.titleandDescContainer}>
                     <Text style={screenStyles.itemTitle} >{item.title}</Text>
-                    <Text >{item.desc}</Text>
+                    <Text style={screenStyles.itemDesc}>{item.desc}</Text>
                 </View>
                 <View style={screenStyles.deleteContainer}>
                     <TouchableOpacity onPress={() => handleDelete(index)} >

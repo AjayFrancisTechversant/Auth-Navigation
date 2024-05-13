@@ -10,7 +10,7 @@ import Feather from 'react-native-vector-icons/Feather'
 const HomeTabStack = () => {
     const HomeTabStack = createBottomTabNavigator()
     return (
-        <HomeTabStack.Navigator screenOptions={{tabBarActiveTintColor:'#5ead97'}}>
+        <HomeTabStack.Navigator screenOptions={{tabBarActiveTintColor:ColorPalette.green}}>
             <HomeTabStack.Screen
                 name='Home'
                 component={Home}

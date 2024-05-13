@@ -8,7 +8,7 @@ const styles =(screenContext, width, height)=> StyleSheet.create({
         alignSelf: 'center',
         width: 100,
         alignItems: 'center',
-        backgroundColor: '#5ead97',
+        backgroundColor: ColorPalette.green,
         borderRadius: 10,
     },
     buttonText: {

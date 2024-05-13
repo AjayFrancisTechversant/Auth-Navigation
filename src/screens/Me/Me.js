@@ -1,4 +1,4 @@
-import { View, Text, TouchableOpacity, Image } from 'react-native'
+import { View, Text, TouchableOpacity, Image, ImageBackground } from 'react-native'
 import React, { useContext, useEffect, useState } from 'react'
 import { useScreenContext } from '../../Contexts/ScreenContext';
 import styles from './Style';
@@ -9,7 +9,6 @@ import OptionCard from '../../Components/OptionCard/OptionCard';
 import AntDesign from 'react-native-vector-icons/AntDesign';
 import FontAwesome5 from 'react-native-vector-icons/FontAwesome5';
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
-
 
 const Me = () => {
     const { tokenStatus, setTokenStatus } = useContext(LoginTokenContext)
@@ -31,19 +30,17 @@ const Me = () => {
         getUsername()
     }, [])
     return (
-        <KeyboardAwareScrollView 
-        showsVerticalScrollIndicator={false}
-        style={screenStyles.container}>
-            <View style={screenStyles.headerContainer}>
-                <View style={screenStyles.headerTitleContainer}>
-                    <Text style={screenStyles.headerTitle}>Profile</Text>
-                </View >
-                <View style={screenStyles.logoutIconContainer}>
-                    <TouchableOpacity onPress={handleLogout}>
-                        <MaterialIcons style={screenStyles.logoutIcon} size={30} name="logout" />
-                    </TouchableOpacity>
-                </View>
-            </View>
+        <KeyboardAwareScrollView
+            showsVerticalScrollIndicator={false}
+            style={screenStyles.container}>
+
+            <ImageBackground style={screenStyles.headerContainer} source={require('../../Assets/Images/profilePageBG.jpg')}
+            imageStyle={screenStyles.BGImageStyle}>
+                <TouchableOpacity onPress={handleLogout}>
+                    <MaterialIcons style={screenStyles.logoutIcon} size={30} name="logout" />
+                </TouchableOpacity>
+            </ImageBackground>
+
             <View style={screenStyles.userDetailsContainer} >
                 <Image
                     style={screenStyles.profilePicture}

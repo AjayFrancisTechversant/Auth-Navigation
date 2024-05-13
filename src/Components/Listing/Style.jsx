@@ -4,13 +4,13 @@ const styles = (screenContext, width, height) =>
     StyleSheet.create({
         container: { flex: 1,marginTop:20 },
         title: { fontSize: 50, alignSelf: 'center',fontFamily:'helvetica-light-587ebe5a59211' },
-        textInput: { backgroundColor: '#cdf7ec', borderRadius: 5, width: '80%', borderColor: '#5897fc', borderWidth: 0.5 },
+        textInput: { backgroundColor: ColorPalette.green, borderRadius: 5, width: '80%', borderColor: ColorPalette.green, borderWidth: 0.5,color:'white' },
         button: {
             alignSelf: 'center',
             width: 50,
             height: 'auto',
             alignItems: 'center',
-            backgroundColor: '#5ead97',
+            backgroundColor: ColorPalette.green,
             borderRadius: 10,
         },
         buttonText: {

@@ -1,24 +1,27 @@
 import { StyleSheet } from "react-native"
+import Colors from "../../Assets/Themes/ColorPalette"
+import ColorPalette from "../../Assets/Themes/ColorPalette"
 
 
 const styles = (screenContext, width, height) =>
     StyleSheet.create({
         container: { flex: 1, margin: 20 },
         headerContainer: {
-            flexDirection: 'row',
-        },
+            flexDirection: 'row', height: 200,
+            justifyContent: 'flex-end',
+            marginBottom:-70
 
-        headerTitleContainer: { flex: screenContext.isPortrait ? 0.9 : 0.95, alignItems: 'center' },
-        headerTitle: { fontFamily:'helvetica-light-587ebe5a59211', fontSize: 50 },
-        logoutIconContainer: { flex: screenContext.isPortrait ? 0.1 : 0.05 ,
-            alignSelf:'center'
         },
+        BGImageStyle:{borderRadius:10},
+
+
         logoutIcon: {
-            color: '#5ead97',
+            color: ColorPalette.green,
+            margin: 20
         },
         //userDetails
         userDetailsContainer: { marginVertical: 20, alignItems: 'center' },
-        profilePicture: { height: 100, width: 100, borderRadius: 50 },
+        profilePicture: { height: 150, width: 150, borderRadius: 100 },
         username: { fontSize: 30, fontFamily: 'Helvetica-Bold' },
         phoneNumber: {},
 

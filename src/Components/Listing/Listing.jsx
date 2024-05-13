@@ -45,6 +45,7 @@ const Listing = () => {
                 <TextInput value={newEntry} style={screenStyles.textInput}
                     onChangeText={(e) => setNewEntry(e)}
                     placeholder="Enter an Item"
+                    placeholderTextColor={'white'}
 
                 />
                 <TouchableOpacity onPress={handleAdd} >

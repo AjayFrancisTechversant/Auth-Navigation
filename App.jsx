@@ -8,7 +8,7 @@ import AsyncStorage from '@react-native-async-storage/async-storage'
 import TokenContext, { LoginTokenContext } from './src/Contexts/TokenContext'
 import { ScreenContextProvider } from './src/Contexts/ScreenContext'
 import HomeTabStack from './src/Stacks/HomeTabStack'
-
+import ColorPalette from './src/Assets/Themes/ColorPalette'
 
 
 const Stack = createNativeStackNavigator()
