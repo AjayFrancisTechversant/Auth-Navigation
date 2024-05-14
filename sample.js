@@ -1,4 +1,1 @@
-a=10
-b=26
-c=a+b
-console.log(b);
+console.log(Math.random().toString(36).substring(2));

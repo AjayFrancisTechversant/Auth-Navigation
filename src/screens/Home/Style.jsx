@@ -7,6 +7,6 @@ const styles =(screenContext, width, height)=>
         flex: 1,
       
     },
-    title:{alignSelf: 'center', fontSize: 50, fontFamily: 'helvetica-light-587ebe5a59211', marginTop:20}
+    title:{alignSelf: 'center', fontSize: 50, fontFamily: 'helvetica-light-587ebe5a59211', marginTop:50,marginBottom:20}
 })
 export default styles

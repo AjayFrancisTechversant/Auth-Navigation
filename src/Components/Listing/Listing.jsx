@@ -1,9 +1,10 @@
-import { StyleSheet, Text, TextInput, View, TouchableOpacity, FlatList, Image } from 'react-native'
+import {Text, View, TouchableOpacity, FlatList, Image } from 'react-native'
 import React, { useState } from 'react'
 import styles from './Style'
-
 import { useScreenContext } from '../../Contexts/ScreenContext';
 import Card from '../Card/Card';
+import { TextInput } from 'react-native-paper';
+import ColorPalette from '../../Assets/Themes/ColorPalette';
 
 const Listing = () => {
     const [newEntry, setNewEntry] = useState()
@@ -17,9 +18,7 @@ const Listing = () => {
     }
     const handleDelete = (i) => {
 
-        // console.log(i);
         items.splice(i, 1)
-        // console.log(items);
         if (refresh == false) {
             setRefresh(true)
         }
@@ -44,10 +43,14 @@ const Listing = () => {
             <View style={screenStyles.addContainer}>
                 <TextInput value={newEntry} style={screenStyles.textInput}
                     onChangeText={(e) => setNewEntry(e)}
-                    placeholder="Enter an Item"
-                    placeholderTextColor={'white'}
-
-                />
+                    mode="outlined"
+                    label="New Entry"
+                    selectionColor={ColorPalette.green}
+                    underlineColor={ColorPalette.green}
+                    activeUnderlineColor={ColorPalette.green}
+                    outlineColor={ColorPalette.green}
+                    activeOutlineColor={ColorPalette.green}
+               />
                 <TouchableOpacity onPress={handleAdd} >
                     <View style={screenStyles.button}>
                         <Text style={screenStyles.buttonText}>+</Text>

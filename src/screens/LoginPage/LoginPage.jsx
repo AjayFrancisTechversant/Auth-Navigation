@@ -1,10 +1,11 @@
-import { View, Text, TextInput, Button, Alert, TouchableOpacity} from 'react-native'
+import { View, Text, Alert, TouchableOpacity} from 'react-native'
 import React, { useContext, useState } from 'react'
 import AsyncStorage from '@react-native-async-storage/async-storage'
 import { LoginTokenContext } from '../../Contexts/TokenContext'
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view'
 import { useScreenContext } from '../../Contexts/ScreenContext'
 import styles from './Style'
+import { TextInput } from 'react-native-paper'
 
 
 
@@ -25,6 +26,7 @@ const LoginPage = ({ navigation }) => {
       screenContext[screenContext.isPortrait ? 'windowWidth' : 'windowHeight'],
       screenContext[screenContext.isPortrait ? 'windowHeight' : 'windowWidth'],
     );
+    
     return (
 
         < KeyboardAwareScrollView extraHeight={250} >
@@ -34,13 +36,27 @@ const LoginPage = ({ navigation }) => {
                 <Text style={{ fontSize: 50, alignSelf: 'center' }}> Login</Text>
 
                 <TextInput style={screenStyles.textInput}
-                    placeholder="Enter username"
+                    
                     onChangeText={(e) => setUserData({ ...userData, username: e })}
+                    mode="outlined"
+                    label="Username"
+                    selectionColor={ColorPalette.green}
+                    underlineColor={ColorPalette.green}
+                    activeUnderlineColor={ColorPalette.green}
+                    outlineColor={ColorPalette.green}
+                    activeOutlineColor={ColorPalette.green}
                 />
                 <TextInput style={screenStyles.textInput}
                     secureTextEntry
-                    placeholder="Enter password"
+                    
                     onChangeText={(e) => setUserData({ ...userData, password: e })}
+                    mode="outlined"
+                    label="Password"
+                    selectionColor={ColorPalette.green}
+                    underlineColor={ColorPalette.green}
+                    activeUnderlineColor={ColorPalette.green}
+                    outlineColor={ColorPalette.green}
+                    activeOutlineColor={ColorPalette.green}
                 />
 
                 <TouchableOpacity onPress={handleLogin}>

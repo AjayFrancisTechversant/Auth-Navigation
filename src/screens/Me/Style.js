@@ -9,16 +9,24 @@ const styles = (screenContext, width, height) =>
         headerContainer: {
             flexDirection: 'row', height: 200,
             justifyContent: 'flex-end',
-            marginBottom:-70
+            marginBottom: -70
 
         },
-        BGImageStyle:{borderRadius:10},
+        BGImageStyle: { borderRadius: 10 },
+
+
 
 
         logoutIcon: {
             color: ColorPalette.green,
             margin: 20
         },
+        editContainer: { borderWidth: 1, borderRadius: 10, padding: 10, borderColor: ColorPalette.green },
+        textInput: { marginVertical: 5, width: width * 0.6 },
+        editBoxTitle:{alignSelf:'center'},
+        editButtonsContainer: { flexDirection: 'row', justifyContent: 'space-around', marginVertical: 10 },
+        cancelEditButton: { backgroundColor: ColorPalette.red, height: 30, width: 30, borderRadius: 5, justifyContent: 'center', alignItems: 'center' },
+        saveEditButton: { backgroundColor: ColorPalette.green, height: 30, width: 30, borderRadius: 5, justifyContent: 'center', alignItems: 'center' },
         //userDetails
         userDetailsContainer: { marginVertical: 20, alignItems: 'center' },
         profilePicture: { height: 150, width: 150, borderRadius: 100 },

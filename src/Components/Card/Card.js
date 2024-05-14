@@ -16,7 +16,7 @@ const Card = ({ index, item, handleDelete, Component }) => {
     return (
         <>
             {Component == 'Listing' ? <View style={screenStyles.itemContainer}>
-    
+
                 <View style={screenStyles.imageContainer} >
                     <Image
                         style={screenStyles.image}
@@ -35,10 +35,24 @@ const Card = ({ index, item, handleDelete, Component }) => {
                     </TouchableOpacity>
                 </View>
             </View>
-            :
-            <View style={screenStyles.button}>
-            <Text style={screenStyles.buttonText}>{item.title}</Text>
-        </View>}
+                :
+                <View style={screenStyles.button}>
+                    <Image
+                        style={screenStyles.profilePic}
+                        source={{
+                            uri: item.picture.large
+                        }}
+                    />
+                    <Text style={screenStyles.buttonTitle}>{`${item.name.title}. ${item.name.first} ${item.name.last}`}</Text>
+
+                    <Text>
+                        {item.cell}
+                    </Text>
+                    <Text style={screenStyles.userLocationText}>
+                        {item.location.state}, {item.location.country}
+                    </Text>
+
+                </View>}
         </>
     )
 }

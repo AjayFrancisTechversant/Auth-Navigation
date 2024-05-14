@@ -4,7 +4,7 @@ const styles = (screenContext, width, height) =>
     StyleSheet.create({
         container: { flex: 1,marginTop:20 },
         title: { fontSize: 50, alignSelf: 'center',fontFamily:'helvetica-light-587ebe5a59211' },
-        textInput: { backgroundColor: ColorPalette.green, borderRadius: 5, width: '80%', borderColor: ColorPalette.green, borderWidth: 0.5,color:'white' },
+        textInput: { width: '80%'},
         button: {
             alignSelf: 'center',
             width: 50,

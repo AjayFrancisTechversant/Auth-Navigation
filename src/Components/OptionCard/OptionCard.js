@@ -9,7 +9,7 @@ import FontAwesome5 from 'react-native-vector-icons/FontAwesome5'
 
 
 
-const OptionCard = ({iconName,optionTitle,iconFamily}) => {
+const OptionCard = ({iconName,optionTitle,iconFamily,onPressFn}) => {
 
   const screenContext = useScreenContext();
   const screenStyles = styles(
@@ -19,7 +19,10 @@ const OptionCard = ({iconName,optionTitle,iconFamily}) => {
   );
   return (
     <View style={screenStyles.container}>
-      <TouchableOpacity style={screenStyles.button} >
+      <TouchableOpacity onPress={onPressFn}
+    
+      
+      style={screenStyles.button} >
         {iconFamily=='AntDesign'?
           <AntDesign name={iconName} size={20} style={screenStyles.icon} />
           :
