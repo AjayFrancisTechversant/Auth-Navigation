@@ -1,4 +1,5 @@
 import { StyleSheet } from "react-native";
+import ColorPalette from "../../Assets/Themes/ColorPalette";
 
 
 const styles =(screenContext, width, height)=> StyleSheet.create({
@@ -15,6 +16,7 @@ const styles =(screenContext, width, height)=> StyleSheet.create({
         padding: 10,
         color: 'white',
         fontSize: 18
-    }
+    },
+    invalidInput:{color:ColorPalette.red}
 })
 export default styles
