@@ -4,21 +4,23 @@ import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view
 import styles from './Style'
 import { useScreenContext } from '../../Contexts/ScreenContext'
 import { Avatar, Button, Card, Text } from 'react-native-paper';
-import MaterialIcons from 'react-native-vector-icons/MaterialIcons'
 import FontAwesome5 from 'react-native-vector-icons/FontAwesome5'
 import ColorPalette from '../../Assets/Themes/ColorPalette'
+import LikeDislikeButton from '../../Components/LikeDislikeButton/LikeDislikeButton'
+import AddFriendButton from '../../Components/AddFriendButton/AddFriendButton'
 
 
 
 const Details = (props) => {
+    
     const screenContext = useScreenContext();
     const screenStyles = styles(
         screenContext,
         screenContext[screenContext.isPortrait ? 'windowWidth' : 'windowHeight'],
         screenContext[screenContext.isPortrait ? 'windowHeight' : 'windowWidth'],
     );
-
     const { item } = props.route.params
+    
     return (
 
         <>
@@ -34,12 +36,8 @@ const Details = (props) => {
                         }}
                     />
                    <View style={screenStyles.buttonsContainer} >
-                        <TouchableOpacity>
-                            <MaterialIcons name='favorite-outline' color={ColorPalette.red} size={30} />
-                        </TouchableOpacity>
-                        <TouchableOpacity>
-                            <FontAwesome5 name='user-plus' color={ColorPalette.blue} size={30} />
-                        </TouchableOpacity>
+                        <LikeDislikeButton/>
+                        <AddFriendButton/>
                    </View>
                     <View style={screenStyles.descContainer}>
                         <Text >

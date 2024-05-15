@@ -12,9 +12,11 @@ import Entypo from 'react-native-vector-icons/Entypo'
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
 import ColorPalette from '../../Assets/Themes/ColorPalette';
 import { TextInput } from 'react-native-paper';
+import { useSelector } from 'react-redux';
 
 
 const Me = () => {
+    const likeCount=useSelector((state) => state.Likes.value)
     const { tokenStatus, setTokenStatus } = useContext(LoginTokenContext)
     const [username, setUserName] = useState('')
     const [mobileNumber, setMobileNumber] = useState()
@@ -119,8 +121,8 @@ const Me = () => {
             <View style={screenStyles.threeIconContainer}>
                 <TouchableOpacity >
                     <AntDesign style={screenStyles.threeIcon} name='heart' color={ColorPalette.red} size={30} />
-                    <Text style={screenStyles.threeIconTitle}>Favourites</Text>
-                    <Text style={screenStyles.threeIconSubtitle}>6</Text>
+                    <Text style={screenStyles.threeIconTitle}>Liked</Text>
+                    <Text style={screenStyles.threeIconSubtitle}>{likeCount}</Text>
                 </TouchableOpacity>
                 <TouchableOpacity>
                     <FontAwesome5 style={screenStyles.threeIcon} name='user-friends' color={ColorPalette.blue} size={30} />
