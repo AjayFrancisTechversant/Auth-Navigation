@@ -16,24 +16,51 @@ const LoginPage = ({ navigation }) => {
     const [usernameError, setUsernameError] = useState(false);
     const [passwordError, setPasswordError] = useState(false);
     // console.log(userData);
-
-    const handleLogin = async () => {
-        if (userData.username=='') {
-            setUsernameError(true);
+    const validate = () => {
+        if (userData.username != '' && validPassword.test(userData.password)) {
+            setUsernameError(false)
+            setPasswordError(false)
+            return true
+        }
+        else 
+      {  if (userData.username == '') {
+            setUsernameError(true)
         }
         else{
-            setUsernameError(false);
+            setUsernameError(false)
         }
         if (!validPassword.test(userData.password)) {
-            setPasswordError(true);
+            setPasswordError(true)
         }
         else{
-            setPasswordError(false);
+            setPasswordError(false)
         }
-        if(!usernameError&&!passwordError) {
+    }
+    }
+
+    const handleLogin = async () => {
+        // if (userData.username=='') {
+        //     setUsernameError(true);
+        // }
+        // else{
+        //     setUsernameError(false);
+        // }
+        // if (!validPassword.test(userData.password)) {
+        //     setPasswordError(true);
+        // }
+        // else{
+        //     setPasswordError(false);
+        // }
+        // if(!usernameError&&!passwordError) {
+        //     await AsyncStorage.setItem("isLoggedin", userData.username)
+        //     setTokenStatus(true)
+        // }
+        if (validate()) {
             await AsyncStorage.setItem("isLoggedin", userData.username)
             setTokenStatus(true)
         }
+
+
 
     }
     const screenContext = useScreenContext();
@@ -62,7 +89,7 @@ const LoginPage = ({ navigation }) => {
                     outlineColor={ColorPalette.green}
                     activeOutlineColor={ColorPalette.green}
                 />
-                 {usernameError &&
+                {usernameError &&
                     <Text style={screenStyles.invalidInput}>Invalid Username!</Text>
                 }
                 <TextInput style={screenStyles.textInput}
