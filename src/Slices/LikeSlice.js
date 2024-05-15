@@ -1,18 +1,18 @@
 import { createSlice } from '@reduxjs/toolkit'
 
 const initialState = {
-  value: 0,
+  likedUsersId:[]
 }
 
 export const LikeSlice = createSlice({
   name: 'Likes',
   initialState,
   reducers: {
-    like: (state) => {
-      state.value+=1
+    like: (state,action) => {
+      state.likedUsersId.push(action.payload)
     },
-    dislike:(state)=>{
-      state.value-=1
+    dislike:(state,action)=>{
+      state.likedUsersId=state.likedUsersId.filter(item=>item!=action.payload)
     }
   },
 })

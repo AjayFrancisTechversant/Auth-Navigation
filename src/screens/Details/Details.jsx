@@ -20,7 +20,7 @@ const Details = (props) => {
         screenContext[screenContext.isPortrait ? 'windowHeight' : 'windowWidth'],
     );
     const { item } = props.route.params
-    
+    const userId=item.id.value
     return (
 
         <>
@@ -36,7 +36,7 @@ const Details = (props) => {
                         }}
                     />
                    <View style={screenStyles.buttonsContainer} >
-                        <LikeDislikeButton/>
+                        <LikeDislikeButton userId={userId}/>
                         <AddFriendButton/>
                    </View>
                     <View style={screenStyles.descContainer}>

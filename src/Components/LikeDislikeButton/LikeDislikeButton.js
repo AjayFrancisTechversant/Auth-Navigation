@@ -9,22 +9,22 @@ import { dislike, like } from '../../Slices/LikeSlice';
 
 
 
-const LikeDislikeButton = () => {
+const LikeDislikeButton = ({userId}) => {
+    const likedUsersId=useSelector((state)=>state.Likes.likedUsersId)
     const dispatch=useDispatch()
-    const [liked, setLiked] = useState(false);
-    const likeCount=useSelector((state) => state.Likes.value)
+    const [liked, setLiked] = useState(likedUsersId.includes(userId));
 
     const handleLike = () => {
         if(liked){
-        dispatch(dislike())
+        dispatch(dislike(userId))
         }
         else{
-            dispatch(like())
+            dispatch(like(userId))
         }
         setLiked(!liked);
-
+        
     };
-    console.log(likeCount);
+   
     const screenContext = useScreenContext();
     const screenStyles = styles(
         screenContext,
