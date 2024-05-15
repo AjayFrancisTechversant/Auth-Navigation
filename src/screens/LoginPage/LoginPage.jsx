@@ -13,14 +13,24 @@ import { validPassword } from '../../RegExp/RegExp'
 const LoginPage = ({ navigation }) => {
     const { tokenStatus, setTokenStatus } = useContext(LoginTokenContext)
     const [userData, setUserData] = useState({ username: '', password: '' })
+    const [usernameError, setUsernameError] = useState(false);
     const [passwordError, setPasswordError] = useState(false);
     // console.log(userData);
 
     const handleLogin = async () => {
+        if (userData.username=='') {
+            setUsernameError(true);
+        }
+        else{
+            setUsernameError(false);
+        }
         if (!validPassword.test(userData.password)) {
             setPasswordError(true);
         }
-        else {
+        else{
+            setPasswordError(false);
+        }
+        if(!usernameError&&!passwordError) {
             await AsyncStorage.setItem("isLoggedin", userData.username)
             setTokenStatus(true)
         }
@@ -52,6 +62,9 @@ const LoginPage = ({ navigation }) => {
                     outlineColor={ColorPalette.green}
                     activeOutlineColor={ColorPalette.green}
                 />
+                 {usernameError &&
+                    <Text style={screenStyles.invalidInput}>Invalid Username!</Text>
+                }
                 <TextInput style={screenStyles.textInput}
                     secureTextEntry
 
