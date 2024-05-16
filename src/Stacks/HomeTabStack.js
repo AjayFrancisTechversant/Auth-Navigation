@@ -15,7 +15,7 @@ const HomeTabStack = () => {
                 name='Home'
                 component={Home}
                 options={{
-                    headerShown: false,
+                    
                     tabBarIcon: ({ color, size }) => (
                         <Entypo name="home" color={color} size={size} />
                     )
@@ -26,7 +26,7 @@ const HomeTabStack = () => {
                 name='Listing'
                 component={Listing}
                 options={{
-                    headerShown: false,
+                   
                     tabBarIcon: ({ color, size }) => (
                         <Feather name="list" color={color} size={size} />
                     )
@@ -37,7 +37,7 @@ const HomeTabStack = () => {
                 name='Me'
                 component={Me}
                 options={{
-                    headerShown: false,
+                   
                     tabBarIcon: ({ color, size }) => (
                         <FontAwesome name="user" color={color} size={size} />
                     )

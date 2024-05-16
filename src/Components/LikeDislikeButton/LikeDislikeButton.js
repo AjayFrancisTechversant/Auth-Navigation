@@ -9,22 +9,21 @@ import { dislike, like } from '../../Slices/LikeSlice';
 
 
 
-const LikeDislikeButton = ({userId}) => {
-    const likedUsersId=useSelector((state)=>state.Likes.likedUsersId)
+const LikeDislikeButton = ({item}) => {
+    const likedUsers=useSelector((state)=>state.Likes.likedUsers)
     const dispatch=useDispatch()
-    const [liked, setLiked] = useState(likedUsersId.includes(userId));
+    const [liked, setLiked] = useState(likedUsers.includes(item));
 
-    const handleLike = () => {
+    const handleLikeDislike = () => {
         if(liked){
-        dispatch(dislike(userId))
+        dispatch(dislike(item))
         }
         else{
-            dispatch(like(userId))
+            dispatch(like(item))
         }
         setLiked(!liked);
         
     };
-   
     const screenContext = useScreenContext();
     const screenStyles = styles(
         screenContext,
@@ -35,7 +34,7 @@ const LikeDislikeButton = ({userId}) => {
 
     return (
         <View>
-            <TouchableOpacity onPress={handleLike}>
+            <TouchableOpacity onPress={handleLikeDislike}>
                 <MaterialIcons size={30} name={liked?'favorite':'favorite-border'} color={ColorPalette.red}/>
             </TouchableOpacity>
 

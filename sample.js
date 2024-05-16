@@ -1,1 +1,3 @@
-console.log(Math.random().toString(36).substring(2));
+var a={car:'bajaj'}
+var b=[{car:'suv'},{car:'bajaj'}]
+console.log(b.filter(i=>i.car!=a.car));

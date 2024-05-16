@@ -35,7 +35,7 @@ const styles = (screenContext, width, height) =>
 
         // 3IconContainer
         threeIconContainer: { flexDirection: 'row', justifyContent: 'space-evenly', marginVertical: 20 },
-        threeIcon: { alignSelf: 'center' },
+        threeIcon: { alignSelf: 'center'},
         threeIconTitle: { fontFamily: 'Rajdhani-Medium' },
         threeIconSubtitle: { alignSelf: 'center', fontFamily: 'Rajdhani-Bold' },
 

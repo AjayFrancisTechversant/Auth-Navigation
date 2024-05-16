@@ -16,7 +16,7 @@ import { useSelector } from 'react-redux';
 
 
 const Me = () => {
-    const likeCount=useSelector((state) => state.Likes.likedUsersId.length)
+    const likeCount=useSelector((state) => state.Likes.likedUsers.length)
     const { tokenStatus, setTokenStatus } = useContext(LoginTokenContext)
     const [username, setUserName] = useState('')
     const [mobileNumber, setMobileNumber] = useState()
