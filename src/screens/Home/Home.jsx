@@ -49,9 +49,8 @@ const Home = ({ navigation }) => {
                 data={users}
                 keyExtractor={item => Math.random().toString(36).substring(2)}
                 renderItem={({ item }) =>
-                    <TouchableOpacity onPress={() => handlePress(item)}>
-                        <Card Component={'Home'} item={item} />
-                    </TouchableOpacity>
+                    
+                        <Card Component={'Home'} item={item} onPressFn={handlePress} />
                 }
                 onEndReached={fetchMore}
                 onEndReachedThreshold={0.1}

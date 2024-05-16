@@ -61,7 +61,7 @@ const Listing = () => {
             </>}
                 data={items}
                 renderItem={({ index, item }) =>
-                    <Card index={index} item={item} handleDelete={handleDelete} Component={'Listing'}/>
+                    <Card index={index} item={item} onPressFn={handleDelete} Component={'Listing'}/>
                 }
 
             />      

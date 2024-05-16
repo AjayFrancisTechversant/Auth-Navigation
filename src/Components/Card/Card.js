@@ -6,7 +6,7 @@ import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
 
 
 
-const Card = ({ index, item, handleDelete, Component }) => {
+const Card = ({ index, item, Component, onPressFn }) => {
     const screenContext = useScreenContext();
     const screenStyles = styles(
         screenContext,
@@ -28,7 +28,7 @@ const Card = ({ index, item, handleDelete, Component }) => {
                         <Text style={screenStyles.itemDesc}>{item.desc}</Text>
                     </View>
                     <View style={screenStyles.deleteContainer}>
-                        <TouchableOpacity onPress={() => handleDelete(index)} >
+                        <TouchableOpacity onPress={() => onPressFn(index)} >
                             <View style={screenStyles.deleteButton}>
                                 <Text ><MaterialIcons name='delete' size={30} color={'red'} /></Text>
                             </View>
@@ -36,7 +36,7 @@ const Card = ({ index, item, handleDelete, Component }) => {
                     </View>
                 </View>
                 :
-                <View style={screenStyles.button}>
+                <TouchableOpacity onPress={()=>onPressFn(item)} style={screenStyles.button}>
                     <Image
                         style={screenStyles.profilePic}
                         source={{
@@ -50,7 +50,8 @@ const Card = ({ index, item, handleDelete, Component }) => {
                     <Text style={screenStyles.userLocationText}>
                         {item.location.state}, {item.location.country}
                     </Text>
-                </View>}
+                </TouchableOpacity>
+                }
         </>
     )
 }
