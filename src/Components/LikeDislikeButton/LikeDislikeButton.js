@@ -12,7 +12,7 @@ import { dislike, like } from '../../Slices/LikeSlice';
 const LikeDislikeButton = ({item}) => {
     const likedUsers=useSelector((state)=>state.Likes.likedUsers)
     const dispatch=useDispatch()
-    const [liked, setLiked] = useState(likedUsers.includes(item));
+    const [liked, setLiked] = useState(likedUsers.some(i=>i.id.value==item.id.value));
 
     const handleLikeDislike = () => {
         if(liked){

@@ -9,8 +9,10 @@ import TokenContext, { LoginTokenContext } from './src/Contexts/TokenContext'
 import { ScreenContextProvider } from './src/Contexts/ScreenContext'
 import HomeTabStack from './src/Stacks/HomeTabStack'
 import { Provider } from 'react-redux'
-import { Store } from './src/Store/Store'
+import { persistor, store } from './src/Store/Store'
 
+
+import { PersistGate } from 'redux-persist/integration/react'
 
 const Stack = createNativeStackNavigator()
 
@@ -70,9 +72,11 @@ export default function Main() {
   return (
     <ScreenContextProvider>
       <TokenContext>
-        <Provider store={Store}>
-          <App />
-          </Provider>
+        <Provider store={store}>
+          <PersistGate loading={null} persistor={persistor}>
+            <App />
+          </PersistGate>
+        </Provider>
       </TokenContext>
     </ScreenContextProvider>
   )

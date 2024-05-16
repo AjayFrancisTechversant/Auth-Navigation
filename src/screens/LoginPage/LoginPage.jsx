@@ -22,39 +22,23 @@ const LoginPage = ({ navigation }) => {
             setPasswordError(false)
             return true
         }
-        else 
-      {  if (userData.username == '') {
-            setUsernameError(true)
+        else {
+            if (userData.username == '') {
+                setUsernameError(true)
+            }
+            else {
+                setUsernameError(false)
+            }
+            if (!validPassword.test(userData.password)) {
+                setPasswordError(true)
+            }
+            else {
+                setPasswordError(false)
+            }
         }
-        else{
-            setUsernameError(false)
-        }
-        if (!validPassword.test(userData.password)) {
-            setPasswordError(true)
-        }
-        else{
-            setPasswordError(false)
-        }
-    }
     }
 
     const handleLogin = async () => {
-        // if (userData.username=='') {
-        //     setUsernameError(true);
-        // }
-        // else{
-        //     setUsernameError(false);
-        // }
-        // if (!validPassword.test(userData.password)) {
-        //     setPasswordError(true);
-        // }
-        // else{
-        //     setPasswordError(false);
-        // }
-        // if(!usernameError&&!passwordError) {
-        //     await AsyncStorage.setItem("isLoggedin", userData.username)
-        //     setTokenStatus(true)
-        // }
         if (validate()) {
             await AsyncStorage.setItem("isLoggedin", userData.username)
             setTokenStatus(true)
