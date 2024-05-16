@@ -73,7 +73,6 @@ export default function Main() {
         <Provider store={Store}>
           <App />
           </Provider>
-       
       </TokenContext>
     </ScreenContextProvider>
   )
