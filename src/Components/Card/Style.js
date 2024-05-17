@@ -28,7 +28,7 @@ const styles = (screenContext, width, height) =>
             borderColor: ColorPalette.green,
             borderWidth: 0.5,
             backgroundColor: '#e6f2ef',
-            borderRadius: 10, marginVertical: 5,
+            borderRadius: 5, marginVertical: 5,
             elevation: 5
         },
         profilePic: { height: 100, width: 100, borderRadius: 50, marginTop: 20 },

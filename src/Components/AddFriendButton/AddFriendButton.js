@@ -4,13 +4,22 @@ import { useScreenContext } from '../../Contexts/ScreenContext';
 import styles from './Style';
 import FontAwesome5 from 'react-native-vector-icons/FontAwesome5'
 import ColorPalette from '../../Assets/Themes/ColorPalette';
+import { addFriend, removeFriend } from '../../Slices/AddFriendSlice';
+import { useDispatch, useSelector } from 'react-redux';
 
 
 
-const AddFriendButton = () => {
-    const [friendAdded, setFriendAdded] = useState(false);
-
+const AddFriendButton = ({item}) => {
+    const dispatch=useDispatch()
+    const addedFriends=useSelector((state)=>state.AddFriend.addedFriends)
+    const [friendAdded, setFriendAdded] = useState(addedFriends.some(i=>i.id.value==item.id.value));
     const handleAddFriend = () => {
+        if(friendAdded){
+            dispatch(removeFriend(item))
+            }
+            else{
+                dispatch(addFriend(item))
+            }
         setFriendAdded(!friendAdded);
 
     };
@@ -27,7 +36,6 @@ const AddFriendButton = () => {
             <TouchableOpacity onPress={handleAddFriend}>
                 <FontAwesome5 name={friendAdded?'user-check':'user-plus'} color={ColorPalette.blue} size={30} />
             </TouchableOpacity>
-
         </View>
     );
 };

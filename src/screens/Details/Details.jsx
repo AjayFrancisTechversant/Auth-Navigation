@@ -36,7 +36,7 @@ const Details = (props) => {
                     />
                    <View style={screenStyles.buttonsContainer} >
                         <LikeDislikeButton item={item}/>
-                        <AddFriendButton/>
+                        <AddFriendButton item={item}/>
                    </View>
                     <View style={screenStyles.descContainer}>
                         <Text >

@@ -17,6 +17,7 @@ import { useSelector } from 'react-redux';
 
 const Me = () => {
     const likeCount=useSelector((state) => state.Likes.likedUsers.length)
+    const friendsCount=useSelector((state) => state.AddFriend.addedFriends.length)
     const { tokenStatus, setTokenStatus } = useContext(LoginTokenContext)
     const [username, setUserName] = useState('')
     const [mobileNumber, setMobileNumber] = useState()
@@ -127,7 +128,7 @@ const Me = () => {
                 <TouchableOpacity>
                     <FontAwesome5 style={screenStyles.threeIcon} name='user-friends' color={ColorPalette.blue} size={30} />
                     <Text style={screenStyles.threeIconTitle}>Friends</Text>
-                    <Text style={screenStyles.threeIconSubtitle}>127</Text>
+                    <Text style={screenStyles.threeIconSubtitle}>{friendsCount}</Text>
                 </TouchableOpacity>
                 <TouchableOpacity>
                     <FontAwesome5 style={screenStyles.threeIcon} name='trophy' color={ColorPalette.yellow} size={30} />
