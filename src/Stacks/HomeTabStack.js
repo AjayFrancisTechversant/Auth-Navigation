@@ -1,7 +1,6 @@
 import React from 'react'
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs'
-import Home from '../screens/Home/Home'
-import Listing from '../Components/Listing/Listing'
+import Listing from '../screens/Listing/Listing'
 import Me from '../screens/Me/Me'
 import Entypo from 'react-native-vector-icons/Entypo';
 import FontAwesome from 'react-native-vector-icons/FontAwesome'

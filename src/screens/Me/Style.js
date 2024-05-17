@@ -5,6 +5,7 @@ import ColorPalette from "../../Assets/Themes/ColorPalette"
 
 const styles = (screenContext, width, height) =>
     StyleSheet.create({
+        canvas:{backgroundColor:'white',flex:1},
         container: { flex: 1, margin: 20 },
         headerContainer: {
             flexDirection: 'row', height: 200,

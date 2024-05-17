@@ -57,94 +57,96 @@ const Me = () => {
         getUsername()
     }, [])
     return (
-        <KeyboardAwareScrollView
-            showsVerticalScrollIndicator={false}
-            style={screenStyles.container}>
-
-            <ImageBackground style={screenStyles.headerContainer} source={require('../../Assets/Images/profilePageBG.jpg')}
-                imageStyle={screenStyles.BGImageStyle}>
-                <TouchableOpacity onPress={handleLogout}>
-                    <MaterialIcons style={screenStyles.logoutIcon} size={30} name="logout" />
-                </TouchableOpacity>
-            </ImageBackground>
-
-            <View style={screenStyles.userDetailsContainer} >
-                <Image
-                    style={screenStyles.profilePicture}
-                    source={require('../../Assets/Images/profilePicDummy.webp')}
-                />
-                <Text style={screenStyles.username}>{username}</Text>
-                {
-                    isEditing ?
-                        <View style={screenStyles.editContainer}>
-                            <Text style={screenStyles.editBoxTitle}>Edit Profile Details</Text>
-                            <TextInput
-                                style={screenStyles.textInput}
-                                inputMode='numeric'
-                                outlineColor={ColorPalette.green}
-                                cursorColor={ColorPalette.green}
-                                selectionColor={ColorPalette.green}
-                                activeOutlineColor={ColorPalette.green}
-                                label={'Mobile Number'}
-                                mode='outlined'
-                                onChangeText={(e) => setTempMobileNumber(e)}
-                                value={tempMobileNumber}
-                            />
-                            <TextInput inputMode='email'
-                                outlineColor={ColorPalette.green}
-                                cursorColor={ColorPalette.green}
-                                selectionColor={ColorPalette.green}
-                                activeOutlineColor={ColorPalette.green}
-                                label={'Email'}
-                                mode='outlined'
-                                style={screenStyles.textInput}
-                                onChangeText={(e) => setTempEmail(e)}
-                                value={tempEmail}
-                            />
-                            <View style={screenStyles.editButtonsContainer}>
-                                <TouchableOpacity onPress={handleCancelEdit} style={screenStyles.cancelEditButton}>
-                                    <Entypo size={25} name='cross' />
-                                </TouchableOpacity>
-                                <TouchableOpacity onPress={handleSaveEdit} style={screenStyles.saveEditButton}>
-                                    <Entypo size={25} name='check' />
-                                </TouchableOpacity>
+        <View style={screenStyles.canvas}>
+            <KeyboardAwareScrollView
+                showsVerticalScrollIndicator={false}
+                style={screenStyles.container}>
+    
+                <ImageBackground style={screenStyles.headerContainer} source={require('../../Assets/Images/profilePageBG.jpg')}
+                    imageStyle={screenStyles.BGImageStyle}>
+                    <TouchableOpacity onPress={handleLogout}>
+                        <MaterialIcons style={screenStyles.logoutIcon} size={30} name="logout" />
+                    </TouchableOpacity>
+                </ImageBackground>
+    
+                <View style={screenStyles.userDetailsContainer} >
+                    <Image
+                        style={screenStyles.profilePicture}
+                        source={require('../../Assets/Images/profilePicDummy.webp')}
+                    />
+                    <Text style={screenStyles.username}>{username}</Text>
+                    {
+                        isEditing ?
+                            <View style={screenStyles.editContainer}>
+                                <Text style={screenStyles.editBoxTitle}>Edit Profile Details</Text>
+                                <TextInput
+                                    style={screenStyles.textInput}
+                                    inputMode='numeric'
+                                    outlineColor={ColorPalette.green}
+                                    cursorColor={ColorPalette.green}
+                                    selectionColor={ColorPalette.green}
+                                    activeOutlineColor={ColorPalette.green}
+                                    label={'Mobile Number'}
+                                    mode='outlined'
+                                    onChangeText={(e) => setTempMobileNumber(e)}
+                                    value={tempMobileNumber}
+                                />
+                                <TextInput inputMode='email'
+                                    outlineColor={ColorPalette.green}
+                                    cursorColor={ColorPalette.green}
+                                    selectionColor={ColorPalette.green}
+                                    activeOutlineColor={ColorPalette.green}
+                                    label={'Email'}
+                                    mode='outlined'
+                                    style={screenStyles.textInput}
+                                    onChangeText={(e) => setTempEmail(e)}
+                                    value={tempEmail}
+                                />
+                                <View style={screenStyles.editButtonsContainer}>
+                                    <TouchableOpacity onPress={handleCancelEdit} style={screenStyles.cancelEditButton}>
+                                        <Entypo size={25} name='cross' />
+                                    </TouchableOpacity>
+                                    <TouchableOpacity onPress={handleSaveEdit} style={screenStyles.saveEditButton}>
+                                        <Entypo size={25} name='check' />
+                                    </TouchableOpacity>
+                                </View>
                             </View>
-                        </View>
-
-                        :
-                        <View>
-                            <Text>Mobile: {mobileNumber}</Text>
-                            <Text>Email: {email}</Text>
-                        </View>
-                }
-            </View>
-
-            <View style={screenStyles.threeIconContainer}>
-                <TouchableOpacity >
-                    <AntDesign style={screenStyles.threeIcon} name='heart' color={ColorPalette.red} size={30} />
-                    <Text style={screenStyles.threeIconTitle}>Liked</Text>
-                    <Text style={screenStyles.threeIconSubtitle}>{likeCount}</Text>
-                </TouchableOpacity>
-                <TouchableOpacity>
-                    <FontAwesome5 style={screenStyles.threeIcon} name='user-friends' color={ColorPalette.blue} size={30} />
-                    <Text style={screenStyles.threeIconTitle}>Friends</Text>
-                    <Text style={screenStyles.threeIconSubtitle}>{friendsCount}</Text>
-                </TouchableOpacity>
-                <TouchableOpacity>
-                    <FontAwesome5 style={screenStyles.threeIcon} name='trophy' color={ColorPalette.yellow} size={30} />
-                    <Text style={screenStyles.threeIconTitle}>Achivements</Text>
-                    <Text style={screenStyles.threeIconSubtitle}>2</Text>
-                </TouchableOpacity>
-            </View>
-            <View style={screenStyles.OptionCardContainer}>
-                <OptionCard iconName={'boxes'} iconFamily={'FontAwesome5'} optionTitle={'My Orders'} />
-                <OptionCard iconName={'dollar'} iconFamily={'FontAwesome'} optionTitle={'Refer and Earn'} />
-                <OptionCard iconName={'help'} iconFamily={'Entypo'} optionTitle={'Help Center'} />
-                <OptionCard onPressFn={handleEditOption} iconName={'edit'} iconFamily={'AntDesign'} optionTitle={'Edit Profile Details'} />
-                <OptionCard iconName={'setting'} iconFamily={'AntDesign'} optionTitle={'Settings'} />
-            </View>
-
-        </KeyboardAwareScrollView>
+    
+                            :
+                            <View>
+                                <Text>Mobile: {mobileNumber}</Text>
+                                <Text>Email: {email}</Text>
+                            </View>
+                    }
+                </View>
+    
+                <View style={screenStyles.threeIconContainer}>
+                    <TouchableOpacity >
+                        <AntDesign style={screenStyles.threeIcon} name='heart' color={ColorPalette.red} size={30} />
+                        <Text style={screenStyles.threeIconTitle}>Liked</Text>
+                        <Text style={screenStyles.threeIconSubtitle}>{likeCount}</Text>
+                    </TouchableOpacity>
+                    <TouchableOpacity>
+                        <FontAwesome5 style={screenStyles.threeIcon} name='user-friends' color={ColorPalette.blue} size={30} />
+                        <Text style={screenStyles.threeIconTitle}>Friends</Text>
+                        <Text style={screenStyles.threeIconSubtitle}>{friendsCount}</Text>
+                    </TouchableOpacity>
+                    <TouchableOpacity>
+                        <FontAwesome5 style={screenStyles.threeIcon} name='trophy' color={ColorPalette.yellow} size={30} />
+                        <Text style={screenStyles.threeIconTitle}>Achivements</Text>
+                        <Text style={screenStyles.threeIconSubtitle}>2</Text>
+                    </TouchableOpacity>
+                </View>
+                <View style={screenStyles.OptionCardContainer}>
+                    <OptionCard iconName={'boxes'} iconFamily={'FontAwesome5'} optionTitle={'My Orders'} />
+                    <OptionCard iconName={'dollar'} iconFamily={'FontAwesome'} optionTitle={'Refer and Earn'} />
+                    <OptionCard iconName={'help'} iconFamily={'Entypo'} optionTitle={'Help Center'} />
+                    <OptionCard onPressFn={handleEditOption} iconName={'edit'} iconFamily={'AntDesign'} optionTitle={'Edit Profile Details'} />
+                    <OptionCard iconName={'setting'} iconFamily={'AntDesign'} optionTitle={'Settings'} />
+                </View>
+    
+            </KeyboardAwareScrollView>
+        </View>
     )
 }
 

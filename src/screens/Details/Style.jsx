@@ -2,6 +2,7 @@ import { StyleSheet } from "react-native"
 
 const styles = (screenContext, width, height) =>
     StyleSheet.create({
+        canvas:{backgroundColor:'white',flex:1},
         Container: {
             marginTop:20,
             flex: 1

@@ -2,6 +2,7 @@ import { StyleSheet } from "react-native"
 
 const styles = (screenContext, width, height) =>
     StyleSheet.create({
+        canvas:{backgroundColor:'white',flex:1},
         container: { flex: 1,marginTop:20 },
         title: { fontSize: 50, alignSelf: 'center',fontFamily:'helvetica-light-587ebe5a59211' },
         textInput: { width: '80%'},

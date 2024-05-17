@@ -3,6 +3,7 @@ import ColorPalette from "../../Assets/Themes/ColorPalette";
 
 
 const styles =(screenContext, width, height)=> StyleSheet.create({
+    canvas:{backgroundColor:'white',flex:1},
     container: { flex: 1, marginHorizontal:screenContext.isPortrait? width*0.1:width*0.3, marginTop: 50 },
     textInput: { marginVertical: 15 },
     button: {

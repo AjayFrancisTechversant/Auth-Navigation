@@ -15,7 +15,6 @@ const LoginPage = ({ navigation }) => {
     const [userData, setUserData] = useState({ username: '', password: '' })
     const [usernameError, setUsernameError] = useState(false);
     const [passwordError, setPasswordError] = useState(false);
-    // console.log(userData);
     const validate = () => {
         if (userData.username != '' && validPassword.test(userData.password)) {
             setUsernameError(false)
@@ -56,7 +55,7 @@ const LoginPage = ({ navigation }) => {
 
     return (
 
-        < KeyboardAwareScrollView extraHeight={250} >
+        < KeyboardAwareScrollView extraHeight={250} style={screenStyles.canvas} >
             <View
                 style={screenStyles.container} >
 

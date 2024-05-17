@@ -6,7 +6,7 @@ import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
 
 
 
-const Card = ({ index, item, Component, onPressFn }) => {
+const Card = ({ index, item,  onPressFn }) => {
     const screenContext = useScreenContext();
     const screenStyles = styles(
         screenContext,
@@ -15,7 +15,6 @@ const Card = ({ index, item, Component, onPressFn }) => {
     );
     return (
         <>
-            {Component == 'Listing' ?
                 <View style={screenStyles.itemContainer}>
                     <View style={screenStyles.imageContainer} >
                         <Image
@@ -34,24 +33,7 @@ const Card = ({ index, item, Component, onPressFn }) => {
                             </View>
                         </TouchableOpacity>
                     </View>
-                </View>
-                :
-                <TouchableOpacity onPress={()=>onPressFn(item)} style={screenStyles.button}>
-                    <Image
-                        style={screenStyles.profilePic}
-                        source={{
-                            uri: item.picture.large
-                        }}
-                    />
-                    <Text style={screenStyles.buttonTitle}>{`${item.name.title}. ${item.name.first} ${item.name.last}`}</Text>
-                    <Text>
-                        {item.cell}
-                    </Text>
-                    <Text style={screenStyles.userLocationText}>
-                        {item.location.state}, {item.location.country}
-                    </Text>
-                </TouchableOpacity>
-                }
+                </View>             
         </>
     )
 }

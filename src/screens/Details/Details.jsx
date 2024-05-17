@@ -22,7 +22,7 @@ const Details = (props) => {
     const { item } = props.route.params
     return (
 
-        <>
+        <View style={screenStyles.canvas}>
             <KeyboardAwareScrollView  style={screenStyles.Container}>
               <View style={screenStyles.userContainer}>
                     <Text style={screenStyles.title}>
@@ -59,7 +59,7 @@ const Details = (props) => {
               </View>
             </KeyboardAwareScrollView>
 
-        </>
+        </View>
     )
 }
 

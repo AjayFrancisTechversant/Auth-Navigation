@@ -4,12 +4,12 @@ import ColorPalette from "../../Assets/Themes/ColorPalette"
 const styles = (screenContext, width, height) =>
     StyleSheet.create({
         titleandDescContainer: { flex: 0.5, fontSize: 20, marginTop: 10 },
-        itemTitle: { fontSize: 30, color: 'white' },
-        itemDesc: { color: 'white' },
+        itemTitle: { fontSize: 30, color: ColorPalette.green },
+        itemDesc: { color: ColorPalette.green },
         itemContainer: {
             flex: 1, flexDirection: 'row',
             marginHorizontal: screenContext.isPortrait ? 50 : 100,
-            marginTop: 15, backgroundColor: ColorPalette.green, borderRadius: 5
+            marginTop: 15, borderRadius: 5,borderColor:ColorPalette.green,borderWidth:1,
         },
 
         imageContainer: { flex: 0.3, alignItems: 'center', margin: 10, height: height * 0.1 },
