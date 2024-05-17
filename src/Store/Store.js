@@ -9,8 +9,8 @@ const persistConfig = {
   key: 'root',
   storage: AsyncStorage,
   // Optionally, you can blacklist certain reducers or whitelist only specific ones
-  // blacklist: ['reducerToExclude'],
-  // whitelist: ['reducerToPersist'],
+  // whitelist: ['Likes'],
+  // blacklist: ['AddFriend']
 };
 
 //combine all reducers into rootreducers
