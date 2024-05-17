@@ -16,8 +16,8 @@ import { useSelector } from 'react-redux';
 
 
 const Me = () => {
-    const likeCount=useSelector((state) => state.Likes.likedUsers.length)
-    const friendsCount=useSelector((state) => state.AddFriend.addedFriends.length)
+    const likeCount = useSelector((state) => state.Likes.likedUsers.length)
+    const friendsCount = useSelector((state) => state.AddFriend.addedFriends.length)
     const { tokenStatus, setTokenStatus } = useContext(LoginTokenContext)
     const [username, setUserName] = useState('')
     const [mobileNumber, setMobileNumber] = useState()
@@ -61,14 +61,14 @@ const Me = () => {
             <KeyboardAwareScrollView
                 showsVerticalScrollIndicator={false}
                 style={screenStyles.container}>
-    
+
                 <ImageBackground style={screenStyles.headerContainer} source={require('../../Assets/Images/profilePageBG.jpg')}
                     imageStyle={screenStyles.BGImageStyle}>
                     <TouchableOpacity onPress={handleLogout}>
                         <MaterialIcons style={screenStyles.logoutIcon} size={30} name="logout" />
                     </TouchableOpacity>
                 </ImageBackground>
-    
+
                 <View style={screenStyles.userDetailsContainer} >
                     <Image
                         style={screenStyles.profilePicture}
@@ -111,7 +111,7 @@ const Me = () => {
                                     </TouchableOpacity>
                                 </View>
                             </View>
-    
+
                             :
                             <View>
                                 <Text>Mobile: {mobileNumber}</Text>
@@ -119,20 +119,20 @@ const Me = () => {
                             </View>
                     }
                 </View>
-    
+
                 <View style={screenStyles.threeIconContainer}>
-                    <TouchableOpacity >
-                        <AntDesign style={screenStyles.threeIcon} name='heart' color={ColorPalette.red} size={30} />
+                    <TouchableOpacity style={screenStyles.threeIconButton} >
+                        <AntDesign name='heart' color={ColorPalette.red} size={30} />
                         <Text style={screenStyles.threeIconTitle}>Liked</Text>
                         <Text style={screenStyles.threeIconSubtitle}>{likeCount}</Text>
                     </TouchableOpacity>
-                    <TouchableOpacity>
-                        <FontAwesome5 style={screenStyles.threeIcon} name='user-friends' color={ColorPalette.blue} size={30} />
+                    <TouchableOpacity style={screenStyles.threeIconButton}>
+                        <FontAwesome5 name='user-friends' color={ColorPalette.blue} size={30} />
                         <Text style={screenStyles.threeIconTitle}>Friends</Text>
                         <Text style={screenStyles.threeIconSubtitle}>{friendsCount}</Text>
                     </TouchableOpacity>
-                    <TouchableOpacity>
-                        <FontAwesome5 style={screenStyles.threeIcon} name='trophy' color={ColorPalette.yellow} size={30} />
+                    <TouchableOpacity style={screenStyles.threeIconButton}>
+                        <FontAwesome5 name='trophy' color={ColorPalette.yellow} size={30} />
                         <Text style={screenStyles.threeIconTitle}>Achivements</Text>
                         <Text style={screenStyles.threeIconSubtitle}>2</Text>
                     </TouchableOpacity>
@@ -144,7 +144,7 @@ const Me = () => {
                     <OptionCard onPressFn={handleEditOption} iconName={'edit'} iconFamily={'AntDesign'} optionTitle={'Edit Profile Details'} />
                     <OptionCard iconName={'setting'} iconFamily={'AntDesign'} optionTitle={'Settings'} />
                 </View>
-    
+
             </KeyboardAwareScrollView>
         </View>
     )

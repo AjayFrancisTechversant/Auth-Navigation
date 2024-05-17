@@ -35,8 +35,8 @@ const styles = (screenContext, width, height) =>
         phoneNumber: {},
 
         // 3IconContainer
-        threeIconContainer: { flexDirection: 'row', justifyContent: 'space-evenly', marginVertical: 20 },
-        threeIcon: { alignSelf: 'center'},
+        threeIconContainer: { flexDirection: 'row', justifyContent: '', marginVertical: 20 ,borderColor:'blue'},
+        threeIconButton:{flex:1/3,alignItems:'center'},
         threeIconTitle: { fontFamily: 'Rajdhani-Medium' },
         threeIconSubtitle: { alignSelf: 'center', fontFamily: 'Rajdhani-Bold' },
 
