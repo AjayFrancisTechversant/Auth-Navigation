@@ -7,6 +7,7 @@ import SearchBar from '../../Components/SearchBar/SearchBar';
 import HomeScreenCard from '../../Components/HomeScreenCard/HomeScreenCard';
 import { getUsers } from '../../Services/getUsers';
 import { useSelector } from 'react-redux';
+import LinearGradient from 'react-native-linear-gradient';
 
 
 const HomeScreen = ({ navigation }) => {
@@ -54,7 +55,10 @@ const HomeScreen = ({ navigation }) => {
         showsVerticalScrollIndicator={false}
         ListEmptyComponent={!isLoading&&<Text>Nothing to Display!!</Text>}
           ListHeaderComponent={<>
-            <View style={screenStyles.headerContainer}>
+            <LinearGradient
+             start={{ x: 0, y: 0.4 }} end={{ x: 0, y: 1 }}
+             colors={[ColorPalette.green,'white']}
+            style={screenStyles.headerContainer}>
               <View style={screenStyles.headerContents}>
                 <View style={screenStyles.menuDrawerButtonContainer}>
                   <MenuDrawerButton navigation={navigation} />
@@ -69,7 +73,7 @@ const HomeScreen = ({ navigation }) => {
                   </TouchableOpacity>
                 </View>
               </View>
-            </View>
+            </LinearGradient>
             <View style={screenStyles.searchBarContainer}>
               <SearchBar />
             </View></>}

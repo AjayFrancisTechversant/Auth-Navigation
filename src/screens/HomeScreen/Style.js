@@ -6,7 +6,7 @@ const styles = (screenContext, width, height) => StyleSheet.create({
     canvas: { backgroundColor: 'white', flex: 1 },
     container: { margin: 10 },
     headerContainer: {
-        backgroundColor: ColorPalette.green, height: 100, marginBottom: -20, borderRadius: 5,
+         height: 150, marginBottom: -20, borderRadius: 5,
     },
     headerContents: {
         flexDirection: 'row',

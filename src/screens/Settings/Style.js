@@ -5,6 +5,7 @@ import ColorPalette from "../../Assets/Themes/ColorPalette"
 
 const styles = (screenContext, width, height) =>
     StyleSheet.create({
-        canvas:{backgroundColor:'white',flex:1},
+        canvas:{flex:1},
+        linearGradient:{height:200}
     })
 export default styles
