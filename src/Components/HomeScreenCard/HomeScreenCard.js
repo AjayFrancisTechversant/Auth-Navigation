@@ -39,7 +39,7 @@ const HomeScreenCard = ({ item,setModalCloseToggle,modalCloseToggle }) => {
             </View>
             <Modal
                 transparent
-                animationType="slide"
+                animationType="fade"
                 visible={isModalVisible}
                 onRequestClose={() => {
                     setIsModalVisible(!isModalVisible);

@@ -15,12 +15,11 @@ const styles = (screenContext, width, height) => StyleSheet.create({
    buttonsContainer:{flex:1/4,justifyContent:"space-evenly",alignItems:'center',},
    
 //modal
-   modalFullScreenBackground:{flex:1,justifyContent:'center'},
+   modalFullScreenBackground:{flex:1,justifyContent:'center',backgroundColor: 'rgba(0,0,0,0.7)'},
    modalContainer:{},
    userContainer: { alignSelf: 'center',
    width: screenContext.isPortrait ? width * 0.8 : height * 0.7,
    alignItems: 'center',
-   borderColor: ColorPalette.green,
    borderWidth: 0.5,
    backgroundColor: 'white',
    borderRadius: 10, marginVertical: 5,

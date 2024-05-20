@@ -14,7 +14,7 @@ const MenuDrawerButton = ({navigation}) => {
     );
     return (
         <TouchableOpacity onPress={() => navigation.openDrawer()}>
-            <Feather name='menu' size={30} color='white' />
+            <Feather name='menu' size={30} color='#e3f5e9' />
         </TouchableOpacity>
     )
 }
