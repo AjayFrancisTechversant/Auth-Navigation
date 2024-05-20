@@ -1,12 +1,14 @@
-import { View, Text, Image } from 'react-native'
-import React from 'react'
+import { View, Text, Image, Modal, TouchableOpacity } from 'react-native'
+import React, { useState } from 'react'
 import styles from './Style';
 import { useScreenContext } from '../../Contexts/ScreenContext';
 
 const HomeScreenCard = ({ item }) => {
-    const name=item.name.first+' '+item.name.last
-    const {email,phone}=item
-    const {age}=item.dob
+    const [isModalVisible, setIsModalVisible] = useState(false);
+
+    const name = item.name.first + ' ' + item.name.last
+    const { email, phone } = item
+    const { age } = item.dob
     const screenContext = useScreenContext();
     const screenStyles = styles(
         screenContext,
@@ -14,7 +16,9 @@ const HomeScreenCard = ({ item }) => {
         screenContext[screenContext.isPortrait ? 'windowHeight' : 'windowWidth'],
     );
     return (
-        <View style={screenStyles.cardContainer}>
+        <TouchableOpacity
+            onPress={() => setIsModalVisible(true)}
+            style={screenStyles.cardContainer}>
             <Image
                 style={screenStyles.image}
                 source={{
@@ -22,13 +26,58 @@ const HomeScreenCard = ({ item }) => {
                 }}
             />
             <View style={screenStyles.detailsContainer}>
-                <Text>{name}</Text>
+                <Text style={screenStyles.title}>{name}</Text>
                 <Text>{email}</Text>
                 <Text>{phone}</Text>
                 <Text>Age: {age}</Text>
             </View>
+            <Modal
+                transparent
+                animationType="slide"
+                visible={isModalVisible}
+                onRequestClose={() => {
+                    setIsModalVisible(!isModalVisible);
+                }}>
+                <View style={screenStyles.modalFullScreenBackground}>
+                    <View style={screenStyles.modalContainer}>
+                        <View style={screenStyles.userContainer}>
+                            <Text style={screenStyles.title}>
+                                {`${item.name.title}. ${item.name.first} ${item.name.last}`}
+                            </Text>
+                            <Image
+                                style={screenStyles.modalImage}
+                                source={{
+                                    uri: item.picture.large
+                                }}
+                            />
+                            {/* <View style={screenStyles.buttonsContainer} >
+                                <LikeDislikeButton item={item}/>
+                        <AddFriendButton item={item}/>
+                            </View> */}
+                            <View style={screenStyles.descContainer}>
+                                <Text >
+                                    Age: {item.dob.age}
+                                </Text>
+                                <Text>
+                                    Gender: {item.gender}
+                                </Text>
+                                <Text>
+                                    Email: {item.email}
+                                </Text>
+                                <Text>
+                                    Location: {item.location.state}, {item.location.country}
+                                </Text>
+                                <Text>
+                                    Phone: {item.phone}
+                                </Text>
+                            </View>
 
-        </View>
+                        </View>
+
+                    </View>
+                </View>
+            </Modal>
+        </TouchableOpacity>
     )
 }
 
