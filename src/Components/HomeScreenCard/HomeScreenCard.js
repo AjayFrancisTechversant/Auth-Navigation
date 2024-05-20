@@ -2,6 +2,9 @@ import { View, Text, Image, Modal, TouchableOpacity } from 'react-native'
 import React, { useState } from 'react'
 import styles from './Style';
 import { useScreenContext } from '../../Contexts/ScreenContext';
+import LikeDislikeButton from '../LikeDislikeButton/LikeDislikeButton';
+import AddFriendButton from '../AddFriendButton/AddFriendButton';
+
 
 const HomeScreenCard = ({ item }) => {
     const [isModalVisible, setIsModalVisible] = useState(false);
@@ -50,10 +53,10 @@ const HomeScreenCard = ({ item }) => {
                                     uri: item.picture.large
                                 }}
                             />
-                            {/* <View style={screenStyles.buttonsContainer} >
+                            <View style={screenStyles.buttonsContainer} >
                                 <LikeDislikeButton item={item}/>
                         <AddFriendButton item={item}/>
-                            </View> */}
+                            </View>
                             <View style={screenStyles.descContainer}>
                                 <Text >
                                     Age: {item.dob.age}
