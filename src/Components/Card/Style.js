@@ -9,7 +9,7 @@ const styles = (screenContext, width, height) =>
         itemContainer: {
             flex: 1, flexDirection: 'row',
             marginHorizontal: screenContext.isPortrait ? 50 : 100,
-            marginTop: 15, borderRadius: 5,borderColor:ColorPalette.green,borderWidth:1,
+            marginTop: 15, borderRadius: 5,borderColor:ColorPalette.green,elevation:10,backgroundColor:'white'
         },
 
         imageContainer: { flex: 0.3, alignItems: 'center', margin: 10, height: height * 0.1 },

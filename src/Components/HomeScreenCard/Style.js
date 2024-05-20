@@ -4,14 +4,15 @@ import ColorPalette from "../../Assets/Themes/ColorPalette";
 
 const styles = (screenContext, width, height) => StyleSheet.create({
    cardContainer: {
-      flexDirection: "row", borderRadius: 5,borderWidth:1,borderColor:ColorPalette.green
+      flexDirection: "row", borderRadius: 5,elevation:10,backgroundColor:'white'
    },
 
    image: { height: 90, margin: 10, alignSelf: 'center', borderRadius: 80, flex: 1 / 4 },
-   detailsContainer: { flex: 3 / 4, alignSelf: 'center' },
+   detailsContainer: { flex: 2 / 4, alignSelf: 'center' },
    title:{fontSize:15,color:ColorPalette.green,
       fontFamily:'Helvetica-Bold'
    },
+   buttonsContainer:{flex:1/4,justifyContent:"space-evenly",alignItems:'center',},
    
 //modal
    modalFullScreenBackground:{flex:1,justifyContent:'center'},
@@ -23,9 +24,9 @@ const styles = (screenContext, width, height) => StyleSheet.create({
    borderWidth: 0.5,
    backgroundColor: 'white',
    borderRadius: 10, marginVertical: 5,
-   elevation: 5},
+   elevation: 100,shadowColor:'black'},
    modalImage:{height:150,width:150,borderRadius:10},
-   buttonsContainer: {
+   modalButtonsContainer: {
        flexDirection: 'row', width: 150, justifyContent: 'space-evenly',
        marginVertical: 10
    },

@@ -1,4 +1,4 @@
-import { View, Image, TouchableOpacity, Alert, FlatList, ActivityIndicator, Text } from 'react-native'
+import { View, Image, TouchableOpacity, FlatList, ActivityIndicator, Text } from 'react-native'
 import React, { useEffect, useState } from 'react'
 import { useScreenContext } from '../../Contexts/ScreenContext';
 import styles from './Style';
@@ -6,9 +6,14 @@ import MenuDrawerButton from '../../Components/MenuDrawerButton/MenuDrawerButton
 import SearchBar from '../../Components/SearchBar/SearchBar';
 import HomeScreenCard from '../../Components/HomeScreenCard/HomeScreenCard';
 import { getUsers } from '../../Services/getUsers';
+import { useSelector } from 'react-redux';
 
 
 const HomeScreen = ({ navigation }) => {
+  // const likedUsers=useSelector((state)=>state.Likes.likedUsers)
+  // const addedFriends=useSelector((state)=>state.AddFriend.addedFriends)
+  const [modalCloseToggle,setModalCloseToggle]=useState(true)
+
   const [users, setUsers] = useState([])
   const [isLoading, setIsLoading] = useState(false)
   const [currentPage, setCurrentPage] = useState(1)
@@ -32,7 +37,7 @@ const HomeScreen = ({ navigation }) => {
 
   useEffect(() => {
     initialFetch()
-  }, [])
+  }, [modalCloseToggle])
   const screenContext = useScreenContext();
   const screenStyles = styles(
     screenContext,
@@ -42,10 +47,11 @@ const HomeScreen = ({ navigation }) => {
 
   return (
     <View style={screenStyles.canvas}>
-      <View style={screenStyles.container}>
-
-
-        <FlatList showsVerticalScrollIndicator={false}
+      <View style={screenStyles.container}
+      >
+        <FlatList
+        extraData={modalCloseToggle}
+        showsVerticalScrollIndicator={false}
         ListEmptyComponent={!isLoading&&<Text>Nothing to Display!!</Text>}
           ListHeaderComponent={<>
             <View style={screenStyles.headerContainer}>
@@ -71,7 +77,7 @@ const HomeScreen = ({ navigation }) => {
           keyExtractor={item => Math.random().toString(36).substring(2)}
           renderItem={({ item }) =>
             <View style={screenStyles.homeScreenCardContainer}>
-              <HomeScreenCard item={item} />
+              <HomeScreenCard modalCloseToggle={modalCloseToggle} setModalCloseToggle={setModalCloseToggle} item={item} />
             </View>
           }
           onEndReached={fetchMore}

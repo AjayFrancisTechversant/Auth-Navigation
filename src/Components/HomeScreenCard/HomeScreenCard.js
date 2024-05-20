@@ -6,9 +6,8 @@ import LikeDislikeButton from '../LikeDislikeButton/LikeDislikeButton';
 import AddFriendButton from '../AddFriendButton/AddFriendButton';
 
 
-const HomeScreenCard = ({ item }) => {
+const HomeScreenCard = ({ item,setModalCloseToggle,modalCloseToggle }) => {
     const [isModalVisible, setIsModalVisible] = useState(false);
-
     const name = item.name.first + ' ' + item.name.last
     const { email, phone } = item
     const { age } = item.dob
@@ -34,12 +33,17 @@ const HomeScreenCard = ({ item }) => {
                 <Text>{phone}</Text>
                 <Text>Age: {age}</Text>
             </View>
+            <View style={screenStyles.buttonsContainer}>
+                <LikeDislikeButton item={item} />
+                <AddFriendButton item={item} />
+            </View>
             <Modal
                 transparent
                 animationType="slide"
                 visible={isModalVisible}
                 onRequestClose={() => {
                     setIsModalVisible(!isModalVisible);
+                    setModalCloseToggle(!modalCloseToggle)
                 }}>
                 <View style={screenStyles.modalFullScreenBackground}>
                     <View style={screenStyles.modalContainer}>
@@ -53,9 +57,9 @@ const HomeScreenCard = ({ item }) => {
                                     uri: item.picture.large
                                 }}
                             />
-                            <View style={screenStyles.buttonsContainer} >
-                                <LikeDislikeButton item={item}/>
-                        <AddFriendButton item={item}/>
+                            <View style={screenStyles.modalButtonsContainer} >
+                                <LikeDislikeButton item={item} />
+                                <AddFriendButton item={item} />
                             </View>
                             <View style={screenStyles.descContainer}>
                                 <Text >
