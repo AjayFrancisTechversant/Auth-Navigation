@@ -9,14 +9,20 @@ const styles = (screenContext, width, height) => StyleSheet.create({
         backgroundColor: ColorPalette.green, height: 100, marginBottom: -20, borderRadius: 5,
     },
     headerContents: {
-        flexDirection: 'row', justifyContent: 'space-between',
+        flexDirection: 'row',
         alignItems: "center",
         marginHorizontal: 20,
-        marginTop: 10
+        marginTop: 10,
     },
-    logo: { height: 60, width: 100 },
+    menuDrawerButtonContainer:{flex:0.1},
+    logoContainer:{flex:0.9,marginLeft:10
+    },
+    logo: { height: 60, width: 100},
     searchBarContainer: {
-        alignItems: 'center'
-    }
+        marginBottom:10
+    },
+   
+    homeScreenCardContainer:{margin:5,}
+
 })
 export default styles

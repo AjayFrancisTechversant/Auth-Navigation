@@ -1,38 +1,87 @@
-import { View, Image, TouchableOpacity, Alert } from 'react-native'
-import React from 'react'
+import { View, Image, TouchableOpacity, Alert, FlatList, ActivityIndicator, Text } from 'react-native'
+import React, { useEffect, useState } from 'react'
 import { useScreenContext } from '../../Contexts/ScreenContext';
 import styles from './Style';
-
 import MenuDrawerButton from '../../Components/MenuDrawerButton/MenuDrawerButton';
 import SearchBar from '../../Components/SearchBar/SearchBar';
-import Card from '../../Components/Card/Card';
+import HomeScreenCard from '../../Components/HomeScreenCard/HomeScreenCard';
+import { getUsers } from '../../Services/getUsers';
+
 
 const HomeScreen = ({ navigation }) => {
+  const [users, setUsers] = useState([])
+  const [isLoading, setIsLoading] = useState(false)
+  const [currentPage, setCurrentPage] = useState(1)
+
+  const initialFetch = async () => {
+    setIsLoading(true)
+    let users = await getUsers(currentPage)
+    setUsers(users)
+
+    setIsLoading(false)
+  }
+  const fetchMore = async () => {
+    if (isLoading) return;
+    setIsLoading(true)
+    const nextPage = currentPage + 1
+    let usersList = await getUsers(nextPage)
+    setUsers([...users, ...usersList])
+    setCurrentPage(nextPage)
+    setIsLoading(false)
+  }
+
+  useEffect(() => {
+    initialFetch()
+  }, [])
   const screenContext = useScreenContext();
   const screenStyles = styles(
     screenContext,
     screenContext[screenContext.isPortrait ? 'windowWidth' : 'windowHeight'],
     screenContext[screenContext.isPortrait ? 'windowHeight' : 'windowWidth'],
   );
- 
+
   return (
     <View style={screenStyles.canvas}>
       <View style={screenStyles.container}>
-        <View style={screenStyles.headerContainer}>
-          <View style={screenStyles.headerContents}>
-            <TouchableOpacity>
-              <Image
-                style={screenStyles.logo}
-                source={require('../../Assets/Images/Logo/NetFriends_logo_with_sidelabel.png')}
-              />
-            </TouchableOpacity>
-            <MenuDrawerButton navigation={navigation} />
-          </View>
-        </View>
-          <SearchBar/>
-      <View >
-          
-      </View>
+
+
+        <FlatList showsVerticalScrollIndicator={false}
+        ListEmptyComponent={!isLoading&&<Text>Nothing to Display!!</Text>}
+          ListHeaderComponent={<>
+            <View style={screenStyles.headerContainer}>
+              <View style={screenStyles.headerContents}>
+                <View style={screenStyles.menuDrawerButtonContainer}>
+                  <MenuDrawerButton navigation={navigation} />
+                </View>
+
+                <View style={screenStyles.logoContainer} >
+                  <TouchableOpacity >
+                    <Image
+                      style={screenStyles.logo}
+                      source={require('../../Assets/Images/Logo/NetFriends_logo_with_sidelabel.png')}
+                    />
+                  </TouchableOpacity>
+                </View>
+              </View>
+            </View>
+            <View style={screenStyles.searchBarContainer}>
+              <SearchBar />
+            </View></>}
+          data={users}
+          keyExtractor={item => Math.random().toString(36).substring(2)}
+          renderItem={({ item }) =>
+            <View style={screenStyles.homeScreenCardContainer}>
+              <HomeScreenCard item={item} />
+            </View>
+          }
+          onEndReached={fetchMore}
+          onEndReachedThreshold={0.1}
+          ListFooterComponent={
+            isLoading &&
+            <ActivityIndicator size='large' />
+
+          }
+        />
       </View>
     </View>
   )

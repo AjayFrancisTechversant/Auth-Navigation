@@ -8,7 +8,7 @@ const HomeDrawerStack = () => {
     const Drawer = createDrawerNavigator()
     return (
         <Drawer.Navigator  screenOptions={{
-            drawerPosition:'right',headerShown:false,
+            drawerPosition:'left',headerShown:false,
             drawerActiveTintColor:ColorPalette.green
           }} >
             <Drawer.Screen  name="HomeScreen" component={HomeScreen}  />
