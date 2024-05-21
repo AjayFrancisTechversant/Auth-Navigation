@@ -38,7 +38,7 @@ const HomeScreen = ({ navigation }) => {
 
   useEffect(() => {
     initialFetch()
-  }, [modalCloseToggle])
+  }, [])
   const screenContext = useScreenContext();
   const screenStyles = styles(
     screenContext,
