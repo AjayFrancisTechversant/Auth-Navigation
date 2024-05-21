@@ -5,7 +5,7 @@ import { useScreenContext } from '../../Contexts/ScreenContext';
 import { Searchbar } from 'react-native-paper';
 import ColorPalette from '../../Assets/Themes/ColorPalette';
 
-const SearchBar = () => {
+const SearchBar = ({searchText,setSearchText}) => {
 
     const screenContext = useScreenContext();
     const screenStyles = styles(
@@ -16,10 +16,10 @@ const SearchBar = () => {
 
     return (
         <View >
-            <Searchbar style={screenStyles.searchBar}
+            <Searchbar onChangeText={(e)=>setSearchText(e)}
+            value={searchText}
+            style={screenStyles.searchBar}
                 placeholder="Search"
-            //   onChangeText={setSearchQuery}
-            //   value={searchQuery}
             iconColor={ColorPalette.green}
             elevation={2}
             rippleColor={ColorPalette.green}

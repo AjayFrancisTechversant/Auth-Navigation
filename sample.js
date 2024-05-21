@@ -1,3 +1,6 @@
-// var a={car:'bajaj'}
-// var b=[{car:'suv'},{car:'bajaj'}]
-// console.log(b.some(i=>i.car==a.car));
+const users = [{ "cell": "0446-422-465", "dob": { "age": 32, "date": "1991-11-10T22:10:01.159Z" }, "email": "tamara.white@example.com", "gender": "female", "id": { "name": "TFN", "value": "380765811" }, "location": { "city": "Warrnambool", "coordinates": [Object], "country": "Australia", "postcode": 794, "state": "Queensland", "street": [Object], "timezone": [Object] }, "login": { "md5": "6c22d1eaed36ddc4633d079269349c3f", "password": "monsters", "salt": "cOFpaXUV", "sha1": "cb19b09017be99c012929f5b2158390b7e21335a", "sha256": "066cc5022e14863e7363d50d6ac44ef685625e7cab58f68ff4f6bb56155f3ca9", "username": "happyostrich931", "uuid": "effe40f6-40a8-430c-bc96-aedb066c9a69" }, "name": { "first": "Tamara", "last": "White", "title": "Ms" }, "nat": "AU", "phone": "03-4766-4528", "picture": { "large": "https://randomuser.me/api/portraits/women/4.jpg", "medium": "https://randomuser.me/api/portraits/med/women/4.jpg", "thumbnail": "https://randomuser.me/api/portraits/thumb/women/4.jpg" }, "registered": { "age": 7, "date": "2016-08-11T23:28:42.680Z" } }]
+const searchText='tamara whi'
+// const searchResults=users.filter(i=>(i.name.first+' '+i.name.last).toLowerCase()==searchText.toLowerCase())
+const searchResults=users.filter(i=>(i.name.first+' '+i.name.last).toLowerCase().includes(searchText.toLocaleLowerCase()))
+// console.log((users[0].name.first+' '+users[0].name.last).toLowerCase());
+console.log(searchResults);

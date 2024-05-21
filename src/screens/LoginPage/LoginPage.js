@@ -36,15 +36,11 @@ const LoginPage = ({ navigation }) => {
             }
         }
     }
-
     const handleLogin = async () => {
         if (validate()) {
             await AsyncStorage.setItem("isLoggedin", userData.username)
             setTokenStatus(true)
         }
-
-
-
     }
     const screenContext = useScreenContext();
     const screenStyles = styles(

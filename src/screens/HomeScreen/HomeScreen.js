@@ -6,18 +6,24 @@ import MenuDrawerButton from '../../Components/MenuDrawerButton/MenuDrawerButton
 import SearchBar from '../../Components/SearchBar/SearchBar';
 import HomeScreenCard from '../../Components/HomeScreenCard/HomeScreenCard';
 import { getUsers } from '../../Services/getUsers';
-import { useSelector } from 'react-redux';
 import LinearGradient from 'react-native-linear-gradient';
 
 
 const HomeScreen = ({ navigation }) => {
-  // const likedUsers=useSelector((state)=>state.Likes.likedUsers)
-  // const addedFriends=useSelector((state)=>state.AddFriend.addedFriends)
+  const [searchText,setSearchText]=useState('')
   const [modalCloseToggle,setModalCloseToggle]=useState(true)
-
+  const [searchResults,setSearchResults]=useState([])
   const [users, setUsers] = useState([])
   const [isLoading, setIsLoading] = useState(false)
   const [currentPage, setCurrentPage] = useState(1)
+
+  const search=(searchText)=>{
+    setSearchResults(users.filter(i=>(i.name.first+' '+i.name.last).toLowerCase().includes(searchText.toLocaleLowerCase())))
+    
+  }
+  useEffect(()=>{
+    search(searchText)
+  },[searchText])
 
   const initialFetch = async () => {
     setIsLoading(true)
@@ -45,7 +51,7 @@ const HomeScreen = ({ navigation }) => {
     screenContext[screenContext.isPortrait ? 'windowWidth' : 'windowHeight'],
     screenContext[screenContext.isPortrait ? 'windowHeight' : 'windowWidth'],
   );
-
+// console.log(searchText);
   return (
     <View style={screenStyles.canvas}>
       <View style={screenStyles.container}
@@ -63,7 +69,6 @@ const HomeScreen = ({ navigation }) => {
                 <View style={screenStyles.menuDrawerButtonContainer}>
                   <MenuDrawerButton navigation={navigation} />
                 </View>
-
                 <View style={screenStyles.logoContainer} >
                   <TouchableOpacity >
                     <Image
@@ -75,16 +80,16 @@ const HomeScreen = ({ navigation }) => {
               </View>
             </LinearGradient>
             <View style={screenStyles.searchBarContainer}>
-              <SearchBar />
+              <SearchBar searchText={searchText} setSearchText={setSearchText}  />
             </View></>}
-          data={users}
+          data={searchText==''?users:searchResults}
           keyExtractor={item => Math.random().toString(36).substring(2)}
           renderItem={({ item }) =>
             <View style={screenStyles.homeScreenCardContainer}>
               <HomeScreenCard modalCloseToggle={modalCloseToggle} setModalCloseToggle={setModalCloseToggle} item={item} />
             </View>
           }
-          onEndReached={fetchMore}
+          onEndReached={!searchText&&fetchMore}
           onEndReachedThreshold={0.1}
           ListFooterComponent={
             isLoading &&

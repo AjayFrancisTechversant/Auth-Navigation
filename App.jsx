@@ -1,7 +1,6 @@
 import { StyleSheet } from 'react-native'
 import React, { useContext, useEffect, useState } from 'react'
 import LoginPage from './src/screens/LoginPage/LoginPage'
-import Details from './src/screens/Details/Details'
 import { NavigationContainer } from '@react-navigation/native'
 import { createNativeStackNavigator } from '@react-navigation/native-stack'
 import AsyncStorage from '@react-native-async-storage/async-storage'
@@ -56,10 +55,6 @@ const App = () => {
             options={{
               headerShown: false
             }}
-          />
-          <Stack.Screen
-            name='Details'
-            component={Details}
           />
         </Stack.Navigator>
       }
