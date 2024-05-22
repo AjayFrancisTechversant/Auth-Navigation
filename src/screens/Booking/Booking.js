@@ -21,16 +21,20 @@ const Booking = ({ navigation }) => {
 
   return (
     <View>
-      <KeyboardAwareScrollView  
-      style={{marginBottom:70}}
-      showsVerticalScrollIndicator={false}
+
+      <View style={screenStyles.bgImageContainer}>
+        <ImageBackground
+          source={require('../../Assets/Images/2GreenCups.jpg')} style={screenStyles.bgImage} imageStyle={screenStyles.bgImageStyle}>
+          <View style={screenStyles.menuDrawerButton} ><MenuDrawerButton navigation={navigation} /></View>
+        </ImageBackground>
+      </View>
+      {/* <View style={screenStyles.transparentView}>
+
+      </View> */}
+      <KeyboardAwareScrollView
+        style={{ marginBottom: 70 }}
+        showsVerticalScrollIndicator={false}
       >
-        <View style={screenStyles.bgImageContainer}>
-          <ImageBackground
-            source={require('../../Assets/Images/2GreenCups.jpg')} style={screenStyles.bgImage} imageStyle={screenStyles.bgImageStyle}>
-            <View style={screenStyles.menuDrawerButton} ><MenuDrawerButton navigation={navigation} /></View>
-          </ImageBackground>
-        </View>
         <View style={screenStyles.contentsContainer}>
           <View style={screenStyles.contentsSubContainer} >
             <View>
@@ -73,14 +77,14 @@ const Booking = ({ navigation }) => {
           </View>
         </View>
       </KeyboardAwareScrollView>
-        <View style={screenStyles.buttonContainer}>
-          <TouchableOpacity style={screenStyles.bookmarkTouchableOpacity} >
-            <Ionicons size={25} color={ColorPalette.green} name='bookmark-outline' />
-          </TouchableOpacity>
-          <TouchableOpacity style={screenStyles.slideTouchableOpacity} >
-            <Text>Slide</Text>
-          </TouchableOpacity>
-        </View>
+      <View style={screenStyles.buttonContainer}>
+        <TouchableOpacity style={screenStyles.bookmarkTouchableOpacity} >
+          <Ionicons size={25} color={ColorPalette.green} name='bookmark-outline' />
+        </TouchableOpacity>
+        <TouchableOpacity style={screenStyles.slideTouchableOpacity} >
+          <Text>Slide</Text>
+        </TouchableOpacity>
+      </View>
     </View>
   )
 }

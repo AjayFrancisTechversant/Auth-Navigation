@@ -3,14 +3,15 @@ import ColorPalette from "../../Assets/Themes/ColorPalette"
 
 const styles = (screenContext, width, height) =>
     StyleSheet.create({
-        bgImageContainer:{margin:10},
-        bgImage:{height:250,},
+        bgImageContainer:{position:'absolute',marginTop:10,width:width,
+          alignItems:'center'   },
+        bgImage:{height:400,width:width*0.94},
         bgImageStyle:{borderTopRightRadius:30,
             borderTopLeftRadius:30,
-            
         },
+        transparentView:{height:70},
         menuDrawerButton:{margin:20},
-        contentsContainer:{marginHorizontal:10,marginTop:-33,borderTopRightRadius:30,borderTopLeftRadius:30,backgroundColor:'white'},
+        contentsContainer:{marginHorizontal:10,marginTop:320,borderTopRightRadius:30,borderTopLeftRadius:30,backgroundColor:'white'},
         contentsSubContainer:{margin:20,justifyContent:'space-between'},
 
         titleAndPriceContainer:{flexDirection:'row',justifyContent:'space-between',alignItems:'center'},
