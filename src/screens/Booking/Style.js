@@ -4,14 +4,14 @@ import ColorPalette from "../../Assets/Themes/ColorPalette"
 const styles = (screenContext, width, height) =>
     StyleSheet.create({
         bgImageContainer:{position:'absolute',marginTop:10,width:width,
-          alignItems:'center'   },
+          alignItems:'center' },
         bgImage:{height:400,width:width*0.94},
         bgImageStyle:{borderTopRightRadius:30,
             borderTopLeftRadius:30,
         },
         transparentView:{height:70},
         menuDrawerButton:{margin:20},
-        contentsContainer:{marginHorizontal:10,marginTop:320,borderTopRightRadius:30,borderTopLeftRadius:30,backgroundColor:'white'},
+        contentsContainer:{marginHorizontal:10,marginTop:380,borderTopRightRadius:30,borderTopLeftRadius:30,backgroundColor:'white'},
         contentsSubContainer:{margin:20,justifyContent:'space-between'},
 
         titleAndPriceContainer:{flexDirection:'row',justifyContent:'space-between',alignItems:'center'},
