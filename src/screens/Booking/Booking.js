@@ -5,10 +5,10 @@ import styles from './Style';
 import MenuDrawerButton from '../../Components/MenuDrawerButton/MenuDrawerButton';
 import { Text } from 'react-native-paper';
 import Entypo from 'react-native-vector-icons/Entypo'
-import AntDesign from 'react-native-vector-icons/AntDesign'
 import Ionicons from 'react-native-vector-icons/Ionicons'
 import FontAwesome from 'react-native-vector-icons/FontAwesome'
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
+import ColorPalette from '../../Assets/Themes/ColorPalette';
 
 
 const Booking = ({ navigation }) => {
@@ -21,7 +21,10 @@ const Booking = ({ navigation }) => {
 
   return (
     <View>
-      <KeyboardAwareScrollView showsVerticalScrollIndicator={false}>
+      <KeyboardAwareScrollView  
+      style={{marginBottom:70}}
+      showsVerticalScrollIndicator={false}
+      >
         <View style={screenStyles.bgImageContainer}>
           <ImageBackground
             source={require('../../Assets/Images/2GreenCups.jpg')} style={screenStyles.bgImage} imageStyle={screenStyles.bgImageStyle}>
@@ -72,7 +75,7 @@ const Booking = ({ navigation }) => {
       </KeyboardAwareScrollView>
         <View style={screenStyles.buttonContainer}>
           <TouchableOpacity style={screenStyles.bookmarkTouchableOpacity} >
-            <Ionicons name='bookmark-outline' />
+            <Ionicons size={25} color={ColorPalette.green} name='bookmark-outline' />
           </TouchableOpacity>
           <TouchableOpacity style={screenStyles.slideTouchableOpacity} >
             <Text>Slide</Text>

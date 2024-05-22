@@ -10,7 +10,7 @@ const styles = (screenContext, width, height) =>
             
         },
         menuDrawerButton:{margin:20},
-        contentsContainer:{marginHorizontal:10,marginTop:-33,borderRadius:30,backgroundColor:'white'},
+        contentsContainer:{marginHorizontal:10,marginTop:-33,borderTopRightRadius:30,borderTopLeftRadius:30,backgroundColor:'white'},
         contentsSubContainer:{margin:20,justifyContent:'space-between'},
 
         titleAndPriceContainer:{flexDirection:'row',justifyContent:'space-between',alignItems:'center'},
