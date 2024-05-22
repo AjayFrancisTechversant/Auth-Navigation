@@ -12,6 +12,7 @@ import { persistor, store } from './src/Store/Store'
 
 
 import { PersistGate } from 'redux-persist/integration/react'
+import Booking from './src/screens/Booking/Booking'
 
 const Stack = createNativeStackNavigator()
 

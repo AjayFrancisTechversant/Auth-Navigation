@@ -7,6 +7,7 @@ import SearchBar from '../../Components/SearchBar/SearchBar';
 import HomeScreenCard from '../../Components/HomeScreenCard/HomeScreenCard';
 import { getUsers } from '../../Services/getUsers';
 import LinearGradient from 'react-native-linear-gradient';
+import HomeScreenCarousel from '../../Components/HomeScreenCarousel/HomeScreenCarousel';
 
 
 const HomeScreen = ({ navigation }) => {
@@ -51,7 +52,6 @@ const HomeScreen = ({ navigation }) => {
     screenContext[screenContext.isPortrait ? 'windowWidth' : 'windowHeight'],
     screenContext[screenContext.isPortrait ? 'windowHeight' : 'windowWidth'],
   );
-// console.log(searchText);
   return (
     <View style={screenStyles.canvas}>
       <View style={screenStyles.container}
@@ -81,7 +81,9 @@ const HomeScreen = ({ navigation }) => {
             </LinearGradient>
             <View style={screenStyles.searchBarContainer}>
               <SearchBar searchText={searchText} setSearchText={setSearchText}  />
-            </View></>}
+            </View>
+            <HomeScreenCarousel/>
+            </>}
           data={searchText==''?users:searchResults}
           keyExtractor={item => Math.random().toString(36).substring(2)}
           renderItem={({ item }) =>

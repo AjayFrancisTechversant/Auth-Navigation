@@ -1,11 +1,12 @@
 import React from 'react'
 import { createDrawerNavigator } from '@react-navigation/drawer';
-import Settings from '../screens/Settings/Settings';
 import HomeScreen from '../screens/HomeScreen/HomeScreen';
 import ColorPalette from '../Assets/Themes/ColorPalette';
 import DrawerContents from '../Components/DrawerContents/DrawerContents';
 import Entypo from 'react-native-vector-icons/Entypo'
 import Ionicons from 'react-native-vector-icons/Ionicons'
+import FontAwesome6 from 'react-native-vector-icons/FontAwesome6'
+import Booking from '../screens/Booking/Booking';
 
 
 const HomeDrawerStack = () => {
@@ -23,9 +24,9 @@ const HomeDrawerStack = () => {
             />
             <Drawer.Screen
                 options={{
-                    drawerIcon: () => <Ionicons name='settings' color={ColorPalette.green} size={20} />
+                    drawerIcon: () => <FontAwesome6 name='book-bookmark' color={ColorPalette.green} size={20} />
                 }}
-                name="settings" component={Settings}
+                name="Booking" component={Booking}
             />
         </Drawer.Navigator>
     )
