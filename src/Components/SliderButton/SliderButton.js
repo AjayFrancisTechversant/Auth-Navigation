@@ -1,4 +1,4 @@
-import { Alert, Text, View } from 'react-native'
+import { Text, View } from 'react-native'
 import Feather from 'react-native-vector-icons/Feather'
 import React from 'react'
 import Animated, {
@@ -43,12 +43,13 @@ const SliderButton = ({height,width,sliderWidth,sliderText,onPressFn}) => {
                 minTranslateX,
                 maxTranslateX
             ))
-            if (translationX.value > width * 0.65) {
+            if (translationX.value > width * 0.75) {
                 onPressFn()
+                translationX.value=withTiming(0,{duration:500,easing: Easing.bounce})
             }
         })
         .onEnd(() => {
-                withSpring(translationX.value=withTiming(0,{duration:500,easing: Easing.bounce}))
+                translationX.value=withTiming(0,{duration:500,easing: Easing.bounce})
         })
         .runOnJS(true)
     return (
