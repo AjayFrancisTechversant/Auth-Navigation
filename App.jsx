@@ -9,10 +9,10 @@ import { ScreenContextProvider } from './src/Contexts/ScreenContext'
 import HomeTabStack from './src/Stacks/HomeTabStack'
 import { Provider } from 'react-redux'
 import { persistor, store } from './src/Store/Store'
-
-
 import { PersistGate } from 'redux-persist/integration/react'
-import Booking from './src/screens/Booking/Booking'
+import SampleComponent from './src/Components/SampleComponent/SampleComponent'
+import SlidingButton from './src/Components/SlidingButton/SlidingButton'
+import { GestureHandlerRootView } from 'react-native-gesture-handler'
 
 const Stack = createNativeStackNavigator()
 
@@ -37,9 +37,6 @@ const App = () => {
   return (
 
     <NavigationContainer>
-
-
-
       {!token ?
         <Stack.Navigator initialRouteName='LoginPage' >
           <Stack.Screen
@@ -70,7 +67,10 @@ export default function Main() {
       <TokenContext>
         <Provider store={store}>
           <PersistGate loading={null} persistor={persistor}>
-            <App />
+           <GestureHandlerRootView>
+              {/* <App /> */}
+              <SlidingButton/>
+           </GestureHandlerRootView>
           </PersistGate>
         </Provider>
       </TokenContext>

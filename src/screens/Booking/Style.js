@@ -3,15 +3,17 @@ import ColorPalette from "../../Assets/Themes/ColorPalette"
 
 const styles = (screenContext, width, height) =>
     StyleSheet.create({
-        bgImageContainer:{position:'absolute',marginTop:10,width:width,
-          alignItems:'center' },
-        bgImage:{height:400,width:width*0.94},
+        bgImageContainer:{position:'absolute',marginTop:10,width:screenContext.isPortrait?width:height,
+          alignItems:'center',},
+        bgImage:{height:400,width:screenContext.isPortrait?width*0.94:height*0.94},
         bgImageStyle:{borderTopRightRadius:30,
             borderTopLeftRadius:30,
         },
-        transparentView:{height:70},
+        transparentView:{height:screenContext.isPortrait?height*0.1:width*0.2},
+
+        scrollView:{marginBottom: 70,borderWidth:2,height:screenContext.isPortrait?height*0.71:width*0.45},
         menuDrawerButton:{margin:20},
-        contentsContainer:{marginHorizontal:10,marginTop:380,borderTopRightRadius:30,borderTopLeftRadius:30,backgroundColor:'white'},
+        contentsContainer:{marginHorizontal:10,marginTop:height*0.415,borderTopRightRadius:30,borderTopLeftRadius:30,backgroundColor:'white'},
         contentsSubContainer:{margin:20,justifyContent:'space-between'},
 
         titleAndPriceContainer:{flexDirection:'row',justifyContent:'space-between',alignItems:'center'},

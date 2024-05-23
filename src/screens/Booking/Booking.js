@@ -28,11 +28,11 @@ const Booking = ({ navigation }) => {
           <View style={screenStyles.menuDrawerButton} ><MenuDrawerButton navigation={navigation} /></View>
         </ImageBackground>
       </View>
-      {/* <View style={screenStyles.transparentView}>
+      <View style={screenStyles.transparentView}>
 
-      </View> */}
+      </View>
       <KeyboardAwareScrollView
-        style={{ marginBottom: 70 }}
+        style={screenStyles.scrollView}
         showsVerticalScrollIndicator={false}
       >
         <View style={screenStyles.contentsContainer}>
