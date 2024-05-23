@@ -29,7 +29,6 @@ const styles = (screenContext, width, height) =>
         numberBoxNotSelected:{marginHorizontal:5,height:30,width:30,backgroundColor:ColorPalette.lightGreen,borderRadius:10,alignItems:'center',justifyContent:'center'},
         //
         buttonContainer:{paddingHorizontal:20,paddingVertical:10,flexDirection:'row',width:'100%',justifyContent:'space-evenly',position:"absolute",bottom:0,backgroundColor:'white'},
-        bookmarkTouchableOpacity:{height:50,width:'20%',borderWidth:1,borderColor:ColorPalette.green,borderRadius:5,alignItems:'center',justifyContent:'center'},
-        slideTouchableOpacity:{height:50,width:'70%',borderWidth:1,borderColor:ColorPalette.green,borderRadius:5,alignItems:'center',justifyContent:'center'}
+        bookmarkTouchableOpacity:{height:50,width:width*0.15,borderWidth:1,borderColor:ColorPalette.green,borderRadius:10,alignItems:'center',justifyContent:'center'},
     })
 export default styles

@@ -1,4 +1,4 @@
-import { View, ImageBackground, TouchableOpacity } from 'react-native'
+import { View, ImageBackground, TouchableOpacity, Alert } from 'react-native'
 import React from 'react'
 import { useScreenContext } from '../../Contexts/ScreenContext';
 import styles from './Style';
@@ -9,7 +9,8 @@ import Ionicons from 'react-native-vector-icons/Ionicons'
 import FontAwesome from 'react-native-vector-icons/FontAwesome'
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
 import ColorPalette from '../../Assets/Themes/ColorPalette';
-
+import SliderButton from '../../Components/SliderButton/SliderButton';
+import { width } from '@fortawesome/free-brands-svg-icons/fa42Group';
 
 const Booking = ({ navigation }) => {
   const screenContext = useScreenContext();
@@ -18,10 +19,12 @@ const Booking = ({ navigation }) => {
     screenContext[screenContext.isPortrait ? 'windowWidth' : 'windowHeight'],
     screenContext[screenContext.isPortrait ? 'windowHeight' : 'windowWidth'],
   );
+  const handleSliderSubmit=()=>{
+    Alert.alert('Booking Successfull:)')
+  }
 
   return (
     <View>
-
       <View style={screenStyles.bgImageContainer}>
         <ImageBackground
           source={require('../../Assets/Images/2GreenCups.jpg')} style={screenStyles.bgImage} imageStyle={screenStyles.bgImageStyle}>
@@ -29,7 +32,6 @@ const Booking = ({ navigation }) => {
         </ImageBackground>
       </View>
       <View style={screenStyles.transparentView}>
-
       </View>
       <KeyboardAwareScrollView
         style={screenStyles.scrollView}
@@ -81,9 +83,7 @@ const Booking = ({ navigation }) => {
         <TouchableOpacity style={screenStyles.bookmarkTouchableOpacity} >
           <Ionicons size={25} color={ColorPalette.green} name='bookmark-outline' />
         </TouchableOpacity>
-        <TouchableOpacity style={screenStyles.slideTouchableOpacity} >
-          <Text>Slide</Text>
-        </TouchableOpacity>
+          <SliderButton height={50} width={width*0.4} sliderWidth={50} sliderText={'Slide to Pay'} onPressFn={handleSliderSubmit}/>
       </View>
     </View>
   )

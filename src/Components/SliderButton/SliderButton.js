@@ -1,10 +1,12 @@
 import { Alert, Text, View } from 'react-native'
+import Feather from 'react-native-vector-icons/Feather'
 import React from 'react'
 import Animated, {
     useAnimatedStyle,
     useSharedValue,
-    withDecay,
     withSpring,
+    withTiming,
+    Easing
 } from 'react-native-reanimated';
 import {
     Gesture,
@@ -17,27 +19,21 @@ function clamp(val, min, max) {
     return Math.min(Math.max(val, min), max);
 }
 
-const SlidingButton = () => {
+const SliderButton = ({height,width,sliderWidth,sliderText,onPressFn}) => {
     const translationX = useSharedValue(0);
     const prevTranslationX = useSharedValue(0);
-    //height,width,sliderWidth should be passed as props 
-    const height = 70
-    const width = 350
-    const sliderWidth = 70
-
+    //foll.  should be passed as props 
     const screenStyles = styles(height, width, sliderWidth);
     const animatedStyles = useAnimatedStyle(() => ({
         transform: [
             { translateX: translationX.value },
         ],
     }));
-
     const pan = Gesture.Pan()
         .minDistance(1)
         .onStart(() =>
             prevTranslationX.value = translationX.value
         )
-
         .onUpdate((event) => {
             const maxTranslateX = width - sliderWidth - 5
             const minTranslateX = 0
@@ -48,24 +44,20 @@ const SlidingButton = () => {
                 maxTranslateX
             ))
             if (translationX.value > width * 0.65) {
-                Alert.alert('hi')
+                onPressFn()
             }
-            console.log(translationX.value / width);
         })
         .onEnd(() => {
-            
-                withSpring(translationX.value=0)
-            
+                withSpring(translationX.value=withTiming(0,{duration:500,easing: Easing.bounce}))
         })
         .runOnJS(true)
-
-
     return (
         <View style={screenStyles.container}>
+            <Text style={screenStyles.sliderText} >{sliderText}</Text>
             <GestureHandlerRootView>
                 <GestureDetector gesture={pan}>
                     <Animated.View style={[animatedStyles, screenStyles.slider]}>
-                        <Text>Slider</Text>
+                        <Feather style={screenStyles.sliderIcon} name='chevrons-right' size={height*0.4}/>
                     </Animated.View>
                 </GestureDetector>
 
@@ -75,4 +67,4 @@ const SlidingButton = () => {
 }
 
 
-export default SlidingButton
+export default SliderButton
