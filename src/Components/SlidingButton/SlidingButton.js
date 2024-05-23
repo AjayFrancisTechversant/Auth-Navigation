@@ -53,9 +53,9 @@ const SlidingButton = () => {
             console.log(translationX.value / width);
         })
         .onEnd(() => {
-            if (translationX.value < width * 0.65) {
+            
                 withSpring(translationX.value=0)
-            }
+            
         })
         .runOnJS(true)
 
