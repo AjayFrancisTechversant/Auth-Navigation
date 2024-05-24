@@ -13,7 +13,7 @@ import SliderButton from '../../Components/SliderButton/SliderButton';
 import { width } from '@fortawesome/free-brands-svg-icons/fa42Group';
 import HomeScreen from '../HomeScreen/HomeScreen';
 import { Gesture, GestureDetector } from 'react-native-gesture-handler';
-import Animated, { useAnimatedStyle, useSharedValue } from 'react-native-reanimated';
+import Animated, { useAnimatedStyle, useSharedValue, withSpring } from 'react-native-reanimated';
 
 
 function clamp(val, min, max) {
@@ -45,16 +45,16 @@ const Booking = ({ navigation }) => {
   const pan = Gesture.Pan()
     .minDistance(1)
     .onStart(() => {
-      prevTranslationY.value = translationY.value;
+      withSpring(prevTranslationY.value = translationY.value)
     })
     .onUpdate((event) => {
       const maxTranslateY = 0;
       const minTranslateY = -screenContext.windowHeight*0.34;
 
-      translationY.value = clamp(
+      translationY.value = withSpring(clamp(
         prevTranslationY.value + event.translationY,
         minTranslateY,
-        maxTranslateY
+        maxTranslateY)
         
       );
     })
@@ -70,18 +70,25 @@ const Booking = ({ navigation }) => {
         </ImageBackground>
       </View>
           
-       <GestureDetector gesture={pan}>
+       
           <Animated.View style={[overlapCardAnimatedStyles,screenStyles.contentsContainer]}>
-          <KeyboardAwareScrollView
-          style={screenStyles.scrollView}
-          showsVerticalScrollIndicator={false}
-        >
+         
             <View style={screenStyles.contentsSubContainer} >
-              <View>
+            <GestureDetector gesture={pan}>
                 <View style={screenStyles.titleAndPriceContainer}>
                   <Text style={screenStyles.title}>Forest Camping</Text>
                   <Text style={screenStyles.price}>$299</Text>
                 </View>
+                </GestureDetector>
+
+
+
+                <KeyboardAwareScrollView
+          style={screenStyles.scrollView}
+          // showsVerticalScrollIndicator={false}
+          // fadingEdgeLength={30}
+          
+        >
                 <Text style={screenStyles.location}><Entypo size={20} name='location-pin' />Kecamatan Klojen</Text>
                 <Text>
                   <FontAwesome name='star' size={20} color='gold' />
@@ -113,11 +120,10 @@ const Booking = ({ navigation }) => {
                 <Text style={screenStyles.subText}>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.
                   scrambled it to make a type specimen book.Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.Loremscrambled it to make a type specimen book.Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.Lorem
                 </Text>
-              </View>
+                </KeyboardAwareScrollView>
             </View>
-            </KeyboardAwareScrollView>
+            
           </Animated.View>
-       </GestureDetector>
       
       <View style={screenStyles.buttonContainer}>
         <TouchableOpacity style={screenStyles.bookmarkTouchableOpacity} >
