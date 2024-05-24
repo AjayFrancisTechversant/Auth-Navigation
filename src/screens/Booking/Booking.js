@@ -40,7 +40,6 @@ const Booking = ({ navigation }) => {
       { translateY: translationY.value },
     ],
   }));
-  console.log(screenContext.windowHeight)
 
   const pan = Gesture.Pan()
     .minDistance(1)
@@ -55,7 +54,6 @@ const Booking = ({ navigation }) => {
         prevTranslationY.value + event.translationY,
         minTranslateY,
         maxTranslateY)
-        
       );
     })
     .runOnJS(true);
