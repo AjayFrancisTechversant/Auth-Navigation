@@ -4,7 +4,6 @@ import React from 'react'
 import Animated, {
     useAnimatedStyle,
     useSharedValue,
-    withSpring,
     withTiming,
     Easing
 } from 'react-native-reanimated';
@@ -14,6 +13,8 @@ import {
     GestureHandlerRootView,
 } from 'react-native-gesture-handler';
 import styles from './Style';
+import LinearGradient from 'react-native-linear-gradient';
+import ColorPalette from '../../Assets/Themes/ColorPalette';
 
 function clamp(val, min, max) {
     return Math.min(Math.max(val, min), max);
@@ -22,7 +23,6 @@ function clamp(val, min, max) {
 const SliderButton = ({height,width,sliderWidth,sliderText,onPressFn}) => {
     const translationX = useSharedValue(0);
     const prevTranslationX = useSharedValue(0);
-    //foll.  should be passed as props 
     const screenStyles = styles(height, width, sliderWidth);
     const animatedStyles = useAnimatedStyle(() => ({
         transform: [
@@ -53,20 +53,25 @@ const SliderButton = ({height,width,sliderWidth,sliderText,onPressFn}) => {
         })
         .runOnJS(true)
     return (
-        <View style={screenStyles.container}>
+        <LinearGradient 
+        start={{ x: 0, y: 0 }} end={{ x: 1, y: 0 }}
+             colors={[ColorPalette.green,ColorPalette.lightGreen]}
+        style={screenStyles.container}>
            <View style={screenStyles.sliderBackgroundContainer}>
+            
                 <Text style={screenStyles.sliderBGText} >{sliderText}</Text>
-                <Feather style={screenStyles.sliderBGIcon} name='chevrons-right' size={height*0.4}/>
+               
+                    <Feather style={screenStyles.sliderBGIcon} name='chevrons-right' size={height*0.4}/>
+                    
            </View>
             <GestureHandlerRootView>
                 <GestureDetector gesture={pan}>
                     <Animated.View style={[animatedStyles, screenStyles.slider]}>
-                        <Feather style={screenStyles.sliderIcon} name='chevrons-right' size={height*0.4}/>
+                        {/* <Feather style={screenStyles.sliderIcon} name='chevrons-right' size={height*0.4}/> */}
                     </Animated.View>
                 </GestureDetector>
-
             </GestureHandlerRootView>
-        </View>
+        </LinearGradient>
     );
 }
 
