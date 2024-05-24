@@ -12,6 +12,14 @@ import ColorPalette from '../../Assets/Themes/ColorPalette';
 import SliderButton from '../../Components/SliderButton/SliderButton';
 import { width } from '@fortawesome/free-brands-svg-icons/fa42Group';
 import HomeScreen from '../HomeScreen/HomeScreen';
+import { Gesture, GestureDetector } from 'react-native-gesture-handler';
+import Animated, { useAnimatedStyle, useSharedValue } from 'react-native-reanimated';
+
+
+function clamp(val, min, max) {
+  return Math.min(Math.max(val, min), max);
+}
+
 
 const Booking = ({ navigation }) => {
   const screenContext = useScreenContext();
@@ -24,63 +32,93 @@ const Booking = ({ navigation }) => {
     // Alert.alert('Booking Successfull:)')
     navigation.navigate(HomeScreen)
   }
+  const translationY = useSharedValue(0);
+  const prevTranslationY = useSharedValue(0);
+
+  const overlapCardAnimatedStyles = useAnimatedStyle(() => ({
+    transform: [
+      { translateY: translationY.value },
+    ],
+  }));
+  console.log(screenContext.windowHeight)
+
+  const pan = Gesture.Pan()
+    .minDistance(1)
+    .onStart(() => {
+      prevTranslationY.value = translationY.value;
+    })
+    .onUpdate((event) => {
+      const maxTranslateY = 0;
+      const minTranslateY = -screenContext.windowHeight*0.34;
+
+      translationY.value = clamp(
+        prevTranslationY.value + event.translationY,
+        minTranslateY,
+        maxTranslateY
+        
+      );
+    })
+    .runOnJS(true);
 
   return (
-    <View>
+    <View style={screenStyles.wholeContainer}>
+
       <View style={screenStyles.bgImageContainer}>
         <ImageBackground
           source={require('../../Assets/Images/2GreenCups.jpg')} style={screenStyles.bgImage} imageStyle={screenStyles.bgImageStyle}>
           <View style={screenStyles.menuDrawerButton} ><MenuDrawerButton navigation={navigation} /></View>
         </ImageBackground>
       </View>
-      <View style={screenStyles.transparentView}>
-      </View>
-      <KeyboardAwareScrollView
-        style={screenStyles.scrollView}
-        showsVerticalScrollIndicator={false}
-      >
-        <View style={screenStyles.contentsContainer}>
-          <View style={screenStyles.contentsSubContainer} >
-            <View>
-              <View style={screenStyles.titleAndPriceContainer}>
-                <Text style={screenStyles.title}>Forest Camping</Text>
-                <Text style={screenStyles.price}>$299</Text>
+          
+       <GestureDetector gesture={pan}>
+          <Animated.View style={[overlapCardAnimatedStyles,screenStyles.contentsContainer]}>
+          <KeyboardAwareScrollView
+          style={screenStyles.scrollView}
+          showsVerticalScrollIndicator={false}
+        >
+            <View style={screenStyles.contentsSubContainer} >
+              <View>
+                <View style={screenStyles.titleAndPriceContainer}>
+                  <Text style={screenStyles.title}>Forest Camping</Text>
+                  <Text style={screenStyles.price}>$299</Text>
+                </View>
+                <Text style={screenStyles.location}><Entypo size={20} name='location-pin' />Kecamatan Klojen</Text>
+                <Text>
+                  <FontAwesome name='star' size={20} color='gold' />
+                  <FontAwesome name='star' size={20} color='gold' />
+                  <FontAwesome name='star' size={20} color='gold' />
+                  <FontAwesome name='star' size={20} color='gold' />
+                  <FontAwesome name='star-half-empty' size={20} color='gold' />(4.5)
+                </Text>
+                <Text style={screenStyles.subTitle}>People</Text>
+                <Text style={screenStyles.subText}>Number of people in your group</Text>
+                <View style={screenStyles.numberBoxContainer}>
+                  <TouchableOpacity style={screenStyles.numberBoxSelected}>
+                    <Text>1</Text>
+                  </TouchableOpacity>
+                  <TouchableOpacity style={screenStyles.numberBoxNotSelected}>
+                    <Text>2</Text>
+                  </TouchableOpacity>
+                  <TouchableOpacity style={screenStyles.numberBoxNotSelected}>
+                    <Text>3</Text>
+                  </TouchableOpacity>
+                  <TouchableOpacity style={screenStyles.numberBoxNotSelected}>
+                    <Text>4</Text>
+                  </TouchableOpacity>
+                  <TouchableOpacity style={screenStyles.numberBoxNotSelected}>
+                    <Text>5</Text>
+                  </TouchableOpacity>
+                </View>
+                <Text style={screenStyles.subTitle}>Description</Text>
+                <Text style={screenStyles.subText}>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.
+                  scrambled it to make a type specimen book.Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.Loremscrambled it to make a type specimen book.Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.Lorem
+                </Text>
               </View>
-              <Text style={screenStyles.location}><Entypo size={20} name='location-pin' />Kecamatan Klojen</Text>
-              <Text>
-                <FontAwesome name='star' size={20} color='gold' />
-                <FontAwesome name='star' size={20} color='gold' />
-                <FontAwesome name='star' size={20} color='gold' />
-                <FontAwesome name='star' size={20} color='gold' />
-                <FontAwesome name='star-half-empty' size={20} color='gold' />(4.5)
-              </Text>
-              <Text style={screenStyles.subTitle}>People</Text>
-              <Text style={screenStyles.subText}>Number of people in your group</Text>
-              <View style={screenStyles.numberBoxContainer}>
-                <TouchableOpacity style={screenStyles.numberBoxSelected}>
-                  <Text>1</Text>
-                </TouchableOpacity>
-                <TouchableOpacity style={screenStyles.numberBoxNotSelected}>
-                  <Text>2</Text>
-                </TouchableOpacity>
-                <TouchableOpacity style={screenStyles.numberBoxNotSelected}>
-                  <Text>3</Text>
-                </TouchableOpacity>
-                <TouchableOpacity style={screenStyles.numberBoxNotSelected}>
-                  <Text>4</Text>
-                </TouchableOpacity>
-                <TouchableOpacity style={screenStyles.numberBoxNotSelected}>
-                  <Text>5</Text>
-                </TouchableOpacity>
-              </View>
-              <Text style={screenStyles.subTitle}>Description</Text>
-              <Text style={screenStyles.subText}>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.
-                scrambled it to make a type specimen book.Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.Loremscrambled it to make a type specimen book.Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.Lorem
-              </Text>
             </View>
-          </View>
-        </View>
-      </KeyboardAwareScrollView>
+            </KeyboardAwareScrollView>
+          </Animated.View>
+       </GestureDetector>
+      
       <View style={screenStyles.buttonContainer}>
         <TouchableOpacity style={screenStyles.bookmarkTouchableOpacity} >
           <Ionicons size={25} color={ColorPalette.green} name='bookmark-outline' />

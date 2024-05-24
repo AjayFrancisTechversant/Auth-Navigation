@@ -13,6 +13,7 @@ import { PersistGate } from 'redux-persist/integration/react'
 import SampleComponent from './src/Components/SampleComponent/SampleComponent'
 import SlidingButton from './src/Components/SliderButton/SliderButton'
 import { GestureHandlerRootView } from 'react-native-gesture-handler'
+import Booking from './src/screens/Booking/Booking'
 
 const Stack = createNativeStackNavigator()
 
@@ -69,6 +70,7 @@ export default function Main() {
           <PersistGate loading={null} persistor={persistor}>
            <GestureHandlerRootView>
               <App />
+              {/* <Booking/> */}
            </GestureHandlerRootView>
           </PersistGate>
         </Provider>

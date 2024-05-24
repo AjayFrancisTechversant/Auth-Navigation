@@ -3,18 +3,24 @@ import ColorPalette from "../../Assets/Themes/ColorPalette"
 
 const styles = (screenContext, width, height) =>
     StyleSheet.create({
-        bgImageContainer:{position:'absolute',marginTop:10,width:screenContext.isPortrait?width:height,
-          alignItems:'center',},
-        bgImage:{height:400,width:screenContext.isPortrait?width*0.94:height*0.94},
+        wholeContainer:{borderWidth:2,alignItems:'center',borderColor:'red',height:screenContext.isPortrait?height*0.905:width*0.83},
+        bgImageContainer:{paddingTop:10,width:screenContext.isPortrait?width:height,
+          alignItems:'center',borderWidth:2},
+        bgImage:{height:height*0.45,width:screenContext.isPortrait?width*0.92:height*0.94},
         bgImageStyle:{borderTopRightRadius:30,
             borderTopLeftRadius:30,
         },
-        transparentView:{height:screenContext.isPortrait?height*0.1:width*0.2},
+        // transparentView:{height:screenContext.isPortrait?height*0.1:width*0.2},
 
-        scrollView:{marginBottom: 70,height:screenContext.isPortrait?height*0.71:width*0.45},
+        scrollView:{marginBottom: 20,height:screenContext.isPortrait?height*0.71:width*0.45},
         menuDrawerButton:{margin:20},
-        contentsContainer:{marginHorizontal:10,marginTop:height*0.415,borderTopRightRadius:30,borderTopLeftRadius:30,backgroundColor:'white'},
-        contentsSubContainer:{margin:20,justifyContent:'space-between'},
+        
+        //
+        contentsContainer:{marginHorizontal:10,
+            marginTop:-height*0.03,height:height*0.7,
+            borderTopRightRadius:30,
+            borderTopLeftRadius:30,backgroundColor:'white'},
+        contentsSubContainer:{margin:20,justifyContent:'space-between',},
 
         titleAndPriceContainer:{flexDirection:'row',justifyContent:'space-between',alignItems:'center'},
         title:{fontSize:40,fontFamily:'Helvetica-Bold',width:200},
