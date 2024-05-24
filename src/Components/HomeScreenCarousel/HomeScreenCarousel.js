@@ -24,7 +24,7 @@ const HomeScreenCarousel = () => {
       width={screenContext.windowWidth}
       style={screenStyles.carousel}
       autoPlay={true}
-      autoPlayInterval={4000}
+      autoPlayInterval={2000}
       mode="parallax"
         modeConfig={{
           parallaxScrollingScale: 0.9,

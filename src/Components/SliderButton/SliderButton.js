@@ -37,7 +37,7 @@ const SliderButton = ({height,width,sliderWidth,sliderText,onPressFn}) => {
         .onUpdate((event) => {
             const maxTranslateX = width - sliderWidth - 5
             const minTranslateX = 0
-            
+
             translationX.value = clamp(
                 prevTranslationX.value + event.translationX,
                 minTranslateX,
@@ -54,7 +54,10 @@ const SliderButton = ({height,width,sliderWidth,sliderText,onPressFn}) => {
         .runOnJS(true)
     return (
         <View style={screenStyles.container}>
-            <Text style={screenStyles.sliderText} >{sliderText}</Text>
+           <View style={screenStyles.sliderBackgroundContainer}>
+                <Text style={screenStyles.sliderBGText} >{sliderText}</Text>
+                <Feather style={screenStyles.sliderBGIcon} name='chevrons-right' size={height*0.4}/>
+           </View>
             <GestureHandlerRootView>
                 <GestureDetector gesture={pan}>
                     <Animated.View style={[animatedStyles, screenStyles.slider]}>
