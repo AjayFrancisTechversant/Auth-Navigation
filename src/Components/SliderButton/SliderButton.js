@@ -37,12 +37,12 @@ const SliderButton = ({height,width,sliderWidth,sliderText,onPressFn}) => {
         .onUpdate((event) => {
             const maxTranslateX = width - sliderWidth - 5
             const minTranslateX = 0
-
-            translationX.value = withSpring(clamp(
+            
+            translationX.value = clamp(
                 prevTranslationX.value + event.translationX,
                 minTranslateX,
                 maxTranslateX
-            ))
+            )
             if (translationX.value > width * 0.75) {
                 onPressFn()
                 translationX.value=withTiming(0,{duration:500,easing: Easing.bounce})

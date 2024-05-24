@@ -11,6 +11,7 @@ import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view
 import ColorPalette from '../../Assets/Themes/ColorPalette';
 import SliderButton from '../../Components/SliderButton/SliderButton';
 import { width } from '@fortawesome/free-brands-svg-icons/fa42Group';
+import HomeScreen from '../HomeScreen/HomeScreen';
 
 const Booking = ({ navigation }) => {
   const screenContext = useScreenContext();
@@ -20,7 +21,8 @@ const Booking = ({ navigation }) => {
     screenContext[screenContext.isPortrait ? 'windowHeight' : 'windowWidth'],
   );
   const handleSliderSubmit=()=>{
-    Alert.alert('Booking Successfull:)')
+    // Alert.alert('Booking Successfull:)')
+    navigation.navigate(HomeScreen)
   }
 
   return (

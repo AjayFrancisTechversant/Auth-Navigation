@@ -8,7 +8,7 @@ const styles = (height,width,sliderWidth ) => StyleSheet.create({
     slider:{height:'100%',width:sliderWidth,backgroundColor:ColorPalette.green,borderRadius:10,justifyContent:'center',alignItems:'center',},
     sliderText:{position:'absolute',alignSelf:'center',
     fontSize:height*0.3,
-    color:ColorPalette.green
+    color:ColorPalette.green,fontFamily:'Helvetica-Bold'
     },
     sliderIcon:{color:'white'}
 })

@@ -11,7 +11,7 @@ const styles = (screenContext, width, height) =>
         },
         transparentView:{height:screenContext.isPortrait?height*0.1:width*0.2},
 
-        scrollView:{marginBottom: 70,borderWidth:2,height:screenContext.isPortrait?height*0.71:width*0.45},
+        scrollView:{marginBottom: 70,height:screenContext.isPortrait?height*0.71:width*0.45},
         menuDrawerButton:{margin:20},
         contentsContainer:{marginHorizontal:10,marginTop:height*0.415,borderTopRightRadius:30,borderTopLeftRadius:30,backgroundColor:'white'},
         contentsSubContainer:{margin:20,justifyContent:'space-between'},
