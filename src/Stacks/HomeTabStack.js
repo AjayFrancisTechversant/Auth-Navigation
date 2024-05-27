@@ -5,7 +5,9 @@ import Me from '../screens/Me/Me'
 import Entypo from 'react-native-vector-icons/Entypo';
 import FontAwesome from 'react-native-vector-icons/FontAwesome'
 import Feather from 'react-native-vector-icons/Feather'
+import FontAwesome6 from 'react-native-vector-icons/FontAwesome6'
 import HomeDrawerStack from './HomeDrawerStack'
+import Notes from '../screens/Notes/Notes';
 
 const HomeTabStack = () => {
     const HomeTabStack = createBottomTabNavigator()
@@ -18,6 +20,17 @@ const HomeTabStack = () => {
                     headerShown:false,
                     tabBarIcon: ({ color, size }) => (
                         <Entypo name="home" color={color} size={size} />
+                    )
+
+                }}
+            />
+              <HomeTabStack.Screen
+                name='Notes'
+                component={Notes}
+                options={{
+                    headerShown:false,
+                    tabBarIcon: ({ color, size }) => (
+                        <FontAwesome6 name='note-sticky' color={color} size={size} />
                     )
 
                 }}

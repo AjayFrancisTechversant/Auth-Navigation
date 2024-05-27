@@ -71,7 +71,6 @@ const Booking = ({ navigation }) => {
       opacity.value = interpolate(translationY.value, [0, -250], [1, 0], Extrapolation.CLAMP
 
       )
-      console.log(opacity.value);
     })
     .runOnJS(true);
 

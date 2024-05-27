@@ -3,10 +3,12 @@ import React from 'react'
 import { useScreenContext } from '../../Contexts/ScreenContext';
 import styles from './Style';
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
+import FontAwesome5 from 'react-native-vector-icons/FontAwesome5';
+import ColorPalette from '../../Assets/Themes/ColorPalette';
 
 
 
-const Card = ({ index, item,  onPressFn }) => {
+const Card = ({ index, item, onPressFn }) => {
     const screenContext = useScreenContext();
     const screenStyles = styles(
         screenContext,
@@ -15,25 +17,22 @@ const Card = ({ index, item,  onPressFn }) => {
     );
     return (
         <>
-                <View style={screenStyles.itemContainer}>
-                    <View style={screenStyles.imageContainer} >
-                        <Image
-                            style={screenStyles.image}
-                            source={{ uri: item.uri }}
-                        />
-                    </View>
-                    <View style={screenStyles.titleandDescContainer}>
-                        <Text style={screenStyles.itemTitle} >{item.title}</Text>
-                        <Text style={screenStyles.itemDesc}>{item.desc}</Text>
-                    </View>
-                    <View style={screenStyles.deleteContainer}>
-                        <TouchableOpacity onPress={() => onPressFn(index)} >
-                            <View style={screenStyles.deleteButton}>
-                                <Text ><MaterialIcons name='delete' size={30} color={'red'} /></Text>
-                            </View>
-                        </TouchableOpacity>
-                    </View>
-                </View>             
+            <View style={screenStyles.card}>
+                <View style={screenStyles.titleAndDescContainer}>
+                    <Text style={screenStyles.title} >{item.title}</Text>
+                    <Text style={screenStyles.desc}>{item.desc}</Text>
+                </View>
+
+               <View style={screenStyles.buttonsContainer}>
+                    <TouchableOpacity style={screenStyles.button} onPress={() => onPressFn(index)} >
+                        <MaterialIcons name='delete' size={30} color={'red'} />
+                    </TouchableOpacity>
+                    <TouchableOpacity style={screenStyles.button}>
+                    <MaterialIcons name='edit' size={30} color={ColorPalette.yellow} />
+                    </TouchableOpacity>
+               </View>
+
+            </View>
         </>
     )
 }
