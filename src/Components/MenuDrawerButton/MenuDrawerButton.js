@@ -5,7 +5,7 @@ import { TouchableOpacity } from 'react-native';
 import Feather from 'react-native-vector-icons/Feather'
 import ColorPalette from '../../Assets/Themes/ColorPalette';
 
-const MenuDrawerButton = ({navigation}) => {
+const MenuDrawerButton = ({navigation,screen}) => {
     const screenContext = useScreenContext();
     const screenStyles = styles(
         screenContext,
@@ -14,7 +14,7 @@ const MenuDrawerButton = ({navigation}) => {
     );
     return (
         <TouchableOpacity onPress={() => navigation.openDrawer()}>
-            <Feather name='menu' size={30} color='#e3f5e9' />
+            <Feather name='menu' size={30} color={screen=='Booking'?ColorPalette.green:'#e3f5e9'} />
         </TouchableOpacity>
     )
 }
