@@ -5,15 +5,14 @@ import styles from './Style';
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
 import ColorPalette from '../../Assets/Themes/ColorPalette';
 
-
-
-const Card = ({ item, handleDeleteNote,handleEditButton,isDeleteLoading }) => {
+const Card = React.memo(({ item, handleDeleteNote, handleEditButton, isDeleteLoading }) => {
     const screenContext = useScreenContext();
     const screenStyles = styles(
         screenContext,
         screenContext[screenContext.isPortrait ? 'windowWidth' : 'windowHeight'],
         screenContext[screenContext.isPortrait ? 'windowHeight' : 'windowWidth'],
     );
+    console.log('child rendered');
     return (
         <>
             <View style={screenStyles.card}>
@@ -21,19 +20,20 @@ const Card = ({ item, handleDeleteNote,handleEditButton,isDeleteLoading }) => {
                     <Text style={screenStyles.title} >{item.title}</Text>
                     <Text style={screenStyles.desc}>{item.desc}</Text>
                 </View>
-               <View style={screenStyles.buttonsContainer}>
+                <View style={screenStyles.buttonsContainer}>
                     <TouchableOpacity style={screenStyles.button} onPress={() => handleDeleteNote(item.id)} >
-                        {isDeleteLoading?<ActivityIndicator/>:<MaterialIcons name='delete' size={30} color={'red'} />}
+                        {isDeleteLoading ? <ActivityIndicator /> : <MaterialIcons name='delete' size={30} color={'red'} />}
                     </TouchableOpacity>
                     <TouchableOpacity style={screenStyles.button}>
-                    <MaterialIcons name='edit' size={30} color={ColorPalette.yellow} onPress={() =>handleEditButton(item.id)}   />
+                        <MaterialIcons name='edit' size={30} color={ColorPalette.yellow} onPress={() => handleEditButton(item.id)} />
                     </TouchableOpacity>
-               </View>
+                </View>
 
             </View>
         </>
     )
 }
+)
 
 export default Card
 

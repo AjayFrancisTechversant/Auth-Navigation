@@ -1,5 +1,5 @@
 import { Text, View, TouchableOpacity, FlatList, Alert, ActivityIndicator } from 'react-native'
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 import styles from './Style'
 import { useScreenContext } from '../../Contexts/ScreenContext';
 import Card from '../../Components/Card/Card';
@@ -26,6 +26,7 @@ const Notes = () => {
     useEffect(() => {
         getNotes()
     }, [])
+    console.log('parent rendered');
 
     //read
     const getNotes = () => {
@@ -74,11 +75,11 @@ const Notes = () => {
         await database.write(async () => {
             // console.log(await database.get('notes').find(editNoteId))
 
-            (await database.get('notes').find(editNoteId)).update((i)=>{
-                i.title=title
-                i.desc=desc
+            (await database.get('notes').find(editNoteId)).update((i) => {
+                i.title = title
+                i.desc = desc
             })
-            
+
         })
         setIsEditLoading(false)
         setTitle('')
@@ -117,7 +118,6 @@ const Notes = () => {
         screenContext[screenContext.isPortrait ? 'windowWidth' : 'windowHeight'],
         screenContext[screenContext.isPortrait ? 'windowHeight' : 'windowWidth'],
     );
-    // console.log(isLoading);
     return (
         <View style={screenStyles.canvas}>
             <View style={screenStyles.container}>
@@ -146,7 +146,6 @@ const Notes = () => {
                                 multiline={true}
                                 mode="outlined"
                                 label="Description"
-
                                 selectionColor={ColorPalette.green}
                                 underlineColor={ColorPalette.green}
                                 activeUnderlineColor={ColorPalette.green}
@@ -160,7 +159,7 @@ const Notes = () => {
                                     <Entypo size={25} name='cross' />
                                 </TouchableOpacity>
                                 <TouchableOpacity onPress={handleCheckButton} style={screenStyles.saveAddButton}>
-                                    {isAddLoading||isEditLoading ? <ActivityIndicator color={'white'} /> : <Entypo size={25} name='check' />}
+                                    {isAddLoading || isEditLoading ? <ActivityIndicator color={'white'} /> : <Entypo size={25} name='check' />}
                                 </TouchableOpacity>
                             </View>
                         </View>}
@@ -174,5 +173,6 @@ const Notes = () => {
         </View>
     )
 }
+
 
 export default Notes

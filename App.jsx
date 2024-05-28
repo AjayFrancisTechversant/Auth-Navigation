@@ -67,7 +67,8 @@ export default function Main() {
         <Provider store={store}>
           <PersistGate loading={null} persistor={persistor}>
            <GestureHandlerRootView>
-              <App />
+              {/* <App /> */}
+              <Notes/>
            </GestureHandlerRootView>
           </PersistGate>
         </Provider>

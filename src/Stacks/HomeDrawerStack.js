@@ -7,6 +7,7 @@ import Entypo from 'react-native-vector-icons/Entypo'
 import Ionicons from 'react-native-vector-icons/Ionicons'
 import FontAwesome6 from 'react-native-vector-icons/FontAwesome6'
 import Booking from '../screens/Booking/Booking';
+import DBFetch from '../screens/DBFetch/DBFetch';
 
 
 const HomeDrawerStack = () => {
@@ -27,6 +28,12 @@ const HomeDrawerStack = () => {
                     drawerIcon: () => <FontAwesome6 name='book-bookmark' color={ColorPalette.green} size={20} />
                 }}
                 name="Booking" component={Booking}
+            />
+             <Drawer.Screen
+                options={{
+                    drawerIcon: () => <FontAwesome6 name='book-bookmark' color={ColorPalette.green} size={20} />
+                }}
+                name="dbFetch" component={DBFetch}
             />
         </Drawer.Navigator>
     )

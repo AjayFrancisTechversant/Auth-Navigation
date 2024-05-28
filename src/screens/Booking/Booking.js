@@ -37,8 +37,6 @@ const Booking = ({ navigation }) => {
   const prevTranslationY = useSharedValue(0);
   const opacity = useSharedValue(0);
 
-  console.log(opacity.value);
-
   const overlapCardAnimatedStyles = useAnimatedStyle(() => ({
     transform: [
       { translateY: translationY.value },
