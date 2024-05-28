@@ -6,7 +6,6 @@ export default class notes extends Model {
 
   @field('title') title
   @field('desc') desc
-  @readonly @date('created_at') created_at
+  @readonly @date('created_at') createdAt
 
-  
 }

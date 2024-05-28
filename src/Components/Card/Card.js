@@ -1,4 +1,4 @@
-import { View, Text, Image, TouchableOpacity } from 'react-native'
+import { View, Text, TouchableOpacity, ActivityIndicator } from 'react-native'
 import React from 'react'
 import { useScreenContext } from '../../Contexts/ScreenContext';
 import styles from './Style';
@@ -7,14 +7,13 @@ import ColorPalette from '../../Assets/Themes/ColorPalette';
 
 
 
-const Card = ({ index, item, handleDeleteNote }) => {
+const Card = ({ item, handleDeleteNote,handleEditButton,isDeleteLoading }) => {
     const screenContext = useScreenContext();
     const screenStyles = styles(
         screenContext,
         screenContext[screenContext.isPortrait ? 'windowWidth' : 'windowHeight'],
         screenContext[screenContext.isPortrait ? 'windowHeight' : 'windowWidth'],
     );
-    console.log(item);
     return (
         <>
             <View style={screenStyles.card}>
@@ -24,10 +23,10 @@ const Card = ({ index, item, handleDeleteNote }) => {
                 </View>
                <View style={screenStyles.buttonsContainer}>
                     <TouchableOpacity style={screenStyles.button} onPress={() => handleDeleteNote(item.id)} >
-                        <MaterialIcons name='delete' size={30} color={'red'} />
+                        {isDeleteLoading?<ActivityIndicator/>:<MaterialIcons name='delete' size={30} color={'red'} />}
                     </TouchableOpacity>
                     <TouchableOpacity style={screenStyles.button}>
-                    <MaterialIcons name='edit' size={30} color={ColorPalette.yellow} />
+                    <MaterialIcons name='edit' size={30} color={ColorPalette.yellow} onPress={() =>handleEditButton(item.id)}   />
                     </TouchableOpacity>
                </View>
 

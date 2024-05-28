@@ -1,4 +1,4 @@
-import { Text, View, TouchableOpacity, FlatList } from 'react-native'
+import { Text, View, TouchableOpacity, FlatList, Alert, ActivityIndicator } from 'react-native'
 import React, { useEffect, useState } from 'react'
 import styles from './Style'
 import { useScreenContext } from '../../Contexts/ScreenContext';
@@ -11,12 +11,17 @@ import { useScrollToTop } from '@react-navigation/native';
 
 
 const Notes = () => {
-  
+
     const [refresh, setRefresh] = useState(false)
     const [isAdding, setIsAdding] = useState(false)
+    const [isEditing, setIsEditing] = useState(false)
     const [title, setTitle] = useState('')
     const [desc, setDesc] = useState('')
     const [allNotes, setAllNotes] = useState([])
+    const [isAddLoading, setIsAddLoading] = useState(false)
+    const [isEditLoading, setIsEditLoading] = useState(false)
+    const [isDeleteLoading, setIsDeleteLoading] = useState(false)
+    const [editNoteId, setEditNoteId] = useState('')
 
     useEffect(() => {
         getNotes()
@@ -36,54 +41,87 @@ const Notes = () => {
 
     //create
     const addNewNote = async () => {
-        await database.write(async () => {
-             await database.get('notes').create(note => {
-                note.title = title
-                note.desc = desc
+        if (title || desc) {
+            setIsAddLoading(true)
+            await database.write(async () => {
+                await database.get('notes').create(note => {
+                    note.title = title
+                    note.desc = desc
+                })
             })
-        })
-        setTitle('')
-        setDesc('')
-        setIsAdding(false)
+            setTitle('')
+            setDesc('')
+            setIsAddLoading(false)
+            setIsAdding(false)
+        } else {
+            Alert.alert("Please Fill")
+        }
+
     }
 
     //delete
-    const handleDeleteNote = async(id) => {
+    const handleDeleteNote = async (id) => {
+        setIsDeleteLoading(true)
         await database.write(async () => {
-(await database.get('notes').find(id)).destroyPermanently()
+            (await database.get('notes').find(id)).destroyPermanently()
         })
+        setIsDeleteLoading(false)
     }
-    
+
     //edit
+    const handleEditNote = async () => {
+        setIsEditLoading(true)
+        await database.write(async () => {
+            // console.log(await database.get('notes').find(editNoteId))
 
-    const handleEditNote=()=>{
-        
+            (await database.get('notes').find(editNoteId)).update((i)=>{
+                i.title=title
+                i.desc=desc
+            })
+            
+        })
+        setIsEditLoading(false)
+        setTitle('')
+        setDesc('')
+        setIsEditing(false)
+        setIsAdding(false)
+
     }
 
 
-
-    const handleNewNote = () => {
+    const handlePlusButton = () => {
         setIsAdding(true)
-        
     }
-    const handleCancelAddButton = () => {
+
+    const handleCheckButton = () => {
+        isAdding ? addNewNote() : handleEditNote()
+
+    }
+    const handleEditButton = async (id) => {
+        setEditNoteId(id)
+        setIsEditing(true)
+        setTitle((await database.get('notes').find(id))._raw.title);
+        setDesc((await database.get('notes').find(id))._raw.desc);
+
+    }
+    const handleCrossButton = () => {
         setTitle('')
         setDesc('')
         setIsAdding(false)
+        setIsEditing(false)
     }
 
-
-    
     const screenContext = useScreenContext();
     const screenStyles = styles(
         screenContext,
         screenContext[screenContext.isPortrait ? 'windowWidth' : 'windowHeight'],
         screenContext[screenContext.isPortrait ? 'windowHeight' : 'windowWidth'],
     );
+    // console.log(isLoading);
     return (
         <View style={screenStyles.canvas}>
             <View style={screenStyles.container}>
-                <TouchableOpacity onPress={handleNewNote} style={screenStyles.addNoteButton}>
+                <TouchableOpacity onPress={handlePlusButton} style={screenStyles.addNoteButton}>
                     <FontAwesome name='plus' size={20} color='white' />
                 </TouchableOpacity>
                 <FlatList extraData={refresh} ListEmptyComponent={
@@ -91,9 +129,9 @@ const Notes = () => {
                 }
                     ListHeaderComponent={<View>
                         <Text style={screenStyles.title}>Notes</Text>
-                        {isAdding && <View style={screenStyles.addNoteContainer}>
-                            <Text style={screenStyles.subTitle}>Add Note</Text>
-                            <TextInput style={screenStyles.textInput}
+                        {(isAdding || isEditing) && <View style={screenStyles.addNoteContainer}>
+                            <Text style={screenStyles.subTitle}>{isAdding ? 'Add Note' : 'Update Note'}</Text>
+                            <TextInput style={screenStyles.titleTextInput}
                                 mode="outlined"
                                 label="Title"
                                 selectionColor={ColorPalette.green}
@@ -104,10 +142,11 @@ const Notes = () => {
                                 value={title}
                                 onChangeText={text => setTitle(text)}
                             />
-                            <TextInput style={screenStyles.textInput}
+                            <TextInput style={screenStyles.descTextInput}
                                 multiline={true}
                                 mode="outlined"
                                 label="Description"
+
                                 selectionColor={ColorPalette.green}
                                 underlineColor={ColorPalette.green}
                                 activeUnderlineColor={ColorPalette.green}
@@ -116,22 +155,20 @@ const Notes = () => {
                                 value={desc}
                                 onChangeText={text => setDesc(text)}
                             />
-
                             <View style={screenStyles.buttonsContainer}>
-                                <TouchableOpacity onPress={handleCancelAddButton} style={screenStyles.cancelAddButton}>
+                                <TouchableOpacity onPress={handleCrossButton} style={screenStyles.cancelAddButton}>
                                     <Entypo size={25} name='cross' />
                                 </TouchableOpacity>
-                                <TouchableOpacity onPress={addNewNote} style={screenStyles.saveAddButton}>
-                                    <Entypo size={25} name='check' />
+                                <TouchableOpacity onPress={handleCheckButton} style={screenStyles.saveAddButton}>
+                                    {isAddLoading||isEditLoading ? <ActivityIndicator color={'white'} /> : <Entypo size={25} name='check' />}
                                 </TouchableOpacity>
                             </View>
                         </View>}
                     </View>}
                     data={allNotes}
-                    renderItem={({index,item})=>
-                        <Card item={item} handleDeleteNote={handleDeleteNote}/>
+                    renderItem={({ item }) =>
+                        <Card item={item} isDeleteLoading={isDeleteLoading} handleDeleteNote={handleDeleteNote} setIsEditing={setIsEditing} handleEditButton={handleEditButton} />
                     }
-
                 />
             </View>
         </View>
