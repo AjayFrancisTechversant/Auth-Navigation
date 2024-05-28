@@ -8,8 +8,8 @@ const styles = (screenContext, width, height) =>
         addNoteButton:{position:'absolute',backgroundColor:ColorPalette.green,borderRadius:10,height:50,width:50,alignItems:'center',justifyContent:'center',bottom:20,right:20,zIndex:1},
 
         title: { fontSize: 50, alignSelf: 'center',fontFamily:'helvetica-light-587ebe5a59211' },
-       
-        addNoteContainer: {height:200,width:'80%',borderWidth:0.5,borderColor:ColorPalette.green,elevation:5,backgroundColor:'white',borderRadius:10,alignSelf:'center',marginVertical:10},
+       subTitle:{alignSelf:'center',marginTop:10,fontFamily:'helvetica',fontSize:20},
+        addNoteContainer: {height:250,width:'80%',borderWidth:0.5,borderColor:ColorPalette.green,elevation:5,backgroundColor:'white',borderRadius:10,alignSelf:'center',marginVertical:10,},
 
         noItemsToDisplay: { marginHorizontal: 50, color: 'orange' },
         textInput:{margin:10,backgroundColor:'white'},
