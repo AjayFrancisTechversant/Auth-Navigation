@@ -46,7 +46,6 @@ const DBFetch = () => {
       setFetchedUsersArray(temp)
     })
   }
-  fetchedUsersArray.map(i => console.log(i))
   const screenContext = useScreenContext();
   const screenStyles = styles(
     screenContext,

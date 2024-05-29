@@ -25,7 +25,6 @@ const Notes = () => {
     useEffect(() => {
         getNotes()
     }, [])
-    console.log('parent rendered');
 
     //read
     const getNotes = () => {

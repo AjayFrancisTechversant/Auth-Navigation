@@ -12,7 +12,6 @@ const Card = React.memo(({ item, handleDeleteNote, handleEditButton, isDeleteLoa
         screenContext[screenContext.isPortrait ? 'windowWidth' : 'windowHeight'],
         screenContext[screenContext.isPortrait ? 'windowHeight' : 'windowWidth'],
     );
-    console.log('child rendered');
     return (
         <>
             <View style={screenStyles.card}>
