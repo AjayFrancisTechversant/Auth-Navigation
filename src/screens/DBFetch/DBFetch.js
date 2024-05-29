@@ -5,8 +5,10 @@ import styles from './Style';
 import { AllUsersData } from '../../Data/Data';
 import { database } from '../../DB/Database';
 import { FlatList } from 'react-native-gesture-handler';
+import MenuDrawerButton from '../../Components/MenuDrawerButton/MenuDrawerButton';
 
-const DBFetch = () => {
+
+const DBFetch = ({navigation}) => {
   const [fetchedUsersArray, setFetchedUsersArray] = useState([])
   const numberOfUsers = fetchedUsersArray.length
 
@@ -54,6 +56,7 @@ const DBFetch = () => {
   );
   return (
     <View>
+      <MenuDrawerButton navigation={navigation} screen={'DBFetch'}/>
       <FlatList
         ListEmptyComponent={<Text>No Data</Text>}
         data={fetchedUsersArray}

@@ -67,7 +67,7 @@ const HomeScreen = ({ navigation }) => {
             style={screenStyles.headerContainer}>
               <View style={screenStyles.headerContents}>
                 <View style={screenStyles.menuDrawerButtonContainer}>
-                  <MenuDrawerButton navigation={navigation} />
+                  <MenuDrawerButton navigation={navigation} screen={'Home'} />
                 </View>
                 <View style={screenStyles.logoContainer} >
                   <TouchableOpacity >
