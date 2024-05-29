@@ -1,5 +1,5 @@
 import { Text, View, TouchableOpacity, FlatList, Alert, ActivityIndicator } from 'react-native'
-import React, { useEffect, useRef, useState } from 'react'
+import React, { useCallback, useEffect, useRef, useState } from 'react'
 import styles from './Style'
 import { useScreenContext } from '../../Contexts/ScreenContext';
 import Card from '../../Components/Card/Card';
@@ -7,7 +7,6 @@ import FontAwesome from "react-native-vector-icons/FontAwesome";
 import { TextInput } from 'react-native-paper';
 import Entypo from "react-native-vector-icons/Entypo";
 import { database } from '../../DB/Database';
-import { useScrollToTop } from '@react-navigation/native';
 
 
 const Notes = () => {
@@ -61,7 +60,7 @@ const Notes = () => {
     }
 
     //delete
-    const handleDeleteNote = async (id) => {
+    const handleDeleteNote =async (id) => {
         setIsDeleteLoading(true)
         await database.write(async () => {
             (await database.get('notes').find(id)).destroyPermanently()
@@ -73,7 +72,6 @@ const Notes = () => {
     const handleEditNote = async () => {
         setIsEditLoading(true)
         await database.write(async () => {
-            // console.log(await database.get('notes').find(editNoteId))
 
             (await database.get('notes').find(editNoteId)).update((i) => {
                 i.title = title
@@ -103,7 +101,6 @@ const Notes = () => {
         setIsEditing(true)
         setTitle((await database.get('notes').find(id))._raw.title);
         setDesc((await database.get('notes').find(id))._raw.desc);
-
     }
     const handleCrossButton = () => {
         setTitle('')

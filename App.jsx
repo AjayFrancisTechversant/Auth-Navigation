@@ -12,6 +12,7 @@ import { persistor, store } from './src/Store/Store'
 import { PersistGate } from 'redux-persist/integration/react'
 import { GestureHandlerRootView } from 'react-native-gesture-handler'
 import Notes from './src/screens/Notes/Notes'
+import DBFetch from './src/screens/DBFetch/DBFetch'
 
 const Stack = createNativeStackNavigator()
 
@@ -56,7 +57,6 @@ const App = () => {
         </Stack.Navigator>
       }
     </NavigationContainer >
-
   )
 }
 
@@ -66,10 +66,9 @@ export default function Main() {
       <TokenContext>
         <Provider store={store}>
           <PersistGate loading={null} persistor={persistor}>
-           <GestureHandlerRootView>
-              {/* <App /> */}
-              <Notes/>
-           </GestureHandlerRootView>
+            <GestureHandlerRootView>
+              <App />
+            </GestureHandlerRootView>
           </PersistGate>
         </Provider>
       </TokenContext>
