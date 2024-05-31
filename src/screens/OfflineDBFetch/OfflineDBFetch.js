@@ -8,7 +8,7 @@ import { FlatList } from 'react-native-gesture-handler';
 import MenuDrawerButton from '../../Components/MenuDrawerButton/MenuDrawerButton';
 
 
-const DBFetch = ({navigation}) => {
+const OfflineDBFetch = ({navigation}) => {
   const [fetchedUsersArray, setFetchedUsersArray] = useState([])
   const numberOfUsers = fetchedUsersArray.length
 
@@ -69,7 +69,7 @@ const DBFetch = ({navigation}) => {
             <Text>Gender: {item.gender}</Text>
             <Text>Email: {item.email}</Text>
             <Text>Phone: {item.phone}</Text>
-          
+  
           </View>
         
         }
@@ -79,4 +79,4 @@ const DBFetch = ({navigation}) => {
   )
 }
 
-export default DBFetch
+export default OfflineDBFetch

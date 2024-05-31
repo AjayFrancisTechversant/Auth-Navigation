@@ -6,8 +6,8 @@ import DrawerContents from '../Components/DrawerContents/DrawerContents';
 import Entypo from 'react-native-vector-icons/Entypo'
 import FontAwesome6 from 'react-native-vector-icons/FontAwesome6'
 import Booking from '../screens/Booking/Booking';
-import DBFetch from '../screens/DBFetch/DBFetch';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons'
+import OfflineDBFetch from '../screens/OfflineDBFetch/OfflineDBFetch';
 
 
 
@@ -34,7 +34,7 @@ const HomeDrawerStack = () => {
                 options={{
                     drawerIcon: () => <MaterialCommunityIcons name='fruit-watermelon' color={ColorPalette.green} size={20} />
                 }}
-                name="dbFetch" component={DBFetch}
+                name="OfflineDBFetch" component={OfflineDBFetch}
             />
         </Drawer.Navigator>
     )

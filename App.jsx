@@ -12,7 +12,7 @@ import { persistor, store } from './src/Store/Store'
 import { PersistGate } from 'redux-persist/integration/react'
 import { GestureHandlerRootView } from 'react-native-gesture-handler'
 import Notes from './src/screens/Notes/Notes'
-import DBFetch from './src/screens/DBFetch/DBFetch'
+import DBFetch from './src/screens/OfflineDBFetch/OfflineDBFetch'
 
 const Stack = createNativeStackNavigator()
 
