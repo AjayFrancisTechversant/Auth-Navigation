@@ -8,6 +8,7 @@ import FontAwesome6 from 'react-native-vector-icons/FontAwesome6'
 import Booking from '../screens/Booking/Booking';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons'
 import OfflineDBFetch from '../screens/OfflineDBFetch/OfflineDBFetch';
+import Charts from '../screens/Charts/Charts';
 
 
 
@@ -35,6 +36,12 @@ const HomeDrawerStack = () => {
                     drawerIcon: () => <MaterialCommunityIcons name='fruit-watermelon' color={ColorPalette.green} size={20} />
                 }}
                 name="OfflineDBFetch" component={OfflineDBFetch}
+            />
+              <Drawer.Screen
+                options={{
+                    drawerIcon: () => <MaterialCommunityIcons name='chart-arc' color={ColorPalette.green} size={20} />
+                }}
+                name="Charts" component={Charts}
             />
         </Drawer.Navigator>
     )
