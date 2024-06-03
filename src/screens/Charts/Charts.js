@@ -1,4 +1,4 @@
-import { View, Text, TouchableOpacity, ImageBackground } from 'react-native'
+import { View, Text, TouchableOpacity, ScrollView } from 'react-native'
 import React from 'react'
 import { useScreenContext } from '../../Contexts/ScreenContext';
 import styles from './Style';
@@ -23,7 +23,6 @@ const Charts = ({navigation}) => {
     { value: 256, label: 'S' },
     { value: 300, label: 'S' },
   ];
-  console.log(navigation);
   const screenContext = useScreenContext();
   const screenStyles = styles(
     screenContext,
@@ -35,7 +34,7 @@ const Charts = ({navigation}) => {
 
   return (
     <View style={screenStyles.canvas}>
-      <View style={screenStyles.container}>
+      <ScrollView style={screenStyles.container}>
         <View style={screenStyles.pieContainer}>
 
           <View style={screenStyles.backButton}>
@@ -120,7 +119,7 @@ const Charts = ({navigation}) => {
 
 
         </View>
-      </View>
+      </ScrollView>
     </View>
   )
 }
