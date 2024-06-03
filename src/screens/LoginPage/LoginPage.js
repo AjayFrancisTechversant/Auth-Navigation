@@ -83,8 +83,12 @@ const LoginPage = ({ navigation }) => {
                         <Text style={screenStyles.buttonText}>Login</Text>
                     </View>
                 </TouchableOpacity>
-                <Text>New User? </Text>
-                <TouchableOpacity onPress={() => navigation.navigate('RegisterPage')}><Text>Register</Text></TouchableOpacity>
+                <View style={screenStyles.lastViewContainer}>
+                    <Text >New User? </Text>
+                    <TouchableOpacity onPress={() => navigation.navigate('RegisterPage')}>
+                        <Text style={screenStyles.greenUnderlinetext}>Register</Text>
+                    </TouchableOpacity>
+                </View>
             </View>
         </ KeyboardAwareScrollView>
 

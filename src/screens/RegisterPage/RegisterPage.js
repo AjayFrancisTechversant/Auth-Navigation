@@ -1,5 +1,5 @@
 import { View, Text, Alert, TouchableOpacity } from 'react-native'
-import React, {  useState } from 'react'
+import React, { useState } from 'react'
 
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view'
 import { useScreenContext } from '../../Contexts/ScreenContext'
@@ -15,11 +15,12 @@ const RegisterPage = ({ navigation }) => {
 
 
     const handleRegister = async () => {
-        if(!userData.email||!userData.password){
+        if (!userData.email || !userData.password) {
             Alert.alert('Please fill the form completeley!!!')
         }
 
-        else{ auth()
+        else {
+            auth()
             .createUserWithEmailAndPassword(userData.email, userData.password)
             .then(() => {
                 console.log('User account created & signed in!');
@@ -36,7 +37,8 @@ const RegisterPage = ({ navigation }) => {
                     Alert.alert('Password is weak');
                 }
                 console.error(error);
-            });}
+            });
+        }
 
     }
     const screenContext = useScreenContext();
@@ -82,8 +84,12 @@ const RegisterPage = ({ navigation }) => {
                         <Text style={screenStyles.buttonText}>Register</Text>
                     </View>
                 </TouchableOpacity>
-                <Text>Already Registered? </Text>
-                <TouchableOpacity onPress={()=>navigation.navigate('LoginPage')}><Text>Login</Text></TouchableOpacity>
+                <View style={screenStyles.lastViewContainer}>
+                    <Text>Already Registered? </Text>
+                    <TouchableOpacity onPress={() => navigation.navigate('LoginPage')}>
+                        <Text style={screenStyles.greenUnderlinetext}>Login</Text>
+                    </TouchableOpacity>
+                </View>
             </View>
         </ KeyboardAwareScrollView>
 

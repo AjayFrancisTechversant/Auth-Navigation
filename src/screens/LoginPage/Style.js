@@ -18,6 +18,8 @@ const styles =(screenContext, width, height)=> StyleSheet.create({
         color: 'white',
         fontSize: 18
     },
-    invalidInput:{color:ColorPalette.red}
+    lastViewContainer:{flexDirection:'row',justifyContent:'center',margin:10},
+    greenUnderlinetext:{color:ColorPalette.green,textDecorationLine:"underline"}
+
 })
 export default styles
