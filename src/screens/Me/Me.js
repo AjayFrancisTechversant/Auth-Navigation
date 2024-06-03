@@ -13,6 +13,8 @@ import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view
 import ColorPalette from '../../Assets/Themes/ColorPalette';
 import { TextInput } from 'react-native-paper';
 import { useSelector } from 'react-redux';
+import auth from '@react-native-firebase/auth';
+
 
 
 const Me = () => {
@@ -26,8 +28,9 @@ const Me = () => {
     const [tempEmail, setTempEmail] = useState()
     const [isEditing, setIsEditing] = useState(false)
     const handleLogout = async () => {
-        await AsyncStorage.removeItem("isLoggedin")
-        setTokenStatus(false)
+        auth()
+        .signOut()
+        .then(() => console.log('User signed out!'));
     }
     const screenContext = useScreenContext();
     const screenStyles = styles(
