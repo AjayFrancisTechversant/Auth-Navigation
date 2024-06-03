@@ -103,7 +103,7 @@ const LoginPage = ({ navigation }) => {
                         <Text style={screenStyles.greenUnderlinetext}>Register</Text>
                     </TouchableOpacity>
                 </View>
-                <Text style={screenStyles.selfAlignCenter}>Or</Text>
+                <Text style={screenStyles.selfAlignCenter}>--------------------------------  Or  --------------------------------</Text>
                 
 
                         <View style={screenStyles.lastViewContainer}>
