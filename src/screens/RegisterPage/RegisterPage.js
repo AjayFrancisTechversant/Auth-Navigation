@@ -90,6 +90,7 @@ const RegisterPage = ({ navigation }) => {
                         <Text style={screenStyles.greenUnderlinetext}>Login</Text>
                     </TouchableOpacity>
                 </View>
+               
             </View>
         </ KeyboardAwareScrollView>
 

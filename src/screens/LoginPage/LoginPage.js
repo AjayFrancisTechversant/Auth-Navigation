@@ -15,7 +15,6 @@ const LoginPage = ({ navigation }) => {
 
 
     const handleLogin = async () => {
-
         if (!userData.email || !userData.password) {
             Alert.alert('Please fill the form completeley!!!')
         }
@@ -39,6 +38,21 @@ const LoginPage = ({ navigation }) => {
                     console.error(error);
                 });
         }
+    }
+
+    const handleAnonymousLogin=()=>{
+        auth()
+  .signInAnonymously()
+  .then(() => {
+    console.log('User signed in anonymously');
+  })
+  .catch(error => {
+    if (error.code === 'auth/operation-not-allowed') {
+      console.log('Enable anonymous in your firebase console.');
+    }
+
+    console.error(error);
+  });
     }
     const screenContext = useScreenContext();
     const screenStyles = styles(
@@ -89,6 +103,19 @@ const LoginPage = ({ navigation }) => {
                         <Text style={screenStyles.greenUnderlinetext}>Register</Text>
                     </TouchableOpacity>
                 </View>
+                <Text style={screenStyles.selfAlignCenter}>Or</Text>
+                
+
+                        <View style={screenStyles.lastViewContainer}>
+                        
+                            <Text>Continue as </Text>
+                            <TouchableOpacity onPress={handleAnonymousLogin}>
+                            <Text style={screenStyles.greenUnderlinetext}>Guest</Text>
+                            </TouchableOpacity>
+                            </View>
+                       
+                    
+                
             </View>
         </ KeyboardAwareScrollView>
 

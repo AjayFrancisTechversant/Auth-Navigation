@@ -19,7 +19,8 @@ const styles =(screenContext, width, height)=> StyleSheet.create({
         fontSize: 18
     },
     lastViewContainer:{flexDirection:'row',justifyContent:'center',margin:10},
-    greenUnderlinetext:{color:ColorPalette.green,textDecorationLine:"underline"}
+    greenUnderlinetext:{color:ColorPalette.green,textDecorationLine:"underline"},
+    selfAlignCenter:{alignSelf:'center'}
 
 })
 export default styles
