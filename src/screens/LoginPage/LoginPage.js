@@ -1,19 +1,14 @@
 import { View, Text, Alert, TouchableOpacity } from 'react-native'
-import React, { useContext, useState } from 'react'
+import React, { useState } from 'react'
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view'
 import { useScreenContext } from '../../Contexts/ScreenContext'
 import styles from './Style'
 import { TextInput } from 'react-native-paper'
 import auth from '@react-native-firebase/auth';
-import AsyncStorage from '@react-native-async-storage/async-storage'
-import { LoginTokenContext } from '../../Contexts/TokenContext'
 
 
 const LoginPage = ({ navigation }) => {
-    const { tokenStatus, setTokenStatus } = useContext(LoginTokenContext)
     const [userData, setUserData] = useState({ email: '', password: '' })
-
-
     const handleLogin = async () => {
         if (!userData.email || !userData.password) {
             Alert.alert('Please fill the form completeley!!!')
@@ -39,20 +34,19 @@ const LoginPage = ({ navigation }) => {
                 });
         }
     }
-
-    const handleAnonymousLogin=()=>{
+    const handleAnonymousLogin = () => {
         auth()
-  .signInAnonymously()
-  .then(() => {
-    console.log('User signed in anonymously');
-  })
-  .catch(error => {
-    if (error.code === 'auth/operation-not-allowed') {
-      console.log('Enable anonymous in your firebase console.');
-    }
+            .signInAnonymously()
+            .then(() => {
+                console.log('User signed in anonymously');
+            })
+            .catch(error => {
+                if (error.code === 'auth/operation-not-allowed') {
+                    console.log('Enable anonymous in your firebase console.');
+                }
 
-    console.error(error);
-  });
+                console.error(error);
+            });
     }
     const screenContext = useScreenContext();
     const screenStyles = styles(
@@ -64,13 +58,9 @@ const LoginPage = ({ navigation }) => {
     return (
 
         < KeyboardAwareScrollView extraHeight={250} style={screenStyles.canvas} >
-            <View
-                style={screenStyles.container} >
-
+            <View style={screenStyles.container} >
                 <Text style={{ fontSize: 50, alignSelf: 'center' }}> Log In</Text>
-
                 <TextInput style={screenStyles.textInput}
-
                     onChangeText={(e) => setUserData({ ...userData, email: e })}
                     mode="outlined"
                     label="Email"
@@ -82,7 +72,6 @@ const LoginPage = ({ navigation }) => {
                 />
                 <TextInput style={screenStyles.textInput}
                     secureTextEntry
-
                     onChangeText={(e) => setUserData({ ...userData, password: e })}
                     mode="outlined"
                     label="Password"
@@ -104,22 +93,14 @@ const LoginPage = ({ navigation }) => {
                     </TouchableOpacity>
                 </View>
                 <Text style={screenStyles.selfAlignCenter}>--------------------------------  Or  --------------------------------</Text>
-                
-
-                        <View style={screenStyles.lastViewContainer}>
-                        
-                            <Text>Continue as </Text>
-                            <TouchableOpacity onPress={handleAnonymousLogin}>
-                            <Text style={screenStyles.greenUnderlinetext}>Guest</Text>
-                            </TouchableOpacity>
-                            </View>
-                       
-                    
-                
+                <View style={screenStyles.lastViewContainer}>
+                    <Text>Continue as </Text>
+                    <TouchableOpacity onPress={handleAnonymousLogin}>
+                        <Text style={screenStyles.greenUnderlinetext}>Guest</Text>
+                    </TouchableOpacity>
+                </View>
             </View>
         </ KeyboardAwareScrollView>
-
-
     )
 }
 

@@ -1,42 +1,42 @@
 import { StyleSheet } from 'react-native'
-import React, { useContext, useEffect, useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { NavigationContainer } from '@react-navigation/native'
 import { createNativeStackNavigator } from '@react-navigation/native-stack'
-import AsyncStorage from '@react-native-async-storage/async-storage'
-import TokenContext, { LoginTokenContext } from './src/Contexts/TokenContext'
+import TokenContext from './src/Contexts/TokenContext'
 import { ScreenContextProvider } from './src/Contexts/ScreenContext'
 import HomeTabStack from './src/Stacks/HomeTabStack'
 import { Provider } from 'react-redux'
 import { persistor, store } from './src/Store/Store'
 import { PersistGate } from 'redux-persist/integration/react'
 import { GestureHandlerRootView } from 'react-native-gesture-handler'
-
+import auth from '@react-native-firebase/auth';
 import AuthNativeStack from './src/Stacks/AuthNativeStack'
 
 const Stack = createNativeStackNavigator()
 
 const App = () => {
-  const { tokenStatus, setTokenStatus } = useContext(LoginTokenContext)
-  const [token, setToken] = useState(true)
-
-  const tokenCheck = async () => {
-    if (await AsyncStorage.getItem("isLoggedin")) {
-      setToken(true)
+    // Set an initializing state whilst Firebase connects
+    const [initializing, setInitializing] = useState(true);
+    const [user, setUser] = useState();
+  
+    // Handle user state changes
+    function onAuthStateChanged(user) {
+      setUser(user);
+      if (initializing) setInitializing(false);
     }
-    else {
-      setToken(false)
-    }
-  }
-
-  useEffect(() => {
-    tokenCheck()
-  }, [tokenStatus])
-
+  
+    useEffect(() => {
+      const subscriber = auth().onAuthStateChanged(onAuthStateChanged);
+      return subscriber; // unsubscribe on unmount
+    }, []);
+  
+    if (initializing) return null;
+  
 
   return (
 
     <NavigationContainer>
-      {!token ?
+      {!user ?
         <Stack.Navigator  >
           <Stack.Screen
             name='AuthNativeStack'

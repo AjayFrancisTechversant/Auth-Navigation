@@ -1,24 +1,18 @@
 import { View, Text, Alert, TouchableOpacity } from 'react-native'
 import React, { useState } from 'react'
-
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view'
 import { useScreenContext } from '../../Contexts/ScreenContext'
 import styles from './Style'
 import { TextInput } from 'react-native-paper'
 import auth from '@react-native-firebase/auth';
 
-
-
 const RegisterPage = ({ navigation }) => {
-    // const { tokenStatus, setTokenStatus } = useContext(LoginTokenContext)
     const [userData, setUserData] = useState({ email: '', password: '' })
-
 
     const handleRegister = async () => {
         if (!userData.email || !userData.password) {
             Alert.alert('Please fill the form completeley!!!')
         }
-
         else {
             auth()
             .createUserWithEmailAndPassword(userData.email, userData.password)
@@ -49,15 +43,10 @@ const RegisterPage = ({ navigation }) => {
     );
 
     return (
-
         < KeyboardAwareScrollView extraHeight={250} style={screenStyles.canvas} >
-            <View
-                style={screenStyles.container} >
-
+            <View style={screenStyles.container} >
                 <Text style={{ fontSize: 50, alignSelf: 'center' }}> Register</Text>
-
                 <TextInput style={screenStyles.textInput}
-
                     onChangeText={(e) => setUserData({ ...userData, email: e })}
                     mode="outlined"
                     label="Email"
@@ -69,7 +58,6 @@ const RegisterPage = ({ navigation }) => {
                 />
                 <TextInput style={screenStyles.textInput}
                     secureTextEntry
-
                     onChangeText={(e) => setUserData({ ...userData, password: e })}
                     mode="outlined"
                     label="Password"
@@ -90,11 +78,8 @@ const RegisterPage = ({ navigation }) => {
                         <Text style={screenStyles.greenUnderlinetext}>Login</Text>
                     </TouchableOpacity>
                 </View>
-               
             </View>
         </ KeyboardAwareScrollView>
-
-
     )
 }
 
