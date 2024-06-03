@@ -1,44 +1,43 @@
 import { View, Text, Alert, TouchableOpacity } from 'react-native'
-import React, { useContext, useState } from 'react'
+import React, {  useState } from 'react'
+
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view'
 import { useScreenContext } from '../../Contexts/ScreenContext'
 import styles from './Style'
 import { TextInput } from 'react-native-paper'
 import auth from '@react-native-firebase/auth';
-import AsyncStorage from '@react-native-async-storage/async-storage'
-import { LoginTokenContext } from '../../Contexts/TokenContext'
 
 
-const LoginPage = ({ navigation }) => {
-    const { tokenStatus, setTokenStatus } = useContext(LoginTokenContext)
+
+const RegisterPage = ({ navigation }) => {
+    // const { tokenStatus, setTokenStatus } = useContext(LoginTokenContext)
     const [userData, setUserData] = useState({ email: '', password: '' })
 
 
-    const handleLogin = async () => {
-
-        if (!userData.email || !userData.password) {
+    const handleRegister = async () => {
+        if(!userData.email||!userData.password){
             Alert.alert('Please fill the form completeley!!!')
         }
-        else {
-            auth()
-                .signInWithEmailAndPassword(userData.email, userData.password)
-                .then(() => {
-                    console.log('signed in!');
-                    //  AsyncStorage.setItem("isLoggedin", userData.email)
-                    // setTokenStatus(true)
-                })
-                .catch(error => {
-                    if (error.code === 'auth/invalid-email') {
-                        Alert.alert('That email address is invalid!');
-                    }
-                    if (error.code === 'auth/invalid-credential') {
-                        Alert.alert('Invalid Credentials');
-                    }
 
+        else{ auth()
+            .createUserWithEmailAndPassword(userData.email, userData.password)
+            .then(() => {
+                console.log('User account created & signed in!');
+            })
+            .catch(error => {
+                if (error.code === 'auth/email-already-in-use') {
+                    Alert.alert('That email address is already in use!');
+                }
 
-                    console.error(error);
-                });
-        }
+                if (error.code === 'auth/invalid-email') {
+                    Alert.alert('That email address is invalid!');
+                }
+                if (error.code === 'auth/weak-password') {
+                    Alert.alert('Password is weak');
+                }
+                console.error(error);
+            });}
+
     }
     const screenContext = useScreenContext();
     const screenStyles = styles(
@@ -53,7 +52,7 @@ const LoginPage = ({ navigation }) => {
             <View
                 style={screenStyles.container} >
 
-                <Text style={{ fontSize: 50, alignSelf: 'center' }}> Log In</Text>
+                <Text style={{ fontSize: 50, alignSelf: 'center' }}> Register</Text>
 
                 <TextInput style={screenStyles.textInput}
 
@@ -78,13 +77,13 @@ const LoginPage = ({ navigation }) => {
                     outlineColor={ColorPalette.green}
                     activeOutlineColor={ColorPalette.green}
                 />
-                <TouchableOpacity onPress={handleLogin}>
+                <TouchableOpacity onPress={handleRegister}>
                     <View style={screenStyles.button}>
-                        <Text style={screenStyles.buttonText}>Login</Text>
+                        <Text style={screenStyles.buttonText}>Register</Text>
                     </View>
                 </TouchableOpacity>
-                <Text>New User? </Text>
-                <TouchableOpacity onPress={() => navigation.navigate('RegisterPage')}><Text>Register</Text></TouchableOpacity>
+                <Text>Already Registered? </Text>
+                <TouchableOpacity onPress={()=>navigation.navigate('LoginPage')}><Text>Login</Text></TouchableOpacity>
             </View>
         </ KeyboardAwareScrollView>
 
@@ -92,5 +91,5 @@ const LoginPage = ({ navigation }) => {
     )
 }
 
-export default LoginPage
+export default RegisterPage
 

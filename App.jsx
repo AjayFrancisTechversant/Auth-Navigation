@@ -1,6 +1,5 @@
 import { StyleSheet } from 'react-native'
 import React, { useContext, useEffect, useState } from 'react'
-import LoginPage from './src/screens/LoginPage/LoginPage'
 import { NavigationContainer } from '@react-navigation/native'
 import { createNativeStackNavigator } from '@react-navigation/native-stack'
 import AsyncStorage from '@react-native-async-storage/async-storage'
@@ -11,9 +10,8 @@ import { Provider } from 'react-redux'
 import { persistor, store } from './src/Store/Store'
 import { PersistGate } from 'redux-persist/integration/react'
 import { GestureHandlerRootView } from 'react-native-gesture-handler'
-import Notes from './src/screens/Notes/Notes'
-import DBFetch from './src/screens/OfflineDBFetch/OfflineDBFetch'
-import Charts from './src/screens/Charts/Charts'
+
+import AuthNativeStack from './src/Stacks/AuthNativeStack'
 
 const Stack = createNativeStackNavigator()
 
@@ -39,10 +37,10 @@ const App = () => {
 
     <NavigationContainer>
       {!token ?
-        <Stack.Navigator initialRouteName='LoginPage' >
+        <Stack.Navigator  >
           <Stack.Screen
-            name='LoginPage'
-            component={LoginPage}
+            name='AuthNativeStack'
+            component={AuthNativeStack}
             options={{ headerShown: false }}
           />
         </Stack.Navigator>
