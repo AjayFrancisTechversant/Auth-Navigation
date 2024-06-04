@@ -1,4 +1,4 @@
-import { View, Text, Alert, TouchableOpacity } from 'react-native'
+import { View, Text, Alert, TouchableOpacity, Image, ActivityIndicator } from 'react-native'
 import React, { useState } from 'react'
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view'
 import { useScreenContext } from '../../Contexts/ScreenContext'
@@ -9,6 +9,7 @@ import auth from '@react-native-firebase/auth';
 
 const LoginPage = ({ navigation }) => {
     const [userData, setUserData] = useState({ email: '', password: '' })
+    const [isLoading, setIsLoading] = useState(false)
     const handleLogin = async () => {
         if (!userData.email || !userData.password) {
             Alert.alert('Please fill the form completeley!!!')
@@ -35,6 +36,7 @@ const LoginPage = ({ navigation }) => {
         }
     }
     const handleAnonymousLogin = () => {
+        setIsLoading(true)
         auth()
             .signInAnonymously()
             .then(() => {
@@ -46,7 +48,11 @@ const LoginPage = ({ navigation }) => {
                 }
 
                 console.error(error);
-            });
+            }).finally(()=>{
+                setIsLoading(false)
+            })
+        
+
     }
     const screenContext = useScreenContext();
     const screenStyles = styles(
@@ -93,10 +99,24 @@ const LoginPage = ({ navigation }) => {
                     </TouchableOpacity>
                 </View>
                 <Text style={screenStyles.selfAlignCenter}>--------------------------------  Or  --------------------------------</Text>
+                <View style={screenStyles.AlllogoContainer}>
+                    <TouchableOpacity style={screenStyles.eachLogoContainer}>
+                        <Image style={screenStyles.facebookLogo} source={require('../../Assets/Images/Facebook-Logo.png')} />
+                    </TouchableOpacity>
+                    <TouchableOpacity style={screenStyles.eachLogoContainer}>
+                        <Image style={screenStyles.googleLogo} source={require('../../Assets/Images/google-icon.png')} />
+                    </TouchableOpacity>
+                </View>
                 <View style={screenStyles.lastViewContainer}>
                     <Text>Continue as </Text>
                     <TouchableOpacity onPress={handleAnonymousLogin}>
-                        <Text style={screenStyles.greenUnderlinetext}>Guest</Text>
+                        {isLoading ?
+                            <ActivityIndicator />
+                            :
+                            <Text style={screenStyles.greenUnderlinetext}>
+                                Guest
+                            </Text>
+                        }
                     </TouchableOpacity>
                 </View>
             </View>
