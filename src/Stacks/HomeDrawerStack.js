@@ -4,11 +4,13 @@ import HomeScreen from '../screens/HomeScreen/HomeScreen';
 import ColorPalette from '../Assets/Themes/ColorPalette';
 import DrawerContents from '../Components/DrawerContents/DrawerContents';
 import Entypo from 'react-native-vector-icons/Entypo'
+import Ionicons from 'react-native-vector-icons/Ionicons'
 import FontAwesome6 from 'react-native-vector-icons/FontAwesome6'
 import Booking from '../screens/Booking/Booking';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons'
 import OfflineDBFetch from '../screens/OfflineDBFetch/OfflineDBFetch';
 import Charts from '../screens/Charts/Charts';
+import BooksFirestore from '../screens/BooksFirestore/BooksFirestore';
 
 
 
@@ -42,6 +44,12 @@ const HomeDrawerStack = () => {
                     drawerIcon: () => <MaterialCommunityIcons name='chart-arc' color={ColorPalette.green} size={20} />
                 }}
                 name="Charts" component={Charts}
+            />
+             <Drawer.Screen
+                options={{
+                    drawerIcon: () => <Ionicons name='logo-firebase' color={ColorPalette.green} size={20} />
+                }}
+                name="BooksFirestore" component={BooksFirestore}
             />
         </Drawer.Navigator>
     )

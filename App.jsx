@@ -11,6 +11,7 @@ import { PersistGate } from 'redux-persist/integration/react'
 import { GestureHandlerRootView } from 'react-native-gesture-handler'
 import auth from '@react-native-firebase/auth';
 import AuthNativeStack from './src/Stacks/AuthNativeStack'
+import BooksFirestore from './src/screens/BooksFirestore/BooksFirestore'
 
 const Stack = createNativeStackNavigator()
 
@@ -66,7 +67,8 @@ export default function Main() {
         <Provider store={store}>
           <PersistGate loading={null} persistor={persistor}>
             <GestureHandlerRootView>
-              <App />
+              {/* <App /> */}
+              <BooksFirestore/>
             </GestureHandlerRootView>
           </PersistGate>
         </Provider>
