@@ -102,7 +102,7 @@ const BooksFirestore = () => {
         }
           ListHeaderComponent={<><Text style={screenStyles.title}>FireStore</Text>
             <View style={screenStyles.addContainer}>
-              <TextInput value={title} style={screenStyles.textInput}
+              <TextInput value={title} 
                 onChangeText={(e) => setTitle(e)}
                 mode="outlined"
                 label="Title"
@@ -112,7 +112,7 @@ const BooksFirestore = () => {
                 outlineColor={ColorPalette.green}
                 activeOutlineColor={ColorPalette.green}
               />
-              <TextInput value={desc} style={screenStyles.textInput}
+              <TextInput value={desc} 
                 onChangeText={(e) => setDesc(e)}
                 mode="outlined"
                 label="Description"

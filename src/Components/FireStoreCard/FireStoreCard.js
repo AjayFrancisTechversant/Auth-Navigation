@@ -29,7 +29,7 @@ const FireStoreCard = ({item,handleDelete,handleEditButton,setModalVisible,modal
     </View>
     <View>
       <TouchableOpacity onPress={() => handleDelete(item.key)}>
-        <MaterialIcons name='delete' size={30} color={'red'} />
+        <MaterialIcons name='delete' size={30} color={ColorPalette.red} />
       </TouchableOpacity>
       <TouchableOpacity onPress={() => handleEditButton(item)}>
         <MaterialIcons name='edit' size={30} color={ColorPalette.yellow} />

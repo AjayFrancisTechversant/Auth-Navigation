@@ -11,6 +11,7 @@ import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityI
 import OfflineDBFetch from '../screens/OfflineDBFetch/OfflineDBFetch';
 import Charts from '../screens/Charts/Charts';
 import BooksFirestore from '../screens/BooksFirestore/BooksFirestore';
+import BooksRealtimeDatabase from '../screens/BooksRealtimeDatabase/BooksRealtimeDatabase';
 
 
 
@@ -50,6 +51,12 @@ const HomeDrawerStack = () => {
                     drawerIcon: () => <Ionicons name='logo-firebase' color={ColorPalette.green} size={20} />
                 }}
                 name="BooksFirestore" component={BooksFirestore}
+            />
+             <Drawer.Screen
+                options={{
+                    drawerIcon: () => <Ionicons name='logo-firebase' color={ColorPalette.green} size={20} />
+                }}
+                name="TodoRealtimeDatabase" component={BooksRealtimeDatabase}
             />
         </Drawer.Navigator>
     )

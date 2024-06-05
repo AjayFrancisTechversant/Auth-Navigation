@@ -1812,6 +1812,11 @@
   dependencies:
     plist "^3.1.0"
 
+"@react-native-firebase/database@^20.1.0":
+  version "20.1.0"
+  resolved "https://registry.yarnpkg.com/@react-native-firebase/database/-/database-20.1.0.tgz#6c6e5bc56cb1cb33a48028a3bd01af7c5113a11d"
+  integrity sha512-YCeoKD2xv87Q9Yl8I6//xlgZIj7pnmG+5xp3b1FMFVPC+A3XMtAMo1TRpHneXubs6LtKwle8w4BHz8U+ltaBVA==
+
 "@react-native-firebase/firestore@^20.0.0":
   version "20.0.0"
   resolved "https://registry.yarnpkg.com/@react-native-firebase/firestore/-/firestore-20.0.0.tgz#2c5f3949af2110d9a53434182542fdb49b3e50fa"
