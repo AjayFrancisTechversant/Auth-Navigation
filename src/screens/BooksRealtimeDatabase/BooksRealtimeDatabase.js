@@ -62,12 +62,15 @@ const BooksRealtimeDatabase = () => {
   };
 
   const handleEdit = async () => {
-    try {
+ if(selectedBook.title){   try {
       await database().ref('/todo/' + selectedBook.key).update({ title: selectedBook.title, desc: selectedBook.desc });
       setModalVisible(false);
       setSelectedBook(null);
     } catch (error) {
       console.log(error);
+    }}
+    else{
+      Alert.alert('Validation Error', 'Please provide a title');
     }
   };
 
