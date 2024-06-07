@@ -4,6 +4,8 @@ import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
 import { useScreenContext } from '../../Contexts/ScreenContext';
 import styles from './Style';
 import auth from '@react-native-firebase/auth';
+import { GoogleSignin } from '@react-native-google-signin/google-signin';
+
 
 
 
@@ -16,6 +18,7 @@ const DrawerContents = (props) => {
         screenContext[screenContext.isPortrait ? 'windowHeight' : 'windowWidth'],
     );
     const handleLogout = async () => {
+        GoogleSignin.signOut()
         auth()
           .signOut()
           .then(() => console.log('User signed out!'));

@@ -28,6 +28,7 @@ const Me = () => {
     const [tempEmail, setTempEmail] = useState()
     const [isEditing, setIsEditing] = useState(false)
     const handleLogout = async () => {
+        GoogleSignin.signOut()
         auth()
         .signOut()
         .then(() => console.log('User signed out!'));
