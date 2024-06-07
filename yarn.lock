@@ -1797,6 +1797,11 @@
     prompts "^2.4.2"
     semver "^7.5.2"
 
+"@react-native-firebase/analytics@^20.1.0":
+  version "20.1.0"
+  resolved "https://registry.yarnpkg.com/@react-native-firebase/analytics/-/analytics-20.1.0.tgz#5ba10fffefc45c43d692c2bbde7f59e27023e347"
+  integrity sha512-tGwivElKEad0PaAwGxXO8ydNynnxUj/D2rtDG6QBtoU/L77hV6/UL0vh/vZcobWiBUv3sqBEkCg19VhA88j1og==
+
 "@react-native-firebase/app@^20.0.0":
   version "20.0.0"
   resolved "https://registry.npmjs.org/@react-native-firebase/app/-/app-20.0.0.tgz"
@@ -1816,6 +1821,11 @@
   version "20.1.0"
   resolved "https://registry.yarnpkg.com/@react-native-firebase/database/-/database-20.1.0.tgz#6c6e5bc56cb1cb33a48028a3bd01af7c5113a11d"
   integrity sha512-YCeoKD2xv87Q9Yl8I6//xlgZIj7pnmG+5xp3b1FMFVPC+A3XMtAMo1TRpHneXubs6LtKwle8w4BHz8U+ltaBVA==
+
+"@react-native-firebase/dynamic-links@^20.1.0":
+  version "20.1.0"
+  resolved "https://registry.yarnpkg.com/@react-native-firebase/dynamic-links/-/dynamic-links-20.1.0.tgz#831821e821fdbb527fe62c613852e9aa54604c0e"
+  integrity sha512-7pStvtln1UI1D76hvtl2uPG+RZaPE/+kDI6v4JrUba4rDxUx8n4UWX/4B7/8zrY+JXcdUiRk2KMnD3k0lPmnLA==
 
 "@react-native-firebase/firestore@^20.0.0":
   version "20.0.0"
