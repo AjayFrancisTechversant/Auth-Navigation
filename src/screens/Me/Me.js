@@ -17,6 +17,7 @@ import auth from '@react-native-firebase/auth';
 
 
 
+
 const Me = () => {
     const likeCount = useSelector((state) => state.Likes.likedUsers.length)
     const friendsCount = useSelector((state) => state.AddFriend.addedFriends.length)
@@ -30,8 +31,8 @@ const Me = () => {
     const handleLogout = async () => {
         GoogleSignin.signOut()
         auth()
-        .signOut()
-        .then(() => console.log('User signed out!'));
+            .signOut()
+            .then(() => console.log('User signed out!'));
     }
     const screenContext = useScreenContext();
     const screenStyles = styles(
@@ -60,12 +61,13 @@ const Me = () => {
     useEffect(() => {
         getUsername()
     }, [])
+    
     return (
         <View style={screenStyles.canvas}>
             <KeyboardAwareScrollView
                 showsVerticalScrollIndicator={false}
                 style={screenStyles.container}>
-
+               
                 <ImageBackground style={screenStyles.headerContainer} source={require('../../Assets/Images/profilePageBG.jpg')}
                     imageStyle={screenStyles.BGImageStyle}>
                     <TouchableOpacity onPress={handleLogout}>

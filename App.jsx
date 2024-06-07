@@ -11,28 +11,37 @@ import { PersistGate } from 'redux-persist/integration/react'
 import { GestureHandlerRootView } from 'react-native-gesture-handler'
 import auth from '@react-native-firebase/auth';
 import AuthNativeStack from './src/Stacks/AuthNativeStack'
-import BooksRealtimeDatabase from './src/screens/BooksRealtimeDatabase/BooksRealtimeDatabase'
+import { PermissionsAndroid } from 'react-native';
+import messaging from '@react-native-firebase/messaging';
+
+PermissionsAndroid.request(PermissionsAndroid.PERMISSIONS.POST_NOTIFICATIONS);
 
 const Stack = createNativeStackNavigator()
 
 const App = () => {
-    // Set an initializing state whilst Firebase connects
-    const [initializing, setInitializing] = useState(true);
-    const [user, setUser] = useState();
-  
-    // Handle user state changes
-    function onAuthStateChanged(user) {
-      setUser(user);
-      if (initializing) setInitializing(false);
-    }
-  
-    useEffect(() => {
-      const subscriber = auth().onAuthStateChanged(onAuthStateChanged);
-      return subscriber; // unsubscribe on unmount
-    }, []);
-  
-    if (initializing) return null;
-  
+  // Set an initializing state whilst Firebase connects
+  const [initializing, setInitializing] = useState(true);
+  const [user, setUser] = useState();
+
+  // Handle user state changes
+  function onAuthStateChanged(user) {
+    setUser(user);
+    if (initializing) setInitializing(false);
+  }
+
+  const handleGetFCMToken=async()=>{
+    const FCMToken= await messaging().getToken()
+    console.log('FCMToken:',FCMToken);
+  }
+
+  useEffect(() => {
+    // handleGetFCMToken()
+    const subscriber = auth().onAuthStateChanged(onAuthStateChanged);
+    return subscriber; // unsubscribe on unmount
+  }, []);
+
+  if (initializing) return null;
+
 
   return (
 
