@@ -5,7 +5,9 @@ import { useScreenContext } from '../../Contexts/ScreenContext'
 import styles from './Style'
 import { TextInput } from 'react-native-paper'
 import auth from '@react-native-firebase/auth';
-import { GoogleSignin } from '@react-native-google-signin/google-signin';
+import GoogleAuthButton from '../../Components/GoogleAuthButton/GoogleAuthButton'
+import FacebookAuthButton from '../../Components/FacebookAuthButton/FacebookAuthButton'
+import GithubAuthButton from '../../Components/GithubAuthButton/GithubAuthButton'
 
 
 
@@ -15,30 +17,8 @@ const LoginPage = ({ navigation }) => {
     const [userData, setUserData] = useState({ email: '', password: '' })
     const [isLoading, setIsLoading] = useState(false)
 
-    useEffect(()=>{
-        GoogleSignin.configure({
-            webClientId: '300284315367-ugvrjt2k4dkppuce83etsibl6cpkc4ul.apps.googleusercontent.com',
-          });
-    },[])
-
-    async function onGoogleButtonPress() {
-      try {
-          // Check if your device supports Google Play
-          await GoogleSignin.hasPlayServices({ showPlayServicesUpdateDialog: true });
-          // Get the users ID token
-          const { idToken } = await GoogleSignin.signIn();
-        
-          // Create a Google credential with the token
-          const googleCredential = auth.GoogleAuthProvider.credential(idToken);
-        
-          // Sign-in the user with the credential
-          return auth().signInWithCredential(googleCredential);
-      } catch (error) {
-        console.log(error);
-      }
-      }
+   
     
-
     const handleLogin = async () => {
         if (!userData.email || !userData.password) {
             Alert.alert('Please fill the form completeley!!!')
@@ -81,7 +61,6 @@ const LoginPage = ({ navigation }) => {
                 setIsLoading(false)
             })
         
-
     }
     const screenContext = useScreenContext();
     const screenStyles = styles(
@@ -129,12 +108,10 @@ const LoginPage = ({ navigation }) => {
                 </View>
                 <Text style={screenStyles.selfAlignCenter}>--------------------------------  Or  --------------------------------</Text>
                 <View style={screenStyles.AlllogoContainer}>
-                    <TouchableOpacity  style={screenStyles.eachLogoContainer}>
-                        <Image style={screenStyles.facebookLogo} source={require('../../Assets/Images/Facebook-Logo.png')} />
-                    </TouchableOpacity>
-                    <TouchableOpacity onPress={() => onGoogleButtonPress().then(() => console.log('Signed in with Google!'))} style={screenStyles.eachLogoContainer}>
-                        <Image style={screenStyles.googleLogo} source={require('../../Assets/Images/google-icon.png')} />
-                    </TouchableOpacity>
+
+                    <FacebookAuthButton/>
+                    <GoogleAuthButton/>
+                   <GithubAuthButton/>
                 </View>
                 <View style={screenStyles.lastViewContainer}>
                     <Text>Continue as </Text>

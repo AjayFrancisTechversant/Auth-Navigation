@@ -24,7 +24,7 @@ const styles =(screenContext, width, height)=> StyleSheet.create({
     AlllogoContainer:{flexDirection:'row',justifyContent:'center',gap:30},
     eachLogoContainer:{borderRadius:40,justifyContent:'center',alignItems:'center'},
     facebookLogo:{height:30,width:30,margin:5},
-    googleLogo:{height:45,width:45}
+    
 
 })
 export default styles

@@ -42,7 +42,6 @@ const App = () => {
 
   if (initializing) return null;
 
-
   return (
 
     <NavigationContainer>
