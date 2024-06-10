@@ -14,6 +14,7 @@ import AuthNativeStack from './src/Stacks/AuthNativeStack'
 import { PermissionsAndroid } from 'react-native';
 import messaging from '@react-native-firebase/messaging';
 
+
 PermissionsAndroid.request(PermissionsAndroid.PERMISSIONS.POST_NOTIFICATIONS);
 
 const Stack = createNativeStackNavigator()
@@ -22,6 +23,25 @@ const App = () => {
   // Set an initializing state whilst Firebase connects
   const [initializing, setInitializing] = useState(true);
   const [user, setUser] = useState();
+
+  const linking = {
+    prefixes: ['myapp://'],
+    config: {
+     screens:{
+      HomeTabStack:{
+        screens:{
+          Me:{
+            path:'Me'
+          },
+          Listing:{
+            path:'Listing'
+          }
+        }
+      },
+      
+     }
+    },
+  };
 
   // Handle user state changes
   function onAuthStateChanged(user) {
@@ -44,7 +64,7 @@ const App = () => {
 
   return (
 
-    <NavigationContainer>
+    <NavigationContainer linking={linking}>
       {!user ?
         <Stack.Navigator  >
           <Stack.Screen

@@ -14,6 +14,8 @@ import ColorPalette from '../../Assets/Themes/ColorPalette';
 import { TextInput } from 'react-native-paper';
 import { useSelector } from 'react-redux';
 import auth from '@react-native-firebase/auth';
+import { GoogleSignin } from '@react-native-google-signin/google-signin';
+
 
 
 
