@@ -2,9 +2,40 @@ import React from 'react'
 import styles from './Style';
 import { useScreenContext } from '../../Contexts/ScreenContext';
 import { Image, TouchableOpacity } from 'react-native';
+import { authorize } from 'react-native-app-auth';
+import auth from '@react-native-firebase/auth';
+
+
+const config = {
+    clientId: 'Ov23licj09plIWkEvmpM',
+    clientSecret: '693cb7ebb345cad79218b25fa838911f1c2d4bb5',
+    redirectUrl: 'myapp://',
+    scopes: ['read:user'],
+    serviceConfiguration: {
+      authorizationEndpoint: 'https://github.com/login/oauth/authorize',
+      tokenEndpoint: 'https://github.com/login/oauth/access_token',
+      revocationEndpoint: 'https://github.com/settings/connections/applications/Ov23licj09plIWkEvmpM'
+    }
+  };
 
 
 const GithubAuthButton = () => {
+
+  const loginWithGitHub = async () => {
+    try {
+      const {accessToken} = await authorize(config);
+    //   console.log(accessToken);
+
+    const githubCredential=auth.GithubAuthProvider.credential(accessToken)
+    // console.log(githubCredential);
+
+    return auth().signInWithCredential(githubCredential)
+
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
     const screenContext = useScreenContext();
     const screenStyles = styles(
         screenContext,
@@ -12,7 +43,7 @@ const GithubAuthButton = () => {
         screenContext[screenContext.isPortrait ? 'windowHeight' : 'windowWidth'],
     );
     return (
-        <TouchableOpacity style={screenStyles.logoContainer}>
+        <TouchableOpacity onPress={()=>loginWithGitHub()} style={screenStyles.logoContainer}>
             <Image style={screenStyles.GithubLogo} source={require('../../Assets/Images/Github-Logo.png')} />
         </TouchableOpacity>
     )
