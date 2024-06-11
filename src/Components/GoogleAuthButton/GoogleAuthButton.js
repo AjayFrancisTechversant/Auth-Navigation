@@ -9,11 +9,10 @@ import auth from '@react-native-firebase/auth';
 
 
 const GoogleAuthButton = () => {
-    useEffect(() => {
-        GoogleSignin.configure({
-            webClientId: '300284315367-ugvrjt2k4dkppuce83etsibl6cpkc4ul.apps.googleusercontent.com',
-        });
-    }, [])
+    GoogleSignin.configure({
+        webClientId: '300284315367-ugvrjt2k4dkppuce83etsibl6cpkc4ul.apps.googleusercontent.com',
+    });
+ 
 
     async function onGoogleButtonPress() {
         try {

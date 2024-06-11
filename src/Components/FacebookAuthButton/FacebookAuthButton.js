@@ -2,9 +2,33 @@ import React from 'react'
 import { useScreenContext } from '../../Contexts/ScreenContext';
 import styles from './Style';
 import { Image, TouchableOpacity } from 'react-native';
+import auth from '@react-native-firebase/auth';
+import { LoginManager, AccessToken } from 'react-native-fbsdk-next';
 
 
 const FacebookAuthButton = () => {
+
+  async function onFacebookButtonPress() {
+    // Attempt login with permissions
+    const result = await LoginManager.logInWithPermissions(['public_profile', 'email']);
+  
+    if (result.isCancelled) {
+      throw 'User cancelled the login process';
+    }
+  
+    // Once signed in, get the users AccessToken
+    const data = await AccessToken.getCurrentAccessToken();
+  
+    if (!data) {
+      throw 'Something went wrong obtaining access token';
+    }
+  
+    // Create a Firebase credential with the AccessToken
+    const facebookCredential = auth.FacebookAuthProvider.credential(data.accessToken);
+  
+    // Sign-in the user with the credential
+    return auth().signInWithCredential(facebookCredential);
+  }
 
     const screenContext = useScreenContext();
     const screenStyles = styles(
@@ -13,7 +37,9 @@ const FacebookAuthButton = () => {
         screenContext[screenContext.isPortrait ? 'windowHeight' : 'windowWidth'],
     );
   return (
-    <TouchableOpacity  style={screenStyles.logoContainer}>
+    <TouchableOpacity
+    onPress={() => onFacebookButtonPress().then(() => console.log('Signed in with Facebook!'))}
+    style={screenStyles.logoContainer}>
     <Image style={screenStyles.facebookLogo} source={require('../../Assets/Images/Facebook-Logo.png')} />
 </TouchableOpacity>
   )
