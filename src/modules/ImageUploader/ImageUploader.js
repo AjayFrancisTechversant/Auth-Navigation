@@ -1,4 +1,4 @@
-import { View, Text, Linking, StyleSheet, TouchableOpacity, Alert, ActivityIndicator, Image, FlatList, ScrollView } from 'react-native';
+import { View, Text, Linking, TouchableOpacity, Alert, ActivityIndicator, Image, FlatList, ScrollView } from 'react-native';
 import React, { useEffect, useRef, useState } from 'react';
 import { styles } from './Style';
 import AntDesign from 'react-native-vector-icons/AntDesign';
@@ -112,7 +112,6 @@ const ImageUploader = () => {
     setIsUploadLoading(false);
     setTakenPhotos([])
   };
-
   const fetchUploadedImages = async () => {
     setIsFetchingImages(true);
     try {

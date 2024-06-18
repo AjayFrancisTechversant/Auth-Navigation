@@ -13,6 +13,7 @@ import auth from '@react-native-firebase/auth';
 import AuthNativeStack from './src/Services/Navigation/Stacks/AuthNativeStack'
 import { PermissionsAndroid } from 'react-native';
 import messaging from '@react-native-firebase/messaging';
+import SampleComponent from './src/Components/SampleComponent/SampleComponent'
 
 
 PermissionsAndroid.request(PermissionsAndroid.PERMISSIONS.POST_NOTIFICATIONS);
@@ -95,7 +96,8 @@ export default function Main() {
         <Provider store={store}>
           <PersistGate loading={null} persistor={persistor}>
             <GestureHandlerRootView>
-              <App />
+              {/* <App /> */}
+              <SampleComponent/>
             </GestureHandlerRootView>
           </PersistGate>
         </Provider>

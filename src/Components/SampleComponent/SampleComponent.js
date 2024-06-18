@@ -1,82 +1,30 @@
-import { View, StyleSheet } from 'react-native'
+import { View, Text, TouchableOpacity } from 'react-native'
 import React from 'react'
-import { useScreenContext } from '../../Contexts/ScreenContext';
-import Animated, {
-    useAnimatedStyle,
-    useSharedValue,
-    withDecay,
-  } from 'react-native-reanimated';
-  import {
-    Gesture,
-    GestureDetector,
-    GestureHandlerRootView,
-  } from 'react-native-gesture-handler';
-  
-  const SIZE = 120;
+var RNFS = require('react-native-fs');
 
 const SampleComponent = () => {
-    // const screenContext = useScreenContext();
-    // const screenStyles = styles(
-    //   screenContext,
-    //   screenContext[screenContext.isPortrait ? 'windowWidth' : 'windowHeight'],
-    //   screenContext[screenContext.isPortrait ? 'windowHeight' : 'windowWidth'],
-    // );
-    const offset = useSharedValue(0);
-    const width = useSharedValue(0);
-  
-    const onLayout = (event) => {
-      width.value = event.nativeEvent.layout.width;
-    };
-  
-    const pan = Gesture.Pan()
-      .onChange((event) => {
-        offset.value += event.changeX;
-      })
-      .onFinalize((event) => {
-        offset.value = withDecay({
-          velocity: event.velocityX,
-          rubberBandEffect: true,
-          clamp: [-(width.value / 2) + SIZE / 2, width.value / 2 - SIZE / 2],
-        });
-      });
-  
-    const animatedStyles = useAnimatedStyle(() => ({
-      transform: [{ translateX: offset.value }],
-    }));
-  
-    return (
-      <GestureHandlerRootView style={styles.container}>
-        <View onLayout={onLayout} style={styles.wrapper}>
-          <GestureDetector gesture={pan}>
-            <Animated.View style={[styles.box, animatedStyles]} />
-          </GestureDetector>
-        </View>
-      </GestureHandlerRootView>
-    );
+
+  const handleDownload = async () => {
+
+    // await RNFS.mkdir(RNFS.DownloadDirectoryPath)
+    const path =`${RNFS.DownloadDirectoryPath}/pic1.jpeg`
+   try {
+    const downloadedFile =await RNFS.downloadFile({ fromUrl: 'https://firebasestorage.googleapis.com/v0/b/awesomeproject1-a4d6d.appspot.com/o/Pics%2Fpic1?alt=media&token=fb8e3606-2f3d-47fe-b25f-ea5a50c5b8af', toFile: path }).promise
+    console.log( downloadedFile);
+   } catch (error) {
+    console.log(error);
+   }
   }
-  
-  const styles = StyleSheet.create({
-    container: {
-      flex: 1,
-      alignItems: 'center',
-      justifyContent: 'center',
-      height: '100%',
-    },
-    wrapper: {
-      flex: 1,
-      width: '100%',
-      alignItems: 'center',
-      justifyContent: 'center',
-      borderWidth:1
-    },
-    box: {
-      height: SIZE,
-      width: SIZE,
-      backgroundColor: '#b58df1',
-      borderRadius: 20,
-      cursor: 'grab',
-      alignItems: 'center',
-      justifyContent: 'center',
-    },
-  });
+  return (
+    <View>
+      <Text>SampleComponent</Text>
+      <TouchableOpacity onPress={() => handleDownload()}>
+        <Text>
+          download an image
+        </Text>
+      </TouchableOpacity>
+    </View>
+  )
+}
+
 export default SampleComponent
