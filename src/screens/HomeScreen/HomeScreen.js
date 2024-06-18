@@ -5,7 +5,7 @@ import styles from './Style';
 import MenuDrawerButton from '../../Components/MenuDrawerButton/MenuDrawerButton';
 import SearchBar from '../../Components/SearchBar/SearchBar';
 import HomeScreenCard from '../../Components/HomeScreenCard/HomeScreenCard';
-import { getUsers } from '../../Services/getUsers';
+import { getUsers } from '../../Services/API/getUsers';
 import LinearGradient from 'react-native-linear-gradient';
 import HomeScreenCarousel from '../../Components/HomeScreenCarousel/HomeScreenCarousel';
 

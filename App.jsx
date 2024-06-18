@@ -4,13 +4,13 @@ import { NavigationContainer } from '@react-navigation/native'
 import { createNativeStackNavigator } from '@react-navigation/native-stack'
 import TokenContext from './src/Contexts/TokenContext'
 import { ScreenContextProvider } from './src/Contexts/ScreenContext'
-import HomeTabStack from './src/Stacks/HomeTabStack'
+import HomeTabStack from './src/Services/Navigation/Stacks/HomeTabStack'
 import { Provider } from 'react-redux'
-import { persistor, store } from './src/Store/Store'
+import { persistor, store } from './src/Redux/Store/Store'
 import { PersistGate } from 'redux-persist/integration/react'
 import { GestureHandlerRootView } from 'react-native-gesture-handler'
 import auth from '@react-native-firebase/auth';
-import AuthNativeStack from './src/Stacks/AuthNativeStack'
+import AuthNativeStack from './src/Services/Navigation/Stacks/AuthNativeStack'
 import { PermissionsAndroid } from 'react-native';
 import messaging from '@react-native-firebase/messaging';
 

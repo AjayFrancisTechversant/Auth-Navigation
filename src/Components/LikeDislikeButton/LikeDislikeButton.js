@@ -5,7 +5,7 @@ import styles from './Style';
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons'
 import ColorPalette from '../../Assets/Themes/ColorPalette';
 import { useDispatch, useSelector } from 'react-redux';
-import { dislike, like } from '../../Slices/LikeSlice';
+import { dislike, like } from '../../Redux/Slices/LikeSlice';
 
 
 

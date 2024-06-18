@@ -1,12 +1,12 @@
 import React from 'react'
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs'
-import Me from '../screens/Me/Me'
+import Me from '../../../screens/Me/Me'
 import Entypo from 'react-native-vector-icons/Entypo';
 import FontAwesome from 'react-native-vector-icons/FontAwesome'
 import AntDesign from 'react-native-vector-icons/AntDesign';
 import HomeDrawerStack from './HomeDrawerStack'
-import ImageUploader from '../screens/ImageUploader/ImageUploader';
-import Booking from '../screens/Booking/Booking';
+import ImageUploader from '../../../screens/ImageUploader/ImageUploader';
+import Booking from '../../../screens/Booking/Booking';
 import FontAwesome6 from 'react-native-vector-icons/FontAwesome6'
 
 

@@ -4,7 +4,7 @@ import { useScreenContext } from '../../Contexts/ScreenContext';
 import styles from './Style';
 import FontAwesome5 from 'react-native-vector-icons/FontAwesome5'
 import ColorPalette from '../../Assets/Themes/ColorPalette';
-import { addFriend, removeFriend } from '../../Slices/AddFriendSlice';
+import { addFriend, removeFriend } from '../../Redux/Slices/AddFriendSlice';
 import { useDispatch, useSelector } from 'react-redux';
 
 

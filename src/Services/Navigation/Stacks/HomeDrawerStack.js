@@ -1,20 +1,20 @@
 import React from 'react'
 import { createDrawerNavigator } from '@react-navigation/drawer';
-import HomeScreen from '../screens/HomeScreen/HomeScreen';
-import ColorPalette from '../Assets/Themes/ColorPalette';
-import DrawerContents from '../Components/DrawerContents/DrawerContents';
+import HomeScreen from '../../../screens/HomeScreen/HomeScreen';
+import ColorPalette from '../../../Assets/Themes/ColorPalette';
+import DrawerContents from '../../../Components/DrawerContents/DrawerContents';
 import Entypo from 'react-native-vector-icons/Entypo'
 import Ionicons from 'react-native-vector-icons/Ionicons'
 import FontAwesome6 from 'react-native-vector-icons/FontAwesome6'
-import Booking from '../screens/Booking/Booking';
+import Booking from '../../../screens/Booking/Booking';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons'
 import Feather from 'react-native-vector-icons/Feather'
-import OfflineDBFetch from '../screens/OfflineDBFetch/OfflineDBFetch';
-import Charts from '../screens/Charts/Charts';
-import BooksFirestore from '../screens/BooksFirestore/BooksFirestore';
-import BooksRealtimeDatabase from '../screens/BooksRealtimeDatabase/BooksRealtimeDatabase';
-import Listing from '../screens/Listing/Listing';
-import Notes from '../screens/Notes/Notes';
+import OfflineDBFetch from '../../../screens/OfflineDBFetch/OfflineDBFetch';
+import Charts from '../../../screens/Charts/Charts';
+import BooksFirestore from '../../../screens/BooksFirestore/BooksFirestore';
+import BooksRealtimeDatabase from '../../../screens/BooksRealtimeDatabase/BooksRealtimeDatabase';
+import Listing from '../../../screens/Listing/Listing';
+import Notes from '../../../screens/Notes/Notes';
 
 
 
