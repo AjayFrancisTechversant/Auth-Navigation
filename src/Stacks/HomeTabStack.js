@@ -30,7 +30,7 @@ const HomeTabStack = () => {
                 options={{
                     headerShown: false,
                     tabBarIcon: ({ color, size }) => (
-                        <AntDesign name='cloudupload' color={color} size={size} />
+                        <AntDesign name='cloudupload' color={color} size={35} />
                     )
                 }}
             />

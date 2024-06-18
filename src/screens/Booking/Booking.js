@@ -29,7 +29,6 @@ const Booking = ({ navigation }) => {
     screenContext[screenContext.isPortrait ? 'windowHeight' : 'windowWidth'],
   );
   const handleSliderSubmit = () => {
-    // Alert.alert('Booking Successfull:)')
     navigation.navigate(HomeScreen)
   }
   const translationY = useSharedValue(0);
