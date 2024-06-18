@@ -12,45 +12,24 @@ import Notes from '../screens/Notes/Notes';
 const HomeTabStack = () => {
     const HomeTabStack = createBottomTabNavigator()
     return (
-        <HomeTabStack.Navigator screenOptions={{tabBarActiveTintColor:ColorPalette.green}}>
+        <HomeTabStack.Navigator screenOptions={{ tabBarActiveTintColor: ColorPalette.green }}>
             <HomeTabStack.Screen
                 name='Home'
                 component={HomeDrawerStack}
                 options={{
-                    headerShown:false,
+                    headerShown: false,
                     tabBarIcon: ({ color, size }) => (
                         <Entypo name="home" color={color} size={size} />
                     )
 
                 }}
             />
-              <HomeTabStack.Screen
-                name='Notes'
-                component={Notes}
-                options={{
-                    headerShown:false,
-                    tabBarIcon: ({ color, size }) => (
-                        <FontAwesome6 name='note-sticky' color={color} size={size} />
-                    )
 
-                }}
-            />
-            <HomeTabStack.Screen
-                name='Listing'
-                component={Listing}
-                options={{
-                   
-                    tabBarIcon: ({ color, size }) => (
-                        <Feather name="list" color={color} size={size} />
-                    )
-
-                }}
-            />
             <HomeTabStack.Screen
                 name='Me'
                 component={Me}
                 options={{
-                   
+
                     tabBarIcon: ({ color, size }) => (
                         <FontAwesome name="user" color={color} size={size} />
                     )

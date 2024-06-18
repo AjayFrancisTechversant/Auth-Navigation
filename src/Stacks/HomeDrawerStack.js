@@ -8,10 +8,13 @@ import Ionicons from 'react-native-vector-icons/Ionicons'
 import FontAwesome6 from 'react-native-vector-icons/FontAwesome6'
 import Booking from '../screens/Booking/Booking';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons'
+import Feather from 'react-native-vector-icons/Feather'
 import OfflineDBFetch from '../screens/OfflineDBFetch/OfflineDBFetch';
 import Charts from '../screens/Charts/Charts';
 import BooksFirestore from '../screens/BooksFirestore/BooksFirestore';
 import BooksRealtimeDatabase from '../screens/BooksRealtimeDatabase/BooksRealtimeDatabase';
+import Listing from '../screens/Listing/Listing';
+import Notes from '../screens/Notes/Notes';
 
 
 
@@ -33,6 +36,18 @@ const HomeDrawerStack = () => {
                     drawerIcon: () => <FontAwesome6 name='book-bookmark' color={ColorPalette.green} size={20} />
                 }}
                 name="Booking" component={Booking}
+            />
+              <Drawer.Screen
+                options={{
+                    drawerIcon: () => <Feather name="list" color={ColorPalette.green} size={20} />
+                }}
+                name="Listing" component={Listing}
+            />
+            <Drawer.Screen
+                options={{
+                    drawerIcon: () => <FontAwesome6 name='note-sticky' color={ColorPalette.green} size={20} />
+                }}
+                name="Notes (Watermelon DB)" component={Notes}
             />
              <Drawer.Screen
                 options={{
