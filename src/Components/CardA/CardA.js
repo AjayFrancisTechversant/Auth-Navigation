@@ -12,7 +12,7 @@ const CardA = ({ item, index, onPressDeletefn, componentlocation }) => {
             {componentlocation == 'cacheImagesDisplay' ?
                 <Image source={{ uri: `file://${item}` }} style={styles.imageStyle} />
                 :
-                <Image source={{ uri: item }} style={styles.imageStyle} />
+                <Image source={{ uri: `file://${item}` }} style={styles.imageStyle} />
             }
         </View>
     )

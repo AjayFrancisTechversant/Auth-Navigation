@@ -1,11 +1,12 @@
-import { View, Text, Linking, TouchableOpacity, Alert, ActivityIndicator, Image, FlatList, ScrollView } from 'react-native';
+import { View, Text, Linking, TouchableOpacity, Alert, ActivityIndicator, FlatList, ScrollView } from 'react-native';
 import React, { useEffect, useRef, useState } from 'react';
 import { styles } from './Style';
 import AntDesign from 'react-native-vector-icons/AntDesign';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
-import { useCameraPermission, } from 'react-native-vision-camera';
+import { useCameraPermission } from 'react-native-vision-camera';
 import ImageResizer from '@bam.tech/react-native-image-resizer';
 import storage from '@react-native-firebase/storage';
+import RNFS from 'react-native-fs';
 import CameraScreen from '../../Components/CameraScreen/CameraScreen';
 import CardA from '../../Components/CardA/CardA';
 
@@ -18,16 +19,13 @@ const ImageUploader = () => {
   const [isUploadLoading, setIsUploadLoading] = useState(false);
   const [uploadedImageUrls, setUploadedImageUrls] = useState([]);
   const [isFetchingImages, setIsFetchingImages] = useState(false);
-  const [isFlashOn, setIsFlashOn] = useState(false)
+  const [isFlashOn, setIsFlashOn] = useState(false);
   const camera = useRef(null);
-
 
   useEffect(() => {
     requestPermission();
     fetchUploadedImages();
   }, []);
-
-
 
   const handleShutter = async () => {
     setIsShutterLoading(true);
@@ -43,7 +41,7 @@ const ImageUploader = () => {
     }
   };
 
-  const handleCameraButton = async () => {
+  const handleCameraButton = () => {
     if (!hasPermission) {
       Alert.alert('No camera permission', 'Please grant camera permission', [
         { text: 'Open Settings', onPress: () => Linking.openSettings() },
@@ -110,47 +108,57 @@ const ImageUploader = () => {
     await uploadFilesToCloud(compressed);
     await fetchUploadedImages();
     setIsUploadLoading(false);
-    setTakenPhotos([])
+    setTakenPhotos([]);
   };
+
   const fetchUploadedImages = async () => {
     setIsFetchingImages(true);
     try {
       const existingFiles = await fetchExistingFiles();
-      const urls = await Promise.all(existingFiles.map(async (filePath) => {
-        const url = await storage().ref(filePath).getDownloadURL();
-        return url;
+      const localPaths = await Promise.all(existingFiles.map(async (filePath) => {
+        const localFilePath = `${RNFS.DocumentDirectoryPath}/${filePath.split('/').pop()}`;
+        const fileExists = await RNFS.exists(localFilePath);
+        if (!fileExists) {
+          const url = await storage().ref(filePath).getDownloadURL();
+          await RNFS.downloadFile({ fromUrl: url, toFile: localFilePath }).promise;
+        }
+        return localFilePath;
       }));
-      setUploadedImageUrls(urls);
+      setUploadedImageUrls(localPaths);
     } catch (error) {
       Alert.alert('Error fetching uploaded images', error.message);
     } finally {
       setIsFetchingImages(false);
     }
   };
+
   const handleDeleteUploadedImage = async (index) => {
     try {
       const existingFiles = await fetchExistingFiles();
-
       try {
         setIsFetchingImages(true);
-        const deleteFileRef = storage().ref(existingFiles[index])
-        await deleteFileRef.delete()
+        const deleteFileRef = storage().ref(existingFiles[index]);
+        await deleteFileRef.delete();
         fetchUploadedImages();
       } catch (error) {
-        console.log(error);
+        console.error(error);
       }
     } catch (error) {
-      console.log(error);
+      console.error(error);
     }
-
-  }
+  };
 
   return (
     <View style={styles.canvas}>
       {isCameraOpen ? (
-        <CameraScreen takenPhotos={takenPhotos} isFlashOn={isFlashOn}
-          setIsFlashOn={setIsFlashOn} isShutterLoading={isShutterLoading}
-          handleShutter={handleShutter} camera={camera} setIsCameraOpen={setIsCameraOpen}
+        <CameraScreen 
+          takenPhotos={takenPhotos}
+          isFlashOn={isFlashOn}
+          setIsFlashOn={setIsFlashOn}
+          isShutterLoading={isShutterLoading}
+          handleShutter={handleShutter}
+          camera={camera}
+          setIsCameraOpen={setIsCameraOpen}
         />
       ) : (
         <ScrollView>
@@ -169,11 +177,14 @@ const ImageUploader = () => {
             horizontal={true}
             data={takenPhotos}
             renderItem={({ index, item }) => (
-
-              <CardA item={item} index={index} onPressDeletefn={handleDeleteImage}
+              <CardA
+                item={item}
+                index={index}
+                onPressDeletefn={handleDeleteImage}
                 componentlocation={'cacheImagesDisplay'}
               />
             )}
+            keyExtractor={(item, index) => index.toString()}
           />
           {isUploadLoading ? (
             <ActivityIndicator size={40} style={styles.uploadButton} />
@@ -204,9 +215,7 @@ const ImageUploader = () => {
               ListEmptyComponent={<Text style={styles.emptyComponentStyle}>No Uploaded Images</Text>}
               data={uploadedImageUrls}
               renderItem={({ item, index }) => (
-
                 <CardA item={item} index={index} onPressDeletefn={handleDeleteUploadedImage} />
-
               )}
               keyExtractor={(item, index) => index.toString()}
             />
