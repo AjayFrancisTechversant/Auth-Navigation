@@ -1,5 +1,5 @@
 import { DrawerContentScrollView, DrawerItem, DrawerItemList } from '@react-navigation/drawer'
-import React, { useContext } from 'react'
+import React  from 'react'
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
 import { useScreenContext } from '../../Contexts/ScreenContext';
 import styles from './Style';

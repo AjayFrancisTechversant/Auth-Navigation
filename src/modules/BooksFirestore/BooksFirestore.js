@@ -65,9 +65,7 @@ const BooksFirestore = () => {
       .collection('Books')
       .doc(id)
       .delete()
-    // .then(() => {
-    //   console.log('Book deleted!');
-    // });
+ 
   }
 
   //edit button only

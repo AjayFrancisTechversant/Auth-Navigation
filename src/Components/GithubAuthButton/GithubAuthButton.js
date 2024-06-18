@@ -24,10 +24,8 @@ const GithubAuthButton = () => {
   const loginWithGitHub = async () => {
     try {
       const {accessToken} = await authorize(config);
-    //   console.log(accessToken);
 
     const githubCredential=auth.GithubAuthProvider.credential(accessToken)
-    // console.log(githubCredential);
 
     return auth().signInWithCredential(githubCredential)
 

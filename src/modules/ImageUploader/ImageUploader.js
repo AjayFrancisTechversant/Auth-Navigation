@@ -140,16 +140,11 @@ const ImageUploader = () => {
       } catch (error) {
         console.log(error);
       }
-      // console.log(uploadedImageUrls);
     } catch (error) {
       console.log(error);
     }
 
   }
-
-  // console.log('compressed Photos=', compressedPhotos);
-  // console.log('taken Photos=', takenPhotos);
-  // console.log('uploaded Image URLs=', uploadedImageUrls);
 
   return (
     <View style={styles.canvas}>
@@ -173,7 +168,6 @@ const ImageUploader = () => {
             ListFooterComponent={<View style={styles.itemSeparatorComponent}></View>}
             ItemSeparatorComponent={<View style={styles.itemSeparatorComponent}></View>}
             horizontal={true}
-            // ListEmptyComponent={<Text style={styles.emptyComponentStyle}>No Images in cache</Text>}
             data={takenPhotos}
             renderItem={({ index, item }) => (
 

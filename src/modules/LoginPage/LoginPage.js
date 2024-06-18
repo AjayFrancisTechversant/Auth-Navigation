@@ -9,16 +9,10 @@ import GoogleAuthButton from '../../Components/GoogleAuthButton/GoogleAuthButton
 import FacebookAuthButton from '../../Components/FacebookAuthButton/FacebookAuthButton'
 import GithubAuthButton from '../../Components/GithubAuthButton/GithubAuthButton'
 
-
-
-
-
 const LoginPage = ({ navigation }) => {
     const [userData, setUserData] = useState({ email: '', password: '' })
     const [isLoading, setIsLoading] = useState(false)
 
-   
-    
     const handleLogin = async () => {
         if (!userData.email || !userData.password) {
             Alert.alert('Please fill the form completeley!!!')

@@ -67,7 +67,6 @@ const SliderButton = ({height,width,sliderWidth,sliderText,onPressFn}) => {
             <GestureHandlerRootView>
                 <GestureDetector gesture={pan}>
                     <Animated.View style={[animatedStyles, screenStyles.slider]}>
-                        {/* <Feather style={screenStyles.sliderIcon} name='chevrons-right' size={height*0.4}/> */}
                     </Animated.View>
                 </GestureDetector>
             </GestureHandlerRootView>

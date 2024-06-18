@@ -16,10 +16,6 @@ import { useSelector } from 'react-redux';
 import auth from '@react-native-firebase/auth';
 import { GoogleSignin } from '@react-native-google-signin/google-signin';
 
-
-
-
-
 const Me = () => {
     const likeCount = useSelector((state) => state.Likes.likedUsers.length)
     const friendsCount = useSelector((state) => state.AddFriend.addedFriends.length)

@@ -98,8 +98,7 @@ const Booking = ({ navigation }) => {
 
           <KeyboardAwareScrollView
             style={screenStyles.scrollView}
-          // showsVerticalScrollIndicator={false}
-          // fadingEdgeLength={30}
+      
 
           >
             <Text style={screenStyles.location}><Entypo size={20} name='location-pin' />Kecamatan Klojen</Text>
