@@ -19,7 +19,6 @@ const HomeTabStack = () => {
                     tabBarIcon: ({ color, size }) => (
                         <Entypo name="home" color={color} size={size} />
                     )
-
                 }}
             />
   <HomeTabStack.Screen
