@@ -2,7 +2,6 @@ import { View, ImageBackground, TouchableOpacity, Alert } from 'react-native'
 import React, { useEffect } from 'react'
 import { useScreenContext } from '../../Contexts/ScreenContext';
 import styles from './Style';
-import MenuDrawerButton from '../../Components/MenuDrawerButton/MenuDrawerButton';
 import { Text } from 'react-native-paper';
 import Entypo from 'react-native-vector-icons/Entypo'
 import Ionicons from 'react-native-vector-icons/Ionicons'
@@ -75,9 +74,7 @@ const Booking = ({ navigation }) => {
   return (
     <View style={screenStyles.wholeContainer}>
 
-      <View style={screenStyles.menuDrawerButton} >
-        <MenuDrawerButton screen={'Booking'} navigation={navigation} />
-      </View>
+      
 
       <View style={screenStyles.bgImageContainer}>
         <AnimatedImageBackground

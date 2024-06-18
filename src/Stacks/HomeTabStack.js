@@ -6,6 +6,9 @@ import FontAwesome from 'react-native-vector-icons/FontAwesome'
 import AntDesign from 'react-native-vector-icons/AntDesign';
 import HomeDrawerStack from './HomeDrawerStack'
 import ImageUploader from '../screens/ImageUploader/ImageUploader';
+import Booking from '../screens/Booking/Booking';
+import FontAwesome6 from 'react-native-vector-icons/FontAwesome6'
+
 
 const HomeTabStack = () => {
     const HomeTabStack = createBottomTabNavigator()
@@ -28,6 +31,16 @@ const HomeTabStack = () => {
                     headerShown: false,
                     tabBarIcon: ({ color, size }) => (
                         <AntDesign name='cloudupload' color={color} size={size} />
+                    )
+                }}
+            />
+              <HomeTabStack.Screen
+                name='Booking'
+                component={Booking}
+                options={{
+                    headerShown: false,
+                    tabBarIcon: ({ color, size }) => (
+                        <FontAwesome6 name='book-bookmark' color={color} size={size} />
                     )
                 }}
             />

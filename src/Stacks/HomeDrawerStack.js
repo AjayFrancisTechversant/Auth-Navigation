@@ -31,12 +31,7 @@ const HomeDrawerStack = () => {
                 }}
                 name="HomeScreen" component={HomeScreen}
             />
-            <Drawer.Screen
-                options={{
-                    drawerIcon: () => <FontAwesome6 name='book-bookmark' color={ColorPalette.green} size={20} />
-                }}
-                name="Booking" component={Booking}
-            />
+           
               <Drawer.Screen
                 options={{
                     drawerIcon: () => <Feather name="list" color={ColorPalette.green} size={20} />
