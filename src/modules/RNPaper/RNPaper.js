@@ -36,14 +36,14 @@ const RNPaper = () => {
     const [isExtended, setIsExtended] = React.useState(true);
     const isIOS = Platform.OS === 'ios';
     const onScroll = ({ nativeEvent }) => {
-      const currentScrollPosition =
-        Math.floor(nativeEvent?.contentOffset?.y) ?? 0;
-  
-      setIsExtended(currentScrollPosition <= 0);
+        const currentScrollPosition =
+            Math.floor(nativeEvent?.contentOffset?.y) ?? 0;
+
+        setIsExtended(currentScrollPosition <= 0);
     };
-  
-    
-  
+
+
+
 
     const screenContext = useScreenContext();
     const screenStyles = styles(
@@ -53,8 +53,6 @@ const RNPaper = () => {
     );
     return (
         <ScrollView style={screenStyles.canvas} onScroll={onScroll}>
-
-
             <View>
                 <SegmentedButtons
                     style={screenStyles.SegmentedButtons}
@@ -114,7 +112,6 @@ const RNPaper = () => {
                 <Text>Switch</Text>
                 <Switch color={ColorPalette.green} value={isSwitchOn} onValueChange={onToggleSwitch} />
             </View>
-
             <View>
                 <TouchableOpacity onPress={() => {
                     showDialog()
@@ -136,43 +133,6 @@ const RNPaper = () => {
                 </Portal>
             </View>
             <View>
-                <Portal>
-                        <FAB.Group
-                            style={{}}
-                            open={open}
-                            visible
-                            icon={open ? 'close' : 'plus'}
-                            actions={[
-                                {
-                                    style: { backgroundColor: ColorPalette.green },
-                                    icon: 'star',
-                                    label: 'Star',
-                                    onPress: () => console.log('Pressed star'),
-                                },
-                                {
-                                    style: { backgroundColor: ColorPalette.green },
-                                    icon: 'email',
-                                    label: 'Email',
-                                    onPress: () => console.log('Pressed email'),
-                                },
-                                {
-                                    style: { backgroundColor: ColorPalette.green },
-                                    icon: 'bell',
-                                    label: 'Remind',
-                                    onPress: () => console.log('Pressed notifications'),
-                                },
-                            ]}
-                            onStateChange={onStateChange}
-                            onPress={() => {
-                                if (open) {
-                                    // do something if the speed dial is open
-                                }
-                            }}
-                            variant='primary'
-                            theme={{ colors: { primaryContainer: ColorPalette.green, onPrimaryContainer: 'white' } }}
-                        />
-                    </Portal>
-              
             </View>
             <Text style={screenStyles.loremText}>
                 Mauris mattis ante in sapien tristique, in iaculis leo euismod. Donec eu sem odio. Etiam cursus hendrerit risus vitae consequat. Duis et odio ultrices, aliquam magna a, pellentesque ex. Aliquam felis velit, aliquam et ante eu, condimentum commodo ex. Aliquam lorem nisi, ullamcorper sit amet diam tincidunt, pretium auctor orci. Aenean iaculis vel libero nec semper. Aenean lorem ante, cursus eu mattis eget, accumsan sed sapien. Morbi sollicitudin pretium ligula, a dignissim diam facilisis id. Cras et tempor lorem. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Vivamus porttitor ut orci id ullamcorper. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Vestibulum laoreet varius nibh quis suscipit. Aliquam rutrum sapien id ante sodales, nec semper erat egestas. Maecenas ullamcorper varius dolor tempor pellentesque.
@@ -182,6 +142,52 @@ const RNPaper = () => {
                 Nunc dictum fermentum metus et vehicula. Sed condimentum dolor a cursus aliquam. Nulla aliquam, sapien at auctor aliquam, purus ex tincidunt lorem, ut pulvinar purus ante vel lectus. Vivamus vitae neque libero. Sed eu ultrices ligula, nec sodales metus. Mauris interdum nisl ut elementum sodales. Morbi a ligula eget ante dignissim interdum sit amet eget odio. In hac habitasse platea dictumst. Sed molestie luctus nulla, at suscipit neque. Morbi sed vulputate augue. Proin vestibulum non nunc vitae vestibulum. Phasellus convallis placerat faucibus. Morbi eleifend nisl ut odio efficitur lobortis. Morbi commodo est at aliquet faucibus.
             </Text>
             <Portal>
+                <FAB.Group
+
+                    open={open}
+                    visible
+                    icon={open ? 'close' : 'plus'}
+                    actions={[
+                        {
+                            style: { backgroundColor: ColorPalette.green },
+                            icon: 'star',
+                            label: 'Star',
+                            onPress: () => console.log('Pressed star'),
+                        },
+                        {
+                            style: { backgroundColor: ColorPalette.green },
+                            icon: 'email',
+                            label: 'Email',
+                            onPress: () => console.log('Pressed email'),
+                        },
+                        {
+                            style: { backgroundColor: ColorPalette.green },
+                            icon: 'bell',
+                            label: 'Remind',
+                            onPress: () => console.log('Pressed notifications'),
+                        },
+                    ]}
+                    onStateChange={onStateChange}
+                    onPress={() => {
+                        if (open) {
+                            // do something if the speed dial is open
+                        }
+                    }}
+                    variant='primary'
+                    theme={{ colors: { primaryContainer: ColorPalette.green, onPrimaryContainer: 'white' } }}
+                />
+
+                <AnimatedFAB
+                    icon={'whatsapp'}
+                    label={'New Message'}
+                    extended={isExtended}
+                    onPress={() => console.log('Pressed')}
+                    visible={true}
+                    animateFrom='left'
+                    iconMode={'dynamic'}
+                    style={screenStyles.animatedFabStyle}
+                    theme={{ colors: { primaryContainer: ColorPalette.green, onPrimaryContainer: 'white' } }}
+                />
                 <Snackbar
                     duration={3000}
                     visible={snackBarVisible}
@@ -195,21 +201,8 @@ const RNPaper = () => {
                     <Text style={screenStyles.snackBarText}>Switch {isSwitchOn ? 'On' : 'Off'}</Text>
                 </Snackbar>
             </Portal>
-           <Portal>
-                <AnimatedFAB
-                        icon={'whatsapp'}
-                        label={'New Message'}
-                        extended={isExtended}
-                        onPress={() => console.log('Pressed')}
-                        visible={true}
-                        animateFrom='left'
-                        iconMode={'dynamic'}
-                        style={screenStyles.animatedFabStyle }
-                        theme={{colors:{primaryContainer:ColorPalette.green,onPrimaryContainer:'white'}}}
-                    />
-           </Portal>
-
         </ScrollView>
+
     )
 }
 

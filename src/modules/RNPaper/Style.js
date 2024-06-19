@@ -22,7 +22,7 @@ const styles = (screenContext, width, height) => StyleSheet.create({
     downloadDataText:{color:'white'},
     progressBar:{marginHorizontal:30},
     loremText:{marginHorizontal:20},
-    animatedFabStyle:{ position: 'absolute',
+    animatedFabStyle:{ 
           bottom: 16,
         left: 16
         }
