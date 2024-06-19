@@ -101,8 +101,19 @@ const ImageUploader = () => {
     }
   };
 
+  const deleteDownloadedFiles = async () => {
+    try {
+      const files = await RNFS.readDir(RNFS.DocumentDirectoryPath);
+      const deletePromises = files.map(file => RNFS.unlink(file.path));
+      await Promise.all(deletePromises);
+    } catch (error) {
+      console.error('Error deleting files', error);
+    }
+  };
+
   const handleUploadButton = async () => {
     setIsUploadLoading(true);
+    await deleteDownloadedFiles();
     const compressed = await compressTakenPhotos();
     setCompressedPhotos(compressed);
     await uploadFilesToCloud(compressed);
@@ -113,10 +124,12 @@ const ImageUploader = () => {
 
   const fetchUploadedImages = async () => {
     setIsFetchingImages(true);
+    setUploadedImageUrls([]); 
     try {
       const existingFiles = await fetchExistingFiles();
       const localPaths = await Promise.all(existingFiles.map(async (filePath) => {
-        const localFilePath = `${RNFS.DocumentDirectoryPath}/${filePath.split('/').pop()}`;
+        const uniqueFileName = `${filePath.split('/').pop()}_${Date.now()}`;
+        const localFilePath = `${RNFS.DocumentDirectoryPath}/${uniqueFileName}`;
         const fileExists = await RNFS.exists(localFilePath);
         if (!fileExists) {
           const url = await storage().ref(filePath).getDownloadURL();
