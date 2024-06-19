@@ -1,35 +1,35 @@
-import { View, Text, TouchableOpacity, ScrollView, Alert } from 'react-native'
+import { View, Text, TouchableOpacity, ScrollView} from 'react-native'
 import React, { useState } from 'react'
 import { useScreenContext } from '../../Contexts/ScreenContext';
 import styles from './Style';
-import { SafeAreaView } from 'react-native-safe-area-context';
-import { SegmentedButtons, Card, Button, Menu, Divider, Switch, Snackbar, Tooltip, IconButton, Dialog, Portal, ProgressBar, FAB } from 'react-native-paper';
+import { SegmentedButtons, Card, Button, Menu, Divider, Switch, Snackbar, Tooltip,  Dialog, Portal, ProgressBar, FAB } from 'react-native-paper';
 import ColorPalette from '../../Assets/Themes/ColorPalette';
 import { ToggleButton } from 'react-native-paper';
 
 const RNPaper = () => {
-    const [segmentedButtonValue, setSegmentedButtonValue] = React.useState('Walk'); //segmentedButton
+    const [segmentedButtonValue, setSegmentedButtonValue] = useState('Walk'); //segmentedButton
 
-    const [toggleButtonValue, setToggleButtonValue] = React.useState('left');//toggleButtons
+    const [toggleButtonValue, setToggleButtonValue] = useState('left');
+    //toggleButtons
     //for menu
-    const [menuVisible, setMenuVisible] = React.useState(false);
+    const [menuVisible, setMenuVisible] = useState(false);
     const openMenu = () => setMenuVisible(true);
     const closeMenu = () => setMenuVisible(false);
     //for switch
-    const [isSwitchOn, setIsSwitchOn] = React.useState(false);
+    const [isSwitchOn, setIsSwitchOn] = useState(false);
     const onToggleSwitch = () => {
         setIsSwitchOn(!isSwitchOn)
         setSnackBarVisible(true)
     }
     //for snackbar
-    const [snackBarVisible, setSnackBarVisible] = React.useState(false);
+    const [snackBarVisible, setSnackBarVisible] = useState(false);
     const onDismissSnackBar = () => setSnackBarVisible(false);
     //for dialog
-    const [dialogVisible, setDialogVisible] = React.useState(false);
+    const [dialogVisible, setDialogVisible] = useState(false);
     const showDialog = () => setDialogVisible(true);
     const hideDialog = () => setDialogVisible(false);
     //for FAB group
-    const [state, setState] = React.useState({ open: false });
+    const [state, setState] = useState({ open: false });
     const onStateChange = ({ open }) => setState({ open });
     const { open } = state;
 
@@ -42,143 +42,147 @@ const RNPaper = () => {
     return (
         <ScrollView style={screenStyles.canvas}>
 
-            <View>
-                <SegmentedButtons
-                    style={screenStyles.SegmentedButtons}
-                    value={segmentedButtonValue}
-                    onValueChange={setSegmentedButtonValue}
-                    buttons={[
-                        {
-                            value: 'Walk',
-                            label: 'Walking',
-                        },
-                        {
-                            value: 'Train',
-                            label: 'train',
-                        },
-                        {
-                            value: 'Drive',
-                            label: 'Driving'
-                        },
-                    ]}
-                    density='regular'
-                    theme={{ colors: { secondaryContainer: ColorPalette.lightGreen } }}
-                />
-                <Card style={screenStyles.card}>
-                    <Card.Cover source={{ uri: segmentedButtonValue == 'Walk' ? 'https://images.pexels.com/photos/744912/pexels-photo-744912.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1' : segmentedButtonValue == 'Train' ? 'https://images.pexels.com/photos/2790396/pexels-photo-2790396.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1' : segmentedButtonValue == 'Drive' ? 'https://images.pexels.com/photos/799463/pexels-photo-799463.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1' : null }} />
-                    <Card.Title title={segmentedButtonValue} />
-                    <Card.Content>
-                        <Text >Card content</Text>
-                    </Card.Content>
-                    <Card.Actions>
-                        <Tooltip title='Cancel'>
-                            <Button mode='elevated' >Cancel</Button></Tooltip>
-                        <Tooltip title='Okay'><Button mode='elevated'>Ok</Button></Tooltip>
-
-                    </Card.Actions>
-                </Card>
-                <Menu
-                    visible={menuVisible}
-                    onDismiss={closeMenu}
-                    anchor={<Button style={screenStyles.showMenuButton} onPress={openMenu}>Menu</Button>}
-                    anchorPosition='bottom'
-                >
-                    <Menu.Item onPress={() => { }} title="Item 1" />
-                    <Menu.Item onPress={() => { }} title="Item 2" />
-                    <Divider horizontalInset={10} bold />
-                    <Menu.Item onPress={() => { }} title="Item 3" />
-                </Menu>
-            </View>
-            <View style={screenStyles.toggleButttonsContainer}>
-                <ToggleButton.Row onValueChange={value => setToggleButtonValue(value)} value={toggleButtonValue}>
-                    <ToggleButton icon="format-align-left" value="1" />
-                    <ToggleButton icon="format-align-right" value="2" />
-                    <ToggleButton icon="format-bold" value="3" />
-                </ToggleButton.Row>
-            </View>
-            <View style={screenStyles.switchContainer}>
-                <Text>Switch</Text>
-                <Switch color={ColorPalette.green} value={isSwitchOn} onValueChange={onToggleSwitch} />
-            </View>
-            <Snackbar
-                duration={3000}
-                visible={snackBarVisible}
-                onDismiss={onDismissSnackBar}
-                action={{
-                    label: 'Undo',
-                    onPress: () => {
-                        onToggleSwitch()
-                    },
-                }}>
-                <Text style={screenStyles.snackBarText}>Switch {isSwitchOn ? 'On' : 'Off'}</Text>
-            </Snackbar>
-            <View>
-                <TouchableOpacity onPress={() => {
-                    showDialog()
-
-                }} style={screenStyles.downloadDataButton}>
-                    <Text style={screenStyles.downloadDataText}>Download data</Text>
-                </TouchableOpacity>
-                <Portal>
-                    <Dialog style={screenStyles.dialog} visible={dialogVisible} onDismiss={hideDialog}
-                        dismissable={false}
-                    >
-                        <Dialog.Icon icon="alert" size={50} />
-                        <Dialog.Title style={screenStyles.dialogTitle}>Downloading</Dialog.Title>
-                        <ProgressBar indeterminate style={screenStyles.progressBar} color={ColorPalette.green} />
-                        <Dialog.Actions>
-                            <Button onPress={hideDialog}>Cancel</Button>
-                        </Dialog.Actions>
-                    </Dialog>
-                </Portal>
-            </View>
-            <View>
-                <Portal>
-                    <FAB.Group
-                        style={{}}
-                        open={open}
-                        visible
-                        icon={open ? 'close' : 'plus'}
-                        actions={[
+            
+                <View>
+                    <SegmentedButtons
+                        style={screenStyles.SegmentedButtons}
+                        value={segmentedButtonValue}
+                        onValueChange={setSegmentedButtonValue}
+                        buttons={[
                             {
-                                style: { backgroundColor: ColorPalette.green },
-                                icon: 'star',
-                                label: 'Star',
-                                onPress: () => console.log('Pressed star'),
+                                value: 'Walk',
+                                label: 'Walking',
                             },
                             {
-                                style: { backgroundColor: ColorPalette.green },
-                                icon: 'email',
-                                label: 'Email',
-                                onPress: () => console.log('Pressed email'),
+                                value: 'Train',
+                                label: 'train',
                             },
                             {
-                                style: { backgroundColor: ColorPalette.green },
-                                icon: 'bell',
-                                label: 'Remind',
-                                onPress: () => console.log('Pressed notifications'),
+                                value: 'Drive',
+                                label: 'Driving'
                             },
                         ]}
-                        onStateChange={onStateChange}
-                        onPress={() => {
-                            if (open) {
-                                // do something if the speed dial is open
-                            }
-                        }}
-                        variant='primary'
-                        theme={{ colors: { primaryContainer: ColorPalette.green,onPrimaryContainer:'white' } }}
+                        density='regular'
+                        theme={{ colors: { secondaryContainer: ColorPalette.lightGreen } }}
                     />
-                </Portal>
+                    <Card style={screenStyles.card}>
+                        <Card.Cover source={{ uri: segmentedButtonValue == 'Walk' ? 'https://images.pexels.com/photos/744912/pexels-photo-744912.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1' : segmentedButtonValue == 'Train' ? 'https://images.pexels.com/photos/2790396/pexels-photo-2790396.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1' : segmentedButtonValue == 'Drive' ? 'https://images.pexels.com/photos/799463/pexels-photo-799463.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1' : null }} />
+                        <Card.Title title={segmentedButtonValue} />
+                        <Card.Content>
+                            <Text >Card content</Text>
+                        </Card.Content>
+                        <Card.Actions>
+                            <Tooltip title='Cancel'>
+                                <Button mode='elevated' >Cancel</Button></Tooltip>
+                            <Tooltip title='Okay'><Button mode='elevated'>Ok</Button></Tooltip>
 
-            </View>
-            <Text style={screenStyles.loremText}>
-                Mauris mattis ante in sapien tristique, in iaculis leo euismod. Donec eu sem odio. Etiam cursus hendrerit risus vitae consequat. Duis et odio ultrices, aliquam magna a, pellentesque ex. Aliquam felis velit, aliquam et ante eu, condimentum commodo ex. Aliquam lorem nisi, ullamcorper sit amet diam tincidunt, pretium auctor orci. Aenean iaculis vel libero nec semper. Aenean lorem ante, cursus eu mattis eget, accumsan sed sapien. Morbi sollicitudin pretium ligula, a dignissim diam facilisis id. Cras et tempor lorem. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Vivamus porttitor ut orci id ullamcorper. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Vestibulum laoreet varius nibh quis suscipit. Aliquam rutrum sapien id ante sodales, nec semper erat egestas. Maecenas ullamcorper varius dolor tempor pellentesque.
+                        </Card.Actions>
+                    </Card>
+                    <Menu
+                        visible={menuVisible}
+                        onDismiss={closeMenu}
+                        anchor={<Button style={screenStyles.showMenuButton} onPress={openMenu}>Menu</Button>}
+                        anchorPosition='bottom'
+                    >
+                        <Menu.Item onPress={() => { }} title="Item 1" />
+                        <Menu.Item onPress={() => { }} title="Item 2" />
+                        <Divider horizontalInset={10} bold />
+                        <Menu.Item onPress={() => { }} title="Item 3" />
+                    </Menu>
+                </View>
+                <View style={screenStyles.toggleButttonsContainer}>
+                    <ToggleButton.Row onValueChange={value => setToggleButtonValue(value)} value={toggleButtonValue}>
+                        <ToggleButton icon="format-align-left" value="1" />
+                        <ToggleButton icon="format-align-right" value="2" />
+                        <ToggleButton icon="format-bold" value="3" />
+                    </ToggleButton.Row>
+                </View>
+                <View style={screenStyles.switchContainer}>
+                    <Text>Switch</Text>
+                    <Switch color={ColorPalette.green} value={isSwitchOn} onValueChange={onToggleSwitch} />
+                </View>
 
-                In semper imperdiet lacus eget feugiat. Morbi tempor consectetur congue. Proin tellus felis, faucibus nec laoreet vitae, laoreet in massa. Duis quis lectus id sapien ullamcorper sagittis. Ut molestie mauris a tincidunt feugiat. Fusce rutrum vulputate euismod. Sed id lacus eu lorem consequat fringilla.
+                <View>
+                    <TouchableOpacity onPress={() => {
+                        showDialog()
 
-                Nunc dictum fermentum metus et vehicula. Sed condimentum dolor a cursus aliquam. Nulla aliquam, sapien at auctor aliquam, purus ex tincidunt lorem, ut pulvinar purus ante vel lectus. Vivamus vitae neque libero. Sed eu ultrices ligula, nec sodales metus. Mauris interdum nisl ut elementum sodales. Morbi a ligula eget ante dignissim interdum sit amet eget odio. In hac habitasse platea dictumst. Sed molestie luctus nulla, at suscipit neque. Morbi sed vulputate augue. Proin vestibulum non nunc vitae vestibulum. Phasellus convallis placerat faucibus. Morbi eleifend nisl ut odio efficitur lobortis. Morbi commodo est at aliquet faucibus.
-            </Text>
+                    }} style={screenStyles.downloadDataButton}>
+                        <Text style={screenStyles.downloadDataText}>Download data</Text>
+                    </TouchableOpacity>
+                    <Portal>
+                        <Dialog style={screenStyles.dialog} visible={dialogVisible} onDismiss={hideDialog}
+                            dismissable={false}
+                        >
+                            <Dialog.Icon icon="alert" size={50} />
+                            <Dialog.Title style={screenStyles.dialogTitle}>Downloading</Dialog.Title>
+                            <ProgressBar indeterminate style={screenStyles.progressBar} color={ColorPalette.green} />
+                            <Dialog.Actions>
+                                <Button onPress={hideDialog}>Cancel</Button>
+                            </Dialog.Actions>
+                        </Dialog>
+                    </Portal>
+                </View>
+                <View>
+                    <Portal>
+                        <FAB.Group
+                            style={{}}
+                            open={open}
+                            visible
+                            icon={open ? 'close' : 'plus'}
+                            actions={[
+                                {
+                                    style: { backgroundColor: ColorPalette.green },
+                                    icon: 'star',
+                                    label: 'Star',
+                                    onPress: () => console.log('Pressed star'),
+                                },
+                                {
+                                    style: { backgroundColor: ColorPalette.green },
+                                    icon: 'email',
+                                    label: 'Email',
+                                    onPress: () => console.log('Pressed email'),
+                                },
+                                {
+                                    style: { backgroundColor: ColorPalette.green },
+                                    icon: 'bell',
+                                    label: 'Remind',
+                                    onPress: () => console.log('Pressed notifications'),
+                                },
+                            ]}
+                            onStateChange={onStateChange}
+                            onPress={() => {
+                                if (open) {
+                                    // do something if the speed dial is open
+                                }
+                            }}
+                            variant='primary'
+                            theme={{ colors: { primaryContainer: ColorPalette.green, onPrimaryContainer: 'white' } }}
+                        />
+                    </Portal>
 
+                </View>
+                <Text style={screenStyles.loremText}>
+                    Mauris mattis ante in sapien tristique, in iaculis leo euismod. Donec eu sem odio. Etiam cursus hendrerit risus vitae consequat. Duis et odio ultrices, aliquam magna a, pellentesque ex. Aliquam felis velit, aliquam et ante eu, condimentum commodo ex. Aliquam lorem nisi, ullamcorper sit amet diam tincidunt, pretium auctor orci. Aenean iaculis vel libero nec semper. Aenean lorem ante, cursus eu mattis eget, accumsan sed sapien. Morbi sollicitudin pretium ligula, a dignissim diam facilisis id. Cras et tempor lorem. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Vivamus porttitor ut orci id ullamcorper. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Vestibulum laoreet varius nibh quis suscipit. Aliquam rutrum sapien id ante sodales, nec semper erat egestas. Maecenas ullamcorper varius dolor tempor pellentesque.
+
+                    In semper imperdiet lacus eget feugiat. Morbi tempor consectetur congue. Proin tellus felis, faucibus nec laoreet vitae, laoreet in massa. Duis quis lectus id sapien ullamcorper sagittis. Ut molestie mauris a tincidunt feugiat. Fusce rutrum vulputate euismod. Sed id lacus eu lorem consequat fringilla.
+
+                    Nunc dictum fermentum metus et vehicula. Sed condimentum dolor a cursus aliquam. Nulla aliquam, sapien at auctor aliquam, purus ex tincidunt lorem, ut pulvinar purus ante vel lectus. Vivamus vitae neque libero. Sed eu ultrices ligula, nec sodales metus. Mauris interdum nisl ut elementum sodales. Morbi a ligula eget ante dignissim interdum sit amet eget odio. In hac habitasse platea dictumst. Sed molestie luctus nulla, at suscipit neque. Morbi sed vulputate augue. Proin vestibulum non nunc vitae vestibulum. Phasellus convallis placerat faucibus. Morbi eleifend nisl ut odio efficitur lobortis. Morbi commodo est at aliquet faucibus.
+                </Text>
+              <Portal>
+                    <Snackbar
+                        duration={3000}
+                        visible={snackBarVisible}
+                        onDismiss={onDismissSnackBar}
+                        action={{
+                            label: 'Undo',
+                            onPress: () => {
+                                onToggleSwitch()
+                            },
+                        }}>
+                        <Text style={screenStyles.snackBarText}>Switch {isSwitchOn ? 'On' : 'Off'}</Text>
+                    </Snackbar>
+              </Portal>
+           
         </ScrollView>
     )
 }
