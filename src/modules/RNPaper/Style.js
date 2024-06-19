@@ -26,6 +26,5 @@ const styles = (screenContext, width, height) => StyleSheet.create({
           bottom: 16,
         left: 16
         }
-
 })
 export default styles

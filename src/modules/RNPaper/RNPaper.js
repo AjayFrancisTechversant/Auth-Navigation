@@ -57,7 +57,6 @@ const RNPaper = () => {
                 <SegmentedButtons
                     style={screenStyles.SegmentedButtons}
                     value={segmentedButtonValue}
-
                     onValueChange={setSegmentedButtonValue}
                     buttons={[
                         {
