@@ -41,7 +41,7 @@ const RNPaper = () => {
 
         setIsExtended(currentScrollPosition <= 0);
     };
-
+    //for Data Table
     const [page, setPage] = useState(0);
     const [numberOfItemsPerPageList] = useState([2, 3, 4]);
     const [itemsPerPage, onItemsPerPageChange] = useState(
@@ -81,8 +81,6 @@ const RNPaper = () => {
     useEffect(() => {
         setPage(0);
     }, [itemsPerPage]);
-
-
 
     const screenContext = useScreenContext();
     const screenStyles = styles(
@@ -170,7 +168,7 @@ const RNPaper = () => {
                     </Dialog>
                 </Portal>
             </View>
-           
+
             <DataTable style={screenStyles.DataTable}>
                 <DataTable.Header>
                     <DataTable.Title>Dessert</DataTable.Title>

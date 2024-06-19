@@ -11,7 +11,7 @@ const styles = (screenContext, width, height) => StyleSheet.create({
     SegmentedButtonValueText: { marginLeft: 20 },
     card: { width: width * 0.8, alignSelf: 'center' },
     showMenuButton: { width: 100 },
-    toggleButttonsContainer: { marginLeft: 30 },
+    toggleButttonsContainer: { alignSelf:'center'},
     switchContainer: { marginTop: 30, marginLeft: 30, flexDirection: 'row' },
     snackBarText: { color: 'white' },
 
@@ -28,6 +28,6 @@ const styles = (screenContext, width, height) => StyleSheet.create({
         bottom: 16,
         left: 16
     },
-    DataTable: { margin: 50,borderWidth:1,width:width*0.9,borderRadius:5,alignSelf:'center',borderColor:'grey' }
+    DataTable: { margin: 20,borderWidth:1,width:width*0.9,borderRadius:5,alignSelf:'center',borderColor:'grey' }
 })
 export default styles
