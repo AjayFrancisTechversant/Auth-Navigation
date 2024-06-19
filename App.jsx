@@ -14,6 +14,8 @@ import AuthNativeStack from './src/Services/Navigation/Stacks/AuthNativeStack'
 import { PermissionsAndroid } from 'react-native';
 import messaging from '@react-native-firebase/messaging';
 import SampleComponent from './src/Components/SampleComponent/SampleComponent'
+import RNPaper from './src/modules/RNPaper/RNPaper'
+import { PaperProvider } from 'react-native-paper'
 
 
 PermissionsAndroid.request(PermissionsAndroid.PERMISSIONS.POST_NOTIFICATIONS);
@@ -28,19 +30,19 @@ const App = () => {
   const linking = {
     prefixes: ['myapp://'],
     config: {
-     screens:{
-      HomeTabStack:{
-        screens:{
-          Me:{
-            path:'Me'
-          },
-          Listing:{
-            path:'Listing'
+      screens: {
+        HomeTabStack: {
+          screens: {
+            Me: {
+              path: 'Me'
+            },
+            Listing: {
+              path: 'Listing'
+            }
           }
-        }
-      },
-      
-     }
+        },
+
+      }
     },
   };
 
@@ -50,9 +52,9 @@ const App = () => {
     if (initializing) setInitializing(false);
   }
 
-  const handleGetFCMToken=async()=>{
-    const FCMToken= await messaging().getToken()
-    console.log('FCMToken:',FCMToken);
+  const handleGetFCMToken = async () => {
+    const FCMToken = await messaging().getToken()
+    console.log('FCMToken:', FCMToken);
   }
 
   useEffect(() => {
@@ -96,8 +98,10 @@ export default function Main() {
         <Provider store={store}>
           <PersistGate loading={null} persistor={persistor}>
             <GestureHandlerRootView>
-              <App />
-              {/* <SampleComponent/> */}
+              <PaperProvider>
+                {/* <App /> */}
+                <RNPaper />
+              </PaperProvider>
             </GestureHandlerRootView>
           </PersistGate>
         </Provider>
