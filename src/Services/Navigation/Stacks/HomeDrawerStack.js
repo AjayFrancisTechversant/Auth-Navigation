@@ -15,6 +15,7 @@ import BooksFirestore from '../../../modules/BooksFirestore/BooksFirestore';
 import BooksRealtimeDatabase from '../../../modules/BooksRealtimeDatabase/BooksRealtimeDatabase';
 import Listing from '../../../modules/Listing/Listing';
 import Notes from '../../../modules/Notes/Notes';
+import RNPaper from '../../../modules/RNPaper/RNPaper';
 
 
 
@@ -67,6 +68,12 @@ const HomeDrawerStack = () => {
                     drawerIcon: () => <Ionicons name='logo-firebase' color={ColorPalette.green} size={20} />
                 }}
                 name="TodoRealtimeDatabase" component={BooksRealtimeDatabase}
+            />
+             <Drawer.Screen
+                options={{
+                    drawerIcon: () => <Ionicons name='newspaper' color={ColorPalette.green} size={20} />
+                }}
+                name="React Native Paper" component={RNPaper}
             />
         </Drawer.Navigator>
     )

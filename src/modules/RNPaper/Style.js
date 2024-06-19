@@ -24,8 +24,9 @@ const styles = (screenContext, width, height) => StyleSheet.create({
     downloadDataText: { color: 'white' },
     progressBar: { marginHorizontal: 30 },
     loremText: { marginHorizontal: 20 },
+    FABGroup:{position:'absolute',bottom:45},
     animatedFabStyle: {
-        bottom: 16,
+        bottom: 60,
         left: 16
     },
     DataTable: { margin: 20,borderWidth:1,width:width*0.9,borderRadius:5,alignSelf:'center',borderColor:'grey' }

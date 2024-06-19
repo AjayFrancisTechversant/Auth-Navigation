@@ -5,6 +5,7 @@ import styles from './Style';
 import { SegmentedButtons, Card, Button, Menu, Divider, Switch, Snackbar, Tooltip, Dialog, Portal, ProgressBar, FAB, AnimatedFAB, DataTable } from 'react-native-paper';
 import ColorPalette from '../../Assets/Themes/ColorPalette';
 import { ToggleButton } from 'react-native-paper';
+import { Colors } from 'react-native/Libraries/NewAppScreen';
 
 const RNPaper = () => {
     const [segmentedButtonValue, setSegmentedButtonValue] = useState('Walk'); //segmentedButton
@@ -43,7 +44,7 @@ const RNPaper = () => {
     };
     //for Data Table
     const [page, setPage] = useState(0);
-    const [numberOfItemsPerPageList] = useState([2, 3, 4]);
+    const [numberOfItemsPerPageList] = useState([2, 3, 4,]);
     const [itemsPerPage, onItemsPerPageChange] = useState(
         numberOfItemsPerPageList[0]
     );
@@ -170,7 +171,7 @@ const RNPaper = () => {
 
             <DataTable style={screenStyles.DataTable}>
                 <DataTable.Header>
-                    <DataTable.Title>Dessert</DataTable.Title>
+                    <DataTable.Title >Dessert</DataTable.Title>
                     <DataTable.Title numeric>Calories</DataTable.Title>
                     <DataTable.Title numeric>Fat</DataTable.Title>
                 </DataTable.Header>
@@ -188,10 +189,13 @@ const RNPaper = () => {
                     onPageChange={(page) => setPage(page)}
                     label={`${from + 1}-${to} of ${items.length}`}
                     numberOfItemsPerPageList={numberOfItemsPerPageList}
+                    dropdownItemRippleColor={ColorPalette.green}
+
                     numberOfItemsPerPage={itemsPerPage}
                     onItemsPerPageChange={onItemsPerPageChange}
                     showFastPaginationControls
                     selectPageDropdownLabel={'Rows per page'}
+                    
                 />
             </DataTable>
             <Text style={screenStyles.loremText}>
@@ -200,7 +204,7 @@ const RNPaper = () => {
 
             <Portal>
                 <FAB.Group
-
+                    style={screenStyles.FABGroup}
                     open={open}
                     visible
                     icon={open ? 'close' : 'plus'}
