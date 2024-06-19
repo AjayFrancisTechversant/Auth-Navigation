@@ -119,13 +119,7 @@ const RNPaper = () => {
                         <Text >Card content</Text>
                     </Card.Content>
                     <Card.Actions>
-                        <Tooltip title='Cancel'>
-                            <Button mode='elevated' >Cancel</Button></Tooltip>
-                        <Tooltip title='Okay'><Button mode='elevated'>Ok</Button></Tooltip>
-
-                    </Card.Actions>
-                </Card>
-                <Menu
+                    <Menu
                     visible={menuVisible}
                     onDismiss={closeMenu}
                     anchor={<Button style={screenStyles.showMenuButton} onPress={openMenu}>Menu</Button>}
@@ -136,6 +130,11 @@ const RNPaper = () => {
                     <Divider horizontalInset={10} bold />
                     <Menu.Item onPress={() => { }} title="Item 3" />
                 </Menu>
+                        <Tooltip title='Okay'><Button mode='elevated'>Ok</Button></Tooltip>
+
+                    </Card.Actions>
+                </Card>
+               
             </View>
             <View style={screenStyles.toggleButttonsContainer}>
                 <ToggleButton.Row onValueChange={value => setToggleButtonValue(value)} value={toggleButtonValue}>

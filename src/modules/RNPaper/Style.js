@@ -11,8 +11,8 @@ const styles = (screenContext, width, height) => StyleSheet.create({
     SegmentedButtonValueText: { marginLeft: 20 },
     card: { width: width * 0.8, alignSelf: 'center' },
     showMenuButton: { width: 100 },
-    toggleButttonsContainer: { alignSelf:'center'},
-    switchContainer: { marginTop: 30, marginLeft: 30, flexDirection: 'row' },
+    toggleButttonsContainer: { alignSelf:'center',marginVertical:20},
+    switchContainer: { marginTop: 10, marginLeft: 30, flexDirection: 'row' },
     snackBarText: { color: 'white' },
 
     dialog: { height: 300 },
