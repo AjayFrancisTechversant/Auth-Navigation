@@ -3,7 +3,7 @@ import ColorPalette from "../../Assets/Themes/ColorPalette"
 
 const styles = (screenContext, width, height) =>
     StyleSheet.create({
-        wholeContainer:{alignItems:'center',flex:1,borderWidth:1,borderColor:'red'},
+        wholeContainer:{alignItems:'center',flex:1,},
         bgImageContainer:{paddingTop:10,width:screenContext.isPortrait?width:height,
           alignItems:'center',},
         bgImage:{height:height*0.45,width:screenContext.isPortrait?width*0.92:height*0.94},
