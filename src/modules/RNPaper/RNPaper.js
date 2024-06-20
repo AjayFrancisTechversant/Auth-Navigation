@@ -261,7 +261,7 @@ const RNPaper = () => {
                     extended={isExtended}
                     onPress={() => console.log('Pressed')}
                     visible={true}
-                    animateFrom='left'
+                    animateFrom='right'
                     iconMode={'dynamic'}
                     style={screenStyles.animatedFabStyle}
                     theme={{ colors: { primaryContainer: ColorPalette.green, onPrimaryContainer: 'white' } }}
