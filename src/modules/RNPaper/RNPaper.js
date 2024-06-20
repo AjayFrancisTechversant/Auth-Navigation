@@ -95,7 +95,7 @@ const RNPaper = () => {
         <View style={screenStyles.canvas}>
             <KeyboardAvoidingView
                 enabled={true}
-                behavior='padding'
+                behavior='height'
                 keyboardVerticalOffset={50}
                 onScroll={onScroll}>
                 <ScrollView >
@@ -213,7 +213,7 @@ const RNPaper = () => {
                     </Text>
 
                     <TextInput style={screenStyles.textInput}
-                        onChangeText={() => { console.log('h'); }}
+                        onChangeText={() => {  }}
 
                         mode="outlined"
                         label="Name"
@@ -224,7 +224,7 @@ const RNPaper = () => {
                         activeOutlineColor={ColorPalette.green}
                     />
                     <Text style={screenStyles.loremText}>
-                        Mauris mattis ante in sapien tristique, in iaculis leo euismod. Donec eu sem odio. Etiam cursus hendrerit risus vitae consequat. Duis et odio ultrices, aliquam magna a, pellentesque ex. Aliquam felis velit, aliquam et ante eu, condimentum commodo ex. Aliquam lorem nisi, ullamcorper sit amet diam tincidunt, pretium auctor orci. Aenean iaculis vel libero nec semper. Aenean lorem ante, cursus eu mattis eget, accumsan sed sapien. Morbi sollicitudin pretium ligula, a dignissim diam facilisis id. Cras et tempor lorem. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Vivamus porttitor ut orci id ullamcorper. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Vestibulum laoreet varius nibh quis suscipit. Aliquam rutrum sapien id ante sodales, nec semper erat egestas. Maecenas ullamcorper varius dolor tempor pellentesque.
+                        Mauris mattis ante in sapien tristique, in iaculis leo euismod. Donec eu sem odio. Etiam cursus hendrerit risus vitae consequat. Duis et odio ultrices, aliquam magna a, pellentesque ex. Aliquam felis velit, aliquam et ante eu, condimentum commodo ex. Aliquam lorem nisi, ullamcorper sit amet diam tincidunt, pretium auctor orci. Aenean iaculis vel libero nec semper. Aenean lorem ante, cursus eu mattis eget, accumsan sed sapien. Morbi sollicitudin pretium ligula, a dignissim diam facilisis id. Cras et tempor lorem. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Vivamus porttitor ut orci id ullamcorper. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Vestibulum laoreet varius nibh quis suscipit. Aliquam rutrum sapien id ante sodales, nec semper erat egestas. Maecenas ullamcorper varius dolor tempor pellentesque.Mauris mattis ante in sapien tristique, in iaculis leo euismod. Donec eu sem odio. Etiam cursus hendrerit risus vitae consequat. Duis et odio ultrices, aliquam magna a, pellentesque ex. Aliquam felis velit, aliquam et ante eu, condimentum commodo ex. Aliquam lorem nisi, ullamcorper sit amet diam tincidunt, pretium auctor orci. Aenean iaculis vel libero nec semper. Aenean lorem ante, cursus eu mattis eget, accumsan sed sapien. Morbi sollicitudin pretium ligula, a dignissim diam facilisis id. Cras et tempor lorem. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Vivamus porttitor ut orci id ullamcorper. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Vestibulum laoreet varius nibh quis suscipit. Aliquam rutrum sapien id ante sodales, nec semper erat egestas. Maecenas ullamcorper varius dolor tempor pellentesque.
                     </Text>
 
                 </ScrollView>
