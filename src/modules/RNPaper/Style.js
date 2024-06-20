@@ -33,6 +33,6 @@ const styles = (screenContext, width, height) => StyleSheet.create({
         right: 16
     },
     DataTable: { margin: 20,borderWidth:1,width:width*0.9,borderRadius:5,alignSelf:'center',borderColor:'grey' },
-    textInput:{marginBottom:150,width:width*0.8,alignSelf:'center',marginVertical:10}
+    textInput:{marginBottom:10,width:width*0.8,alignSelf:'center',marginVertical:10}
 })
 export default styles
