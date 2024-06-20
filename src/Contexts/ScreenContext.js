@@ -34,7 +34,6 @@ export const ScreenContextProvider = ({children}) => {
     setWindowFontScale(fontScale);
     setIsPortrait(modPortrait);
   }
-
   return (
     <ScreenContext.Provider
       value={{

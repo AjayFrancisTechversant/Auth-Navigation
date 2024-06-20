@@ -1,5 +1,6 @@
 import { StyleSheet } from "react-native";
 import ColorPalette from "../../Assets/Themes/ColorPalette";
+import { ScreenContext } from "react-native-screens";
 
 
 const styles = (screenContext, width, height) => StyleSheet.create({
@@ -9,7 +10,9 @@ const styles = (screenContext, width, height) => StyleSheet.create({
 
     },
     SegmentedButtonValueText: { marginLeft: 20 },
-    card: { width: width * 0.8, alignSelf: 'center' },
+    card: { width:screenContext.isTypeTablet? width * 0.9:width*0.8, alignSelf: 'center' },
+    cardImageStyle:{height:screenContext.isTypeTablet?height*0.4:height*0.3},
+
     showMenuButton: { width: 100 },
     toggleButttonsContainer: { alignSelf:'center',marginVertical:20},
     switchContainer: { marginTop: 10, marginLeft: 30, flexDirection: 'row' },
@@ -29,6 +32,7 @@ const styles = (screenContext, width, height) => StyleSheet.create({
         bottom: 60,
         left: 16
     },
-    DataTable: { margin: 20,borderWidth:1,width:width*0.9,borderRadius:5,alignSelf:'center',borderColor:'grey' }
+    DataTable: { margin: 20,borderWidth:1,width:width*0.9,borderRadius:5,alignSelf:'center',borderColor:'grey' },
+    textInput:{marginBottom:80,width:width*0.8,alignSelf:'center'}
 })
 export default styles
