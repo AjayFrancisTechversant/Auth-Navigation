@@ -6,7 +6,7 @@ import DrawerContents from '../../../Components/DrawerContents/DrawerContents';
 import Entypo from 'react-native-vector-icons/Entypo'
 import Ionicons from 'react-native-vector-icons/Ionicons'
 import FontAwesome6 from 'react-native-vector-icons/FontAwesome6'
-import Booking from '../../../modules/Booking/Booking';
+import AntDesign from 'react-native-vector-icons/AntDesign';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons'
 import Feather from 'react-native-vector-icons/Feather'
 import OfflineDBFetch from '../../../modules/OfflineDBFetch/OfflineDBFetch';
@@ -16,6 +16,7 @@ import BooksRealtimeDatabase from '../../../modules/BooksRealtimeDatabase/BooksR
 import Listing from '../../../modules/Listing/Listing';
 import Notes from '../../../modules/Notes/Notes';
 import RNPaper from '../../../modules/RNPaper/RNPaper';
+import ImageUploader from '../../../modules/ImageUploader/ImageUploader';
 
 
 
@@ -71,9 +72,9 @@ const HomeDrawerStack = () => {
             />
              <Drawer.Screen
                 options={{
-                    drawerIcon: () => <Ionicons name='newspaper' color={ColorPalette.green} size={20} />
+                    drawerIcon: () => <AntDesign name='cloudupload' color={ColorPalette.green} size={20} />
                 }}
-                name="React Native Paper" component={RNPaper}
+                name="Image Upload" component={ImageUploader}
             />
         </Drawer.Navigator>
     )

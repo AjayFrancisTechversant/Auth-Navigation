@@ -4,7 +4,7 @@ import { ScreenContext } from "react-native-screens";
 
 
 const styles = (screenContext, width, height) => StyleSheet.create({
-    canvas: { backgroundColor: 'white', flex: 1 },
+    canvas: { backgroundColor: 'white', flex: 1,},
     SegmentedButtons: {
         width: width * 0.7, alignSelf: 'center', marginVertical: 20,
 
@@ -27,9 +27,9 @@ const styles = (screenContext, width, height) => StyleSheet.create({
     downloadDataText: { color: 'white' },
     progressBar: { marginHorizontal: 30 },
     loremText: { marginHorizontal: 20 },
-    FABGroup:{position:'absolute',bottom:105},
+    FABGroup:{position:'absolute',bottom:60},
     animatedFabStyle: {
-        bottom: 60,
+        bottom: 10,
         right: 16
     },
     DataTable: { margin: 20,borderWidth:1,width:width*0.9,borderRadius:5,alignSelf:'center',borderColor:'grey' },

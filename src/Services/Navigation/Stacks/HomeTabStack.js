@@ -3,11 +3,11 @@ import { createBottomTabNavigator } from '@react-navigation/bottom-tabs'
 import Me from '../../../modules/Me/Me'
 import Entypo from 'react-native-vector-icons/Entypo';
 import FontAwesome from 'react-native-vector-icons/FontAwesome'
-import AntDesign from 'react-native-vector-icons/AntDesign';
 import HomeDrawerStack from './HomeDrawerStack'
-import ImageUploader from '../../../modules/ImageUploader/ImageUploader';
+import Ionicons from 'react-native-vector-icons/Ionicons'
 import Booking from '../../../modules/Booking/Booking';
 import FontAwesome6 from 'react-native-vector-icons/FontAwesome6'
+import RNPaper from '../../../modules/RNPaper/RNPaper';
 
 
 const HomeTabStack = () => {
@@ -25,12 +25,12 @@ const HomeTabStack = () => {
                 }}
             />
             <HomeTabStack.Screen
-                name='Image Upload'
-                component={ImageUploader}
+                name='RN Paper'
+                component={RNPaper}
                 options={{
                     headerShown: false,
                     tabBarIcon: ({ color, size }) => (
-                        <AntDesign name='cloudupload' color={color} size={35} />
+                        <Ionicons name='newspaper' color={color} size={size} />
                     )
                 }}
             />
