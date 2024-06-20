@@ -1,5 +1,5 @@
 import { View, Image, TouchableOpacity, FlatList, ActivityIndicator, Text } from 'react-native'
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 import { useScreenContext } from '../../Contexts/ScreenContext';
 import styles from './Style';
 import MenuDrawerButton from '../../Components/MenuDrawerButton/MenuDrawerButton';
@@ -8,23 +8,26 @@ import HomeScreenCard from '../../Components/HomeScreenCard/HomeScreenCard';
 import { getUsers } from '../../Services/API/getUsers';
 import LinearGradient from 'react-native-linear-gradient';
 import HomeScreenCarousel from '../../Components/HomeScreenCarousel/HomeScreenCarousel';
+import { FAB } from 'react-native-paper';
 
 
 const HomeScreen = ({ navigation }) => {
-  const [searchText,setSearchText]=useState('')
-  const [modalCloseToggle,setModalCloseToggle]=useState(true)
-  const [searchResults,setSearchResults]=useState([])
+  const [searchText, setSearchText] = useState('')
+  const [modalCloseToggle, setModalCloseToggle] = useState(true)
+  const [searchResults, setSearchResults] = useState([])
   const [users, setUsers] = useState([])
   const [isLoading, setIsLoading] = useState(false)
   const [currentPage, setCurrentPage] = useState(1)
+  const flatListRef = useRef(null);
+  const [isFabVisible, setIsFabVisible] = useState(false)
 
-  const search=(searchText)=>{
-    setSearchResults(users.filter(i=>(i.name.first+' '+i.name.last).toLowerCase().includes(searchText.toLocaleLowerCase())))
-    
+  const search = (searchText) => {
+    setSearchResults(users.filter(i => (i.name.first + ' ' + i.name.last).toLowerCase().includes(searchText.toLocaleLowerCase())))
+
   }
-  useEffect(()=>{
+  useEffect(() => {
     search(searchText)
-  },[searchText])
+  }, [searchText])
 
   const initialFetch = async () => {
     setIsLoading(true)
@@ -46,6 +49,16 @@ const HomeScreen = ({ navigation }) => {
   useEffect(() => {
     initialFetch()
   }, [])
+
+  const useScrollToTop = () => {
+    flatListRef.current.scrollToOffset({ animated: true, offset: 0 })
+  }
+  const onScroll = ({ nativeEvent }) => {
+    const currentScrollPosition =Math.floor(nativeEvent?.contentOffset?.y) ?? 0;
+    setIsFabVisible(currentScrollPosition > 50)
+  };
+
+
   const screenContext = useScreenContext();
   const screenStyles = styles(
     screenContext,
@@ -57,14 +70,16 @@ const HomeScreen = ({ navigation }) => {
       <View style={screenStyles.container}
       >
         <FlatList
-        extraData={modalCloseToggle}
-        showsVerticalScrollIndicator={false}
-        ListEmptyComponent={!isLoading&&<Text>Nothing to Display!!</Text>}
+          onScroll={onScroll}
+          ref={flatListRef}
+          extraData={modalCloseToggle}
+          showsVerticalScrollIndicator={false}
+          ListEmptyComponent={!isLoading && <Text>Nothing to Display!!</Text>}
           ListHeaderComponent={<>
             <LinearGradient
-             start={{ x: 0, y: 0.4 }} end={{ x: 0, y: 1 }}
-             colors={[ColorPalette.green,'white']}
-            style={screenStyles.headerContainer}>
+              start={{ x: 0, y: 0.4 }} end={{ x: 0, y: 1 }}
+              colors={[ColorPalette.green, 'white']}
+              style={screenStyles.headerContainer}>
               <View style={screenStyles.headerContents}>
                 <View style={screenStyles.menuDrawerButtonContainer}>
                   <MenuDrawerButton navigation={navigation} screen={'Home'} />
@@ -80,26 +95,32 @@ const HomeScreen = ({ navigation }) => {
               </View>
             </LinearGradient>
             <View style={screenStyles.searchBarContainer}>
-              <SearchBar searchText={searchText} setSearchText={setSearchText}  />
+              <SearchBar searchText={searchText} setSearchText={setSearchText} />
             </View>
-            <HomeScreenCarousel/>
-            </>}
-          data={searchText==''?users:searchResults}
+            <HomeScreenCarousel />
+          </>}
+          data={searchText == '' ? users : searchResults}
           keyExtractor={item => Math.random().toString(36).substring(2)}
           renderItem={({ item }) =>
             <View style={screenStyles.homeScreenCardContainer}>
               <HomeScreenCard modalCloseToggle={modalCloseToggle} setModalCloseToggle={setModalCloseToggle} item={item} />
             </View>
           }
-          onEndReached={!searchText&&fetchMore}
+          onEndReached={!searchText && fetchMore}
           onEndReachedThreshold={0.1}
           ListFooterComponent={
             isLoading &&
             <ActivityIndicator size='large' />
-
           }
         />
       </View>
+      <FAB
+        visible={isFabVisible}
+        icon="arrow-up-bold"
+        style={screenStyles.fab}
+        onPress={() => useScrollToTop()}
+        theme={{ colors: { primaryContainer: ColorPalette.green, onPrimaryContainer: 'white' } }}
+      />
     </View>
   )
 }

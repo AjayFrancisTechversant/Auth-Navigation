@@ -22,7 +22,8 @@ const styles = (screenContext, width, height) => StyleSheet.create({
         marginBottom:10
     },
    
-    homeScreenCardContainer:{margin:5,}
+    homeScreenCardContainer:{margin:5,},
+    fab:{position:'absolute',bottom:20,right:20}
 
 })
 export default styles
