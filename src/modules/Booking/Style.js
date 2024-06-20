@@ -3,7 +3,7 @@ import ColorPalette from "../../Assets/Themes/ColorPalette"
 
 const styles = (screenContext, width, height) =>
     StyleSheet.create({
-        wholeContainer:{alignItems:'center',height:screenContext.isPortrait?height*0.905:width*0.83},
+        wholeContainer:{alignItems:'center',flex:1,borderWidth:1,borderColor:'red'},
         bgImageContainer:{paddingTop:10,width:screenContext.isPortrait?width:height,
           alignItems:'center',},
         bgImage:{height:height*0.45,width:screenContext.isPortrait?width*0.92:height*0.94},
@@ -35,7 +35,7 @@ const styles = (screenContext, width, height) =>
         numberBoxSelected:{marginHorizontal:5,height:30,width:30,backgroundColor:ColorPalette.green,borderRadius:10,alignItems:'center',justifyContent:'center'},
         numberBoxNotSelected:{marginHorizontal:5,height:30,width:30,backgroundColor:ColorPalette.lightGreen,borderRadius:10,alignItems:'center',justifyContent:'center'},
         //
-        buttonContainer:{paddingHorizontal:20,paddingVertical:10,flexDirection:'row',width:'100%',justifyContent:'space-evenly',position:"absolute",bottom:0,backgroundColor:'white'},
+        buttonContainer:{paddingHorizontal:20,paddingVertical:10,flexDirection:'row',width:'100%',justifyContent:'space-evenly',position:"absolute",bottom:-5,backgroundColor:'white'},
         bookmarkTouchableOpacity:{height:50,width:width*0.15,borderWidth:1,borderColor:ColorPalette.green,borderRadius:10,alignItems:'center',justifyContent:'center'},
     })
 export default styles
