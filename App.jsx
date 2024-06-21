@@ -101,8 +101,7 @@ export default function Main() {
           <PersistGate loading={null} persistor={persistor}>
             <GestureHandlerRootView>
               <PaperProvider>
-                {/* <App /> */}
-                <Locator/>
+                <App />
               </PaperProvider>
             </GestureHandlerRootView>
           </PersistGate>
