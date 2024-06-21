@@ -15,10 +15,8 @@ import BooksFirestore from '../../../modules/BooksFirestore/BooksFirestore';
 import BooksRealtimeDatabase from '../../../modules/BooksRealtimeDatabase/BooksRealtimeDatabase';
 import Listing from '../../../modules/Listing/Listing';
 import Notes from '../../../modules/Notes/Notes';
-import RNPaper from '../../../modules/RNPaper/RNPaper';
 import ImageUploader from '../../../modules/ImageUploader/ImageUploader';
-
-
+import RNElements from '../../../modules/RNElements/RNElements';
 
 const HomeDrawerStack = () => {
     const Drawer = createDrawerNavigator()
@@ -75,6 +73,12 @@ const HomeDrawerStack = () => {
                     drawerIcon: () => <AntDesign name='cloudupload' color={ColorPalette.green} size={20} />
                 }}
                 name="Image Upload" component={ImageUploader}
+            />
+              <Drawer.Screen
+                options={{
+                    drawerIcon: () => <Ionicons name='logo-react' color={ColorPalette.green} size={20} />
+                }}
+                name="RN Elements" component={RNElements}
             />
         </Drawer.Navigator>
     )

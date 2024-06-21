@@ -16,6 +16,7 @@ import messaging from '@react-native-firebase/messaging';
 import SampleComponent from './src/Components/SampleComponent/SampleComponent'
 import RNPaper from './src/modules/RNPaper/RNPaper'
 import { PaperProvider } from 'react-native-paper'
+import RNElements from './src/modules/RNElements/RNElements'
 
 
 PermissionsAndroid.request(PermissionsAndroid.PERMISSIONS.POST_NOTIFICATIONS);
@@ -99,7 +100,8 @@ export default function Main() {
           <PersistGate loading={null} persistor={persistor}>
             <GestureHandlerRootView>
               <PaperProvider>
-                <App />
+                {/* <App /> */}
+                <RNElements/>
               </PaperProvider>
             </GestureHandlerRootView>
           </PersistGate>
