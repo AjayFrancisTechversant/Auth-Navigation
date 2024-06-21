@@ -17,6 +17,7 @@ import Listing from '../../../modules/Listing/Listing';
 import Notes from '../../../modules/Notes/Notes';
 import ImageUploader from '../../../modules/ImageUploader/ImageUploader';
 import RNElements from '../../../modules/RNElements/RNElements';
+import Locator from '../../../modules/Locator/Locator';
 
 const HomeDrawerStack = () => {
     const Drawer = createDrawerNavigator()
@@ -79,6 +80,12 @@ const HomeDrawerStack = () => {
                     drawerIcon: () => <Ionicons name='logo-react' color={ColorPalette.green} size={20} />
                 }}
                 name="RN Elements" component={RNElements}
+            />
+              <Drawer.Screen
+                options={{
+                    drawerIcon: () => <Entypo name='location-pin' color={ColorPalette.green} size={20} />
+                }}
+                name="Locator" component={Locator}
             />
         </Drawer.Navigator>
     )

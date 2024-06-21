@@ -5,9 +5,8 @@ import styles from './Style';
 import { SegmentedButtons, Card, Button, Menu, Divider, Switch, Snackbar, Tooltip, Dialog, Portal, ProgressBar, FAB, AnimatedFAB, DataTable, TextInput } from 'react-native-paper';
 import ColorPalette from '../../Assets/Themes/ColorPalette';
 import { ToggleButton } from 'react-native-paper';
-import { Colors } from 'react-native/Libraries/NewAppScreen';
-import { ScreenContext } from 'react-native-screens';
-import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
+import AntDesign from 'react-native-vector-icons/AntDesign';
+
 
 const RNPaper = () => {
     const [segmentedButtonValue, setSegmentedButtonValue] = useState('Walk'); //segmentedButton
@@ -132,7 +131,7 @@ const RNPaper = () => {
                                 <Menu
                                     visible={menuVisible}
                                     onDismiss={closeMenu}
-                                    anchor={<Button style={screenStyles.showMenuButton} onPress={openMenu}>Menu</Button>}
+                                    anchor={<Button style={screenStyles.showMenuButton} onPress={openMenu}>Menu <AntDesign name='caretdown'  size={10} /></Button>}
                                     anchorPosition='bottom'
                                 >
                                     <Menu.Item onPress={() => { }} title="Item 1" />

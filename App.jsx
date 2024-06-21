@@ -17,6 +17,7 @@ import SampleComponent from './src/Components/SampleComponent/SampleComponent'
 import RNPaper from './src/modules/RNPaper/RNPaper'
 import { PaperProvider } from 'react-native-paper'
 import RNElements from './src/modules/RNElements/RNElements'
+import Locator from './src/modules/Locator/Locator'
 
 
 PermissionsAndroid.request(PermissionsAndroid.PERMISSIONS.POST_NOTIFICATIONS);
@@ -101,7 +102,7 @@ export default function Main() {
             <GestureHandlerRootView>
               <PaperProvider>
                 {/* <App /> */}
-                <RNElements/>
+                <Locator/>
               </PaperProvider>
             </GestureHandlerRootView>
           </PersistGate>
