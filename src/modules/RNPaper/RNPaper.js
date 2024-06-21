@@ -41,7 +41,6 @@ const RNPaper = () => {
 
         const currentScrollPosition =
             Math.floor(nativeEvent?.contentOffset?.y) ?? 0;
-console.log(currentScrollPosition);
         setIsExtended(currentScrollPosition <= 0);
     };
     //for Data Table
