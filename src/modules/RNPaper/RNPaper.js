@@ -11,7 +11,6 @@ import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view
 
 const RNPaper = () => {
     const [segmentedButtonValue, setSegmentedButtonValue] = useState('Walk'); //segmentedButton
-
     const [toggleButtonValue, setToggleButtonValue] = useState('left');
     //toggleButtons
     //for menu
@@ -39,9 +38,10 @@ const RNPaper = () => {
     const [isExtended, setIsExtended] = useState(true);
     // const isIOS = Platform.OS === 'ios';
     const onScroll = ({ nativeEvent }) => {
+
         const currentScrollPosition =
             Math.floor(nativeEvent?.contentOffset?.y) ?? 0;
-
+console.log(currentScrollPosition);
         setIsExtended(currentScrollPosition <= 0);
     };
     //for Data Table
@@ -97,8 +97,8 @@ const RNPaper = () => {
                 enabled={true}
                 behavior='height'
                 keyboardVerticalOffset={50}
-                onScroll={onScroll}>
-                <ScrollView >
+                >
+                <ScrollView onScroll={onScroll}>
                     <View>
                         <SegmentedButtons
                             style={screenStyles.SegmentedButtons}
