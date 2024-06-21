@@ -1,4 +1,4 @@
-import { View, Text, ImageBackground, ActivityIndicator, Linking } from 'react-native';
+import { View, Text, ImageBackground, ActivityIndicator, Linking, Alert, ScrollView } from 'react-native';
 import React, { useState } from 'react';
 import styles from './Style';
 import { useScreenContext } from '../../Contexts/ScreenContext';
@@ -26,7 +26,8 @@ const Locator = () => {
             await fetchRegion(loc);
             setIsLocationFetched(true);
         } catch (error) {
-            console.error(error.code, error.message);
+            Alert.alert(error.message)
+            console.log(error.code, error.message);
         } finally {
             setIsLocationFetchingLoading(false);
         }
@@ -59,7 +60,7 @@ const Locator = () => {
             <ImageBackground blurRadius={1} source={require('../../Assets/Images/map-bg1.jpg')} resizeMode="cover" style={screenStyles.bgImage}>
                 <Text style={screenStyles.mainHeading}>Locator</Text>
                 {isLocationFetched ? (
-                    <View style={screenStyles.detailsContainer}>
+                    <ScrollView style={screenStyles.detailsContainer}>
                         <TouchableOpacity
                             onPress={() => setIsLocationFetched(false)}
                             style={screenStyles.closeButton}>
@@ -73,7 +74,7 @@ const Locator = () => {
                             <MaterialCommunityIcons color='white' name='google-maps' size={20} />
                             <Text style={screenStyles.openMapsText}>Open in Maps</Text>
                         </TouchableOpacity>
-                    </View>
+                    </ScrollView>
                 ) : (
                     <View style={screenStyles.currentLocationButtonContainer}>
                         {isLocationFetchingLoading ? (
