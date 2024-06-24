@@ -8,8 +8,9 @@ import MaterialCommunityIcons from "react-native-vector-icons/MaterialCommunityI
 import AntDesign from "react-native-vector-icons/AntDesign";
 import GetLocation from 'react-native-get-location';
 import ColorPalette from '../../Assets/Themes/ColorPalette';
+import MenuDrawerButton from '../../Components/MenuDrawerButton/MenuDrawerButton';
 
-const Locator = () => {
+const Locator = ({navigation}) => {
     const [isLocationFetched, setIsLocationFetched] = useState(false);
     const [location, setLocation] = useState({});
     const [isLocationFetchingLoading, setIsLocationFetchingLoading] = useState(false);
@@ -59,6 +60,7 @@ const Locator = () => {
         <View style={screenStyles.canvas}>
             <ImageBackground blurRadius={1} source={require('../../Assets/Images/map-bg1.jpg')} resizeMode="cover" style={screenStyles.bgImage}>
                 <Text style={screenStyles.mainHeading}>Locator</Text>
+                <MenuDrawerButton navigation={navigation} color={'white'}/>
                 {isLocationFetched ? (
                     <ScrollView style={screenStyles.detailsContainer}>
                         <TouchableOpacity
