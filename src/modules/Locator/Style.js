@@ -5,9 +5,9 @@ import ColorPalette from "../../Assets/Themes/ColorPalette";
 const styles = (screenContext, width, height) => StyleSheet.create({
     canvas: { flex: 1,  },
     bgImage: { height: '100%',},
-    detailsContainer: { position: 'absolute', alignSelf: 'center', borderRadius: 20,  width: width * 0.8, backgroundColor: 'rgb(244, 250, 252)', bottom: 40, elevation: 20,height:screenContext.isPortrait?'auto':200 },
-
-    currentLocationButtonContainer: { position: 'absolute', backgroundColor: 'rgb(244, 250, 252)',  borderRadius: 20,bottom:30,right:30,elevation:10},
+    BlurViewContainer: {overflow:'hidden', position: 'absolute', alignSelf: 'center',borderRadius:20,   width: width * 0.8, bottom: 40, elevation: 20,height:screenContext.isPortrait?'auto':200 ,borderWidth:2,borderColor:'rgba(255,255,255,0.3)'},
+    MenuDrawerButton:{position:'absolute',top:30,left:30},
+    currentLocationButtonContainer: { position: 'absolute', backgroundColor: 'white',  borderRadius: 20,bottom:30,right:30,elevation:10},
     currentLocationButton:{padding:20},
     mainHeading:{fontSize:40,fontWeight:'bold',color:'white',alignSelf:'center',margin:20,fontFamily:'Helvetica'},
     subHeading:{fontSize:20,margin:30,},
