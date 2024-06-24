@@ -10,9 +10,7 @@ import FontAwesome from 'react-native-vector-icons/FontAwesome'
 const VL = ({ navigation }) => {
     const [comments, setComments] = useState([])
     const [loading, setLoading] = useState(true);
-   
     
-      
     useEffect(() => {
         fecthComments()
     }, [])
@@ -41,8 +39,7 @@ const VL = ({ navigation }) => {
             </View>
         )
     }
-  
-
+ 
     const screenContext = useScreenContext();
     const screenStyles = styles(
         screenContext,
@@ -92,4 +89,4 @@ const VL = ({ navigation }) => {
     )
 }
 
-export default VL
+export default React.memo(VL)
