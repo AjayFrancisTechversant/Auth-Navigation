@@ -88,19 +88,26 @@ const Locator = ({ navigation }) => {
                         </BlurView>
                     </View>
                 ) : (
-                    <View style={screenStyles.currentLocationButtonContainer}>
-                        {isLocationFetchingLoading ? (
-                            <View style={screenStyles.currentLocationButton}>
-                                <ActivityIndicator />
-                            </View>
-                        ) : (
-                            <TouchableOpacity
-                                style={screenStyles.currentLocationButton}
-                                onPress={handleCurrentLocationButton}>
-                                <FontAwesome6 name='location-crosshairs' color={ColorPalette.green} size={20} />
-                            </TouchableOpacity>
-                        )}
-                    </View>
+                <View style={screenStyles.currentLocationButtonContainer}>
+                        <BlurView  blurType='light' blurRadius={10} >
+                         
+                                {isLocationFetchingLoading ? (
+                                    <View style={screenStyles.currentLocationButton} >
+                                        <ActivityIndicator color={'white'} size={30}/>
+                                    </View>
+                                ) : (
+                                   
+                                       
+                                            <TouchableOpacity style={screenStyles.currentLocationButton}
+                                                onPress={handleCurrentLocationButton}>
+                                                <FontAwesome6 name='location-crosshairs' color={'white'} size={20} />
+                                            </TouchableOpacity>
+                                      
+                                   
+                                )}
+                         
+                        </BlurView>
+                </View>
                 )}
             </ImageBackground>
         </View>
