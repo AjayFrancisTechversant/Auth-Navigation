@@ -5,12 +5,14 @@ import { useScreenContext } from '../../Contexts/ScreenContext';
 import MenuDrawerButton from '../../Components/MenuDrawerButton/MenuDrawerButton';
 import ColorPalette from '../../Assets/Themes/ColorPalette';
 import FontAwesome from 'react-native-vector-icons/FontAwesome'
+import ShareIcon from '../../Assets/SVGs/shareIcon.svg'
+import ChatIcon from '../../Assets/SVGs/chatIcon.svg'
 
 
 const VL = ({ navigation }) => {
     const [comments, setComments] = useState([])
     const [loading, setLoading] = useState(true);
-    
+
     useEffect(() => {
         fecthComments()
     }, [])
@@ -39,7 +41,7 @@ const VL = ({ navigation }) => {
             </View>
         )
     }
- 
+
     const screenContext = useScreenContext();
     const screenStyles = styles(
         screenContext,
@@ -53,21 +55,22 @@ const VL = ({ navigation }) => {
             </View>
             <View style={[screenStyles.flexDRow, screenStyles.headingContainer]}>
                 <Text style={screenStyles.heading}>Comments</Text>
-                <FontAwesome name='comment' size={20} color={ColorPalette.lightOrange} />
+                <ChatIcon fill={ColorPalette.lightOrange} width={30} height={30} />
             </View>
-            
+
+
             <View style={[screenStyles.commentsContainer,]}>
                 {!loading ?
                     <VirtualizedList
                         data={comments}
                         getItemCount={getItemCount}
                         getItem={getItem}
-                        renderItem={({ item }) => 
-                            (<View style={screenStyles.commentCard}>
-                                <Text style={screenStyles.commentTitle} >{item.name}</Text>
-                                <Text >{item.body}</Text>
-                            </View>)
-                        
+                        renderItem={({ item }) =>
+                        (<View style={screenStyles.commentCard}>
+                            <Text style={screenStyles.commentTitle} >{item.name}</Text>
+                            <Text >{item.body}</Text>
+                        </View>)
+
                         }
                         ListEmptyComponent={emptyComponent}
                         ListHeaderComponent={
@@ -75,10 +78,10 @@ const VL = ({ navigation }) => {
                         }
                         keyExtractor={(item) => item.id.toString()}
                         initialNumToRender={5}
-                            persistentScrollbar
-                            // maxToRenderPerBatch={10}
-                  
-                        />
+                        persistentScrollbar
+                    // maxToRenderPerBatch={10}
+
+                    />
                     :
                     <View style={screenStyles.loadingContainer}>
                         <ActivityIndicator size={50} color={'white'} />
