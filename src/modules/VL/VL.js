@@ -65,19 +65,19 @@ const VL = ({ navigation }) => {
                         data={comments}
                         getItemCount={getItemCount}
                         getItem={getItem}
-                        renderItem={({ item }) => {
-                            return (<View style={screenStyles.commentCard}>
+                        renderItem={({ item }) => 
+                            (<View style={screenStyles.commentCard}>
                                 <Text style={screenStyles.commentTitle} >{item.name}</Text>
                                 <Text >{item.body}</Text>
                             </View>)
-                        }
+                        
                         }
                         ListEmptyComponent={emptyComponent}
                         ListHeaderComponent={
                             <View style={screenStyles.separator}></View>
                         }
                         keyExtractor={(item) => item.id.toString()}
-                        initialNumToRender={60}
+                        initialNumToRender={5}
                             persistentScrollbar
                             // maxToRenderPerBatch={10}
                   
