@@ -75,10 +75,6 @@ const Booking = ({ navigation }) => {
   return (
     <View style={screenStyles.wholeContainer}>
 
-
-      <View style={screenStyles.menuDrawerButton}>
-        <MenuDrawerButton color={ColorPalette.green} navigation={navigation} />
-      </View>
       <View style={screenStyles.bgImageContainer}>
         <AnimatedImageBackground
           source={require('../../Assets/Images/2GreenCups.jpg')} style={[imageAnimatedStyles, screenStyles.bgImage]} imageStyle={screenStyles.bgImageStyle}
@@ -89,9 +85,13 @@ const Booking = ({ navigation }) => {
 
 
       <Animated.View style={[overlapCardAnimatedStyles, screenStyles.contentsContainer]}>
+        <View style={{ height: 5, width: 30, backgroundColor: 'grey',borderRadius:5,alignSelf:'center',marginTop:10 }}>
 
+        </View>
         <View style={screenStyles.contentsSubContainer} >
+
           <GestureDetector gesture={pan}>
+
             <View style={screenStyles.titleAndPriceContainer}>
               <Text style={screenStyles.title}>Forest Camping</Text>
               <Text style={screenStyles.price}>$299</Text>
