@@ -11,7 +11,7 @@ import ColorPalette from '../../Assets/Themes/ColorPalette';
 import MenuDrawerButton from '../../Components/MenuDrawerButton/MenuDrawerButton';
 import { BlurView } from "@react-native-community/blur";
 
-const Locator = ({navigation}) => {
+const Locator = ({ navigation }) => {
     const [isLocationFetched, setIsLocationFetched] = useState(false);
     const [location, setLocation] = useState({});
     const [isLocationFetchingLoading, setIsLocationFetchingLoading] = useState(false);
@@ -59,34 +59,34 @@ const Locator = ({navigation}) => {
 
     return (
         <View style={screenStyles.canvas}>
-            <ImageBackground  source={require('../../Assets/Images/map-bg1.jpg')} resizeMode="cover" style={screenStyles.bgImage}>
+            <ImageBackground source={require('../../Assets/Images/map-bg1.jpg')} resizeMode="cover" style={screenStyles.bgImage}>
                 <Text style={screenStyles.mainHeading}>Locator</Text>
                 <View style={screenStyles.MenuDrawerButton}>
-                    <MenuDrawerButton navigation={navigation} color={'white'}/>
-                    </View>
-               
+                    <MenuDrawerButton navigation={navigation} color={'white'} />
+                </View>
+
                 {isLocationFetched ? (
-                  <View style={[screenStyles.BlurViewContainer]}>
-                       <BlurView blurType='light' >
+                    <View style={[screenStyles.BlurViewContainer]}>
+                        <BlurView blurType='light' >
                             <ScrollView  >
-                             
-                                    <TouchableOpacity
-                                        onPress={() => setIsLocationFetched(false)}
-                                        style={screenStyles.closeButton}>
-                                        <AntDesign name='closecircle' size={30} />
-                                    </TouchableOpacity>
-                                    <Text style={screenStyles.subHeading}>{region}</Text>
-                                    <Text style={screenStyles.text}>Latitude: {location.latitude}</Text>
-                                    <Text style={screenStyles.text}>Longitude: {location.longitude}</Text>
-                                    <Text style={screenStyles.text}>Altitude: {location.altitude}</Text>
-                                    <TouchableOpacity style={screenStyles.openMapsButton} onPress={openInMaps}>
-                                        <MaterialCommunityIcons color='white' name='google-maps' size={20} />
-                                        <Text style={screenStyles.openMapsText}>Open in Maps</Text>
-                                    </TouchableOpacity>
-                             
+
+                                <TouchableOpacity
+                                    onPress={() => setIsLocationFetched(false)}
+                                    style={screenStyles.closeButton}>
+                                    <AntDesign name='closecircle' color={'white'} size={30} />
+                                </TouchableOpacity>
+                                <Text style={[screenStyles.subHeading, screenStyles.whiteText]}>{region}</Text>
+                                <Text style={[screenStyles.text, screenStyles.whiteText]}>Latitude: {location.latitude}</Text>
+                                <Text style={[screenStyles.text, screenStyles.whiteText]}>Longitude: {location.longitude}</Text>
+                                <Text style={[screenStyles.text, screenStyles.whiteText]}>Altitude: {location.altitude}</Text>
+                                <TouchableOpacity style={screenStyles.openMapsButton} onPress={openInMaps}>
+                                    <MaterialCommunityIcons color='white' name='google-maps' size={20} />
+                                    <Text style={screenStyles.openMapsText}>Open in Maps</Text>
+                                </TouchableOpacity>
+
                             </ScrollView>
-                       </BlurView>
-                  </View>
+                        </BlurView>
+                    </View>
                 ) : (
                     <View style={screenStyles.currentLocationButtonContainer}>
                         {isLocationFetchingLoading ? (
