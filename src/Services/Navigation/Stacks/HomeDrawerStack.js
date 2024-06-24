@@ -18,6 +18,7 @@ import Notes from '../../../modules/Notes/Notes';
 import ImageUploader from '../../../modules/ImageUploader/ImageUploader';
 import RNElements from '../../../modules/RNElements/RNElements';
 import Locator from '../../../modules/Locator/Locator';
+import VL from '../../../modules/VL/VL';
 
 const HomeDrawerStack = () => {
     const Drawer = createDrawerNavigator()
@@ -86,6 +87,12 @@ const HomeDrawerStack = () => {
                     drawerIcon: () => <Entypo name='location-pin' color={ColorPalette.green} size={20} />
                 }}
                 name="Locator" component={Locator}
+            />
+              <Drawer.Screen
+                options={{
+                    drawerIcon: () => <Entypo name='list' color={ColorPalette.green} size={20} />
+                }}
+                name="Virtualised List" component={VL}
             />
         </Drawer.Navigator>
     )
