@@ -13,12 +13,8 @@ import auth from '@react-native-firebase/auth';
 import AuthNativeStack from './src/Services/Navigation/Stacks/AuthNativeStack'
 import { PermissionsAndroid } from 'react-native';
 import messaging from '@react-native-firebase/messaging';
-import SampleComponent from './src/Components/SampleComponent/SampleComponent'
-import RNPaper from './src/modules/RNPaper/RNPaper'
 import { PaperProvider } from 'react-native-paper'
-import RNElements from './src/modules/RNElements/RNElements'
-import Locator from './src/modules/Locator/Locator'
-import VL from './src/modules/VL/VL'
+
 
 
 PermissionsAndroid.request(PermissionsAndroid.PERMISSIONS.POST_NOTIFICATIONS);

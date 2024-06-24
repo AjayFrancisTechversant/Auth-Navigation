@@ -13,8 +13,7 @@ const styles = (screenContext, width, height) =>
         // transparentView:{height:screenContext.isPortrait?height*0.1:width*0.2},
 
         scrollView:{marginBottom: 0,height:screenContext.isPortrait?height*0.71:width*0.45},
-        menuDrawerButton:{position:'absolute',zIndex:2,left:30,top:30},
-        
+               
         //
         contentsContainer:{marginHorizontal:10,
             marginTop:-height*0.03,height:height*0.75,

@@ -1,4 +1,4 @@
-import { View, ImageBackground, TouchableOpacity, Alert } from 'react-native'
+import { View, ImageBackground, TouchableOpacity, } from 'react-native'
 import React, { useEffect } from 'react'
 import { useScreenContext } from '../../Contexts/ScreenContext';
 import styles from './Style';
@@ -13,6 +13,7 @@ import { width } from '@fortawesome/free-brands-svg-icons/fa42Group';
 import HomeScreen from '../HomeScreen/HomeScreen';
 import { Gesture, GestureDetector } from 'react-native-gesture-handler';
 import Animated, { Extrapolation, interpolate, useAnimatedStyle, useSharedValue, withSpring } from 'react-native-reanimated';
+import MenuDrawerButton from '../../Components/MenuDrawerButton/MenuDrawerButton';
 
 
 function clamp(val, min, max) {
@@ -28,6 +29,7 @@ const Booking = ({ navigation }) => {
     screenContext[screenContext.isPortrait ? 'windowWidth' : 'windowHeight'],
     screenContext[screenContext.isPortrait ? 'windowHeight' : 'windowWidth'],
   );
+
   const handleSliderSubmit = () => {
     navigation.navigate(HomeScreen)
   }
@@ -73,8 +75,10 @@ const Booking = ({ navigation }) => {
   return (
     <View style={screenStyles.wholeContainer}>
 
-      
 
+      <View style={screenStyles.menuDrawerButton}>
+        <MenuDrawerButton color={ColorPalette.green} navigation={navigation} />
+      </View>
       <View style={screenStyles.bgImageContainer}>
         <AnimatedImageBackground
           source={require('../../Assets/Images/2GreenCups.jpg')} style={[imageAnimatedStyles, screenStyles.bgImage]} imageStyle={screenStyles.bgImageStyle}
@@ -98,7 +102,7 @@ const Booking = ({ navigation }) => {
 
           <KeyboardAwareScrollView
             style={screenStyles.scrollView}
-      
+
 
           >
             <Text style={screenStyles.location}><Entypo size={20} name='location-pin' />Kecamatan Klojen</Text>
