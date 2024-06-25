@@ -4,7 +4,7 @@ import ColorPalette from "../../Assets/Themes/ColorPalette";
 
 const styles = (screenContext, width, height) => StyleSheet.create({
     
-    commentsContainer:{backgroundColor:ColorPalette.lightOrange,height:screenContext.isPortrait?height*0.75:width*0.55,elevation:5,borderRadius:20,margin:20},
+    commentsContainer:{backgroundColor:ColorPalette.lightOrange,height:screenContext.isPortrait?height*0.75:width*0.55,elevation:5,borderRadius:20,margin:20,overflow:'hidden'},
     emptyComponentContainer:{margin:30,alignSelf:'center'},
     emptyComponentText:{color:'white',fontSize:15,fontWeight:'bold'},
     loadingContainer:{margin:30,alignSelf:'center'},
