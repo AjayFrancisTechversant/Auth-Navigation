@@ -1,11 +1,9 @@
-import { View, Text, Alert, VirtualizedList, ActivityIndicator } from 'react-native'
+import { View, Text, Alert, VirtualizedList, ActivityIndicator, SectionList } from 'react-native'
 import React, { useEffect, useRef, useState } from 'react'
 import styles from './Style';
 import { useScreenContext } from '../../Contexts/ScreenContext';
 import MenuDrawerButton from '../../Components/MenuDrawerButton/MenuDrawerButton';
 import ColorPalette from '../../Assets/Themes/ColorPalette';
-import FontAwesome from 'react-native-vector-icons/FontAwesome'
-import ShareIcon from '../../Assets/SVGs/shareIcon.svg'
 import ChatIcon from '../../Assets/SVGs/chatIcon.svg'
 
 
@@ -28,12 +26,7 @@ const VL = ({ navigation }) => {
 
         }
     }
-    const getItem = (data, index) => {
-        return data[index];
-    };
-    const getItemCount = (data) => {
-        return data.length;
-    };
+ 
     const emptyComponent = () => {
         return (
             <View style={screenStyles.emptyComponentContainer}>
@@ -63,13 +56,16 @@ const VL = ({ navigation }) => {
                 {!loading ?
                     <VirtualizedList
                         data={comments}
-                        getItemCount={getItemCount}
-                        getItem={getItem}
-                        renderItem={({ item }) =>
-                        (<View style={screenStyles.commentCard}>
-                            <Text style={screenStyles.commentTitle} >{item.name}</Text>
-                            <Text >{item.body}</Text>
-                        </View>)
+                        getItemCount={data=>data.length}
+                        getItem={(data,index)=>data[index]}
+                        renderItem={({ item }) => {
+                            console.log(item.id);
+
+                            return (<View style={screenStyles.commentCard}>
+                                <Text style={screenStyles.commentTitle} >{item.name}</Text>
+                                <Text >{item.body}</Text>
+                            </View>)
+                        }
 
                         }
                         ListEmptyComponent={emptyComponent}
@@ -77,10 +73,12 @@ const VL = ({ navigation }) => {
                             <View style={screenStyles.separator}></View>
                         }
                         keyExtractor={(item) => item.id.toString()}
-                        initialNumToRender={5}
+                        initialNumToRender={10}
                         persistentScrollbar
-                    // maxToRenderPerBatch={10}
-
+                        maxToRenderPerBatch={20}
+                        windowSize={11}
+                        updateCellsBatchingPeriod={100}
+                        removeClippedSubviews={true}
                     />
                     :
                     <View style={screenStyles.loadingContainer}>
@@ -88,6 +86,8 @@ const VL = ({ navigation }) => {
                     </View>
                 }
             </View>
+        
+
         </View>
     )
 }
