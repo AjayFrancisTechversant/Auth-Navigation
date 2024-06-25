@@ -14,6 +14,7 @@ import AuthNativeStack from './src/Services/Navigation/Stacks/AuthNativeStack'
 import { PermissionsAndroid } from 'react-native';
 import messaging from '@react-native-firebase/messaging';
 import { PaperProvider } from 'react-native-paper'
+import VL from './src/modules/VL/VL'
 
 
 
@@ -98,8 +99,8 @@ export default function Main() {
           <PersistGate loading={null} persistor={persistor}>
             <GestureHandlerRootView>
               <PaperProvider>
-                <App />
-                {/* <VL/> */}
+                {/* <App /> */}
+                <VL/>
               </PaperProvider>
             </GestureHandlerRootView>
           </PersistGate>

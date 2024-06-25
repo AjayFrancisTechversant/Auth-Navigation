@@ -1,4 +1,4 @@
-import { View, Text, Alert, VirtualizedList, ActivityIndicator, SectionList } from 'react-native'
+import { View, Text, Alert, VirtualizedList, ActivityIndicator, } from 'react-native'
 import React, { useEffect, useRef, useState } from 'react'
 import styles from './Style';
 import { useScreenContext } from '../../Contexts/ScreenContext';
@@ -10,6 +10,7 @@ import ChatIcon from '../../Assets/SVGs/chatIcon.svg'
 const VL = ({ navigation }) => {
     const [comments, setComments] = useState([])
     const [loading, setLoading] = useState(true);
+    const renderCount = useRef(0);
 
     useEffect(() => {
         fecthComments()
@@ -26,6 +27,10 @@ const VL = ({ navigation }) => {
 
         }
     }
+    useEffect(() => {
+        renderCount.current += 1;
+        console.log(`VL component render count: ${renderCount.current}`);
+    });
  
     const emptyComponent = () => {
         return (
@@ -51,7 +56,6 @@ const VL = ({ navigation }) => {
                 <ChatIcon fill={ColorPalette.lightOrange} width={30} height={30} />
             </View>
 
-
             <View style={[screenStyles.commentsContainer,]}>
                 {!loading ?
                     <VirtualizedList
@@ -59,10 +63,10 @@ const VL = ({ navigation }) => {
                         getItemCount={data=>data.length}
                         getItem={(data,index)=>data[index]}
                         renderItem={({ item }) => {
-                            console.log(item.id);
+                            // console.log(item.id);
 
                             return (<View style={screenStyles.commentCard}>
-                                <Text style={screenStyles.commentTitle} >{item.name}</Text>
+                                <Text style={screenStyles.commentTitle} >{item.id}</Text>
                                 <Text >{item.body}</Text>
                             </View>)
                         }
