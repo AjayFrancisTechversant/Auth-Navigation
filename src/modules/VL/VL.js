@@ -5,6 +5,11 @@ import { useScreenContext } from '../../Contexts/ScreenContext';
 import MenuDrawerButton from '../../Components/MenuDrawerButton/MenuDrawerButton';
 import ColorPalette from '../../Assets/Themes/ColorPalette';
 import ChatIcon from '../../Assets/SVGs/chatIcon.svg'
+import CommentsContainer from '../../Components/CommentsContainer/CommentsContainer';
+
+
+
+
 
 
 const VL = ({ navigation }) => {
@@ -31,14 +36,8 @@ const VL = ({ navigation }) => {
         renderCount.current += 1;
         console.log(`VL component render count: ${renderCount.current}`);
     });
- 
-    const emptyComponent = () => {
-        return (
-            <View style={screenStyles.emptyComponentContainer}>
-                <Text style={screenStyles.emptyComponentText}> No comments :(</Text>
-            </View>
-        )
-    }
+
+   
 
     const screenContext = useScreenContext();
     const screenStyles = styles(
@@ -56,41 +55,8 @@ const VL = ({ navigation }) => {
                 <ChatIcon fill={ColorPalette.lightOrange} width={30} height={30} />
             </View>
 
-            <View style={[screenStyles.commentsContainer,]}>
-                {!loading ?
-                    <VirtualizedList
-                        data={comments}
-                        getItemCount={data=>data.length}
-                        getItem={(data,index)=>data[index]}
-                        renderItem={({ item }) => {
-                            // console.log(item.id);
+            <CommentsContainer comments={comments} loading={loading} ></CommentsContainer>
 
-                            return (<View style={screenStyles.commentCard}>
-                                <Text style={screenStyles.commentTitle} >{item.id}</Text>
-                                <Text >{item.body}</Text>
-                            </View>)
-                        }
-
-                        }
-                        ListEmptyComponent={emptyComponent}
-                        ListHeaderComponent={
-                            <View style={screenStyles.separator}></View>
-                        }
-                        keyExtractor={(item) => item.id.toString()}
-                        initialNumToRender={10}
-                        persistentScrollbar
-                        maxToRenderPerBatch={20}
-                        windowSize={11}
-                        updateCellsBatchingPeriod={100}
-                        removeClippedSubviews={true}
-                    />
-                    :
-                    <View style={screenStyles.loadingContainer}>
-                        <ActivityIndicator size={50} color={'white'} />
-                    </View>
-                }
-            </View>
-        
 
         </View>
     )
