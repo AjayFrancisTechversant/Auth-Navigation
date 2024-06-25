@@ -19,6 +19,7 @@ import ImageUploader from '../../../modules/ImageUploader/ImageUploader';
 import RNElements from '../../../modules/RNElements/RNElements';
 import Locator from '../../../modules/Locator/Locator';
 import VL from '../../../modules/VL/VL';
+import Gallery from '../../../modules/Gallery/Gallery';
 
 const HomeDrawerStack = () => {
     const Drawer = createDrawerNavigator()
@@ -33,8 +34,14 @@ const HomeDrawerStack = () => {
                 }}
                 name="HomeScreen" component={HomeScreen}
             />
-           
-              <Drawer.Screen
+            <Drawer.Screen
+                options={{
+                    drawerIcon: () => <Ionicons name='images' color={ColorPalette.green} size={20} />
+                }}
+                name="Gallery" component={Gallery}
+            />
+
+            <Drawer.Screen
                 options={{
                     drawerIcon: () => <Feather name="list" color={ColorPalette.green} size={20} />
                 }}
@@ -46,49 +53,49 @@ const HomeDrawerStack = () => {
                 }}
                 name="Notes (Watermelon DB)" component={Notes}
             />
-             <Drawer.Screen
+            <Drawer.Screen
                 options={{
                     drawerIcon: () => <MaterialCommunityIcons name='fruit-watermelon' color={ColorPalette.green} size={20} />
                 }}
                 name="OfflineDBFetch" component={OfflineDBFetch}
             />
-              <Drawer.Screen
+            <Drawer.Screen
                 options={{
                     drawerIcon: () => <MaterialCommunityIcons name='chart-arc' color={ColorPalette.green} size={20} />
                 }}
                 name="Charts" component={Charts}
             />
-             <Drawer.Screen
+            <Drawer.Screen
                 options={{
                     drawerIcon: () => <Ionicons name='logo-firebase' color={ColorPalette.green} size={20} />
                 }}
                 name="BooksFirestore" component={BooksFirestore}
             />
-             <Drawer.Screen
+            <Drawer.Screen
                 options={{
                     drawerIcon: () => <Ionicons name='logo-firebase' color={ColorPalette.green} size={20} />
                 }}
                 name="TodoRealtimeDatabase" component={BooksRealtimeDatabase}
             />
-             <Drawer.Screen
+            <Drawer.Screen
                 options={{
                     drawerIcon: () => <AntDesign name='cloudupload' color={ColorPalette.green} size={20} />
                 }}
                 name="Image Upload" component={ImageUploader}
             />
-              <Drawer.Screen
+            <Drawer.Screen
                 options={{
                     drawerIcon: () => <Ionicons name='logo-react' color={ColorPalette.green} size={20} />
                 }}
                 name="RN Elements" component={RNElements}
             />
-              <Drawer.Screen
+            <Drawer.Screen
                 options={{
                     drawerIcon: () => <Entypo name='location-pin' color={ColorPalette.green} size={20} />
                 }}
                 name="Locator" component={Locator}
             />
-              <Drawer.Screen
+            <Drawer.Screen
                 options={{
                     drawerIcon: () => <Entypo name='list' color={ColorPalette.green} size={20} />
                 }}

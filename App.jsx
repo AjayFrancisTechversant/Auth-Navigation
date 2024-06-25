@@ -15,6 +15,7 @@ import { PermissionsAndroid } from 'react-native';
 import messaging from '@react-native-firebase/messaging';
 import { PaperProvider } from 'react-native-paper'
 import VL from './src/modules/VL/VL'
+import Gallery from './src/modules/Gallery/Gallery'
 
 
 
@@ -99,7 +100,8 @@ export default function Main() {
           <PersistGate loading={null} persistor={persistor}>
             <GestureHandlerRootView>
               <PaperProvider>
-                <App />
+                {/* <App /> */}
+                <Gallery/>
               </PaperProvider>
             </GestureHandlerRootView>
           </PersistGate>
