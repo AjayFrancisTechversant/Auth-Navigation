@@ -1,10 +1,12 @@
 import { View, Text,  VirtualizedList, ActivityIndicator, } from 'react-native'
-import React, { } from 'react'
+import React, { memo, useEffect, useState } from 'react'
 import { useScreenContext } from '../../Contexts/ScreenContext';
 import styles from './Style';
 
 
+
 const CommentsContainer=(props)=> {
+ 
 
     const emptyComponent = () => {
         return (
@@ -49,4 +51,4 @@ const CommentsContainer=(props)=> {
         </View>);
 }
 
-export default CommentsContainer
+export default memo(CommentsContainer)
