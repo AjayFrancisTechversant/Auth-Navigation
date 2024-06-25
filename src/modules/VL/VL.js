@@ -1,4 +1,4 @@
-import { View, Text, Alert, VirtualizedList, ActivityIndicator, } from 'react-native'
+import { View, Text, } from 'react-native'
 import React, { useEffect, useRef, useState } from 'react'
 import styles from './Style';
 import { useScreenContext } from '../../Contexts/ScreenContext';
@@ -6,9 +6,6 @@ import MenuDrawerButton from '../../Components/MenuDrawerButton/MenuDrawerButton
 import ColorPalette from '../../Assets/Themes/ColorPalette';
 import ChatIcon from '../../Assets/SVGs/chatIcon.svg'
 import CommentsContainer from '../../Components/CommentsContainer/CommentsContainer';
-
-
-
 
 
 
