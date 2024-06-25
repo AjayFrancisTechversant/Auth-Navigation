@@ -12,12 +12,11 @@ import CommentsContainer from '../../Components/CommentsContainer/CommentsContai
 const VL = ({ navigation }) => {
     const [comments, setComments] = useState([])
     const [loading, setLoading] = useState(true);
-    const renderCount = useRef(0);
 
     useEffect(() => {
-        fecthComments()
+        fetchComments()
     }, [])
-    const fecthComments = async () => {
+    const fetchComments = async () => {
         try {
             const res = await fetch('https://jsonplaceholder.typicode.com/comments')
             const data = await res.json()
@@ -29,12 +28,7 @@ const VL = ({ navigation }) => {
 
         }
     }
-    useEffect(() => {
-        renderCount.current += 1;
-        console.log(`VL component render count: ${renderCount.current}`);
-    });
-
-   
+      
 
     const screenContext = useScreenContext();
     const screenStyles = styles(
@@ -51,10 +45,7 @@ const VL = ({ navigation }) => {
                 <Text style={screenStyles.heading}>Comments</Text>
                 <ChatIcon fill={ColorPalette.lightOrange} width={30} height={30} />
             </View>
-
             <CommentsContainer comments={comments} loading={loading} ></CommentsContainer>
-
-
         </View>
     )
 }

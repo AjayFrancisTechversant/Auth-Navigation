@@ -1,12 +1,10 @@
 import { View, Text,  VirtualizedList, ActivityIndicator, } from 'react-native'
-import React, { memo, useEffect, useState } from 'react'
+import React, { memo, useEffect, useRef } from 'react'
 import { useScreenContext } from '../../Contexts/ScreenContext';
 import styles from './Style';
 
 
-
-const CommentsContainer=(props)=> {
- 
+const CommentsContainer=({loading,comments})=> {
 
     const emptyComponent = () => {
         return (
@@ -15,6 +13,7 @@ const CommentsContainer=(props)=> {
             </View>
         )
     }
+  
 
     const screenContext = useScreenContext();
     const screenStyles = styles(
@@ -24,9 +23,9 @@ const CommentsContainer=(props)=> {
     );
     return (
         <View style={[screenStyles.commentsContainer]}>
-            {!props.loading ?
+            {!loading ?
                 <VirtualizedList
-                    data={props.comments}
+                    data={comments}
                     getItemCount={data => data.length}
                     getItem={(data, index) => data[index]}
                     renderItem={({ item }) =>
@@ -51,4 +50,8 @@ const CommentsContainer=(props)=> {
         </View>);
 }
 
-export default memo(CommentsContainer)
+const areEqual = (prevProps, nextProps) => {
+    return prevProps.loading === nextProps.loading;
+};
+
+export default React.memo(CommentsContainer, areEqual);
