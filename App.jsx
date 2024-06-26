@@ -14,8 +14,7 @@ import AuthNativeStack from './src/Services/Navigation/Stacks/AuthNativeStack'
 import { PermissionsAndroid } from 'react-native';
 import messaging from '@react-native-firebase/messaging';
 import { PaperProvider } from 'react-native-paper'
-import VL from './src/modules/VL/VL'
-import Gallery from './src/modules/Gallery/Gallery'
+import DatePickerScreen from './src/modules/DatePickerScreen/DatePickerScreen'
 
 
 
@@ -101,7 +100,7 @@ export default function Main() {
             <GestureHandlerRootView>
               <PaperProvider>
                 {/* <App /> */}
-                <Gallery/>
+                <DatePickerScreen />
               </PaperProvider>
             </GestureHandlerRootView>
           </PersistGate>
