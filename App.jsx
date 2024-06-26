@@ -1,4 +1,4 @@
-import { StatusBar, StyleSheet } from 'react-native'
+import { StyleSheet } from 'react-native'
 import React, { useEffect, useState } from 'react'
 import { NavigationContainer } from '@react-navigation/native'
 import { createNativeStackNavigator } from '@react-navigation/native-stack'
@@ -17,6 +17,7 @@ import { PaperProvider } from 'react-native-paper'
 import DatePickerScreen from './src/modules/DatePickerScreen/DatePickerScreen'
 import Calender from './src/modules/Calender/Calender'
 import I18njs from './src/modules/I18njs/I18njs'
+import Skia from './src/modules/Skia/Skia'
 
 
 
@@ -70,9 +71,7 @@ const App = () => {
   return (
 
     <NavigationContainer linking={linking}>
-      <StatusBar
-                hidden={true}
-            />
+
       {!user ?
         <Stack.Navigator  >
           <Stack.Screen
@@ -104,8 +103,8 @@ export default function Main() {
           <PersistGate loading={null} persistor={persistor}>
             <GestureHandlerRootView>
               <PaperProvider>
-                <App />
-                {/* <I18njs/> */}
+                {/* <App /> */}
+                <Skia />
               </PaperProvider>
             </GestureHandlerRootView>
           </PersistGate>

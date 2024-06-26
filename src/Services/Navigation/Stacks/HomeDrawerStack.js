@@ -25,6 +25,7 @@ import DatePicker from '../../../modules/DatePickerScreen/DatePickerScreen';
 import Calender from '../../../modules/Calender/Calender';
 import i18njs from '../../../modules/I18njs/I18njs';
 import RNPaper from '../../../modules/RNPaper/RNPaper';
+import Skia from '../../../modules/Skia/Skia';
 
 
 const HomeDrawerStack = () => {
@@ -65,6 +66,12 @@ const HomeDrawerStack = () => {
                     drawerIcon: () => <Ionicons name='language' color={ColorPalette.green} size={20} />
                 }}
                 name="i18n-js" component={i18njs}
+            />
+               <Drawer.Screen
+                options={{
+                    drawerIcon: () => <Ionicons name='logo-react' color={ColorPalette.green} size={20} />
+                }}
+                name="Skia" component={Skia}
             />
             <Drawer.Screen
                 options={{
