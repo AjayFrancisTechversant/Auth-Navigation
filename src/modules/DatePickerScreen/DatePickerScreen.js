@@ -41,7 +41,7 @@ const DatePickerScreen = () => {
                         setMode('date')
                     }}
                     style={screenStyles.button}>
-                    <EvilIcons name='calendar' color={ColorPalette.green} size={30} />
+                    <EvilIcons style={screenStyles.calenderIcon} name='calendar' color={ColorPalette.green} size={45} />
 
                 </TouchableOpacity>
             </View>
@@ -64,7 +64,7 @@ const DatePickerScreen = () => {
                         setMode('time')
                     }}
                     style={screenStyles.button}>
-                    <Feather name='clock' size={20} color={ColorPalette.green} />
+                    <Feather name='clock' size={30} color={ColorPalette.green} />
                 </TouchableOpacity>
             </View>
             <DatePicker
