@@ -28,7 +28,7 @@ const DrawerContents = (props) => {
             <DrawerContentScrollView {...props}>
             <DrawerItemList {...props} />
             </DrawerContentScrollView>
-            <DrawerItem 
+            <DrawerItem style={{borderTopWidth:1,borderTopColor:'grey'}}
             label="Logout"
             onPress={handleLogout}
             icon={() => <MaterialIcons size={20} color={ColorPalette.green} name="logout" />}
