@@ -64,7 +64,7 @@ const DatePickerScreen = () => {
                         setMode('time')
                     }}
                     style={screenStyles.button}>
-                    <Feather name='clock' size={30} color={ColorPalette.green} />
+                    <Feather name='clock' size={20} color={ColorPalette.green} />
                 </TouchableOpacity>
             </View>
             <DatePicker
