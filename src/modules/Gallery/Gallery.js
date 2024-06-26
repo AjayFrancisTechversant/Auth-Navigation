@@ -34,7 +34,7 @@ const Gallery = () => {
         topRef?.current?.scrollToOffset({offset:index*width,animated:true})
         if(index*(imageSize+spacing)-imageSize/2>width/2){
             bottomRef?.current?.scrollToOffset({
-                offset:index*(imageSize+spacing)-width/2+imageSize/2,
+                offset:index*(imageSize+spacing)-width/2+imageSize/2+spacing,
                 animated:true})
         }else{
             bottomRef?.current?.scrollToOffset({
@@ -57,7 +57,8 @@ const Gallery = () => {
                 horizontal
                 pagingEnabled
                 onMomentumScrollEnd={ev => {
-                    scrollToActiveIndex(Math.floor(ev.nativeEvent.contentOffset.x/ width) )
+                    scrollToActiveIndex(Math.floor((ev.nativeEvent.contentOffset.x/ width)+0.2) )
+                    //+0.2 added extra
                 }}
                 showsHorizontalScrollIndicator={false}
                 keyExtractor={item => item.id.toString()}
