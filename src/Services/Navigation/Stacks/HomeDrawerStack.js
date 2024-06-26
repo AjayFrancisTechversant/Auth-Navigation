@@ -24,6 +24,7 @@ import Gallery from '../../../modules/Gallery/Gallery';
 import DatePicker from '../../../modules/DatePickerScreen/DatePickerScreen';
 import Calender from '../../../modules/Calender/Calender';
 import i18njs from '../../../modules/I18njs/I18njs';
+import RNPaper from '../../../modules/RNPaper/RNPaper';
 
 
 const HomeDrawerStack = () => {
@@ -32,7 +33,9 @@ const HomeDrawerStack = () => {
         <Drawer.Navigator screenOptions={{
             drawerPosition: 'left', headerShown: false,
             drawerActiveTintColor: ColorPalette.green
-        }} drawerContent={(props) => <DrawerContents {...props} />}>
+        }}
+
+        drawerContent={(props) => <DrawerContents {...props} />}>
             <Drawer.Screen
                 options={{
                     drawerIcon: () => <Entypo name='home' color={ColorPalette.green} size={20} />
@@ -41,9 +44,9 @@ const HomeDrawerStack = () => {
             />
             <Drawer.Screen
                 options={{
-                    drawerIcon: () => <Ionicons name='images' color={ColorPalette.green} size={20} />
+                    drawerIcon: () => <Ionicons name='newspaper' color={ColorPalette.green} size={20} />
                 }}
-                name="Gallery" component={Gallery}
+                name="RN Paper" component={RNPaper}
             />
             <Drawer.Screen
                 options={{

@@ -8,6 +8,7 @@ import Ionicons from 'react-native-vector-icons/Ionicons'
 import Booking from '../../../modules/Booking/Booking';
 import FontAwesome6 from 'react-native-vector-icons/FontAwesome6'
 import RNPaper from '../../../modules/RNPaper/RNPaper';
+import Gallery from '../../../modules/Gallery/Gallery';
 
 
 const HomeTabStack = () => {
@@ -25,12 +26,12 @@ const HomeTabStack = () => {
                 }}
             />
             <HomeTabStack.Screen
-                name='RN Paper'
-                component={RNPaper}
+                name='Gallery'
+                component={Gallery}
                 options={{
                     headerShown: false,
                     tabBarIcon: ({ color, size }) => (
-                        <Ionicons name='newspaper' color={color} size={size} />
+                        <Ionicons name='images' color={color} size={size} />
                     )
                 }}
             />

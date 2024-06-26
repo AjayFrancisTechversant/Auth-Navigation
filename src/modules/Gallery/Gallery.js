@@ -42,7 +42,6 @@ const Gallery = () => {
                 animated:true})
         }
     }
-    console.log(activeIndex);
     
     const screenStyles = styles(
         width,
