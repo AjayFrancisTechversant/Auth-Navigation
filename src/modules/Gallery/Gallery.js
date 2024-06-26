@@ -1,4 +1,4 @@
-import { View, Text, FlatList, Image, StyleSheet, Dimensions, TouchableOpacity, Button, Touchable } from 'react-native'
+import { View, Text, FlatList, Image, Dimensions, TouchableOpacity,  } from 'react-native'
 import React, { useEffect, useRef, useState } from 'react'
 import { useScreenContext } from '../../Contexts/ScreenContext';
 import styles from './Style';
@@ -7,7 +7,7 @@ import { PEXELS_API_KEY } from '../../Services/API/PexelsAPI'
 const { height, width } = Dimensions.get('screen')
 const ApiUrl = 'https://api.pexels.com/v1/search?query=nature&orientation=portrait&size=small&per_page=20'
 const imageSize = 80;
-const spacing=10
+const spacing = 10
 
 const Gallery = () => {
     const [images, setImages] = useState([])
@@ -31,18 +31,20 @@ const Gallery = () => {
     }
     const scrollToActiveIndex = (index) => {
         setActiveIndex(index)
-        topRef?.current?.scrollToOffset({offset:index*width,animated:true})
-        if(index*(imageSize+spacing)-imageSize/2>width/2){
+        topRef?.current?.scrollToOffset({ offset: index * width, animated: true })
+        if (index * (imageSize + spacing) - imageSize / 2 > width / 2) {
             bottomRef?.current?.scrollToOffset({
-                offset:index*(imageSize+spacing)-width/2+imageSize/2+spacing,
-                animated:true})
-        }else{
+                offset: index * (imageSize + spacing) - width / 2 + imageSize / 2 + spacing,
+                animated: true
+            })
+        } else {
             bottomRef?.current?.scrollToOffset({
-                offset:0,
-                animated:true})
+                offset: 0,
+                animated: true
+            })
         }
     }
-    
+
     const screenStyles = styles(
         width,
         height,
@@ -51,12 +53,13 @@ const Gallery = () => {
     );
     return (
         <View style={screenStyles.canvas} >
+            
             <FlatList
                 ref={topRef}
                 horizontal
                 pagingEnabled
                 onMomentumScrollEnd={ev => {
-                    scrollToActiveIndex(Math.floor((ev.nativeEvent.contentOffset.x/ width)+0.2) )
+                    scrollToActiveIndex(Math.floor((ev.nativeEvent.contentOffset.x / width) + 0.2))
                     //+0.2 added extra
                 }}
                 showsHorizontalScrollIndicator={false}
@@ -78,11 +81,11 @@ const Gallery = () => {
                 showsHorizontalScrollIndicator={false}
                 keyExtractor={item => item.id.toString()}
                 data={images}
-                renderItem={({ item,index }) => {
+                renderItem={({ item, index }) => {
                     return (
-                        <TouchableOpacity onPress={()=>scrollToActiveIndex(index)}>
+                        <TouchableOpacity onPress={() => scrollToActiveIndex(index)}>
                             <Image source={{ uri: item.src.portrait }}
-                                style={[screenStyles.bottomImage,{borderWidth:2,borderColor:index===activeIndex?'white':'transparent'}]}
+                                style={[screenStyles.bottomImage, { borderWidth: 2, borderColor: index === activeIndex ? 'white' : 'transparent' }]}
                             />
                         </TouchableOpacity>
                     )

@@ -1,4 +1,4 @@
-import { StyleSheet } from 'react-native'
+import { StatusBar, StyleSheet } from 'react-native'
 import React, { useEffect, useState } from 'react'
 import { NavigationContainer } from '@react-navigation/native'
 import { createNativeStackNavigator } from '@react-navigation/native-stack'
@@ -70,6 +70,9 @@ const App = () => {
   return (
 
     <NavigationContainer linking={linking}>
+      <StatusBar
+                hidden={true}
+            />
       {!user ?
         <Stack.Navigator  >
           <Stack.Screen
