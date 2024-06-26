@@ -22,6 +22,8 @@ import Locator from '../../../modules/Locator/Locator';
 import VL from '../../../modules/VL/VL';
 import Gallery from '../../../modules/Gallery/Gallery';
 import DatePicker from '../../../modules/DatePickerScreen/DatePickerScreen';
+import Calender from '../../../modules/Calender/Calender';
+import i18njs from '../../../modules/I18njs/I18njs';
 
 
 const HomeDrawerStack = () => {
@@ -43,14 +45,24 @@ const HomeDrawerStack = () => {
                 }}
                 name="Gallery" component={Gallery}
             />
-             <Drawer.Screen
+            <Drawer.Screen
                 options={{
                     drawerIcon: () => <EvilIcons name='calendar' color={ColorPalette.green} size={20} />
                 }}
                 name="DatePicker" component={DatePicker}
             />
-
-          
+            <Drawer.Screen
+                options={{
+                    drawerIcon: () => <EvilIcons name='calendar' color={ColorPalette.green} size={20} />
+                }}
+                name="Calender" component={Calender}
+            />
+            <Drawer.Screen
+                options={{
+                    drawerIcon: () => <Ionicons name='language' color={ColorPalette.green} size={20} />
+                }}
+                name="i18n-js" component={i18njs}
+            />
             <Drawer.Screen
                 options={{
                     drawerIcon: () => <FontAwesome6 name='note-sticky' color={ColorPalette.green} size={20} />
@@ -105,7 +117,7 @@ const HomeDrawerStack = () => {
                 }}
                 name="Virtualised List" component={VL}
             />
-              <Drawer.Screen
+            <Drawer.Screen
                 options={{
                     drawerIcon: () => <Feather name="list" color={ColorPalette.green} size={20} />
                 }}

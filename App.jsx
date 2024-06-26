@@ -15,6 +15,8 @@ import { PermissionsAndroid } from 'react-native';
 import messaging from '@react-native-firebase/messaging';
 import { PaperProvider } from 'react-native-paper'
 import DatePickerScreen from './src/modules/DatePickerScreen/DatePickerScreen'
+import Calender from './src/modules/Calender/Calender'
+import I18njs from './src/modules/I18njs/I18njs'
 
 
 
@@ -100,7 +102,7 @@ export default function Main() {
             <GestureHandlerRootView>
               <PaperProvider>
                 {/* <App /> */}
-                <DatePickerScreen />
+                <I18njs/>
               </PaperProvider>
             </GestureHandlerRootView>
           </PersistGate>
