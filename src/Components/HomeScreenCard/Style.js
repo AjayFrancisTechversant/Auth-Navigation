@@ -51,7 +51,7 @@ const styles = (screenContext, width, height) =>
     },
     modalButtonsContainer: {
       flexDirection: 'row',
-      width: height*0.118,
+      width: width*0.3,
       justifyContent: 'space-evenly',
       marginVertical: height*0.01,
     },
