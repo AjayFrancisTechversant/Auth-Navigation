@@ -1,4 +1,7 @@
-import { schemaMigrations, createTable } from '@nozbe/watermelondb/Schema/migrations'
+import {
+  schemaMigrations,
+  createTable,
+} from '@nozbe/watermelondb/Schema/migrations';
 
 export default schemaMigrations({
   migrations: [
@@ -10,15 +13,14 @@ export default schemaMigrations({
         createTable({
           name: 'users',
           columns: [
-            { name: 'name', type: 'string' },
-            { name: 'age', type: 'number' },
-            { name: 'gender', type: 'string', },
-            { name: 'email', type: 'string', },
-            { name: 'phone', type: 'string', },
+            {name: 'name', type: 'string'},
+            {name: 'age', type: 'number'},
+            {name: 'gender', type: 'string'},
+            {name: 'email', type: 'string'},
+            {name: 'phone', type: 'string'},
           ],
         }),
       ],
     },
-
   ],
-})
+});

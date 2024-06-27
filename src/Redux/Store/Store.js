@@ -1,8 +1,8 @@
-import { configureStore,combineReducers } from '@reduxjs/toolkit';
-import { persistReducer, persistStore } from 'redux-persist';
+import {configureStore, combineReducers} from '@reduxjs/toolkit';
+import {persistReducer, persistStore} from 'redux-persist';
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import LikesReducer from '../Slices/LikeSlice'; 
-import AddFriendReducer from '../Slices/AddFriendSlice'
+import LikesReducer from '../Slices/LikeSlice';
+import AddFriendReducer from '../Slices/AddFriendSlice';
 
 // Configure persist options
 const persistConfig = {
@@ -14,19 +14,18 @@ const persistConfig = {
 };
 
 //combine all reducers into rootreducers
-const rootReducer=combineReducers({
-  Likes:LikesReducer,
-  AddFriend:AddFriendReducer
+const rootReducer = combineReducers({
+  Likes: LikesReducer,
+  AddFriend: AddFriendReducer,
+});
 
-})
-
-// Create a persisted reducer 
+// Create a persisted reducer
 const persistedReducer = persistReducer(persistConfig, rootReducer);
 
 // Create the Redux store using configureStore and the persisted reducer
 const store = configureStore({
-  reducer:  persistedReducer ,
-  middleware: (getDefaultMiddleware) =>
+  reducer: persistedReducer,
+  middleware: getDefaultMiddleware =>
     getDefaultMiddleware({
       immutableCheck: false,
       serializableCheck: false,
@@ -36,4 +35,4 @@ const store = configureStore({
 // Create a persisted store using persistStore
 const persistor = persistStore(store);
 
-export { store, persistor };
+export {store, persistor};

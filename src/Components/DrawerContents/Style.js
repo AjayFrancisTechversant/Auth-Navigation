@@ -1,9 +1,10 @@
-import { StyleSheet } from "react-native"
-import Colors from "../../Assets/Themes/ColorPalette"
-import ColorPalette from "../../Assets/Themes/ColorPalette"
-
+import {StyleSheet} from 'react-native';
 
 const styles = (screenContext, width, height) =>
-    StyleSheet.create({
-    })
-export default styles
+  StyleSheet.create({
+    drawerItemStyle: {
+      borderTopWidth: 1,
+      borderTopColor: 'grey',
+    },
+  });
+export default styles;

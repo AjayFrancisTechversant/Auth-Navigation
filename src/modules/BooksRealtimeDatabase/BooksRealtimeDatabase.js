@@ -1,13 +1,19 @@
-import { View, Text, FlatList, TouchableOpacity, Alert, Modal } from 'react-native';
-import React, { useState, useEffect } from 'react';
-import styles from './Style';
-import { useScreenContext } from '../../Contexts/ScreenContext';
+import {
+  View,
+  Text,
+  FlatList,
+  TouchableOpacity,
+  Alert,
+  Modal,
+} from 'react-native';
+import React, {useState, useEffect} from 'react';
 import database from '@react-native-firebase/database';
-import { TextInput } from 'react-native-paper';
+import {TextInput} from 'react-native-paper';
+import AntDesign from 'react-native-vector-icons/AntDesign';
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
 import ColorPalette from '../../Assets/Themes/ColorPalette';
-import AntDesign from 'react-native-vector-icons/AntDesign'
-
+import {useScreenContext} from '../../Contexts/ScreenContext';
+import styles from './Style';
 
 const BooksRealtimeDatabase = () => {
   const [title, setTitle] = useState('');
@@ -28,7 +34,9 @@ const BooksRealtimeDatabase = () => {
       .ref('/todo')
       .on('value', snapshot => {
         const data = snapshot.val();
-        const booksList = data ? Object.keys(data).map(key => ({ ...data[key], key })) : [];
+        const booksList = data
+          ? Object.keys(data).map(key => ({...data[key], key}))
+          : [];
         setBooks(booksList);
       });
     return () => database().ref('/todo').off('value', onValueChange);
@@ -37,7 +45,9 @@ const BooksRealtimeDatabase = () => {
   const handleAdd = async () => {
     if (title) {
       try {
-        await database().ref('/todo/' + title).set({ title, desc });
+        await database()
+          .ref('/todo/' + title)
+          .set({title, desc});
         setTitle('');
         setDesc('');
       } catch (error) {
@@ -48,28 +58,33 @@ const BooksRealtimeDatabase = () => {
     }
   };
 
-  const handleDelete = async (key) => {
+  const handleDelete = async key => {
     try {
-      await database().ref('/todo/' + key).remove();
+      await database()
+        .ref('/todo/' + key)
+        .remove();
     } catch (error) {
       console.log(error);
     }
   };
 
-  const openEditModal = (book) => {
+  const openEditModal = book => {
     setSelectedBook(book);
     setModalVisible(true);
   };
 
   const handleEdit = async () => {
- if(selectedBook.title){   try {
-      await database().ref('/todo/' + selectedBook.key).update({ title: selectedBook.title, desc: selectedBook.desc });
-      setModalVisible(false);
-      setSelectedBook(null);
-    } catch (error) {
-      console.log(error);
-    }}
-    else{
+    if (selectedBook.title) {
+      try {
+        await database()
+          .ref('/todo/' + selectedBook.key)
+          .update({title: selectedBook.title, desc: selectedBook.desc});
+        setModalVisible(false);
+        setSelectedBook(null);
+      } catch (error) {
+        console.log(error);
+      }
+    } else {
       Alert.alert('Validation Error', 'Please provide a title');
     }
   };
@@ -80,10 +95,12 @@ const BooksRealtimeDatabase = () => {
         <FlatList
           data={books}
           ListEmptyComponent={
-            <Text style={screenStyles.noItemsToDisplay}>No Items to Display!!</Text>
+            <Text style={screenStyles.noItemsToDisplay}>
+              No Items to Display!!
+            </Text>
           }
           ListHeaderComponent={
-            <>
+            <View>
               <Text style={screenStyles.title}>Realtime Database</Text>
               <View style={screenStyles.addContainer}>
                 <TextInput
@@ -93,7 +110,7 @@ const BooksRealtimeDatabase = () => {
                   activeUnderlineColor={ColorPalette.green}
                   outlineColor={ColorPalette.green}
                   activeOutlineColor={ColorPalette.green}
-                  onChangeText={(e) => setTitle(e)}
+                  onChangeText={e => setTitle(e)}
                   mode="outlined"
                   label="Title"
                 />
@@ -104,7 +121,7 @@ const BooksRealtimeDatabase = () => {
                   activeUnderlineColor={ColorPalette.green}
                   outlineColor={ColorPalette.green}
                   activeOutlineColor={ColorPalette.green}
-                  onChangeText={(e) => setDesc(e)}
+                  onChangeText={e => setDesc(e)}
                   mode="outlined"
                   label="Description"
                 />
@@ -115,9 +132,9 @@ const BooksRealtimeDatabase = () => {
                 </TouchableOpacity>
               </View>
               <Text style={screenStyles.title}>Books:</Text>
-            </>
+            </View>
           }
-          renderItem={({ item }) => (
+          renderItem={({item}) => (
             <View style={screenStyles.card}>
               <View>
                 <Text style={screenStyles.itemTitle}>{item.title}</Text>
@@ -125,10 +142,18 @@ const BooksRealtimeDatabase = () => {
               </View>
               <View style={screenStyles.iconContainer}>
                 <TouchableOpacity onPress={() => handleDelete(item.key)}>
-                  <MaterialIcons name='delete' size={30} color={ColorPalette.red} />
+                  <MaterialIcons
+                    name="delete"
+                    size={30}
+                    color={ColorPalette.red}
+                  />
                 </TouchableOpacity>
                 <TouchableOpacity onPress={() => openEditModal(item)}>
-                  <MaterialIcons name='edit' size={30} color={ColorPalette.yellow} />
+                  <MaterialIcons
+                    name="edit"
+                    size={30}
+                    color={ColorPalette.yellow}
+                  />
                 </TouchableOpacity>
               </View>
             </View>
@@ -143,8 +168,7 @@ const BooksRealtimeDatabase = () => {
             onRequestClose={() => {
               setModalVisible(!modalVisible);
               setSelectedBook(null);
-            }}
-          >
+            }}>
             <View style={screenStyles.modalContainer}>
               <View style={screenStyles.modal}>
                 <Text style={screenStyles.modalTitle}>Edit Book</Text>
@@ -155,7 +179,9 @@ const BooksRealtimeDatabase = () => {
                   activeUnderlineColor={ColorPalette.green}
                   outlineColor={ColorPalette.green}
                   activeOutlineColor={ColorPalette.green}
-                  onChangeText={(text) => setSelectedBook({ ...selectedBook, title: text })}
+                  onChangeText={text =>
+                    setSelectedBook({...selectedBook, title: text})
+                  }
                   mode="outlined"
                   label="Title"
                 />
@@ -166,18 +192,26 @@ const BooksRealtimeDatabase = () => {
                   activeUnderlineColor={ColorPalette.green}
                   outlineColor={ColorPalette.green}
                   activeOutlineColor={ColorPalette.green}
-                  onChangeText={(text) => setSelectedBook({ ...selectedBook, desc: text })}
+                  onChangeText={text =>
+                    setSelectedBook({...selectedBook, desc: text})
+                  }
                   mode="outlined"
                   label="Description"
                 />
                 <View style={screenStyles.flexRow}>
                   <TouchableOpacity onPress={handleEdit}>
-                    <AntDesign size={30} color={ColorPalette.green} name='check' />
+                    <AntDesign
+                      size={30}
+                      color={ColorPalette.green}
+                      name="check"
+                    />
                   </TouchableOpacity>
                   <TouchableOpacity onPress={() => setModalVisible(false)}>
-
-                    <AntDesign size={30} color={ColorPalette.red} name='close' />
-
+                    <AntDesign
+                      size={30}
+                      color={ColorPalette.red}
+                      name="close"
+                    />
                   </TouchableOpacity>
                 </View>
               </View>

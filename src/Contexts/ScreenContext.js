@@ -1,7 +1,7 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import React, {useState, useContext, useEffect} from 'react';
 import {Dimensions as dim, useWindowDimensions} from 'react-native';
-import { isTablet } from 'react-native-device-info';
+import {isTablet} from 'react-native-device-info';
 
 const ScreenContext = React.createContext();
 

@@ -1,28 +1,32 @@
-import { View, ImageBackground, TouchableOpacity, } from 'react-native'
-import React, { useEffect } from 'react'
-import { useScreenContext } from '../../Contexts/ScreenContext';
-import styles from './Style';
-import { Text } from 'react-native-paper';
-import Entypo from 'react-native-vector-icons/Entypo'
-import Ionicons from 'react-native-vector-icons/Ionicons'
-import FontAwesome from 'react-native-vector-icons/FontAwesome'
-import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
+import {View, ImageBackground, TouchableOpacity} from 'react-native';
+import React, {useEffect} from 'react';
+import {Text} from 'react-native-paper';
+import Entypo from 'react-native-vector-icons/Entypo';
+import Ionicons from 'react-native-vector-icons/Ionicons';
+import FontAwesome from 'react-native-vector-icons/FontAwesome';
+import {KeyboardAwareScrollView} from 'react-native-keyboard-aware-scroll-view';
+import {width} from '@fortawesome/free-brands-svg-icons/fa42Group';
+import {Gesture, GestureDetector} from 'react-native-gesture-handler';
+import Animated, {
+  Extrapolation,
+  interpolate,
+  useAnimatedStyle,
+  useSharedValue,
+  withSpring,
+} from 'react-native-reanimated';
+import HomeScreen from '../HomeScreen/HomeScreen';
 import ColorPalette from '../../Assets/Themes/ColorPalette';
 import SliderButton from '../../Components/SliderButton/SliderButton';
-import { width } from '@fortawesome/free-brands-svg-icons/fa42Group';
-import HomeScreen from '../HomeScreen/HomeScreen';
-import { Gesture, GestureDetector } from 'react-native-gesture-handler';
-import Animated, { Extrapolation, interpolate, useAnimatedStyle, useSharedValue, withSpring } from 'react-native-reanimated';
-import MenuDrawerButton from '../../Components/MenuDrawerButton/MenuDrawerButton';
-
+import {useScreenContext} from '../../Contexts/ScreenContext';
+import styles from './Style';
 
 function clamp(val, min, max) {
   return Math.min(Math.max(val, min), max);
 }
-const AnimatedImageBackground = Animated.createAnimatedComponent(ImageBackground)
+const AnimatedImageBackground =
+  Animated.createAnimatedComponent(ImageBackground);
 
-
-const Booking = ({ navigation }) => {
+const Booking = ({navigation}) => {
   const screenContext = useScreenContext();
   const screenStyles = styles(
     screenContext,
@@ -31,90 +35,93 @@ const Booking = ({ navigation }) => {
   );
 
   const handleSliderSubmit = () => {
-    navigation.navigate(HomeScreen)
-  }
+    navigation.navigate(HomeScreen);
+  };
   const translationY = useSharedValue(0);
   const prevTranslationY = useSharedValue(0);
   const opacity = useSharedValue(0);
 
   const overlapCardAnimatedStyles = useAnimatedStyle(() => ({
-    transform: [
-      { translateY: translationY.value },
-    ],
+    transform: [{translateY: translationY.value}],
   }));
   const imageAnimatedStyles = useAnimatedStyle(() => ({
-    opacity: opacity.value
+    opacity: opacity.value,
   }));
 
   useEffect(() => {
-    opacity.value = 1
-  }, [])
-
-
+    opacity.value = 1;
+  }, []);
 
   const pan = Gesture.Pan()
     .minDistance(1)
     .onStart(() => {
-      withSpring(prevTranslationY.value = translationY.value)
+      withSpring((prevTranslationY.value = translationY.value));
     })
-    .onUpdate((event) => {
+    .onUpdate(event => {
       const maxTranslateY = 0;
       const minTranslateY = -screenContext.windowHeight * 0.34;
 
-      translationY.value = withSpring(clamp(
-        prevTranslationY.value + event.translationY,
-        minTranslateY,
-        maxTranslateY)
-      )
-      opacity.value = interpolate(translationY.value, [0, -250], [1, 0], Extrapolation.CLAMP
-
-      )
+      translationY.value = withSpring(
+        clamp(
+          prevTranslationY.value + event.translationY,
+          minTranslateY,
+          maxTranslateY,
+        ),
+      );
+      opacity.value = interpolate(
+        translationY.value,
+        [0, -250],
+        [1, 0],
+        Extrapolation.CLAMP,
+      );
     })
     .runOnJS(true);
 
   return (
     <View style={screenStyles.wholeContainer}>
-
       <View style={screenStyles.bgImageContainer}>
         <AnimatedImageBackground
-          source={require('../../Assets/Images/2GreenCups.jpg')} style={[imageAnimatedStyles, screenStyles.bgImage]} imageStyle={screenStyles.bgImageStyle}
-        >
-
-        </AnimatedImageBackground>
+          source={require('../../Assets/Images/2GreenCups.jpg')}
+          style={[imageAnimatedStyles, screenStyles.bgImage]}
+          imageStyle={screenStyles.bgImageStyle}></AnimatedImageBackground>
       </View>
 
-
-      <Animated.View style={[overlapCardAnimatedStyles, screenStyles.contentsContainer]}>
-        <View style={{ height: 5, width: 30, backgroundColor: 'grey',borderRadius:5,alignSelf:'center',marginTop:10 }}>
-
-        </View>
-        <View style={screenStyles.contentsSubContainer} >
-
+      <Animated.View
+        style={[overlapCardAnimatedStyles, screenStyles.contentsContainer]}>
+        <View
+          style={{
+            height: 5,
+            width: 30,
+            backgroundColor: 'grey',
+            borderRadius: 5,
+            alignSelf: 'center',
+            marginTop: 10,
+          }}></View>
+        <View style={screenStyles.contentsSubContainer}>
           <GestureDetector gesture={pan}>
-
             <View style={screenStyles.titleAndPriceContainer}>
               <Text style={screenStyles.title}>Forest Camping</Text>
               <Text style={screenStyles.price}>$299</Text>
             </View>
           </GestureDetector>
 
-
-
-          <KeyboardAwareScrollView
-            style={screenStyles.scrollView}
-
-
-          >
-            <Text style={screenStyles.location}><Entypo size={20} name='location-pin' />Kecamatan Klojen</Text>
+          <KeyboardAwareScrollView style={screenStyles.scrollView}>
+            <Text style={screenStyles.location}>
+              <Entypo size={20} name="location-pin" />
+              Kecamatan Klojen
+            </Text>
             <Text>
-              <FontAwesome name='star' size={20} color='gold' />
-              <FontAwesome name='star' size={20} color='gold' />
-              <FontAwesome name='star' size={20} color='gold' />
-              <FontAwesome name='star' size={20} color='gold' />
-              <FontAwesome name='star-half-empty' size={20} color='gold' />(4.5)
+              <FontAwesome name="star" size={20} color="gold" />
+              <FontAwesome name="star" size={20} color="gold" />
+              <FontAwesome name="star" size={20} color="gold" />
+              <FontAwesome name="star" size={20} color="gold" />
+              <FontAwesome name="star-half-empty" size={20} color="gold" />
+              (4.5)
             </Text>
             <Text style={screenStyles.subTitle}>People</Text>
-            <Text style={screenStyles.subText}>Number of people in your group</Text>
+            <Text style={screenStyles.subText}>
+              Number of people in your group
+            </Text>
             <View style={screenStyles.numberBoxContainer}>
               <TouchableOpacity style={screenStyles.numberBoxSelected}>
                 <Text>1</Text>
@@ -133,22 +140,71 @@ const Booking = ({ navigation }) => {
               </TouchableOpacity>
             </View>
             <Text style={screenStyles.subTitle}>Description</Text>
-            <Text style={screenStyles.subText}>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.
-              scrambled it to make a type specimen book.Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.Loremscrambled it to make a type specimen book.Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.Lorem
+            <Text style={screenStyles.subText}>
+              Lorem Ipsum is simply dummy text of the printing and typesetting
+              industry. Lorem Ipsum has been the industry's standard dummy text
+              ever since the 1500s, when an unknown printer took a galley of
+              type and scrambled it to make a type specimen book.Lorem Ipsum is
+              simply dummy text of the printing and typesetting industry. Lorem
+              Ipsum has been the industry's standard dummy text ever since the
+              1500s, when an unknown printer took a galley of type and scrambled
+              it to make a type specimen book.Lorem Ipsum is simply dummy text
+              of the printing and typesetting industry. Lorem Ipsum has been the
+              industry's standard dummy text ever since the 1500s, when an
+              unknown printer took a galley of type and scrambled it to make a
+              type specimen book.Lorem Ipsum is simply dummy text of the
+              printing and typesetting industry. Lorem Ipsum has been the
+              industry's standard dummy text ever since the 1500s, when an
+              unknown printer took a galley of type and scrambled it to make a
+              type specimen book.Lorem Ipsum is simply dummy text of the
+              printing and typesetting industry. Lorem Ipsum has been the
+              industry's standard dummy text ever since the 1500s, when an
+              unknown printer took a galley of type and scrambled it to make a
+              type specimen book.Lorem Ipsum is simply dummy text of the
+              printing and typesetting industry. Lorem Ipsum has been the
+              industry's standard dummy text ever since the 1500s, when an
+              unknown printer took a galley of type and scrambled it to make a
+              type specimen book. scrambled it to make a type specimen
+              book.Lorem Ipsum is simply dummy text of the printing and
+              typesetting industry. Lorem Ipsum has been the industry's standard
+              dummy text ever since the 1500s, when an unknown printer took a
+              galley of type and scrambled it to make a type specimen book.Lorem
+              Ipsum is simply dummy text of the printing and typesetting
+              industry. Lorem Ipsum has been the industry's standard dummy text
+              ever since the 1500s, when an unknown printer took a galley of
+              type and scrambled it to make a type specimen book.Loremscrambled
+              it to make a type specimen book.Lorem Ipsum is simply dummy text
+              of the printing and typesetting industry. Lorem Ipsum has been the
+              industry's standard dummy text ever since the 1500s, when an
+              unknown printer took a galley of type and scrambled it to make a
+              type specimen book.Lorem Ipsum is simply dummy text of the
+              printing and typesetting industry. Lorem Ipsum has been the
+              industry's standard dummy text ever since the 1500s, when an
+              unknown printer took a galley of type and scrambled it to make a
+              type specimen book.Lorem
             </Text>
           </KeyboardAwareScrollView>
         </View>
-
       </Animated.View>
 
       <View style={screenStyles.buttonContainer}>
-        <TouchableOpacity style={screenStyles.bookmarkTouchableOpacity} >
-          <Ionicons size={25} color={ColorPalette.green} name='bookmark-outline' />
+        <TouchableOpacity style={screenStyles.bookmarkTouchableOpacity}>
+          <Ionicons
+            size={25}
+            color={ColorPalette.green}
+            name="bookmark-outline"
+          />
         </TouchableOpacity>
-        <SliderButton height={50} width={width * 0.4} sliderWidth={50} sliderText={'Slide to Pay'} onPressFn={handleSliderSubmit} />
+        <SliderButton
+          height={50}
+          width={width * 0.4}
+          sliderWidth={50}
+          sliderText={'Slide to Pay'}
+          onPressFn={handleSliderSubmit}
+        />
       </View>
     </View>
-  )
-}
+  );
+};
 
-export default Booking
+export default Booking;

@@ -1,83 +1,87 @@
-import { View, Text, TouchableOpacity, ScrollView } from 'react-native'
-import React from 'react'
-import { useScreenContext } from '../../Contexts/ScreenContext';
-import styles from './Style';
-import Entypo from 'react-native-vector-icons/Entypo'
-import { PieChart, BarChart } from "react-native-gifted-charts";
+import {View, Text, TouchableOpacity, ScrollView} from 'react-native';
+import React from 'react';
+import Entypo from 'react-native-vector-icons/Entypo';
+import {PieChart, BarChart} from 'react-native-gifted-charts';
+import {useScreenContext} from '../../Contexts/ScreenContext';
 import ColorPalette from '../../Assets/Themes/ColorPalette';
-
-
+import styles from './Style';
 
 const Charts = ({navigation}) => {
   const pieData = [
-    { value: 37, label: 'ETH', color: ColorPalette.pink },
-    { value: 44, label: 'BTC', color: ColorPalette.violet },
-    { value: 19, label: 'USDT', color: ColorPalette.lightBlue }
+    {value: 37, label: 'ETH', color: ColorPalette.pink},
+    {value: 44, label: 'BTC', color: ColorPalette.violet},
+    {value: 19, label: 'USDT', color: ColorPalette.lightBlue},
   ];
   const barData = [
-    { value: 200, label: 'M' },
-    { value: 500, label: 'T' },
-    { value: 745, label: 'W' },
-    { value: 320, label: 'T' },
-    { value: 600, label: 'F' },
-    { value: 256, label: 'S' },
-    { value: 300, label: 'S' },
+    {value: 200, label: 'M'},
+    {value: 500, label: 'T'},
+    {value: 745, label: 'W'},
+    {value: 320, label: 'T'},
+    {value: 600, label: 'F'},
+    {value: 256, label: 'S'},
+    {value: 300, label: 'S'},
   ];
   const screenContext = useScreenContext();
   const screenStyles = styles(
     screenContext,
     screenContext[screenContext.isPortrait ? 'windowWidth' : 'windowHeight'],
-    screenContext[screenContext.isPortrait ? 'windowHeight' : 'windowWidth']
+    screenContext[screenContext.isPortrait ? 'windowHeight' : 'windowWidth'],
   );
-
-
 
   return (
     <View style={screenStyles.canvas}>
       <ScrollView style={screenStyles.container}>
         <View style={screenStyles.pieContainer}>
-
           <View style={screenStyles.backButton}>
-            <TouchableOpacity onPress={()=>navigation.openDrawer()}>
-              <Entypo name='chevron-left' size={30} color='black' />
+            <TouchableOpacity onPress={() => navigation.openDrawer()}>
+              <Entypo name="chevron-left" size={30} color="black" />
             </TouchableOpacity>
           </View>
-          <Text style={[screenStyles.heading, screenStyles.normalTexts]}>Detailed Statistics</Text>
+          <Text style={[screenStyles.heading, screenStyles.normalTexts]}>
+            Detailed Statistics
+          </Text>
           <View style={screenStyles.pieChartContainer}>
-      
-              <PieChart
+            <PieChart
               showGradient
-                radius={80}
-                donut
-                innerRadius={50}
-                data={pieData}
-                focusOnPress
-                centerLabelComponent={() => {
-                  return <Text style={[screenStyles.pieChartLabel, screenStyles.normalTexts]} >$4200</Text>;
-                }}
-                isAnimated
-              />
-            
+              radius={80}
+              donut
+              innerRadius={50}
+              data={pieData}
+              focusOnPress
+              centerLabelComponent={() => {
+                return (
+                  <Text
+                    style={[
+                      screenStyles.pieChartLabel,
+                      screenStyles.normalTexts,
+                    ]}>
+                    $4200
+                  </Text>
+                );
+              }}
+              isAnimated
+            />
           </View>
           <View style={screenStyles.pieChartLegendContainer}>
             <View>
-              <Text style={screenStyles.normalTexts}>{pieData[0].value + '% ' + pieData[0].label}</Text>
-              <View style={screenStyles.colorBit1}>
-              </View>
-
+              <Text style={screenStyles.normalTexts}>
+                {pieData[0].value + '% ' + pieData[0].label}
+              </Text>
+              <View style={screenStyles.colorBit1}></View>
             </View>
             <View>
-              <Text style={screenStyles.normalTexts}>{pieData[1].value + '% ' + pieData[1].label}</Text>
-              <View style={screenStyles.colorBit2}>
-              </View>
+              <Text style={screenStyles.normalTexts}>
+                {pieData[1].value + '% ' + pieData[1].label}
+              </Text>
+              <View style={screenStyles.colorBit2}></View>
             </View>
             <View>
-              <Text style={screenStyles.normalTexts}>{pieData[2].value + '% ' + pieData[2].label}</Text>
-              <View style={screenStyles.colorBit3}>
-              </View>
+              <Text style={screenStyles.normalTexts}>
+                {pieData[2].value + '% ' + pieData[2].label}
+              </Text>
+              <View style={screenStyles.colorBit3}></View>
             </View>
           </View>
-
         </View>
         <View style={screenStyles.barContainer}>
           <Text style={[screenStyles.heading, screenStyles.normalTexts]}>
@@ -100,28 +104,28 @@ const Charts = ({navigation}) => {
             />
           </View>
           <View style={screenStyles.dealsContainer}>
-            <View >
+            <View>
               <Text style={screenStyles.text1012}>1012</Text>
               <Text style={screenStyles.normalTexts}>Open Deals</Text>
             </View>
-            <View >
+            <View>
               <Text style={screenStyles.text26B}>$2.6 B</Text>
               <Text style={screenStyles.normalTexts}>Deals Volume</Text>
             </View>
           </View>
           <TouchableOpacity style={screenStyles.progressionButton}>
-            <Text style={[screenStyles.normalTexts, screenStyles.progressionText]}>
+            <Text
+              style={[screenStyles.normalTexts, screenStyles.progressionText]}>
               Progression
             </Text>
-            <View style={screenStyles.rightIconAbslute}><Entypo name='triangle-right' size={25} color='white' /></View>
+            <View style={screenStyles.rightIconAbslute}>
+              <Entypo name="triangle-right" size={25} color="white" />
+            </View>
           </TouchableOpacity>
-
-
-
         </View>
       </ScrollView>
     </View>
-  )
-}
+  );
+};
 
-export default Charts
+export default Charts;

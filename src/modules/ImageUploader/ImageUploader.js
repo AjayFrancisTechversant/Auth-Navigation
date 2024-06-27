@@ -1,18 +1,27 @@
-import { View, Text, Linking, TouchableOpacity, Alert, ActivityIndicator, FlatList, ScrollView } from 'react-native';
-import React, { useEffect, useRef, useState } from 'react';
-import { styles } from './Style';
+import {
+  View,
+  Text,
+  Linking,
+  TouchableOpacity,
+  Alert,
+  ActivityIndicator,
+  FlatList,
+  ScrollView,
+} from 'react-native';
+import React, {useEffect, useRef, useState} from 'react';
 import AntDesign from 'react-native-vector-icons/AntDesign';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
-import { useCameraPermission } from 'react-native-vision-camera';
+import {useCameraPermission} from 'react-native-vision-camera';
 import ImageResizer from '@bam.tech/react-native-image-resizer';
 import storage from '@react-native-firebase/storage';
 import RNFS from 'react-native-fs';
 import CameraScreen from '../../Components/CameraScreen/CameraScreen';
 import CardA from '../../Components/CardA/CardA';
+import {styles} from './Style';
 
 const ImageUploader = () => {
   const [isCameraOpen, setIsCameraOpen] = useState(false);
-  const { hasPermission, requestPermission } = useCameraPermission();
+  const {hasPermission, requestPermission} = useCameraPermission();
   const [takenPhotos, setTakenPhotos] = useState([]);
   const [compressedPhotos, setCompressedPhotos] = useState([]);
   const [isShutterLoading, setIsShutterLoading] = useState(false);
@@ -31,7 +40,7 @@ const ImageUploader = () => {
     setIsShutterLoading(true);
     try {
       const photo = await camera.current.takePhoto({
-        flash: isFlashOn ? 'on' : 'off'
+        flash: isFlashOn ? 'on' : 'off',
       });
       setTakenPhotos(prevPhotos => [...prevPhotos, photo.path]);
     } catch (error) {
@@ -44,29 +53,36 @@ const ImageUploader = () => {
   const handleCameraButton = () => {
     if (!hasPermission) {
       Alert.alert('No camera permission', 'Please grant camera permission', [
-        { text: 'Open Settings', onPress: () => Linking.openSettings() },
-        { text: 'Cancel' }
+        {text: 'Open Settings', onPress: () => Linking.openSettings()},
+        {text: 'Cancel'},
       ]);
     } else {
       setIsCameraOpen(true);
     }
   };
 
-  const handleDeleteImage = (index) => {
+  const handleDeleteImage = index => {
     setTakenPhotos(prevPhotos => prevPhotos.filter((_, i) => i !== index));
   };
 
   const compressTakenPhotos = async () => {
     const compressed = await Promise.all(
-      takenPhotos.map(async (photo) => {
+      takenPhotos.map(async photo => {
         try {
-          const response = await ImageResizer.createResizedImage(photo, 300, 500, 'JPEG', 50, 90);
+          const response = await ImageResizer.createResizedImage(
+            photo,
+            300,
+            500,
+            'JPEG',
+            50,
+            90,
+          );
           return response.uri;
         } catch (error) {
           Alert.alert('Error compressing image', error.message);
           return null;
         }
-      })
+      }),
     );
     return compressed.filter(uri => uri !== null);
   };
@@ -78,15 +94,21 @@ const ImageUploader = () => {
   };
 
   const deleteExtraFiles = async (existingFiles, currentFiles) => {
-    const currentFileNames = currentFiles.map((_, index) => `Pics/pic${index + 1}`);
-    const filesToDelete = existingFiles.filter(file => !currentFileNames.includes(file));
-    await Promise.all(filesToDelete.map(async (file) => {
-      const fileRef = storage().ref(file);
-      await fileRef.delete();
-    }));
+    const currentFileNames = currentFiles.map(
+      (_, index) => `Pics/pic${index + 1}`,
+    );
+    const filesToDelete = existingFiles.filter(
+      file => !currentFileNames.includes(file),
+    );
+    await Promise.all(
+      filesToDelete.map(async file => {
+        const fileRef = storage().ref(file);
+        await fileRef.delete();
+      }),
+    );
   };
 
-  const uploadFilesToCloud = async (currentFiles) => {
+  const uploadFilesToCloud = async currentFiles => {
     try {
       const existingFiles = await fetchExistingFiles();
       await deleteExtraFiles(existingFiles, currentFiles);
@@ -94,7 +116,7 @@ const ImageUploader = () => {
         currentFiles.map(async (photo, index) => {
           const reference = storage().ref(`Pics/pic${index + 1}`);
           await reference.putFile(photo);
-        })
+        }),
       );
     } catch (error) {
       Alert.alert('Error uploading files', error.message);
@@ -124,19 +146,22 @@ const ImageUploader = () => {
 
   const fetchUploadedImages = async () => {
     setIsFetchingImages(true);
-    setUploadedImageUrls([]); 
+    setUploadedImageUrls([]);
     try {
       const existingFiles = await fetchExistingFiles();
-      const localPaths = await Promise.all(existingFiles.map(async (filePath) => {
-        const uniqueFileName = `${filePath.split('/').pop()}_${Date.now()}`;
-        const localFilePath = `${RNFS.DocumentDirectoryPath}/${uniqueFileName}`;
-        const fileExists = await RNFS.exists(localFilePath);
-        if (!fileExists) {
-          const url = await storage().ref(filePath).getDownloadURL();
-          await RNFS.downloadFile({ fromUrl: url, toFile: localFilePath }).promise;
-        }
-        return localFilePath;
-      }));
+      const localPaths = await Promise.all(
+        existingFiles.map(async filePath => {
+          const uniqueFileName = `${filePath.split('/').pop()}_${Date.now()}`;
+          const localFilePath = `${RNFS.DocumentDirectoryPath}/${uniqueFileName}`;
+          const fileExists = await RNFS.exists(localFilePath);
+          if (!fileExists) {
+            const url = await storage().ref(filePath).getDownloadURL();
+            await RNFS.downloadFile({fromUrl: url, toFile: localFilePath})
+              .promise;
+          }
+          return localFilePath;
+        }),
+      );
       setUploadedImageUrls(localPaths);
     } catch (error) {
       Alert.alert('Error fetching uploaded images', error.message);
@@ -145,7 +170,7 @@ const ImageUploader = () => {
     }
   };
 
-  const handleDeleteUploadedImage = async (index) => {
+  const handleDeleteUploadedImage = async index => {
     try {
       const existingFiles = await fetchExistingFiles();
       try {
@@ -164,7 +189,7 @@ const ImageUploader = () => {
   return (
     <View style={styles.canvas}>
       {isCameraOpen ? (
-        <CameraScreen 
+        <CameraScreen
           takenPhotos={takenPhotos}
           isFlashOn={isFlashOn}
           setIsFlashOn={setIsFlashOn}
@@ -177,19 +202,27 @@ const ImageUploader = () => {
         <ScrollView>
           <Text style={styles.mainHeading}>Image Upload</Text>
           <View style={styles.dashedBorder}>
-            <TouchableOpacity style={styles.cameraButton} onPress={handleCameraButton}>
-              <MaterialCommunityIcons name='camera-plus' size={50} />
+            <TouchableOpacity
+              style={styles.cameraButton}
+              onPress={handleCameraButton}>
+              <MaterialCommunityIcons name="camera-plus" size={50} />
             </TouchableOpacity>
             <Text>Click to Capture Images</Text>
           </View>
           <FlatList
             showsHorizontalScrollIndicator={false}
-            ListHeaderComponent={<View style={styles.itemSeparatorComponent}></View>}
-            ListFooterComponent={<View style={styles.itemSeparatorComponent}></View>}
-            ItemSeparatorComponent={<View style={styles.itemSeparatorComponent}></View>}
+            ListHeaderComponent={
+              <View style={styles.itemSeparatorComponent}></View>
+            }
+            ListFooterComponent={
+              <View style={styles.itemSeparatorComponent}></View>
+            }
+            ItemSeparatorComponent={
+              <View style={styles.itemSeparatorComponent}></View>
+            }
             horizontal={true}
             data={takenPhotos}
-            renderItem={({ index, item }) => (
+            renderItem={({index, item}) => (
               <CardA
                 item={item}
                 index={index}
@@ -201,34 +234,50 @@ const ImageUploader = () => {
           />
           {isUploadLoading ? (
             <ActivityIndicator size={40} style={styles.uploadButton} />
-          ) : (
-            takenPhotos.length > 0 && takenPhotos.length <= 6 ? (
-              <TouchableOpacity onPress={handleUploadButton} style={styles.uploadButton}>
-                <AntDesign name='cloudupload' size={50} color={'green'} />
+          ) : takenPhotos.length > 0 && takenPhotos.length <= 6 ? (
+            <TouchableOpacity
+              onPress={handleUploadButton}
+              style={styles.uploadButton}>
+              <AntDesign name="cloudupload" size={50} color={'green'} />
+            </TouchableOpacity>
+          ) : takenPhotos.length > 6 ? (
+            <View>
+              <TouchableOpacity disabled style={styles.uploadButton}>
+                <AntDesign name="cloudupload" size={50} color={'green'} />
               </TouchableOpacity>
-            ) : takenPhotos.length > 6 ? (
-              <View>
-                <TouchableOpacity disabled style={styles.uploadButton}>
-                  <AntDesign name='cloudupload' size={50} color={'green'} />
-                </TouchableOpacity>
-                <Text style={styles.only6PicsText}>You can upload only 6 pictures</Text>
-              </View>
-            ) : null
-          )}
+              <Text style={styles.only6PicsText}>
+                You can upload only 6 pictures
+              </Text>
+            </View>
+          ) : null}
           <Text style={styles.subHeading}>Uploaded Images:</Text>
           {isFetchingImages ? (
             <ActivityIndicator size={40} color={'grey'} />
           ) : (
             <FlatList
               showsHorizontalScrollIndicator={false}
-              ListHeaderComponent={<View style={styles.itemSeparatorComponent}></View>}
-              ListFooterComponent={<View style={styles.itemSeparatorComponent}></View>}
-              ItemSeparatorComponent={<View style={styles.itemSeparatorComponent}></View>}
+              ListHeaderComponent={
+                <View style={styles.itemSeparatorComponent}></View>
+              }
+              ListFooterComponent={
+                <View style={styles.itemSeparatorComponent}></View>
+              }
+              ItemSeparatorComponent={
+                <View style={styles.itemSeparatorComponent}></View>
+              }
               horizontal={true}
-              ListEmptyComponent={<Text style={styles.emptyComponentStyle}>No Uploaded Images</Text>}
+              ListEmptyComponent={
+                <Text style={styles.emptyComponentStyle}>
+                  No Uploaded Images
+                </Text>
+              }
               data={uploadedImageUrls}
-              renderItem={({ item, index }) => (
-                <CardA item={item} index={index} onPressDeletefn={handleDeleteUploadedImage} />
+              renderItem={({item, index}) => (
+                <CardA
+                  item={item}
+                  index={index}
+                  onPressDeletefn={handleDeleteUploadedImage}
+                />
               )}
               keyExtractor={(item, index) => index.toString()}
             />
