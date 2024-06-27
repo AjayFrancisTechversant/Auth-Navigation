@@ -23,16 +23,16 @@ const styles = (screenContext, width, height) =>
     scrollView: {
       height: screenContext.isPortrait ? height * 0.71 : width * 0.45,
     },
-    dragBit:{
+    dragBit: {
       height: 5,
       width: 30,
       backgroundColor: 'grey',
       borderRadius: 5,
       alignSelf: 'center',
-      marginTop: -height*0.0125,
+      marginTop: -height * 0.0125,
     },
     contentsContainer: {
-      marginHorizontal: width*0.0243,
+      marginHorizontal: width * 0.0243,
       marginTop: -height * 0.03,
       height: height * 0.75,
       borderTopRightRadius: 30,
@@ -40,17 +40,17 @@ const styles = (screenContext, width, height) =>
       backgroundColor: 'white',
     },
     contentsSubContainer: {
-      margin: height*0.0250,
+      margin: height * 0.025,
       justifyContent: 'space-between',
     },
     titleAndPriceContainer: {
       flexDirection: 'row',
       justifyContent: 'space-between',
       alignItems: 'center',
-      marginHorizontal: -width*0.0486,
+      marginHorizontal: -width * 0.0486,
       paddingHorizontal: 20,
       paddingTop: 10,
-      marginTop: -height*0.025,
+      marginTop: -height * 0.025,
       borderTopRightRadius: 30,
       borderTopLeftRadius: 30,
     },
@@ -78,11 +78,11 @@ const styles = (screenContext, width, height) =>
       color: ColorPalette.gray,
     },
     numberBoxContainer: {
-      marginVertical: height*0.0125,
+      marginVertical: height * 0.0125,
       flexDirection: 'row',
     },
     numberBoxSelected: {
-      marginHorizontal: width*0.0121,
+      marginHorizontal: width * 0.0121,
       height: 30,
       width: 30,
       backgroundColor: ColorPalette.green,
@@ -91,7 +91,7 @@ const styles = (screenContext, width, height) =>
       justifyContent: 'center',
     },
     numberBoxNotSelected: {
-      marginHorizontal: width*0.0121,
+      marginHorizontal: width * 0.0121,
       height: 30,
       width: 30,
       backgroundColor: ColorPalette.lightGreen,
