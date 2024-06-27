@@ -20,7 +20,7 @@ import SliderButton from '../../Components/SliderButton/SliderButton';
 import {useScreenContext} from '../../Contexts/ScreenContext';
 import styles from './Style';
 
-const TwoGreenCups=require('../../Assets/Images/2GreenCups.jpg')
+const TwoGreenCups = require('../../Assets/Images/2GreenCups.jpg');
 
 function clamp(val, min, max) {
   return Math.min(Math.max(val, min), max);
@@ -117,7 +117,11 @@ const Booking = ({navigation}) => {
               <FontAwesome name="star" size={20} color={ColorPalette.gold} />
               <FontAwesome name="star" size={20} color={ColorPalette.gold} />
               <FontAwesome name="star" size={20} color={ColorPalette.gold} />
-              <FontAwesome name="star-half-empty" size={20} color={ColorPalette.gold} />
+              <FontAwesome
+                name="star-half-empty"
+                size={20}
+                color={ColorPalette.gold}
+              />
               (4.5)
             </Text>
             <Text style={screenStyles.subTitle}>People</Text>

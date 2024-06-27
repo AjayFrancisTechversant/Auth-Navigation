@@ -20,7 +20,7 @@ import styles from './Style';
 import ColorPalette from '../../Assets/Themes/ColorPalette';
 import StaticVariables from '../../Preferences/StaticVariables';
 
-const map_bg1=require('../../Assets/Images/map-bg1.jpg')
+const map_bg1 = require('../../Assets/Images/map-bg1.jpg');
 
 const Locator = ({navigation}) => {
   const [isLocationFetched, setIsLocationFetched] = useState(false);
@@ -81,7 +81,10 @@ const Locator = ({navigation}) => {
         style={screenStyles.bgImage}>
         <Text style={screenStyles.mainHeading}>Locator</Text>
         <View style={screenStyles.MenuDrawerButton}>
-          <MenuDrawerButton navigation={navigation} color={ColorPalette.white} />
+          <MenuDrawerButton
+            navigation={navigation}
+            color={ColorPalette.white}
+          />
         </View>
 
         {isLocationFetched ? (
@@ -91,7 +94,11 @@ const Locator = ({navigation}) => {
                 <TouchableOpacity
                   onPress={() => setIsLocationFetched(false)}
                   style={screenStyles.closeButton}>
-                  <AntDesign name="closecircle" color={ColorPalette.white} size={30} />
+                  <AntDesign
+                    name="closecircle"
+                    color={ColorPalette.white}
+                    size={30}
+                  />
                 </TouchableOpacity>
                 <Text style={[screenStyles.subHeading, screenStyles.whiteText]}>
                   {region}

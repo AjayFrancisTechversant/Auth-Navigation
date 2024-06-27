@@ -5,7 +5,7 @@ import {LoginManager, AccessToken} from 'react-native-fbsdk-next';
 import {useScreenContext} from '../../Contexts/ScreenContext';
 import styles from './Style';
 
-const FacebookLogo= require('../../Assets/Images/Facebook-Logo.png');
+const FacebookLogo = require('../../Assets/Images/Facebook-Logo.png');
 
 const FacebookAuthButton = () => {
   async function onFacebookButtonPress() {
@@ -49,10 +49,7 @@ const FacebookAuthButton = () => {
         )
       }
       style={screenStyles.logoContainer}>
-      <Image
-        style={screenStyles.facebookLogo}
-        source={FacebookLogo}
-      />
+      <Image style={screenStyles.facebookLogo} source={FacebookLogo} />
     </TouchableOpacity>
   );
 };

@@ -5,7 +5,7 @@ import auth from '@react-native-firebase/auth';
 import {useScreenContext} from '../../Contexts/ScreenContext';
 import styles from './Style';
 
-const githubLogo=require('../../Assets/Images/Github-Logo.png')
+const githubLogo = require('../../Assets/Images/Github-Logo.png');
 
 const config = {
   clientId: 'Ov23licj09plIWkEvmpM',
@@ -41,10 +41,7 @@ const GithubAuthButton = () => {
     <TouchableOpacity
       onPress={() => loginWithGitHub()}
       style={screenStyles.logoContainer}>
-      <Image
-        style={screenStyles.GithubLogo}
-        source={githubLogo}
-      />
+      <Image style={screenStyles.GithubLogo} source={githubLogo} />
     </TouchableOpacity>
   );
 };

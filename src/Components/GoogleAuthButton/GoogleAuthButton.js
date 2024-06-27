@@ -5,7 +5,7 @@ import auth from '@react-native-firebase/auth';
 import {useScreenContext} from '../../Contexts/ScreenContext';
 import styles from './Style';
 
-const googleIcon=require('../../Assets/Images/google-icon.png')
+const googleIcon = require('../../Assets/Images/google-icon.png');
 
 const GoogleAuthButton = () => {
   GoogleSignin.configure({
@@ -40,10 +40,7 @@ const GoogleAuthButton = () => {
     <TouchableOpacity
       onPress={() => onGoogleButtonPress()}
       style={screenStyles.logoContainer}>
-      <Image
-        style={screenStyles.googleLogo}
-        source={googleIcon}
-      />
+      <Image style={screenStyles.googleLogo} source={googleIcon} />
     </TouchableOpacity>
   );
 };
