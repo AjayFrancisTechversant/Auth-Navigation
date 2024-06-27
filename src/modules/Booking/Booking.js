@@ -90,21 +90,17 @@ const Booking = ({navigation}) => {
 
       <Animated.View
         style={[overlapCardAnimatedStyles, screenStyles.contentsContainer]}>
-        <View
-          style={{
-            height: 5,
-            width: 30,
-            backgroundColor: 'grey',
-            borderRadius: 5,
-            alignSelf: 'center',
-            marginTop: screenContext.windowHeight*0.0125,
-          }}></View>
+        
         <View style={screenStyles.contentsSubContainer}>
           <GestureDetector gesture={pan}>
-            <View style={screenStyles.titleAndPriceContainer}>
-              <Text style={screenStyles.title}>Forest Camping</Text>
-              <Text style={screenStyles.price}>$299</Text>
-            </View>
+        <View>
+            <View
+            style={screenStyles.dragBit}></View>
+              <View style={screenStyles.titleAndPriceContainer}>
+                <Text style={screenStyles.title}>Forest Camping</Text>
+                <Text style={screenStyles.price}>$299</Text>
+              </View>
+        </View>
           </GestureDetector>
 
           <KeyboardAwareScrollView style={screenStyles.scrollView}>

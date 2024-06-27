@@ -23,6 +23,14 @@ const styles = (screenContext, width, height) =>
     scrollView: {
       height: screenContext.isPortrait ? height * 0.71 : width * 0.45,
     },
+    dragBit:{
+      height: 5,
+      width: 30,
+      backgroundColor: 'grey',
+      borderRadius: 5,
+      alignSelf: 'center',
+      marginTop: -height*0.0125,
+    },
     contentsContainer: {
       marginHorizontal: width*0.0243,
       marginTop: -height * 0.03,
