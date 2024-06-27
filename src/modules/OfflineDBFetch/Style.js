@@ -5,7 +5,7 @@ const styles = (screenContext, width, height) =>
     card: {
       margin: height*0.0062,
       borderRadius: 5,
-      padding: 5,
+      padding: height*0.0062,
       elevation: 10,
       backgroundColor: 'white',
     },

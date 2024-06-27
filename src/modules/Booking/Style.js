@@ -30,7 +30,6 @@ const styles = (screenContext, width, height) =>
       borderTopRightRadius: 30,
       borderTopLeftRadius: 30,
       backgroundColor: 'white',
-      paddingBottom: 0,
     },
     contentsSubContainer: {
       margin: height*0.0250,

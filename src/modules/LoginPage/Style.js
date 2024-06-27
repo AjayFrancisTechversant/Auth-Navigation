@@ -27,7 +27,7 @@ const styles = (screenContext, width, height) =>
       borderRadius: 10,
     },
     buttonText: {
-      padding: 10,
+      padding: height*0.0125,
       color: ColorPalette.white,
       fontSize: 18,
     },

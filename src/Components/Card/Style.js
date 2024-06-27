@@ -12,7 +12,7 @@ const styles = (screenContext, width, height) =>
       marginVertical: height*0.0062,
       flexDirection: 'row',
       justifyContent: 'space-between',
-      padding: 10,
+      padding: height*0.0125,
       elevation: 10,
       backgroundColor: 'white',
     },

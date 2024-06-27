@@ -7,7 +7,6 @@ const styles = (height, width, sliderWidth) =>
       height: height,
       width: width,
       borderRadius: 10,
-      padding: 1,
       justifyContent: 'center',
     },
     slider: {

@@ -15,7 +15,7 @@ const styles = (screenContext, width, height) =>
     },
     text: {
       textAlign: 'center',
-      padding: 10,
+      padding: height*0.0125,
       backgroundColor: 'lightgrey',
       fontSize: 16,
     },

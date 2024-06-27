@@ -30,7 +30,7 @@ const styles = (screenContext, width, height) =>
       borderRadius: 10,
     },
     buttonText: {
-      padding: 10,
+      padding: height*0.0125,
       color: ColorPalette.white,
       fontSize: 18,
     },
@@ -42,7 +42,7 @@ const styles = (screenContext, width, height) =>
     card: {
       flexDirection: 'row',
       justifyContent: 'space-between',
-      padding: 10,
+      padding: height*0.0125,
       borderRadius: 10,
       margin: height*0.0062,
       marginHorizontal: width*0.0486,
@@ -64,7 +64,7 @@ const styles = (screenContext, width, height) =>
       height: 200,
       width: 300,
       borderRadius: 20,
-      padding: 10,
+      padding: height*0.0125,
       backgroundColor: 'white',
       elevation: 30,
     },

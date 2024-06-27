@@ -28,7 +28,7 @@ const styles = (screenContext, width, height) =>
     editContainer: {
       borderWidth: 1,
       borderRadius: 10,
-      padding: 10,
+      padding: height*0.0125,
       borderColor: ColorPalette.green,
     },
     textInput: {
