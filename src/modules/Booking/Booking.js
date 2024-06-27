@@ -111,11 +111,11 @@ const Booking = ({navigation}) => {
               Kecamatan Klojen
             </Text>
             <Text>
-              <FontAwesome name="star" size={20} color="gold" />
-              <FontAwesome name="star" size={20} color="gold" />
-              <FontAwesome name="star" size={20} color="gold" />
-              <FontAwesome name="star" size={20} color="gold" />
-              <FontAwesome name="star-half-empty" size={20} color="gold" />
+              <FontAwesome name="star" size={20} color={ColorPalette.gold} />
+              <FontAwesome name="star" size={20} color={ColorPalette.gold} />
+              <FontAwesome name="star" size={20} color={ColorPalette.gold} />
+              <FontAwesome name="star" size={20} color={ColorPalette.gold} />
+              <FontAwesome name="star-half-empty" size={20} color={ColorPalette.gold} />
               (4.5)
             </Text>
             <Text style={screenStyles.subTitle}>People</Text>

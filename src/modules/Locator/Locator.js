@@ -17,6 +17,7 @@ import {BlurView} from '@react-native-community/blur';
 import MenuDrawerButton from '../../Components/MenuDrawerButton/MenuDrawerButton';
 import {useScreenContext} from '../../Contexts/ScreenContext';
 import styles from './Style';
+import ColorPalette from '../../Assets/Themes/ColorPalette';
 
 const Locator = ({navigation}) => {
   const [isLocationFetched, setIsLocationFetched] = useState(false);
@@ -77,7 +78,7 @@ const Locator = ({navigation}) => {
         style={screenStyles.bgImage}>
         <Text style={screenStyles.mainHeading}>Locator</Text>
         <View style={screenStyles.MenuDrawerButton}>
-          <MenuDrawerButton navigation={navigation} color={'white'} />
+          <MenuDrawerButton navigation={navigation} color={ColorPalette.white} />
         </View>
 
         {isLocationFetched ? (
@@ -87,7 +88,7 @@ const Locator = ({navigation}) => {
                 <TouchableOpacity
                   onPress={() => setIsLocationFetched(false)}
                   style={screenStyles.closeButton}>
-                  <AntDesign name="closecircle" color={'white'} size={30} />
+                  <AntDesign name="closecircle" color={ColorPalette.white} size={30} />
                 </TouchableOpacity>
                 <Text style={[screenStyles.subHeading, screenStyles.whiteText]}>
                   {region}
@@ -105,7 +106,7 @@ const Locator = ({navigation}) => {
                   style={screenStyles.openMapsButton}
                   onPress={openInMaps}>
                   <MaterialCommunityIcons
-                    color="white"
+                    color={ColorPalette.white}
                     name="google-maps"
                     size={20}
                   />
@@ -119,7 +120,7 @@ const Locator = ({navigation}) => {
             <BlurView blurType="light" blurRadius={10}>
               {isLocationFetchingLoading ? (
                 <View style={screenStyles.currentLocationButton}>
-                  <ActivityIndicator color={'white'} size={30} />
+                  <ActivityIndicator color={ColorPalette.white} size={30} />
                 </View>
               ) : (
                 <TouchableOpacity
@@ -127,7 +128,7 @@ const Locator = ({navigation}) => {
                   onPress={handleCurrentLocationButton}>
                   <FontAwesome6
                     name="location-crosshairs"
-                    color={'white'}
+                    color={ColorPalette.white}
                     size={20}
                   />
                 </TouchableOpacity>

@@ -1,4 +1,5 @@
 import {StyleSheet} from 'react-native';
+import ColorPalette from '../../Assets/Themes/ColorPalette';
 
 const styles = (screenContext, width, height) =>
   StyleSheet.create({
@@ -12,7 +13,7 @@ const styles = (screenContext, width, height) =>
       justifyContent: 'space-between',
       alignItems: 'center',
       borderRadius: 5,
-      borderColor: '#bad6ce',
+      borderColor: ColorPalette.green,
     },
     icon: {
       marginLeft: 10,

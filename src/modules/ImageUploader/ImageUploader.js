@@ -18,6 +18,7 @@ import RNFS from 'react-native-fs';
 import CameraScreen from '../../Components/CameraScreen/CameraScreen';
 import CardA from '../../Components/CardA/CardA';
 import {styles} from './Style';
+import ColorPalette from '../../Assets/Themes/ColorPalette';
 
 const ImageUploader = () => {
   const [isCameraOpen, setIsCameraOpen] = useState(false);
@@ -238,12 +239,12 @@ const ImageUploader = () => {
             <TouchableOpacity
               onPress={handleUploadButton}
               style={styles.uploadButton}>
-              <AntDesign name="cloudupload" size={50} color={'green'} />
+              <AntDesign name="cloudupload" size={50} color={ColorPalette.green} />
             </TouchableOpacity>
           ) : takenPhotos.length > 6 ? (
             <View>
               <TouchableOpacity disabled style={styles.uploadButton}>
-                <AntDesign name="cloudupload" size={50} color={'green'} />
+                <AntDesign name="cloudupload" size={50} color={ColorPalette.green} />
               </TouchableOpacity>
               <Text style={styles.only6PicsText}>
                 You can upload only 6 pictures
@@ -252,7 +253,7 @@ const ImageUploader = () => {
           ) : null}
           <Text style={styles.subHeading}>Uploaded Images:</Text>
           {isFetchingImages ? (
-            <ActivityIndicator size={40} color={'grey'} />
+            <ActivityIndicator size={40} color={ColorPalette.gray} />
           ) : (
             <FlatList
               showsHorizontalScrollIndicator={false}

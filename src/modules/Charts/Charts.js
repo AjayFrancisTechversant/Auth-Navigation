@@ -34,7 +34,7 @@ const Charts = ({navigation}) => {
         <View style={screenStyles.pieContainer}>
           <View style={screenStyles.backButton}>
             <TouchableOpacity onPress={() => navigation.openDrawer()}>
-              <Entypo name="chevron-left" size={30} color="black" />
+              <Entypo name="chevron-left" size={30} color={ColorPalette.black}/>
             </TouchableOpacity>
           </View>
           <Text style={[screenStyles.heading, screenStyles.normalTexts]}>
@@ -119,7 +119,7 @@ const Charts = ({navigation}) => {
               Progression
             </Text>
             <View style={screenStyles.rightIconAbslute}>
-              <Entypo name="triangle-right" size={25} color="white" />
+              <Entypo name="triangle-right" size={25} color={ColorPalette.white} />
             </View>
           </TouchableOpacity>
         </View>

@@ -27,7 +27,7 @@ const Card = React.memo(
             {isDeleteLoading ? (
               <ActivityIndicator />
             ) : (
-              <MaterialIcons name="delete" size={30} color={'red'} />
+              <MaterialIcons name="delete" size={30} color={ColorPalette.red} />
             )}
           </TouchableOpacity>
           <TouchableOpacity style={screenStyles.button}>

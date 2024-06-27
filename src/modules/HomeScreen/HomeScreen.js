@@ -15,6 +15,7 @@ import SearchBar from '../../Components/SearchBar/SearchBar';
 import HomeScreenCard from '../../Components/HomeScreenCard/HomeScreenCard';
 import {getUsers} from '../../Services/API/getUsers';
 import HomeScreenCarousel from '../../Components/HomeScreenCarousel/HomeScreenCarousel';
+import ColorPalette from '../../Assets/Themes/ColorPalette';
 import styles from './Style';
 
 const HomeScreen = ({navigation}) => {
@@ -90,11 +91,11 @@ const HomeScreen = ({navigation}) => {
               <LinearGradient
                 start={{x: 0, y: 0.4}}
                 end={{x: 0, y: 1}}
-                colors={[ColorPalette.green, 'white']}
+                colors={[ColorPalette.green, ColorPalette.white]}
                 style={screenStyles.headerContainer}>
                 <View style={screenStyles.headerContents}>
                   <View style={screenStyles.menuDrawerButtonContainer}>
-                    <MenuDrawerButton navigation={navigation} color={'white'} />
+                    <MenuDrawerButton navigation={navigation} color={ColorPalette.white} />
                   </View>
                   <View style={screenStyles.logoContainer}>
                     <TouchableOpacity>
@@ -139,7 +140,7 @@ const HomeScreen = ({navigation}) => {
         theme={{
           colors: {
             primaryContainer: ColorPalette.green,
-            onPrimaryContainer: 'white',
+            onPrimaryContainer: ColorPalette.white,
           },
         }}
       />

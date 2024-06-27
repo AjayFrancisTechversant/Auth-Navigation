@@ -1,4 +1,5 @@
 import {StyleSheet} from 'react-native';
+import ColorPalette from '../../Assets/Themes/ColorPalette';
 
 export const styles = StyleSheet.create({
   canvas: {flex: 1, backgroundColor: 'white'},
@@ -46,6 +47,6 @@ export const styles = StyleSheet.create({
   only6PicsText: {
     alignSelf: 'center',
     margin: 10,
-    color: 'red',
+    color: ColorPalette.red,
   },
 });

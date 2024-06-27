@@ -1,4 +1,5 @@
 import {StyleSheet} from 'react-native';
+import ColorPalette from '../../Assets/Themes/ColorPalette';
 
 const styles = (screenContext, width, height) =>
   StyleSheet.create({
@@ -18,7 +19,7 @@ const styles = (screenContext, width, height) =>
       elevation: 20,
       height: screenContext.isPortrait ? 'auto' : 200,
       borderWidth: 2,
-      borderColor: 'rgba(255,255,255,0.3)',
+      borderColor: ColorPalette.transWhite,
     },
     MenuDrawerButton: {
       position: 'absolute',
@@ -26,7 +27,7 @@ const styles = (screenContext, width, height) =>
       left: 30,
     },
     whiteText: {
-      color: 'white',
+      color: ColorPalette.white,
     },
 
     currentLocationButtonContainer: {
@@ -37,7 +38,7 @@ const styles = (screenContext, width, height) =>
       right: 30,
       elevation: 20,
       borderWidth: 1,
-      borderColor: 'rgba(255,255,255,0.3)',
+      borderColor: ColorPalette.transWhite,
     },
     currentLocationButton: {
       height: 60,
@@ -48,7 +49,7 @@ const styles = (screenContext, width, height) =>
     mainHeading: {
       fontSize: 40,
       fontWeight: 'bold',
-      color: 'white',
+      color: ColorPalette.white,
       alignSelf: 'center',
       margin: 20,
       fontFamily: 'Helvetica',
@@ -78,6 +79,6 @@ const styles = (screenContext, width, height) =>
       flexDirection: 'row',
       gap: 5,
     },
-    openMapsText: {color: 'white'},
+    openMapsText: {color: ColorPalette.white},
   });
 export default styles;

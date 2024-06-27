@@ -14,6 +14,7 @@ import {database} from '../../DB/Database';
 import {useScreenContext} from '../../Contexts/ScreenContext';
 import Card from '../../Components/Card/Card';
 import styles from './Style';
+import ColorPalette from '../../Assets/Themes/ColorPalette';
 
 const Notes = () => {
   const [refresh, setRefresh] = useState(false);
@@ -118,7 +119,7 @@ const Notes = () => {
         <TouchableOpacity
           onPress={handlePlusButton}
           style={screenStyles.addNoteButton}>
-          <FontAwesome name="plus" size={20} color="white" />
+          <FontAwesome name="plus" size={20} color={ColorPalette.white} />
         </TouchableOpacity>
         <FlatList
           extraData={refresh}
@@ -170,7 +171,7 @@ const Notes = () => {
                       onPress={handleCheckButton}
                       style={screenStyles.saveAddButton}>
                       {isAddLoading || isEditLoading ? (
-                        <ActivityIndicator color={'white'} />
+                        <ActivityIndicator color={ColorPalette.white} />
                       ) : (
                         <Entypo size={25} name="check" />
                       )}

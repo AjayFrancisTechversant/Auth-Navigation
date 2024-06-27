@@ -27,7 +27,7 @@ const styles = (height, width, sliderWidth) =>
     sliderBGText: {
       alignSelf: 'center',
       fontSize: height * 0.3,
-      color: 'white',
+      color: ColorPalette.white,
       fontFamily: 'Helvetica-Bold',
     },
     sliderBGIcon: {

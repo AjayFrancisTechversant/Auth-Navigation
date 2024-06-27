@@ -35,7 +35,7 @@ const styles = (screenContext, width, height) =>
       flexDirection: 'row',
     },
     snackBarText: {
-      color: 'white',
+      color: ColorPalette.white,
     },
     dialog: {
       height: 300,
@@ -54,7 +54,7 @@ const styles = (screenContext, width, height) =>
       marginLeft: 30,
     },
     downloadDataText: {
-      color: 'white',
+      color: ColorPalette.white,
     },
     progressBar: {
       marginHorizontal: 30,

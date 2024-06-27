@@ -44,7 +44,7 @@ const I18njs = () => {
             </Button>
           }
           anchorPosition="bottom"
-          theme={{colors: {elevation: {level2: 'white'}}}}>
+          theme={{colors: {elevation: {level2: ColorPalette.white}}}}>
           <Menu.Item
             onPress={() => {
               setSelectedLanguage('English');

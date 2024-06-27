@@ -31,11 +31,11 @@ const styles = (screenContext, width, height) =>
     },
     buttonText: {
       padding: 10,
-      color: 'white',
+      color: ColorPalette.white,
       fontSize: 18,
     },
     noItemsToDisplay: {
-      color: 'orange',
+      color: ColorPalette.orange,
       alignSelf: 'center',
       marginTop: 20,
     },

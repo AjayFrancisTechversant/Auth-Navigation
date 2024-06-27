@@ -28,7 +28,7 @@ const styles = (screenContext, width, height) =>
     },
     buttonText: {
       padding: 10,
-      color: 'white',
+      color:ColorPalette.white,
       fontSize: 18,
     },
     lastViewContainer: {

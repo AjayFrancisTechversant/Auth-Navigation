@@ -346,7 +346,7 @@ const RNPaper = () => {
         theme={{
           colors: {
             primaryContainer: ColorPalette.green,
-            onPrimaryContainer: 'white',
+            onPrimaryContainer: ColorPalette.white,
           },
         }}
       />
@@ -362,7 +362,7 @@ const RNPaper = () => {
         theme={{
           colors: {
             primaryContainer: ColorPalette.green,
-            onPrimaryContainer: 'white',
+            onPrimaryContainer: ColorPalette.white,
           },
         }}
       />

@@ -16,7 +16,7 @@ const styles = (screenContext, width, height) =>
       alignSelf: 'center',
     },
     emptyComponentText: {
-      color: 'white',
+      color: ColorPalette.white,
       fontSize: 15,
       fontWeight: 'bold',
     },

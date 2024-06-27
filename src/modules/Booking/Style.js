@@ -69,7 +69,7 @@ const styles = (screenContext, width, height) =>
     },
     subText: {
       fontFamily: 'Helvetica-Bold',
-      color: 'gray',
+      color: ColorPalette.gray,
     },
     numberBoxContainer: {
       marginVertical: 10,

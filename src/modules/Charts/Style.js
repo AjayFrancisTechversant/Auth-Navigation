@@ -85,11 +85,11 @@ const styles = (screenContext, width, height) =>
       alignSelf: 'center',
       fontFamily: 'Helvetica-Bold',
       fontSize: 30,
-      color: 'black',
+      color: ColorPalette.black,
     },
     normalTexts: {
       fontFamily: 'Helvetica-Bold',
-      color: 'black',
+      color: ColorPalette.black,
     },
     progressionButton: {
       height: 50,
@@ -102,7 +102,7 @@ const styles = (screenContext, width, height) =>
       marginVertical: 25,
     },
     progressionText: {
-      color: 'white',
+      color: ColorPalette.white,
     },
     rightIconAbslute: {
       position: 'absolute',

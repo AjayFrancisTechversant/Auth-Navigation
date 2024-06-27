@@ -49,7 +49,7 @@ const styles = (screenContext, width, height) =>
 
     noItemsToDisplay: {
       marginHorizontal: 50,
-      color: 'orange',
+      color: ColorPalette.orange,
     },
     titleTextInput: {
       margin: 10,

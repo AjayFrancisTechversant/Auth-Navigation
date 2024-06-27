@@ -11,4 +11,9 @@ export default ColorPalette = {
   lightOrange: '#f7ae97',
   darkOrange: '#fa4007',
   brightGreen: '#6ff542',
+  white:'#ffffff',
+  black:'#000000',
+  gold:'#FFD700',
+  gray:'#808080',
+  transWhite:'rgba(255,255,255,0.3)'
 };

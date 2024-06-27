@@ -1,4 +1,5 @@
 import {StyleSheet} from 'react-native';
+import ColorPalette from '../../Assets/Themes/ColorPalette';
 
 const styles = (screenContext, width, height) =>
   StyleSheet.create({
@@ -28,7 +29,7 @@ const styles = (screenContext, width, height) =>
     },
     buttonText: {
       padding: 10,
-      color: 'white',
+      color: ColorPalette.white,
       fontSize: 18,
     },
     addContainer: {
@@ -38,7 +39,7 @@ const styles = (screenContext, width, height) =>
     },
     noItemsToDisplay: {
       marginHorizontal: 50,
-      color: 'orange',
+      color: ColorPalette.orange,
     },
   });
 export default styles;

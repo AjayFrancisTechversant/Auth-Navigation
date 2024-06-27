@@ -2,6 +2,7 @@ import {View, Text, VirtualizedList, ActivityIndicator} from 'react-native';
 import React from 'react';
 import {useScreenContext} from '../../Contexts/ScreenContext';
 import styles from './Style';
+import ColorPalette from '../../Assets/Themes/ColorPalette';
 
 const CommentsContainer = ({loading, comments}) => {
   const emptyComponent = () => {
@@ -43,7 +44,7 @@ const CommentsContainer = ({loading, comments}) => {
         />
       ) : (
         <View style={screenStyles.loadingContainer}>
-          <ActivityIndicator size={50} color={'white'} />
+          <ActivityIndicator size={50} color={ColorPalette.white} />
         </View>
       )}
     </View>

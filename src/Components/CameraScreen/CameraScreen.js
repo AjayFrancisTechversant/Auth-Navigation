@@ -5,6 +5,7 @@ import {Badge} from 'react-native-paper';
 import Entypo from 'react-native-vector-icons/Entypo';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 import {styles} from './Style';
+import ColorPalette from '../../Assets/Themes/ColorPalette';
 
 const CameraScreen = ({
   takenPhotos,
@@ -34,20 +35,20 @@ const CameraScreen = ({
       <TouchableOpacity
         onPress={() => setIsCameraOpen(false)}
         style={styles.backButton}>
-        <Entypo name="chevron-left" color="white" size={40} />
+        <Entypo name="chevron-left" color={ColorPalette.white} size={40} />
       </TouchableOpacity>
       <TouchableOpacity
         onPress={() => setIsCameraOpen(false)}
         style={styles.galleryIcon}>
         <Badge>{takenPhotos.length}</Badge>
-        <Entypo name="images" color="white" size={40} />
+        <Entypo name="images" color={ColorPalette.white} size={40} />
       </TouchableOpacity>
       <TouchableOpacity
         onPress={() => setIsFlashOn(!isFlashOn)}
         style={styles.flashIcon}>
         <MaterialCommunityIcons
           name={!isFlashOn ? 'flash-off' : 'flash'}
-          color="white"
+          color={ColorPalette.white}
           size={40}
         />
       </TouchableOpacity>
@@ -56,19 +57,19 @@ const CameraScreen = ({
         style={styles.torchIcon}>
         <MaterialCommunityIcons
           name={!isTorchOn ? 'flashlight-off' : 'flashlight'}
-          color="white"
+          color={ColorPalette.white}
           size={40}
         />
       </TouchableOpacity>
       {isShutterLoading ? (
         <ActivityIndicator
-          color={'white'}
+          color={ColorPalette.white}
           size={70}
           style={styles.shutterButton}
         />
       ) : (
         <TouchableOpacity onPress={handleShutter} style={styles.shutterButton}>
-          <Entypo name="circle" color="white" size={70} />
+          <Entypo name="circle" color={ColorPalette.white} size={70} />
         </TouchableOpacity>
       )}
     </View>
