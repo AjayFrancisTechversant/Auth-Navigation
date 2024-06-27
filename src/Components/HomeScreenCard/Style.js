@@ -5,13 +5,13 @@ const styles = (screenContext, width, height) =>
   StyleSheet.create({
     cardContainer: {
       flexDirection: 'row',
-      borderRadius: 5,
-      elevation: 10,
+      borderRadius: 10,
+      elevation: 5,
       backgroundColor: 'white',
     },
     image: {
-      height: 90,
-      margin: 10,
+      height: height*0.11,
+      margin: height*0.012,
       alignSelf: 'center',
       borderRadius: 80,
       flex: 1 / 4,
@@ -33,7 +33,7 @@ const styles = (screenContext, width, height) =>
     modalFullScreenBackground: {
       flex: 1,
       justifyContent: 'center',
-      backgroundColor: 'rgba(0,0,0,0.7)',
+      backgroundColor: ColorPalette.transBlack,
     },
     userContainer: {
       alignSelf: 'center',
@@ -42,24 +42,22 @@ const styles = (screenContext, width, height) =>
       borderWidth: 0.5,
       backgroundColor: 'white',
       borderRadius: 10,
-      marginVertical: 5,
-      elevation: 100,
-      shadowColor: 'black',
+      marginVertical: height*0.01,
     },
     modalImage: {
-      height: 150,
-      width: 150,
+      height: height*0.118,
+      width: height*0.118,
       borderRadius: 10,
     },
     modalButtonsContainer: {
       flexDirection: 'row',
-      width: 150,
+      width: height*0.118,
       justifyContent: 'space-evenly',
-      marginVertical: 10,
+      marginVertical: height*0.01,
     },
     descContainer: {
       alignItems: 'center',
-      marginBottom: 10,
+      marginBottom: height*0.01,
     },
   });
 export default styles;

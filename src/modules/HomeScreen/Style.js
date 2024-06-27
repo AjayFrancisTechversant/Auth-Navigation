@@ -7,41 +7,41 @@ const styles = (screenContext, width, height) =>
       flex: 1,
     },
     container: {
-      margin: 10,
+      margin: height * 0.01,
     },
     headerContainer: {
-      height: 150,
-      marginBottom: -20,
+      height: height*0.15,
+      marginBottom: -height*0.02,
       borderRadius: 5,
     },
     headerContents: {
       flexDirection: 'row',
       alignItems: 'center',
-      marginHorizontal: 20,
-      marginTop: 10,
+      marginHorizontal: height*0.02,
+      marginTop: height*0.01,
     },
     menuDrawerButtonContainer: {
       flex: 0.1,
     },
     logoContainer: {
       flex: 0.9,
-      marginLeft: 10,
+      marginLeft: height*0.01,
     },
     logo: {
-      height: 60,
-      width: 100,
+      height: height*0.1,
+      width: height*0.2,
     },
     searchBarContainer: {
-      marginBottom: 10,
+      marginBottom: height*0.01,
     },
 
     homeScreenCardContainer: {
-      margin: 5,
+      margin: height*0.005,
     },
     fab: {
       position: 'absolute',
-      bottom: 20,
-      right: 20,
+      bottom: height*0.02,
+      right: height*0.02,
     },
   });
 export default styles;
