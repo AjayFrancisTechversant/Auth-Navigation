@@ -7,8 +7,8 @@ import EvilIcons from 'react-native-vector-icons/EvilIcons';
 import {TextInput} from 'react-native-paper';
 import ColorPalette from '../../Assets/Themes/ColorPalette';
 import {useScreenContext} from '../../Contexts/ScreenContext';
-import styles from './Style';
 import StaticVariables from '../../Preferences/StaticVariables';
+import styles from './Style';
 
 const DatePickerScreen = () => {
   const [date, setDate] = useState(new Date());

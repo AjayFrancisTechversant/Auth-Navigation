@@ -13,8 +13,8 @@ import AntDesign from 'react-native-vector-icons/AntDesign';
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
 import ColorPalette from '../../Assets/Themes/ColorPalette';
 import {useScreenContext} from '../../Contexts/ScreenContext';
-import styles from './Style';
 import StaticVariables from '../../Preferences/StaticVariables';
+import styles from './Style';
 
 const BooksRealtimeDatabase = () => {
   const [title, setTitle] = useState(StaticVariables.EMPTY_STRING);

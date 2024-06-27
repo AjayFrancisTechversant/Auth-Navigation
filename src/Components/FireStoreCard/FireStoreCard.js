@@ -5,8 +5,8 @@ import {TextInput} from 'react-native-paper';
 import AntDesign from 'react-native-vector-icons/AntDesign';
 import ColorPalette from '../../Assets/Themes/ColorPalette';
 import {useScreenContext} from '../../Contexts/ScreenContext';
-import styles from './Style';
 import StaticVariables from '../../Preferences/StaticVariables';
+import styles from './Style';
 
 const FireStoreCard = ({
   item,

@@ -7,8 +7,8 @@ import {
 } from 'react-native';
 import React, {useEffect, useRef, useState} from 'react';
 import {PEXELS_API_KEY} from '../../Services/API/PexelsAPI';
-import styles from './Style';
 import StaticVariables from '../../Preferences/StaticVariables';
+import styles from './Style';
 
 const {height, width} = Dimensions.get('screen');
 const ApiUrl =

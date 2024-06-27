@@ -4,8 +4,8 @@ import {TextInput} from 'react-native-paper';
 import {useScreenContext} from '../../Contexts/ScreenContext';
 import Card from '../../Components/Card/Card';
 import ColorPalette from '../../Assets/Themes/ColorPalette';
-import styles from './Style';
 import StaticVariables from '../../Preferences/StaticVariables';
+import styles from './Style';
 
 const Listing = () => {
   const [newEntry, setNewEntry] = useState();

@@ -1,8 +1,8 @@
 import {View, Text, VirtualizedList, ActivityIndicator} from 'react-native';
 import React from 'react';
 import {useScreenContext} from '../../Contexts/ScreenContext';
-import styles from './Style';
 import ColorPalette from '../../Assets/Themes/ColorPalette';
+import styles from './Style';
 
 const CommentsContainer = ({loading, comments}) => {
   const emptyComponent = () => {

@@ -13,11 +13,14 @@ import GoogleAuthButton from '../../Components/GoogleAuthButton/GoogleAuthButton
 import FacebookAuthButton from '../../Components/FacebookAuthButton/FacebookAuthButton';
 import GithubAuthButton from '../../Components/GithubAuthButton/GithubAuthButton';
 import {useScreenContext} from '../../Contexts/ScreenContext';
-import styles from './Style';
 import StaticVariables from '../../Preferences/StaticVariables';
+import styles from './Style';
 
 const LoginPage = ({navigation}) => {
-  const [userData, setUserData] = useState({email: StaticVariables.EMPTY_STRING, password: StaticVariables.EMPTY_STRING});
+  const [userData, setUserData] = useState({
+    email: StaticVariables.EMPTY_STRING,
+    password: StaticVariables.EMPTY_STRING,
+  });
   const [isLoading, setIsLoading] = useState(false);
 
   const handleLogin = async () => {

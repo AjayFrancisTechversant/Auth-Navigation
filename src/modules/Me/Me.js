@@ -19,8 +19,8 @@ import {GoogleSignin} from '@react-native-google-signin/google-signin';
 import ColorPalette from '../../Assets/Themes/ColorPalette';
 import OptionCard from '../../Components/OptionCard/OptionCard';
 import {useScreenContext} from '../../Contexts/ScreenContext';
-import styles from './Style';
 import StaticVariables from '../../Preferences/StaticVariables';
+import styles from './Style';
 
 const profilePageBG=require('../../Assets/Images/profilePageBG.jpg')
 const profilePicDummy=require('../../Assets/Images/profilePicDummy.webp')

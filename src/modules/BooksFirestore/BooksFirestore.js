@@ -4,8 +4,8 @@ import {TextInput} from 'react-native-paper';
 import firestore from '@react-native-firebase/firestore';
 import FireStoreCard from '../../Components/FireStoreCard/FireStoreCard';
 import {useScreenContext} from '../../Contexts/ScreenContext';
-import styles from './Style';
 import StaticVariables from '../../Preferences/StaticVariables';
+import styles from './Style';
 
 const BooksFirestore = () => {
   const [title, setTitle] = useState(StaticVariables.EMPTY_STRING);

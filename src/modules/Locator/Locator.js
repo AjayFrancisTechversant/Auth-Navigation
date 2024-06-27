@@ -16,9 +16,10 @@ import GetLocation from 'react-native-get-location';
 import {BlurView} from '@react-native-community/blur';
 import MenuDrawerButton from '../../Components/MenuDrawerButton/MenuDrawerButton';
 import {useScreenContext} from '../../Contexts/ScreenContext';
-import styles from './Style';
 import ColorPalette from '../../Assets/Themes/ColorPalette';
 import StaticVariables from '../../Preferences/StaticVariables';
+import styles from './Style';
+
 
 const map_bg1 = require('../../Assets/Images/map-bg1.jpg');
 

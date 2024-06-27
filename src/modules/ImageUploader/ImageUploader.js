@@ -17,19 +17,23 @@ import storage from '@react-native-firebase/storage';
 import RNFS from 'react-native-fs';
 import CameraScreen from '../../Components/CameraScreen/CameraScreen';
 import CardA from '../../Components/CardA/CardA';
-import styles from './Style';
 import ColorPalette from '../../Assets/Themes/ColorPalette';
 import StaticVariables from '../../Preferences/StaticVariables';
-import { useScreenContext } from '../../Contexts/ScreenContext';
+import {useScreenContext} from '../../Contexts/ScreenContext';
+import styles from './Style';
 
 const ImageUploader = () => {
   const [isCameraOpen, setIsCameraOpen] = useState(false);
   const {hasPermission, requestPermission} = useCameraPermission();
   const [takenPhotos, setTakenPhotos] = useState(StaticVariables.EMPTY_ARRAY);
-  const [compressedPhotos, setCompressedPhotos] = useState(StaticVariables.EMPTY_ARRAY);
+  const [compressedPhotos, setCompressedPhotos] = useState(
+    StaticVariables.EMPTY_ARRAY,
+  );
   const [isShutterLoading, setIsShutterLoading] = useState(false);
   const [isUploadLoading, setIsUploadLoading] = useState(false);
-  const [uploadedImageUrls, setUploadedImageUrls] = useState(StaticVariables.EMPTY_ARRAY);
+  const [uploadedImageUrls, setUploadedImageUrls] = useState(
+    StaticVariables.EMPTY_ARRAY,
+  );
   const [isFetchingImages, setIsFetchingImages] = useState(false);
   const [isFlashOn, setIsFlashOn] = useState(false);
   const camera = useRef(null);
@@ -247,12 +251,20 @@ const ImageUploader = () => {
             <TouchableOpacity
               onPress={handleUploadButton}
               style={screenStyles.uploadButton}>
-              <AntDesign name="cloudupload" size={50} color={ColorPalette.green} />
+              <AntDesign
+                name="cloudupload"
+                size={50}
+                color={ColorPalette.green}
+              />
             </TouchableOpacity>
           ) : takenPhotos.length > 6 ? (
             <View>
               <TouchableOpacity disabled style={screenStyles.uploadButton}>
-                <AntDesign name="cloudupload" size={50} color={ColorPalette.green} />
+                <AntDesign
+                  name="cloudupload"
+                  size={50}
+                  color={ColorPalette.green}
+                />
               </TouchableOpacity>
               <Text style={screenStyles.only6PicsText}>
                 You can upload only 6 pictures

@@ -13,9 +13,10 @@ import Entypo from 'react-native-vector-icons/Entypo';
 import {database} from '../../DB/Database';
 import {useScreenContext} from '../../Contexts/ScreenContext';
 import Card from '../../Components/Card/Card';
-import styles from './Style';
 import ColorPalette from '../../Assets/Themes/ColorPalette';
 import StaticVariables from '../../Preferences/StaticVariables';
+import styles from './Style';
+
 
 const Notes = () => {
   const [refresh, setRefresh] = useState(false);

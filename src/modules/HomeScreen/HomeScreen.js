@@ -16,8 +16,8 @@ import HomeScreenCard from '../../Components/HomeScreenCard/HomeScreenCard';
 import {getUsers} from '../../Services/API/getUsers';
 import HomeScreenCarousel from '../../Components/HomeScreenCarousel/HomeScreenCarousel';
 import ColorPalette from '../../Assets/Themes/ColorPalette';
-import styles from './Style';
 import StaticVariables from '../../Preferences/StaticVariables';
+import styles from './Style';
 
 const NetFriends_logo_with_sidelabel=require('../../Assets/Images/Logo/NetFriends_logo_with_sidelabel.png')
 

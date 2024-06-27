@@ -5,8 +5,8 @@ import MenuDrawerButton from '../../Components/MenuDrawerButton/MenuDrawerButton
 import ColorPalette from '../../Assets/Themes/ColorPalette';
 import ChatIcon from '../../Assets/SVGs/chatIcon.svg';
 import CommentsContainer from '../../Components/CommentsContainer/CommentsContainer';
-import styles from './Style';
 import StaticVariables from '../../Preferences/StaticVariables';
+import styles from './Style';
 
 const VL = ({navigation}) => {
   const [comments, setComments] = useState(StaticVariables.EMPTY_ARRAY);

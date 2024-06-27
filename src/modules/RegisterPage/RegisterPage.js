@@ -4,8 +4,8 @@ import {KeyboardAwareScrollView} from 'react-native-keyboard-aware-scroll-view';
 import {TextInput} from 'react-native-paper';
 import auth from '@react-native-firebase/auth';
 import {useScreenContext} from '../../Contexts/ScreenContext';
-import styles from './Style';
 import StaticVariables from '../../Preferences/StaticVariables';
+import styles from './Style';
 
 const RegisterPage = ({navigation}) => {
   const [userData, setUserData] = useState({email: StaticVariables.EMPTY_STRING, password: StaticVariables.EMPTY_STRING});
