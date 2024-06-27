@@ -8,7 +8,7 @@ import MenuDrawerButton from '../../Components/MenuDrawerButton/MenuDrawerButton
 import styles from './Style';
 
 const OfflineDBFetch = ({navigation}) => {
-  const [fetchedUsersArray, setFetchedUsersArray] = useState([]);
+  const [fetchedUsersArray, setFetchedUsersArray] = useState(StaticVariables.EMPTY_ARRAY);
 
   useEffect(() => {
     // writeData()
@@ -39,7 +39,7 @@ const OfflineDBFetch = ({navigation}) => {
       .query()
       .observe()
       .forEach(item => {
-        let temp = [];
+        let temp = StaticVariables.EMPTY_ARRAY;
         item.forEach(data => {
           temp.push(data._raw);
         });

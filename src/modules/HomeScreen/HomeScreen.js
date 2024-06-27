@@ -22,8 +22,8 @@ import StaticVariables from '../../Preferences/StaticVariables';
 const HomeScreen = ({navigation}) => {
   const [searchText, setSearchText] = useState(StaticVariables.EMPTY_STRING);
   const [modalCloseToggle, setModalCloseToggle] = useState(true);
-  const [searchResults, setSearchResults] = useState([]);
-  const [users, setUsers] = useState([]);
+  const [searchResults, setSearchResults] = useState(StaticVariables.EMPTY_ARRAY);
+  const [users, setUsers] = useState(StaticVariables.EMPTY_ARRAY);
   const [isLoading, setIsLoading] = useState(false);
   const [currentPage, setCurrentPage] = useState(1);
   const flatListRef = useRef(null);

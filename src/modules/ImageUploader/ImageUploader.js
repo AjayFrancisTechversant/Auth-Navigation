@@ -19,15 +19,16 @@ import CameraScreen from '../../Components/CameraScreen/CameraScreen';
 import CardA from '../../Components/CardA/CardA';
 import {styles} from './Style';
 import ColorPalette from '../../Assets/Themes/ColorPalette';
+import StaticVariables from '../../Preferences/StaticVariables';
 
 const ImageUploader = () => {
   const [isCameraOpen, setIsCameraOpen] = useState(false);
   const {hasPermission, requestPermission} = useCameraPermission();
-  const [takenPhotos, setTakenPhotos] = useState([]);
-  const [compressedPhotos, setCompressedPhotos] = useState([]);
+  const [takenPhotos, setTakenPhotos] = useState(StaticVariables.EMPTY_ARRAY);
+  const [compressedPhotos, setCompressedPhotos] = useState(StaticVariables.EMPTY_ARRAY);
   const [isShutterLoading, setIsShutterLoading] = useState(false);
   const [isUploadLoading, setIsUploadLoading] = useState(false);
-  const [uploadedImageUrls, setUploadedImageUrls] = useState([]);
+  const [uploadedImageUrls, setUploadedImageUrls] = useState(StaticVariables.EMPTY_ARRAY);
   const [isFetchingImages, setIsFetchingImages] = useState(false);
   const [isFlashOn, setIsFlashOn] = useState(false);
   const camera = useRef(null);
@@ -142,12 +143,12 @@ const ImageUploader = () => {
     await uploadFilesToCloud(compressed);
     await fetchUploadedImages();
     setIsUploadLoading(false);
-    setTakenPhotos([]);
+    setTakenPhotos(StaticVariables.EMPTY_ARRAY);
   };
 
   const fetchUploadedImages = async () => {
     setIsFetchingImages(true);
-    setUploadedImageUrls([]);
+    setUploadedImageUrls(StaticVariables.EMPTY_ARRAY);
     try {
       const existingFiles = await fetchExistingFiles();
       const localPaths = await Promise.all(

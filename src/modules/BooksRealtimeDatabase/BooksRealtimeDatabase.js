@@ -19,7 +19,7 @@ import StaticVariables from '../../Preferences/StaticVariables';
 const BooksRealtimeDatabase = () => {
   const [title, setTitle] = useState(StaticVariables.EMPTY_STRING);
   const [desc, setDesc] = useState(StaticVariables.EMPTY_STRING);
-  const [books, setBooks] = useState([]);
+  const [books, setBooks] = useState(StaticVariables.EMPTY_ARRAY);
   const [modalVisible, setModalVisible] = useState(false);
   const [selectedBook, setSelectedBook] = useState(null);
   const screenContext = useScreenContext();
@@ -37,7 +37,7 @@ const BooksRealtimeDatabase = () => {
         const data = snapshot.val();
         const booksList = data
           ? Object.keys(data).map(key => ({...data[key], key}))
-          : [];
+          : StaticVariables.EMPTY_ARRAY;
         setBooks(booksList);
       });
     return () => database().ref('/todo').off('value', onValueChange);

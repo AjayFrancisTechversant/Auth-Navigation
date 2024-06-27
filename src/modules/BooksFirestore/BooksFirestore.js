@@ -10,7 +10,7 @@ import StaticVariables from '../../Preferences/StaticVariables';
 const BooksFirestore = () => {
   const [title, setTitle] = useState(StaticVariables.EMPTY_STRING);
   const [desc, setDesc] = useState(StaticVariables.EMPTY_STRING);
-  const [allBooks, setAllBooks] = useState([]);
+  const [allBooks, setAllBooks] = useState(StaticVariables.EMPTY_ARRAY);
   const [editId, setEditId] = useState(null);
   const [modalVisible, setModalVisible] = useState(false);
   const screenContext = useScreenContext();
@@ -41,7 +41,7 @@ const BooksFirestore = () => {
     const subscriber = firestore()
       .collection('Books')
       .onSnapshot(querySnapshot => {
-        const books = [];
+        const books = StaticVariables.EMPTY_ARRAY;
         querySnapshot.forEach(documentSnapshot => {
           books.push({
             ...documentSnapshot.data(),

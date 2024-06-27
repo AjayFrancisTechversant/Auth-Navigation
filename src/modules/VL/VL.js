@@ -6,9 +6,10 @@ import ColorPalette from '../../Assets/Themes/ColorPalette';
 import ChatIcon from '../../Assets/SVGs/chatIcon.svg';
 import CommentsContainer from '../../Components/CommentsContainer/CommentsContainer';
 import styles from './Style';
+import StaticVariables from '../../Preferences/StaticVariables';
 
 const VL = ({navigation}) => {
-  const [comments, setComments] = useState([]);
+  const [comments, setComments] = useState(StaticVariables.EMPTY_ARRAY);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {

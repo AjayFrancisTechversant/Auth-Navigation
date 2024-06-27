@@ -8,6 +8,7 @@ import {
 import React, {useEffect, useRef, useState} from 'react';
 import {PEXELS_API_KEY} from '../../Services/API/PexelsAPI';
 import styles from './Style';
+import StaticVariables from '../../Preferences/StaticVariables';
 
 const {height, width} = Dimensions.get('screen');
 const ApiUrl =
@@ -16,7 +17,7 @@ const imageSize = 80;
 const spacing = 10;
 
 const Gallery = () => {
-  const [images, setImages] = useState([]);
+  const [images, setImages] = useState(StaticVariables.EMPTY_ARRAY);
   const topRef = useRef(null);
   const bottomRef = useRef(null);
   const [activeIndex, setActiveIndex] = useState(0);

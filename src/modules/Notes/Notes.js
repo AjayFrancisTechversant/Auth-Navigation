@@ -23,7 +23,7 @@ const Notes = () => {
   const [isEditing, setIsEditing] = useState(false);
   const [title, setTitle] = useState(StaticVariables.EMPTY_STRING);
   const [desc, setDesc] = useState(StaticVariables.EMPTY_STRING);
-  const [allNotes, setAllNotes] = useState([]);
+  const [allNotes, setAllNotes] = useState(StaticVariables.EMPTY_ARRAY);
   const [isAddLoading, setIsAddLoading] = useState(false);
   const [isEditLoading, setIsEditLoading] = useState(false);
   const [isDeleteLoading, setIsDeleteLoading] = useState(false);
@@ -39,7 +39,7 @@ const Notes = () => {
       .query()
       .observe()
       .forEach(item => {
-        let temp = [];
+        let temp = StaticVariables.EMPTY_ARRAY;
         item.forEach(data => {
           temp.push(data._raw);
         });

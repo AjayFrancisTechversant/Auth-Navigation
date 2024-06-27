@@ -1,7 +1,8 @@
 import { createSlice } from '@reduxjs/toolkit'
+import StaticVariables from '../../Preferences/StaticVariables'
 
 const initialState = {
-  likedUsers:[]
+  likedUsers:StaticVariables.EMPTY_ARRAY
 }
 
 export const LikeSlice = createSlice({

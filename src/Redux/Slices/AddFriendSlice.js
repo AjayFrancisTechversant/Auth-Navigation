@@ -1,7 +1,8 @@
 import { createSlice } from '@reduxjs/toolkit'
+import StaticVariables from '../../Preferences/StaticVariables'
 
 const initialState = {
-    addedFriends: []
+    addedFriends: StaticVariables.EMPTY_ARRAY
 }
 
 export const AddFriendSlice = createSlice({
