@@ -17,9 +17,10 @@ import {getUsers} from '../../Services/API/getUsers';
 import HomeScreenCarousel from '../../Components/HomeScreenCarousel/HomeScreenCarousel';
 import ColorPalette from '../../Assets/Themes/ColorPalette';
 import styles from './Style';
+import StaticVariables from '../../Preferences/StaticVariables';
 
 const HomeScreen = ({navigation}) => {
-  const [searchText, setSearchText] = useState('');
+  const [searchText, setSearchText] = useState(StaticVariables.EMPTY_STRING);
   const [modalCloseToggle, setModalCloseToggle] = useState(true);
   const [searchResults, setSearchResults] = useState([]);
   const [users, setUsers] = useState([]);
@@ -116,7 +117,7 @@ const HomeScreen = ({navigation}) => {
               <HomeScreenCarousel />
             </>
           }
-          data={searchText == '' ? users : searchResults}
+          data={searchText == StaticVariables.EMPTY_STRING ? users : searchResults}
           keyExtractor={item => Math.random().toString(36).substring(2)}
           renderItem={({item}) => (
             <View style={screenStyles.homeScreenCardContainer}>

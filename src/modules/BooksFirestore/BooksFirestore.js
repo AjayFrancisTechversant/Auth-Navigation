@@ -5,10 +5,11 @@ import firestore from '@react-native-firebase/firestore';
 import FireStoreCard from '../../Components/FireStoreCard/FireStoreCard';
 import {useScreenContext} from '../../Contexts/ScreenContext';
 import styles from './Style';
+import StaticVariables from '../../Preferences/StaticVariables';
 
 const BooksFirestore = () => {
-  const [title, setTitle] = useState('');
-  const [desc, setDesc] = useState('');
+  const [title, setTitle] = useState(StaticVariables.EMPTY_STRING);
+  const [desc, setDesc] = useState(StaticVariables.EMPTY_STRING);
   const [allBooks, setAllBooks] = useState([]);
   const [editId, setEditId] = useState(null);
   const [modalVisible, setModalVisible] = useState(false);
@@ -26,8 +27,8 @@ const BooksFirestore = () => {
           title: title,
           desc: desc,
         });
-        setTitle('');
-        setDesc('');
+        setTitle(StaticVariables.EMPTY_STRING);
+        setDesc(StaticVariables.EMPTY_STRING);
       } catch (error) {
         console.log('e', error);
       }
@@ -68,8 +69,8 @@ const BooksFirestore = () => {
       if (editId) {
         firestore().collection('Books').doc(editId).update({title, desc});
         setModalVisible(false);
-        setTitle('');
-        setDesc('');
+        setTitle(StaticVariables.EMPTY_STRING);
+        setDesc(StaticVariables.EMPTY_STRING);
         setEditId(null);
       }
     } else {

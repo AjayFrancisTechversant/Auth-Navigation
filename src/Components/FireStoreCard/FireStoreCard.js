@@ -6,6 +6,7 @@ import AntDesign from 'react-native-vector-icons/AntDesign';
 import ColorPalette from '../../Assets/Themes/ColorPalette';
 import {useScreenContext} from '../../Contexts/ScreenContext';
 import styles from './Style';
+import StaticVariables from '../../Preferences/StaticVariables';
 
 const FireStoreCard = ({
   item,
@@ -28,8 +29,8 @@ const FireStoreCard = ({
 
   const handleClose = () => {
     setModalVisible(false);
-    setTitle('');
-    setDesc('');
+    setTitle(StaticVariables.EMPTY_STRING);
+    setDesc(StaticVariables.EMPTY_STRING);
   };
   return (
     <View style={screenStyles.card}>

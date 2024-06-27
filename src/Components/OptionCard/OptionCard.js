@@ -26,7 +26,7 @@ const OptionCard = ({iconName, optionTitle, iconFamily, onPressFn}) => {
         ) : iconFamily == 'Entypo' ? (
           <Entypo name={iconName} size={20} style={screenStyles.icon} />
         ) : (
-          ''
+          null
         )}
         <Text style={screenStyles.buttonText}>{optionTitle}</Text>
         <Entypo name="chevron-right" size={30} style={screenStyles.rightIcon} />

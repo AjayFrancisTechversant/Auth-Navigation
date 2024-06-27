@@ -18,13 +18,14 @@ import MenuDrawerButton from '../../Components/MenuDrawerButton/MenuDrawerButton
 import {useScreenContext} from '../../Contexts/ScreenContext';
 import styles from './Style';
 import ColorPalette from '../../Assets/Themes/ColorPalette';
+import StaticVariables from '../../Preferences/StaticVariables';
 
 const Locator = ({navigation}) => {
   const [isLocationFetched, setIsLocationFetched] = useState(false);
   const [location, setLocation] = useState({});
   const [isLocationFetchingLoading, setIsLocationFetchingLoading] =
     useState(false);
-  const [region, setRegion] = useState('');
+  const [region, setRegion] = useState(StaticVariables.EMPTY_STRING);
 
   const handleCurrentLocationButton = async () => {
     setIsLocationFetchingLoading(true);

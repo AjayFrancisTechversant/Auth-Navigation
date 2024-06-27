@@ -20,13 +20,14 @@ import ColorPalette from '../../Assets/Themes/ColorPalette';
 import OptionCard from '../../Components/OptionCard/OptionCard';
 import {useScreenContext} from '../../Contexts/ScreenContext';
 import styles from './Style';
+import StaticVariables from '../../Preferences/StaticVariables';
 
 const Me = () => {
   const likeCount = useSelector(state => state.Likes.likedUsers.length);
   const friendsCount = useSelector(
     state => state.AddFriend.addedFriends.length,
   );
-  const [username, setUserName] = useState('');
+  const [username, setUserName] = useState(StaticVariables.EMPTY_STRING);
   const [mobileNumber, setMobileNumber] = useState();
   const [tempMobileNumber, setTempMobileNumber] = useState();
   const [email, setEmail] = useState();

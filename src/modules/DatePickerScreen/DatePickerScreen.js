@@ -8,11 +8,12 @@ import {TextInput} from 'react-native-paper';
 import ColorPalette from '../../Assets/Themes/ColorPalette';
 import {useScreenContext} from '../../Contexts/ScreenContext';
 import styles from './Style';
+import StaticVariables from '../../Preferences/StaticVariables';
 
 const DatePickerScreen = () => {
   const [date, setDate] = useState(new Date());
   const [open, setOpen] = useState(false);
-  const [mode, setMode] = useState('');
+  const [mode, setMode] = useState(StaticVariables.EMPTY_STRING);
   const screenContext = useScreenContext();
   const screenStyles = styles(
     screenContext,

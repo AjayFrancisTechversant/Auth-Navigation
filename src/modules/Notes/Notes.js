@@ -15,18 +15,19 @@ import {useScreenContext} from '../../Contexts/ScreenContext';
 import Card from '../../Components/Card/Card';
 import styles from './Style';
 import ColorPalette from '../../Assets/Themes/ColorPalette';
+import StaticVariables from '../../Preferences/StaticVariables';
 
 const Notes = () => {
   const [refresh, setRefresh] = useState(false);
   const [isAdding, setIsAdding] = useState(false);
   const [isEditing, setIsEditing] = useState(false);
-  const [title, setTitle] = useState('');
-  const [desc, setDesc] = useState('');
+  const [title, setTitle] = useState(StaticVariables.EMPTY_STRING);
+  const [desc, setDesc] = useState(StaticVariables.EMPTY_STRING);
   const [allNotes, setAllNotes] = useState([]);
   const [isAddLoading, setIsAddLoading] = useState(false);
   const [isEditLoading, setIsEditLoading] = useState(false);
   const [isDeleteLoading, setIsDeleteLoading] = useState(false);
-  const [editNoteId, setEditNoteId] = useState('');
+  const [editNoteId, setEditNoteId] = useState(StaticVariables.EMPTY_STRING);
 
   useEffect(() => {
     getNotes();
@@ -55,8 +56,8 @@ const Notes = () => {
           note.desc = desc;
         });
       });
-      setTitle('');
-      setDesc('');
+      setTitle(StaticVariables.EMPTY_STRING);
+      setDesc(StaticVariables.EMPTY_STRING);
       setIsAddLoading(false);
       setIsAdding(false);
     } else {
@@ -81,8 +82,8 @@ const Notes = () => {
       });
     });
     setIsEditLoading(false);
-    setTitle('');
-    setDesc('');
+    setTitle(StaticVariables.EMPTY_STRING);
+    setDesc(StaticVariables.EMPTY_STRING);
     setIsEditing(false);
     setIsAdding(false);
   };
@@ -101,8 +102,8 @@ const Notes = () => {
     setDesc((await database.get('notes').find(id))._raw.desc);
   };
   const handleCrossButton = () => {
-    setTitle('');
-    setDesc('');
+    setTitle(StaticVariables.EMPTY_STRING);
+    setDesc(StaticVariables.EMPTY_STRING);
     setIsAdding(false);
     setIsEditing(false);
   };

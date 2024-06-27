@@ -14,9 +14,10 @@ import FacebookAuthButton from '../../Components/FacebookAuthButton/FacebookAuth
 import GithubAuthButton from '../../Components/GithubAuthButton/GithubAuthButton';
 import {useScreenContext} from '../../Contexts/ScreenContext';
 import styles from './Style';
+import StaticVariables from '../../Preferences/StaticVariables';
 
 const LoginPage = ({navigation}) => {
-  const [userData, setUserData] = useState({email: '', password: ''});
+  const [userData, setUserData] = useState({email: StaticVariables.EMPTY_STRING, password: StaticVariables.EMPTY_STRING});
   const [isLoading, setIsLoading] = useState(false);
 
   const handleLogin = async () => {

@@ -5,6 +5,7 @@ import {useScreenContext} from '../../Contexts/ScreenContext';
 import Card from '../../Components/Card/Card';
 import ColorPalette from '../../Assets/Themes/ColorPalette';
 import styles from './Style';
+import StaticVariables from '../../Preferences/StaticVariables';
 
 const Listing = () => {
   const [newEntry, setNewEntry] = useState();
@@ -34,7 +35,7 @@ const Listing = () => {
 
   const handleAdd = () => {
     newEntry && items.push(newEntry);
-    setNewEntry('');
+    setNewEntry(StaticVariables.EMPTY_STRING);
   };
   const handleDelete = i => {
     items.splice(i, 1);

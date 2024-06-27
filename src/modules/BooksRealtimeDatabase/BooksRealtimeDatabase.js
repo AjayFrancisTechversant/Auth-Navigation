@@ -14,10 +14,11 @@ import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
 import ColorPalette from '../../Assets/Themes/ColorPalette';
 import {useScreenContext} from '../../Contexts/ScreenContext';
 import styles from './Style';
+import StaticVariables from '../../Preferences/StaticVariables';
 
 const BooksRealtimeDatabase = () => {
-  const [title, setTitle] = useState('');
-  const [desc, setDesc] = useState('');
+  const [title, setTitle] = useState(StaticVariables.EMPTY_STRING);
+  const [desc, setDesc] = useState(StaticVariables.EMPTY_STRING);
   const [books, setBooks] = useState([]);
   const [modalVisible, setModalVisible] = useState(false);
   const [selectedBook, setSelectedBook] = useState(null);
@@ -48,8 +49,8 @@ const BooksRealtimeDatabase = () => {
         await database()
           .ref('/todo/' + title)
           .set({title, desc});
-        setTitle('');
-        setDesc('');
+        setTitle(StaticVariables.EMPTY_STRING);
+        setDesc(StaticVariables.EMPTY_STRING);
       } catch (error) {
         console.log(error);
       }

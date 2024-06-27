@@ -76,7 +76,6 @@ const styles = (screenContext, width, height) =>
     // 3IconContainer
     threeIconContainer: {
       flexDirection: 'row',
-      justifyContent: '',
       marginVertical: 20,
       borderColor: 'blue',
     },
