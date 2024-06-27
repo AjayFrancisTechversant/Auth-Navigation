@@ -20,6 +20,8 @@ import SliderButton from '../../Components/SliderButton/SliderButton';
 import {useScreenContext} from '../../Contexts/ScreenContext';
 import styles from './Style';
 
+const TwoGreenCups=require('../../Assets/Images/2GreenCups.jpg')
+
 function clamp(val, min, max) {
   return Math.min(Math.max(val, min), max);
 }
@@ -81,7 +83,7 @@ const Booking = ({navigation}) => {
     <View style={screenStyles.wholeContainer}>
       <View style={screenStyles.bgImageContainer}>
         <AnimatedImageBackground
-          source={require('../../Assets/Images/2GreenCups.jpg')}
+          source={TwoGreenCups}
           style={[imageAnimatedStyles, screenStyles.bgImage]}
           imageStyle={screenStyles.bgImageStyle}></AnimatedImageBackground>
       </View>

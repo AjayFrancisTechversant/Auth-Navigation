@@ -19,6 +19,8 @@ import ColorPalette from '../../Assets/Themes/ColorPalette';
 import styles from './Style';
 import StaticVariables from '../../Preferences/StaticVariables';
 
+const NetFriends_logo_with_sidelabel=require('../../Assets/Images/Logo/NetFriends_logo_with_sidelabel.png')
+
 const HomeScreen = ({navigation}) => {
   const [searchText, setSearchText] = useState(StaticVariables.EMPTY_STRING);
   const [modalCloseToggle, setModalCloseToggle] = useState(true);
@@ -102,7 +104,7 @@ const HomeScreen = ({navigation}) => {
                     <TouchableOpacity>
                       <Image
                         style={screenStyles.logo}
-                        source={require('../../Assets/Images/Logo/NetFriends_logo_with_sidelabel.png')}
+                        source={NetFriends_logo_with_sidelabel}
                       />
                     </TouchableOpacity>
                   </View>

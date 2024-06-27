@@ -20,6 +20,8 @@ import styles from './Style';
 import ColorPalette from '../../Assets/Themes/ColorPalette';
 import StaticVariables from '../../Preferences/StaticVariables';
 
+const map_bg1=require('../../Assets/Images/map-bg1.jpg')
+
 const Locator = ({navigation}) => {
   const [isLocationFetched, setIsLocationFetched] = useState(false);
   const [location, setLocation] = useState(StaticVariables.EMPTY_OBJECT);
@@ -74,7 +76,7 @@ const Locator = ({navigation}) => {
   return (
     <View style={screenStyles.canvas}>
       <ImageBackground
-        source={require('../../Assets/Images/map-bg1.jpg')}
+        source={map_bg1}
         resizeMode="cover"
         style={screenStyles.bgImage}>
         <Text style={screenStyles.mainHeading}>Locator</Text>

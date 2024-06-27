@@ -22,6 +22,9 @@ import {useScreenContext} from '../../Contexts/ScreenContext';
 import styles from './Style';
 import StaticVariables from '../../Preferences/StaticVariables';
 
+const profilePageBG=require('../../Assets/Images/profilePageBG.jpg')
+const profilePicDummy=require('../../Assets/Images/profilePicDummy.webp')
+
 const Me = () => {
   const likeCount = useSelector(state => state.Likes.likedUsers.length);
   const friendsCount = useSelector(
@@ -72,7 +75,7 @@ const Me = () => {
         style={screenStyles.container}>
         <ImageBackground
           style={screenStyles.headerContainer}
-          source={require('../../Assets/Images/profilePageBG.jpg')}
+          source={profilePageBG}
           imageStyle={screenStyles.BGImageStyle}>
           <TouchableOpacity onPress={handleLogout}>
             <MaterialIcons
@@ -86,7 +89,7 @@ const Me = () => {
         <View style={screenStyles.userDetailsContainer}>
           <Image
             style={screenStyles.profilePicture}
-            source={require('../../Assets/Images/profilePicDummy.webp')}
+            source={profilePicDummy}
           />
           <Text style={screenStyles.username}>{username}</Text>
           {isEditing ? (
