@@ -27,7 +27,7 @@ const styles = (screenContext, width, height) =>
     commentCard: {
       borderRadius: 20,
       backgroundColor: 'white',
-      padding: height*0.25,
+      padding: height*0.025,
       elevation: 5,
       marginTop: height*0.0125,
       marginHorizontal: width*0.0243,

@@ -21,13 +21,6 @@ const styles = (screenContext, width, height) =>
       margin: height*0.0250,
       gap: 10,
     },
-    commentsContainer: {
-      backgroundColor: ColorPalette.lightOrange,
-      height: screenContext.isPortrait ? height * 0.75 : width * 0.55,
-      elevation: 5,
-      borderRadius: 20,
-      margin: height*0.0250,
-    },
     flexDRow: {
       flexDirection: 'row',
     },
