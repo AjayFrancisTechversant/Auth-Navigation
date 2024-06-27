@@ -97,7 +97,7 @@ const Booking = ({navigation}) => {
             backgroundColor: 'grey',
             borderRadius: 5,
             alignSelf: 'center',
-            marginTop: 10,
+            marginTop: screenContext.windowHeight*0.0125,
           }}></View>
         <View style={screenStyles.contentsSubContainer}>
           <GestureDetector gesture={pan}>

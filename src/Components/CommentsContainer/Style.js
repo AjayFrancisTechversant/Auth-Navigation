@@ -8,11 +8,11 @@ const styles = (screenContext, width, height) =>
       height: screenContext.isPortrait ? height * 0.75 : width * 0.55,
       elevation: 5,
       borderRadius: 20,
-      margin: 20,
+      margin: height*0.0250,
       overflow: 'hidden',
     },
     emptyComponentContainer: {
-      margin: 30,
+      margin: height*0.0376,
       alignSelf: 'center',
     },
     emptyComponentText: {
@@ -21,7 +21,7 @@ const styles = (screenContext, width, height) =>
       fontWeight: 'bold',
     },
     loadingContainer: {
-      margin: 30,
+      margin: height*0.0376,
       alignSelf: 'center',
     },
     commentCard: {
@@ -29,8 +29,8 @@ const styles = (screenContext, width, height) =>
       backgroundColor: 'white',
       padding: 20,
       elevation: 5,
-      marginTop: 10,
-      marginHorizontal: 10,
+      marginTop: height*0.0125,
+      marginHorizontal: width*0.0243,
     },
     separator: {
       height: 5,

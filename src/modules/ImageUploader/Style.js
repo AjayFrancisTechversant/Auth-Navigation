@@ -1,18 +1,18 @@
 import {StyleSheet} from 'react-native';
 import ColorPalette from '../../Assets/Themes/ColorPalette';
 
-export const styles = StyleSheet.create({
+ const styles = (screenContext, width, height)=> StyleSheet.create({
   canvas: {flex: 1, backgroundColor: 'white'},
   mainHeading: {
     fontSize: 30,
-    marginVertical: 10,
-    marginLeft: 10,
+    marginVertical: height*0.0125,
+    marginLeft: width*0.0243,
     fontWeight: 'bold',
   },
   subHeading: {
     fontSize: 20,
-    marginVertical: 10,
-    marginLeft: 10,
+    marginVertical: height*0.0125,
+    marginLeft: width*0.0243,
     fontWeight: 'bold',
   },
   dashedBorder: {
@@ -25,15 +25,15 @@ export const styles = StyleSheet.create({
     alignItems: 'center',
     borderStyle: 'dashed',
     borderColor: 'grey',
-    marginBottom: 10,
+    marginBottom: height*0.0125,
   },
   cameraButton: {
-    marginBottom: 20,
+    marginBottom: height*0.025,
   },
   emptyComponentStyle: {
     alignSelf: 'center',
     fontSize: 14,
-    marginLeft: 30,
+    marginLeft: width*0.0729,
   },
 
   itemSeparatorComponent: {
@@ -42,11 +42,12 @@ export const styles = StyleSheet.create({
 
   uploadButton: {
     alignSelf: 'center',
-    marginTop: 20,
+    marginTop: height*0.025,
   },
   only6PicsText: {
     alignSelf: 'center',
-    margin: 10,
+    margin: height*0.0125,
     color: ColorPalette.red,
   },
 });
+export default styles;

@@ -10,7 +10,7 @@ const styles = (screenContext, width, height) =>
     facebookLogo: {
       height: 30,
       width: 30,
-      margin: 5,
+      margin: height*0.0062,
     },
   });
 export default styles;

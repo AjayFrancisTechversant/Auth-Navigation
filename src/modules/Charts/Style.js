@@ -9,7 +9,7 @@ const styles = (screenContext, width, height) =>
     },
     container: {
       flex: 1,
-      margin: 10,
+      margin: height*0.0125,
       borderRadius: 20,
       elevation: 10,
       backgroundColor: 'white',
@@ -27,13 +27,13 @@ const styles = (screenContext, width, height) =>
     },
     heading: {
       fontSize: 20,
-      marginTop: 10,
+      marginTop: height*0.0125,
       alignSelf: 'center',
     },
     pieChartContainer: {
       width: '100%',
       alignItems: 'center',
-      marginVertical: 10,
+      marginVertical: height*0.0125,
     },
     pieChartLabel: {
       fontSize: 25,
@@ -69,7 +69,7 @@ const styles = (screenContext, width, height) =>
     },
     barChartContainer: {
       alignSelf: 'center',
-      marginVertical: 20,
+      marginVertical: height*0.025,
     },
     dealsContainer: {
       flexDirection: 'row',
@@ -99,7 +99,7 @@ const styles = (screenContext, width, height) =>
       alignItems: 'center',
       borderRadius: 25,
       backgroundColor: ColorPalette.violet,
-      marginVertical: 25,
+      marginVertical: height*0.0315,
     },
     progressionText: {
       color: ColorPalette.white,

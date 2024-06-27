@@ -9,7 +9,7 @@ const styles = (screenContext, width, height) =>
     },
     heading: {
       fontSize: 20,
-      margin: 10,
+      margin: height*0.0125,
       fontWeight: 'bold',
     },
     button: {
@@ -21,22 +21,22 @@ const styles = (screenContext, width, height) =>
       height: 50,
     },
     calenderIcon: {
-      marginTop: -7,
+      marginTop: -height*0.00878,
     },
     text: {
-      margin: 10,
+      margin: height*0.0125,
     },
     subHeading: {
       fontSize: 12,
       fontWeight: 'bold',
-      margin: 10,
+      margin: height*0.0125,
     },
     textInput: {
       width: width * 0.5,
-      marginTop: -6,
+      marginTop: -height*0.00752,
     },
     textInputAndButtonContainer: {
-      margin: 10,
+      margin: height*0.0125,
       flexDirection: 'row',
       gap: 10,
     },

@@ -9,13 +9,13 @@ const styles = (screenContext, width, height) =>
     },
     container: {
       flex: 1,
-      margin: 20,
+      margin: height*0.0250,
     },
     headerContainer: {
       flexDirection: 'row',
       height: 200,
       justifyContent: 'flex-end',
-      marginBottom: -70,
+      marginBottom: -height*0.0878,
     },
     BGImageStyle: {
       borderRadius: 10,
@@ -23,7 +23,7 @@ const styles = (screenContext, width, height) =>
 
     logoutIcon: {
       color: ColorPalette.green,
-      margin: 20,
+      margin: height*0.0250,
     },
     editContainer: {
       borderWidth: 1,
@@ -32,7 +32,7 @@ const styles = (screenContext, width, height) =>
       borderColor: ColorPalette.green,
     },
     textInput: {
-      marginVertical: 5,
+      marginVertical: height*0.0062,
       width: width * 0.6,
     },
     editBoxTitle: {
@@ -41,7 +41,7 @@ const styles = (screenContext, width, height) =>
     editButtonsContainer: {
       flexDirection: 'row',
       justifyContent: 'space-around',
-      marginVertical: 10,
+      marginVertical: height*0.0125,
     },
     cancelEditButton: {
       backgroundColor: ColorPalette.red,
@@ -61,7 +61,7 @@ const styles = (screenContext, width, height) =>
     },
     //userDetails
     userDetailsContainer: {
-      marginVertical: 20,
+      marginVertical: height*0.025,
       alignItems: 'center',
     },
     profilePicture: {
@@ -76,7 +76,7 @@ const styles = (screenContext, width, height) =>
     // 3IconContainer
     threeIconContainer: {
       flexDirection: 'row',
-      marginVertical: 20,
+      marginVertical: height*0.025,
       borderColor: 'blue',
     },
     threeIconButton: {
@@ -92,7 +92,7 @@ const styles = (screenContext, width, height) =>
     },
 
     OptionCardContainer: {
-      marginHorizontal: screenContext.isPortrait ? 20 : 100,
+      marginHorizontal: screenContext.isPortrait ? width*0.0486 : width*0.2433,
     },
   });
 export default styles;

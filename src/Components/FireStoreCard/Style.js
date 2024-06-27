@@ -8,8 +8,8 @@ const styles = (screenContext, width, height) =>
       justifyContent: 'space-between',
       padding: 10,
       borderRadius: 10,
-      margin: 5,
-      marginHorizontal: 20,
+      margin: height*0.0062,
+      marginHorizontal: width*0.0486,
       backgroundColor: 'white',
       elevation: 10,
       borderColor: ColorPalette.green,
@@ -39,7 +39,7 @@ const styles = (screenContext, width, height) =>
     flexRow: {
       flexDirection: 'row',
       justifyContent: 'space-evenly',
-      marginTop: 10,
+      marginTop: height*0.0125,
     },
   });
 export default styles;

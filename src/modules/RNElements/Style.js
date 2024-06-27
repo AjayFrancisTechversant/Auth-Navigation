@@ -8,7 +8,7 @@ const styles = (screenContext, width, height) =>
     },
     mainHeading: {
       fontSize: 20,
-      margin: 20,
+      margin: height*0.0250,
       fontWeight: 'bold',
     },
     circleSkeleton: {

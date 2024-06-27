@@ -2,7 +2,7 @@ import {StyleSheet} from 'react-native';
 
 export const styles = StyleSheet.create({
   cardView: {
-    marginVertical: 10,
+    marginVertical: height*0.0125,
   },
   imageDeleteCloseButton: {
     zIndex: 1,

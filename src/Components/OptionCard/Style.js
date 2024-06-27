@@ -4,7 +4,7 @@ import ColorPalette from '../../Assets/Themes/ColorPalette';
 const styles = (screenContext, width, height) =>
   StyleSheet.create({
     container: {
-      marginBottom: 20,
+      marginBottom: height*0.025,
     },
     button: {
       borderWidth: 1,
@@ -16,15 +16,15 @@ const styles = (screenContext, width, height) =>
       borderColor: ColorPalette.green,
     },
     icon: {
-      marginLeft: 10,
+      marginLeft: width*0.0243,
       color: ColorPalette.green,
     },
     buttonText: {
-      marginLeft: 20,
+      marginLeft: width*0.0486,
       color: ColorPalette.green,
     },
     rightIcon: {
-      marginRight: 20,
+      marginRight: width*0.0486,
       color: ColorPalette.green,
     },
   });

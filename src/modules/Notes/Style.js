@@ -9,7 +9,7 @@ const styles = (screenContext, width, height) =>
     },
     container: {
       flex: 1,
-      marginTop: 20,
+      marginTop: height*0.025,
     },
     addNoteButton: {
       position: 'absolute',
@@ -31,7 +31,7 @@ const styles = (screenContext, width, height) =>
     },
     subTitle: {
       alignSelf: 'center',
-      marginTop: 10,
+      marginTop: height*0.0125,
       fontFamily: 'helvetica',
       fontSize: 20,
     },
@@ -44,19 +44,19 @@ const styles = (screenContext, width, height) =>
       backgroundColor: 'white',
       borderRadius: 10,
       alignSelf: 'center',
-      marginVertical: 10,
+      marginVertical: height*0.0125,
     },
 
     noItemsToDisplay: {
-      marginHorizontal: 50,
+      marginHorizontal: width*0.01210,
       color: ColorPalette.orange,
     },
     titleTextInput: {
-      margin: 10,
+      margin: height*0.0125,
       backgroundColor: 'white',
     },
     descTextInput: {
-      margin: 10,
+      margin: height*0.0125,
       backgroundColor: 'white',
       height: 80,
     },

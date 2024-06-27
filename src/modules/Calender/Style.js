@@ -7,7 +7,7 @@ const styles = (screenContext, width, height) =>
       flex: 1,
     },
     calendar: {
-      margin: 10,
+      margin: height*0.0125,
       borderWidth: 1,
       borderRadius: 10,
       borderColor: 'grey',

@@ -21,11 +21,10 @@ const styles = (screenContext, width, height) =>
       borderTopLeftRadius: 30,
     },
     scrollView: {
-      marginBottom: 0,
       height: screenContext.isPortrait ? height * 0.71 : width * 0.45,
     },
     contentsContainer: {
-      marginHorizontal: 10,
+      marginHorizontal: width*0.0243,
       marginTop: -height * 0.03,
       height: height * 0.75,
       borderTopRightRadius: 30,
@@ -34,17 +33,17 @@ const styles = (screenContext, width, height) =>
       paddingBottom: 0,
     },
     contentsSubContainer: {
-      margin: 20,
+      margin: height*0.0250,
       justifyContent: 'space-between',
     },
     titleAndPriceContainer: {
       flexDirection: 'row',
       justifyContent: 'space-between',
       alignItems: 'center',
-      marginHorizontal: -20,
+      marginHorizontal: -width*0.0486,
       paddingHorizontal: 20,
       paddingTop: 10,
-      marginTop: -20,
+      marginTop: -height*0.025,
       borderTopRightRadius: 30,
       borderTopLeftRadius: 30,
     },
@@ -72,11 +71,11 @@ const styles = (screenContext, width, height) =>
       color: ColorPalette.gray,
     },
     numberBoxContainer: {
-      marginVertical: 10,
+      marginVertical: height*0.0125,
       flexDirection: 'row',
     },
     numberBoxSelected: {
-      marginHorizontal: 5,
+      marginHorizontal: width*0.0121,
       height: 30,
       width: 30,
       backgroundColor: ColorPalette.green,
@@ -85,7 +84,7 @@ const styles = (screenContext, width, height) =>
       justifyContent: 'center',
     },
     numberBoxNotSelected: {
-      marginHorizontal: 5,
+      marginHorizontal: width*0.0121,
       height: 30,
       width: 30,
       backgroundColor: ColorPalette.lightGreen,

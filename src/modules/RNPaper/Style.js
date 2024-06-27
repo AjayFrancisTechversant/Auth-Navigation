@@ -10,10 +10,10 @@ const styles = (screenContext, width, height) =>
     SegmentedButtons: {
       width: width * 0.7,
       alignSelf: 'center',
-      marginVertical: 20,
+      marginVertical: height*0.025,
     },
     SegmentedButtonValueText: {
-      marginLeft: 20,
+      marginLeft: width*0.0486,
     },
     card: {
       width: screenContext.isTypeTablet ? width * 0.9 : width * 0.8,
@@ -27,11 +27,11 @@ const styles = (screenContext, width, height) =>
     },
     toggleButttonsContainer: {
       alignSelf: 'center',
-      marginVertical: 20,
+      marginVertical: height*0.025,
     },
     switchContainer: {
-      marginTop: 10,
-      marginLeft: 30,
+      marginTop: height*0.0125,
+      marginLeft: width*0.0729,
       flexDirection: 'row',
     },
     snackBarText: {
@@ -44,23 +44,23 @@ const styles = (screenContext, width, height) =>
       alignSelf: 'center',
     },
     downloadDataButton: {
-      marginTop: 20,
+      marginTop: height*0.025,
       alignItems: 'center',
       justifyContent: 'center',
       height: 30,
       width: 130,
       backgroundColor: ColorPalette.green,
       borderRadius: 5,
-      marginLeft: 30,
+      marginLeft: width*0.0729,
     },
     downloadDataText: {
       color: ColorPalette.white,
     },
     progressBar: {
-      marginHorizontal: 30,
+      marginHorizontal: width*0.0729,
     },
     loremText: {
-      marginHorizontal: 20,
+      marginHorizontal: width*0.0486,
     },
     FABGroup: {
       position: 'absolute',
@@ -71,7 +71,7 @@ const styles = (screenContext, width, height) =>
       right: 16,
     },
     DataTable: {
-      margin: 20,
+      margin: height*0.0250,
       borderWidth: 1,
       width: width * 0.9,
       borderRadius: 5,
@@ -79,10 +79,10 @@ const styles = (screenContext, width, height) =>
       borderColor: 'grey',
     },
     textInput: {
-      marginBottom: 10,
+      marginBottom: height*0.0125,
       width: width * 0.8,
       alignSelf: 'center',
-      marginVertical: 10,
+      marginVertical: height*0.0125,
     },
   });
 export default styles;

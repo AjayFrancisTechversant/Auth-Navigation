@@ -9,7 +9,7 @@ const styles = (screenContext, width, height) =>
     },
     container: {
       flex: 1,
-      marginTop: 20,
+      marginTop: height*0.025,
     },
     title: {
       fontSize: 50,
@@ -38,7 +38,7 @@ const styles = (screenContext, width, height) =>
       marginHorizontal: screenContext.isPortrait ? 50 : 100,
     },
     noItemsToDisplay: {
-      marginHorizontal: 50,
+      marginHorizontal: width*0.01210,
       color: ColorPalette.orange,
     },
   });

@@ -10,10 +10,10 @@ const styles = (screenContext, width, height) =>
       flexDirection: 'row',
       justifyContent: 'flex-end',
       alignItems: 'center',
-      margin: 10,
+      margin: height*0.0125,
     },
     bodyContainer: {
-      margin: 10,
+      margin: height*0.0125,
     },
   });
 export default styles;

@@ -10,14 +10,14 @@ const styles = (screenContext, width, height) =>
     container: {
       flex: 1,
       marginHorizontal: screenContext.isPortrait ? width * 0.1 : width * 0.3,
-      marginTop: 50,
+      marginTop: height*0.062,
     },
     heading: {
       fontSize: 50,
       alignSelf: 'center',
     },
     textInput: {
-      marginVertical: 15,
+      marginVertical: height*0.0188,
     },
     button: {
       alignSelf: 'center',
@@ -34,7 +34,7 @@ const styles = (screenContext, width, height) =>
     lastViewContainer: {
       flexDirection: 'row',
       justifyContent: 'center',
-      margin: 10,
+      margin: height*0.0125,
     },
     greenUnderlinetext: {
       color: ColorPalette.green,

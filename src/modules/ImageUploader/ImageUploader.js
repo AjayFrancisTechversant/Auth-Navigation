@@ -17,9 +17,10 @@ import storage from '@react-native-firebase/storage';
 import RNFS from 'react-native-fs';
 import CameraScreen from '../../Components/CameraScreen/CameraScreen';
 import CardA from '../../Components/CardA/CardA';
-import {styles} from './Style';
+import styles from './Style';
 import ColorPalette from '../../Assets/Themes/ColorPalette';
 import StaticVariables from '../../Preferences/StaticVariables';
+import { useScreenContext } from '../../Contexts/ScreenContext';
 
 const ImageUploader = () => {
   const [isCameraOpen, setIsCameraOpen] = useState(false);
@@ -187,9 +188,15 @@ const ImageUploader = () => {
       console.error(error);
     }
   };
+  const screenContext = useScreenContext();
+  const screenStyles = styles(
+    screenContext,
+    screenContext[screenContext.isPortrait ? 'windowWidth' : 'windowHeight'],
+    screenContext[screenContext.isPortrait ? 'windowHeight' : 'windowWidth'],
+  );
 
   return (
-    <View style={styles.canvas}>
+    <View style={screenStyles.canvas}>
       {isCameraOpen ? (
         <CameraScreen
           takenPhotos={takenPhotos}
@@ -202,10 +209,10 @@ const ImageUploader = () => {
         />
       ) : (
         <ScrollView>
-          <Text style={styles.mainHeading}>Image Upload</Text>
-          <View style={styles.dashedBorder}>
+          <Text style={screenStyles.mainHeading}>Image Upload</Text>
+          <View style={screenStyles.dashedBorder}>
             <TouchableOpacity
-              style={styles.cameraButton}
+              style={screenStyles.cameraButton}
               onPress={handleCameraButton}>
               <MaterialCommunityIcons name="camera-plus" size={50} />
             </TouchableOpacity>
@@ -214,13 +221,13 @@ const ImageUploader = () => {
           <FlatList
             showsHorizontalScrollIndicator={false}
             ListHeaderComponent={
-              <View style={styles.itemSeparatorComponent}></View>
+              <View style={screenStyles.itemSeparatorComponent}></View>
             }
             ListFooterComponent={
-              <View style={styles.itemSeparatorComponent}></View>
+              <View style={screenStyles.itemSeparatorComponent}></View>
             }
             ItemSeparatorComponent={
-              <View style={styles.itemSeparatorComponent}></View>
+              <View style={screenStyles.itemSeparatorComponent}></View>
             }
             horizontal={true}
             data={takenPhotos}
@@ -235,41 +242,41 @@ const ImageUploader = () => {
             keyExtractor={(item, index) => index.toString()}
           />
           {isUploadLoading ? (
-            <ActivityIndicator size={40} style={styles.uploadButton} />
+            <ActivityIndicator size={40} style={screenStyles.uploadButton} />
           ) : takenPhotos.length > 0 && takenPhotos.length <= 6 ? (
             <TouchableOpacity
               onPress={handleUploadButton}
-              style={styles.uploadButton}>
+              style={screenStyles.uploadButton}>
               <AntDesign name="cloudupload" size={50} color={ColorPalette.green} />
             </TouchableOpacity>
           ) : takenPhotos.length > 6 ? (
             <View>
-              <TouchableOpacity disabled style={styles.uploadButton}>
+              <TouchableOpacity disabled style={screenStyles.uploadButton}>
                 <AntDesign name="cloudupload" size={50} color={ColorPalette.green} />
               </TouchableOpacity>
-              <Text style={styles.only6PicsText}>
+              <Text style={screenStyles.only6PicsText}>
                 You can upload only 6 pictures
               </Text>
             </View>
           ) : null}
-          <Text style={styles.subHeading}>Uploaded Images:</Text>
+          <Text style={screenStyles.subHeading}>Uploaded Images:</Text>
           {isFetchingImages ? (
             <ActivityIndicator size={40} color={ColorPalette.gray} />
           ) : (
             <FlatList
               showsHorizontalScrollIndicator={false}
               ListHeaderComponent={
-                <View style={styles.itemSeparatorComponent}></View>
+                <View style={screenStyles.itemSeparatorComponent}></View>
               }
               ListFooterComponent={
-                <View style={styles.itemSeparatorComponent}></View>
+                <View style={screenStyles.itemSeparatorComponent}></View>
               }
               ItemSeparatorComponent={
-                <View style={styles.itemSeparatorComponent}></View>
+                <View style={screenStyles.itemSeparatorComponent}></View>
               }
               horizontal={true}
               ListEmptyComponent={
-                <Text style={styles.emptyComponentStyle}>
+                <Text style={screenStyles.emptyComponentStyle}>
                   No Uploaded Images
                 </Text>
               }

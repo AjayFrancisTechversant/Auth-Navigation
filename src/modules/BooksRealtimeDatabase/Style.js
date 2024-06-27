@@ -9,7 +9,7 @@ const styles = (screenContext, width, height) =>
     },
     container: {
       flex: 1,
-      marginTop: 20,
+      marginTop: height*0.025,
     },
     title: {
       fontSize: 50,
@@ -21,7 +21,7 @@ const styles = (screenContext, width, height) =>
       width: width * 0.6,
     },
     button: {
-      marginTop: 10,
+      marginTop: height*0.0125,
       alignSelf: 'center',
       width: 50,
       height: 'auto',
@@ -37,15 +37,15 @@ const styles = (screenContext, width, height) =>
     noItemsToDisplay: {
       color: ColorPalette.orange,
       alignSelf: 'center',
-      marginTop: 20,
+      marginTop: height*0.025,
     },
     card: {
       flexDirection: 'row',
       justifyContent: 'space-between',
       padding: 10,
       borderRadius: 10,
-      margin: 5,
-      marginHorizontal: 20,
+      margin: height*0.0062,
+      marginHorizontal: width*0.0486,
       backgroundColor: 'white',
       elevation: 10,
       borderColor: ColorPalette.green,
@@ -75,7 +75,7 @@ const styles = (screenContext, width, height) =>
     flexRow: {
       flexDirection: 'row',
       justifyContent: 'space-evenly',
-      marginTop: 10,
+      marginTop: height*0.0125,
     },
   });
 export default styles;
