@@ -10,13 +10,11 @@ export const AddFriendSlice = createSlice({
     initialState,
     reducers: {
         addFriend: (state, action) => {
-
             state.addedFriends.push(action.payload)
         },
         removeFriend: (state, action) => {
             state.addedFriends=state.addedFriends.filter(i=>i.id.value!=action.payload.id.value)
         },
-
     },
 })
 
