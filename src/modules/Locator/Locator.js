@@ -22,7 +22,7 @@ import StaticVariables from '../../Preferences/StaticVariables';
 
 const Locator = ({navigation}) => {
   const [isLocationFetched, setIsLocationFetched] = useState(false);
-  const [location, setLocation] = useState({});
+  const [location, setLocation] = useState(StaticVariables.EMPTY_OBJECT);
   const [isLocationFetchingLoading, setIsLocationFetchingLoading] =
     useState(false);
   const [region, setRegion] = useState(StaticVariables.EMPTY_STRING);

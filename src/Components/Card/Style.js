@@ -16,10 +16,11 @@ const styles = (screenContext, width, height) =>
       elevation: 10,
       backgroundColor: 'white',
     },
-    titleAndDescContainer: {},
-    title: {fontSize: 25},
-    desc: {},
-    buttonsContainer: {},
-    button: {margin: 2},
+    title: {
+      fontSize: 25,
+    },
+    button: {
+      margin: 2,
+    },
   });
 export default styles;
