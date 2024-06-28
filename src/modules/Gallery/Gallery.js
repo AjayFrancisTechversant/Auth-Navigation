@@ -9,8 +9,8 @@ import React, {useEffect, useRef, useState} from 'react';
 import {PEXELS_API_KEY} from '../../Services/API/PexelsAPI';
 import StaticVariables from '../../Preferences/StaticVariables';
 import styles from './Style';
+import {useScreenContext} from '../../Contexts/ScreenContext';
 
-const {height, width} = Dimensions.get('screen');
 const ApiUrl =
   'https://api.pexels.com/v1/search?query=nature&orientation=portrait&size=small&per_page=20';
 const imageSize = 80;
@@ -21,6 +21,16 @@ const Gallery = () => {
   const topRef = useRef(null);
   const bottomRef = useRef(null);
   const [activeIndex, setActiveIndex] = useState(0);
+  
+  const screenContext = useScreenContext();
+  const screenStyles = styles(
+    screenContext,
+    screenContext[screenContext.isPortrait ? 'windowWidth' : 'windowHeight'],
+    screenContext[screenContext.isPortrait ? 'windowHeight' : 'windowWidth'],
+    imageSize,
+    spacing,
+  );
+  const width = screenContext.windowWidth
   useEffect(() => {
     fetchImagesFromPexels();
   }, []);
@@ -53,7 +63,6 @@ const Gallery = () => {
     }
   };
 
-  const screenStyles = styles(width, height, imageSize, spacing);
   return (
     <View style={screenStyles.canvas}>
       <FlatList
