@@ -5,6 +5,7 @@ import Animated, {
   useAnimatedStyle,
   withSpring,
 } from 'react-native-reanimated';
+import FontAwesome from 'react-native-vector-icons/FontAwesome';
 import {useScreenContext} from '../../Contexts/ScreenContext';
 import LikeDislikeButton from '../LikeDislikeButton/LikeDislikeButton';
 import AddFriendButton from '../AddFriendButton/AddFriendButton';
@@ -62,9 +63,14 @@ const HomeScreenCard = ({item}) => {
       <Modal
         transparent
         visible={isModalVisible}
-        onRequestClose={() => closeModal()}>
+        onRequestClose={() => setIsModalVisible(false)}>
         <View style={screenStyles.modalFullScreenBackground}>
           <Animated.View style={[screenStyles.userContainer, animatedStyle]}>
+            <TouchableOpacity style={screenStyles.closeButton}
+            onPress={()=>closeModal()}
+            >
+              <FontAwesome name="close" size={25} />
+            </TouchableOpacity>
             <Text style={screenStyles.title}>
               {`${item.name.title}. ${item.name.first} ${item.name.last}`}
             </Text>
