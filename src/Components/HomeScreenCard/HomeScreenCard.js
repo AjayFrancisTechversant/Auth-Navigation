@@ -77,4 +77,4 @@ const HomeScreenCard = ({item, setModalCloseToggle, modalCloseToggle}) => {
   );
 };
 
-export default HomeScreenCard;
+export default React.memo(HomeScreenCard);
