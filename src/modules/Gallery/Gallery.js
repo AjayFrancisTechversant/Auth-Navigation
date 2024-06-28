@@ -2,8 +2,9 @@ import {
   View,
   FlatList,
   Image,
-  Dimensions,
   TouchableOpacity,
+  ActivityIndicator,
+  Alert,
 } from 'react-native';
 import React, {useEffect, useRef, useState} from 'react';
 import {PEXELS_API_KEY} from '../../Services/API/PexelsAPI';
@@ -18,6 +19,7 @@ const spacing = 10;
 
 const Gallery = () => {
   const [images, setImages] = useState(StaticVariables.EMPTY_ARRAY);
+  const [loading, setLoading] = useState(true);
   const topRef = useRef(null);
   const bottomRef = useRef(null);
   const [activeIndex, setActiveIndex] = useState(0);
@@ -30,9 +32,15 @@ const Gallery = () => {
     imageSize,
     spacing,
   );
-  const width = screenContext.windowWidth
+  const width = screenContext.windowWidth;
+
   useEffect(() => {
-    fetchImagesFromPexels();
+    if (PEXELS_API_KEY) {
+      fetchImagesFromPexels();
+    } else {
+      Alert.alert("Error", "Pexels API Key is missing!");
+      setLoading(false);
+    }
   }, []);
 
   const fetchImagesFromPexels = async () => {
@@ -43,9 +51,13 @@ const Gallery = () => {
       const data = await response.json();
       setImages(data.photos);
     } catch (error) {
+      Alert.alert("Error", "Failed to fetch images from Pexels.");
       console.log(error);
+    } finally {
+      setLoading(false);
     }
   };
+
   const scrollToActiveIndex = index => {
     setActiveIndex(index);
     topRef?.current?.scrollToOffset({offset: index * width, animated: true});
@@ -62,6 +74,14 @@ const Gallery = () => {
       });
     }
   };
+
+  if (loading) {
+    return (
+      <View style={screenStyles.canvas}>
+        <ActivityIndicator size="large" color="#0000ff" />
+      </View>
+    );
+  }
 
   return (
     <View style={screenStyles.canvas}>
