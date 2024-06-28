@@ -25,6 +25,7 @@ import Skia from '../../../modules/Skia/Skia';
 import HomeScreen from '../../../modules/HomeScreen/HomeScreen';
 import ColorPalette from '../../../Assets/Themes/ColorPalette';
 import DrawerContents from '../../../Components/DrawerContents/DrawerContents';
+import ReanimatedCarousel from '../../../modules/ReanimatedCarousel/ReanimatedCarousel';
 
 const HomeDrawerStack = () => {
   const Drawer = createDrawerNavigator();
@@ -194,6 +195,19 @@ const HomeDrawerStack = () => {
         }}
         name="Virtualised List"
         component={VL}
+      />
+      <Drawer.Screen
+        options={{
+          drawerIcon: () => (
+            <MaterialCommunityIcons
+              name="view-carousel"
+              color={ColorPalette.green}
+              size={20}
+            />
+          ),
+        }}
+        name="ReanimatedCarousel"
+        component={ReanimatedCarousel}
       />
       <Drawer.Screen
         options={{

@@ -3,16 +3,15 @@ import {StyleSheet} from 'react-native';
 const styles = (screenContext, width, height) =>
   StyleSheet.create({
     carouselContainer: {
-      height: height*0.3,
-      borderRadius: 10,
-      borderColor: 'blue',
+      height: screenContext.isPortrait ? height * 0.3 : width * 0.3,
     },
     carousel: {
-      justifyContent: 'center',
+      alignSelf: 'center',
     },
     image: {
-      height: height*0.3,
-      width: width*0.9,
+      alignSelf: 'center',
+      height: '100%',
+      width: screenContext.isPortrait ? width * 0.93 : width * 0.3,
       borderRadius: 10,
     },
   });

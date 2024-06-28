@@ -5,7 +5,7 @@ import {images} from '../../Assets/Images/CarouselImages';
 import {useScreenContext} from '../../Contexts/ScreenContext';
 import styles from './Style';
 
-const HomeScreenCarousel = () => {
+const ReanimatedCarousel = () => {
   const ref = useRef(0);
   const screenContext = useScreenContext();
   const screenStyles = styles(
@@ -17,15 +17,15 @@ const HomeScreenCarousel = () => {
     <View style={screenStyles.carouselContainer}>
       <Carousel
         ref={ref}
-        scrollAnimationDuration={2000}
+        scrollAnimationDuration={1000}
         width={screenContext.windowWidth}
         style={screenStyles.carousel}
-        autoPlay={true}
+        // autoPlay={true}
         autoPlayInterval={2000}
         mode="parallax"
         modeConfig={{
           parallaxScrollingScale: 0.9,
-          parallaxScrollingOffset: 80,
+          parallaxScrollingOffset:screenContext.isPortrait ?screenContext.windowWidth*0.194: screenContext.windowHeight*1.63,
         }}
         data={images}
         renderItem={({item}) => (
@@ -36,4 +36,4 @@ const HomeScreenCarousel = () => {
   );
 };
 
-export default HomeScreenCarousel;
+export default ReanimatedCarousel;

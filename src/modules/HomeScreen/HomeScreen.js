@@ -14,7 +14,6 @@ import MenuDrawerButton from '../../Components/MenuDrawerButton/MenuDrawerButton
 import SearchBar from '../../Components/SearchBar/SearchBar';
 import HomeScreenCard from '../../Components/HomeScreenCard/HomeScreenCard';
 import {getUsers} from '../../Services/API/getUsers';
-import HomeScreenCarousel from '../../Components/HomeScreenCarousel/HomeScreenCarousel';
 import ColorPalette from '../../Assets/Themes/ColorPalette';
 import StaticVariables from '../../Preferences/StaticVariables';
 import styles from './Style';
@@ -114,7 +113,6 @@ const HomeScreen = ({navigation}) => {
                   setSearchText={setSearchText}
                 />
               </View>
-              <HomeScreenCarousel />
             </>
           }
           data={searchText == StaticVariables.EMPTY_STRING ? users : searchResults}
