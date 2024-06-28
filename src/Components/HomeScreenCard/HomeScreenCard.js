@@ -26,7 +26,10 @@ const HomeScreenCard = ({item}) => {
   const closeModal = () => {
     modalOpacity.value = withSpring(0);
     modalScale.value = withSpring(0);
-    setIsModalVisible(false);
+    setTimeout(() => {
+      setIsModalVisible(false)
+    }, 200);
+   
   };
   const animatedStyle = useAnimatedStyle(() => {
     return {
@@ -63,7 +66,7 @@ const HomeScreenCard = ({item}) => {
       <Modal
         transparent
         visible={isModalVisible}
-        onRequestClose={() => setIsModalVisible(false)}>
+        onRequestClose={() => closeModal()}>
         <View style={screenStyles.modalFullScreenBackground}>
           <Animated.View style={[screenStyles.userContainer, animatedStyle]}>
             <TouchableOpacity style={screenStyles.closeButton}
