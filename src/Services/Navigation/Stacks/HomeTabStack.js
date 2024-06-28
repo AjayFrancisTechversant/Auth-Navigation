@@ -2,12 +2,14 @@ import React from 'react';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import Entypo from 'react-native-vector-icons/Entypo';
 import FontAwesome6 from 'react-native-vector-icons/FontAwesome6';
+import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 import FontAwesome from 'react-native-vector-icons/FontAwesome';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import HomeDrawerStack from './HomeDrawerStack';
 import Booking from '../../../modules/Booking/Booking';
 import Gallery from '../../../modules/Gallery/Gallery';
 import Me from '../../../modules/Me/Me';
+import ParallaxCarousel from '../../../modules/ParallaxCarousel/ParallaxCarousel';
 
 const HomeTabStack = () => {
   const HomeTabStack = createBottomTabNavigator();
@@ -31,6 +33,20 @@ const HomeTabStack = () => {
           headerShown: false,
           tabBarIcon: ({color, size}) => (
             <Ionicons name="images" color={color} size={size} />
+          ),
+        }}
+      />
+          <HomeTabStack.Screen
+        name="Parallax"
+        component={ParallaxCarousel}
+        options={{
+          headerShown: false,
+          tabBarIcon: ({color, size}) => (
+            <MaterialCommunityIcons
+            name="view-carousel"
+            color={color}
+            size={size}
+          />
           ),
         }}
       />
