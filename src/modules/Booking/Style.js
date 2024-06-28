@@ -33,7 +33,7 @@ const styles = (screenContext, width, height) =>
     },
     contentsContainer: {
       marginHorizontal: width * 0.0243,
-      marginTop: -height * 0.03,
+      marginTop:screenContext.isPortrait ?  -height * 0.03:-width*0.5,
       height: height * 0.75,
       borderTopRightRadius: 30,
       borderTopLeftRadius: 30,
