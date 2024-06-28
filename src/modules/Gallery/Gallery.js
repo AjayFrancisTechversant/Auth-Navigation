@@ -9,8 +9,9 @@ import {
 import React, {useEffect, useRef, useState} from 'react';
 import {PEXELS_API_KEY} from '../../Services/API/PexelsAPI';
 import StaticVariables from '../../Preferences/StaticVariables';
-import styles from './Style';
 import {useScreenContext} from '../../Contexts/ScreenContext';
+import ColorPalette from '../../Assets/Themes/ColorPalette';
+import styles from './Style';
 
 const ApiUrl =
   'https://api.pexels.com/v1/search?query=nature&orientation=portrait&size=small&per_page=20';
@@ -23,7 +24,6 @@ const Gallery = () => {
   const topRef = useRef(null);
   const bottomRef = useRef(null);
   const [activeIndex, setActiveIndex] = useState(0);
-  
   const screenContext = useScreenContext();
   const screenStyles = styles(
     screenContext,
@@ -38,7 +38,7 @@ const Gallery = () => {
     if (PEXELS_API_KEY) {
       fetchImagesFromPexels();
     } else {
-      Alert.alert("Error", "Pexels API Key is missing!");
+      Alert.alert('Error', 'Pexels API Key is missing!');
       setLoading(false);
     }
   }, []);
@@ -51,7 +51,7 @@ const Gallery = () => {
       const data = await response.json();
       setImages(data.photos);
     } catch (error) {
-      Alert.alert("Error", "Failed to fetch images from Pexels.");
+      Alert.alert('Error', 'Failed to fetch images from Pexels.');
       console.log(error);
     } finally {
       setLoading(false);
@@ -78,7 +78,7 @@ const Gallery = () => {
   if (loading) {
     return (
       <View style={screenStyles.canvas}>
-        <ActivityIndicator size="large" color="#0000ff" />
+        <ActivityIndicator size="large" color={ColorPalette.green} />
       </View>
     );
   }
