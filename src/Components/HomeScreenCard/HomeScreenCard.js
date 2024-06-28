@@ -1,5 +1,10 @@
 import {View, Text, Image, Modal, TouchableOpacity} from 'react-native';
 import React, {useState} from 'react';
+import Animated, {
+  useSharedValue,
+  useAnimatedStyle,
+  withSpring,
+} from 'react-native-reanimated';
 import {useScreenContext} from '../../Contexts/ScreenContext';
 import LikeDislikeButton from '../LikeDislikeButton/LikeDislikeButton';
 import AddFriendButton from '../AddFriendButton/AddFriendButton';
@@ -10,6 +15,28 @@ const HomeScreenCard = ({item}) => {
   const name = item.name.first + ' ' + item.name.last;
   const {email, phone} = item;
   const {age} = item.dob;
+
+  const modalOpacity = useSharedValue(0);
+  const modalScale = useSharedValue(0);
+
+  const openModal = () => {
+    setIsModalVisible(true);
+    modalOpacity.value = withSpring(1);
+    modalScale.value = withSpring(1);
+  };
+
+  const closeModal = () => {
+    modalOpacity.value = withSpring(0);
+    modalScale.value = withSpring(0);
+    setIsModalVisible(false);
+  };
+
+  const animatedStyle = useAnimatedStyle(() => {
+    return {
+      opacity: modalOpacity.value,
+      transform: [{scale: modalScale.value}],
+    };
+  });
   const screenContext = useScreenContext();
   const screenStyles = styles(
     screenContext,
@@ -18,7 +45,7 @@ const HomeScreenCard = ({item}) => {
   );
   return (
     <TouchableOpacity
-      onPress={() => setIsModalVisible(true)}
+      onPress={() => openModal()}
       style={screenStyles.cardContainer}>
       <Image
         style={screenStyles.image}
@@ -39,35 +66,33 @@ const HomeScreenCard = ({item}) => {
       <Modal
         transparent
         visible={isModalVisible}
-        onRequestClose={() => {
-          setIsModalVisible(false);
-        }}>
+        onRequestClose={() => closeModal()}>
         <View style={screenStyles.modalFullScreenBackground}>
-            <View style={screenStyles.userContainer}>
-              <Text style={screenStyles.title}>
-                {`${item.name.title}. ${item.name.first} ${item.name.last}`}
-              </Text>
-              <Image
-                style={screenStyles.modalImage}
-                source={{
-                  uri: item.picture.large,
-                }}
-              />
-              <View style={screenStyles.modalButtonsContainer}>
-                <LikeDislikeButton item={item} />
-                <AddFriendButton item={item} />
-              </View>
-              <View style={screenStyles.descContainer}>
-                <Text>Age: {item.dob.age}</Text>
-                <Text>Gender: {item.gender}</Text>
-                <Text>Email: {item.email}</Text>
-                <Text>
-                  Location: {item.location.state}, {item.location.country}
-                </Text>
-                <Text>Phone: {item.phone}</Text>
-              </View>
+          <Animated.View style={[screenStyles.userContainer, animatedStyle]}>
+            <Text style={screenStyles.title}>
+              {`${item.name.title}. ${item.name.first} ${item.name.last}`}
+            </Text>
+            <Image
+              style={screenStyles.modalImage}
+              source={{
+                uri: item.picture.large,
+              }}
+            />
+            <View style={screenStyles.modalButtonsContainer}>
+              <LikeDislikeButton item={item} />
+              <AddFriendButton item={item} />
             </View>
-          </View>
+            <View style={screenStyles.descContainer}>
+              <Text>Age: {item.dob.age}</Text>
+              <Text>Gender: {item.gender}</Text>
+              <Text>Email: {item.email}</Text>
+              <Text>
+                Location: {item.location.state}, {item.location.country}
+              </Text>
+              <Text>Phone: {item.phone}</Text>
+            </View>
+          </Animated.View>
+        </View>
       </Modal>
     </TouchableOpacity>
   );
