@@ -1,4 +1,4 @@
-import {View, Text, TouchableOpacity} from 'react-native';
+import {View, Text, TouchableOpacity, ScrollView} from 'react-native';
 import React, {useState} from 'react';
 import DatePicker from 'react-native-date-picker';
 import moment from 'moment';
@@ -21,7 +21,7 @@ const DatePickerScreen = () => {
     screenContext[screenContext.isPortrait ? 'windowHeight' : 'windowWidth'],
   );
   return (
-    <View style={screenStyles.canvas}>
+    <ScrollView style={screenStyles.canvas}>
       <Text style={screenStyles.heading}>Date Picker</Text>
       <View style={screenStyles.textInputAndButtonContainer}>
         <TextInput
@@ -98,7 +98,7 @@ const DatePickerScreen = () => {
         style={[screenStyles.text, {fontWeight: 'bold', alignSelf: 'center'}]}>
         {moment(date).format('dddd, MMMM Do YYYY, h:mm:ss a')}
       </Text>
-    </View>
+    </ScrollView>
   );
 };
 

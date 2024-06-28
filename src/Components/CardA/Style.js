@@ -1,6 +1,6 @@
 import {StyleSheet} from 'react-native';
 
-export const styles = StyleSheet.create({
+const styles =(screenContext,width,height)=> StyleSheet.create({
   cardView: {
     marginVertical: height*0.0125,
   },
@@ -16,3 +16,4 @@ export const styles = StyleSheet.create({
     borderRadius: 10,
   },
 });
+export default styles;

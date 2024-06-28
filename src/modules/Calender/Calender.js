@@ -1,4 +1,4 @@
-import {View, Text} from 'react-native';
+import {View, Text, ScrollView} from 'react-native';
 import React, {useCallback, useMemo, useState} from 'react';
 import {Calendar, CalendarUtils} from 'react-native-calendars';
 import {useScreenContext} from '../../Contexts/ScreenContext';
@@ -34,7 +34,7 @@ const Calender = () => {
     screenContext[screenContext.isPortrait ? 'windowHeight' : 'windowWidth'],
   );
   return (
-    <View>
+    <ScrollView>
       <Text style={screenStyles.text}>Calendar with selectable date</Text>
       <Calendar
         enableSwipeMonths
@@ -43,7 +43,7 @@ const Calender = () => {
         onDayPress={onDayPress}
         markedDates={marked}
       />
-    </View>
+    </ScrollView>
   );
 };
 
