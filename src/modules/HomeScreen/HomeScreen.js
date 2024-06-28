@@ -23,7 +23,6 @@ const NetFriends_logo_with_sidelabel=require('../../Assets/Images/Logo/NetFriend
 
 const HomeScreen = ({navigation}) => {
   const [searchText, setSearchText] = useState(StaticVariables.EMPTY_STRING);
-  const [modalCloseToggle, setModalCloseToggle] = useState(true);
   const [searchResults, setSearchResults] = useState(StaticVariables.EMPTY_ARRAY);
   const [users, setUsers] = useState(StaticVariables.EMPTY_ARRAY);
   const [isLoading, setIsLoading] = useState(false);
@@ -86,7 +85,6 @@ const HomeScreen = ({navigation}) => {
         <FlatList
           onScroll={onScroll}
           ref={flatListRef}
-          extraData={modalCloseToggle}
           showsVerticalScrollIndicator={false}
           ListEmptyComponent={!isLoading && <Text>Nothing to Display!!</Text>}
           ListHeaderComponent={
@@ -124,8 +122,6 @@ const HomeScreen = ({navigation}) => {
           renderItem={({item}) => (
             <View style={screenStyles.homeScreenCardContainer}>
               <HomeScreenCard
-                modalCloseToggle={modalCloseToggle}
-                setModalCloseToggle={setModalCloseToggle}
                 item={item}
               />
             </View>

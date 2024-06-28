@@ -5,7 +5,7 @@ import LikeDislikeButton from '../LikeDislikeButton/LikeDislikeButton';
 import AddFriendButton from '../AddFriendButton/AddFriendButton';
 import styles from './Style';
 
-const HomeScreenCard = ({item, setModalCloseToggle, modalCloseToggle}) => {
+const HomeScreenCard = ({item}) => {
   const [isModalVisible, setIsModalVisible] = useState(false);
   const name = item.name.first + ' ' + item.name.last;
   const {email, phone} = item;
@@ -41,8 +41,7 @@ const HomeScreenCard = ({item, setModalCloseToggle, modalCloseToggle}) => {
         animationType="fade"
         visible={isModalVisible}
         onRequestClose={() => {
-          setIsModalVisible(!isModalVisible);
-          setModalCloseToggle(!modalCloseToggle);
+          setIsModalVisible(false);
         }}>
         <View style={screenStyles.modalFullScreenBackground}>
           <View style={screenStyles.modalContainer}>
