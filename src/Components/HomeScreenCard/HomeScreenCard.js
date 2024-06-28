@@ -15,22 +15,18 @@ const HomeScreenCard = ({item}) => {
   const name = item.name.first + ' ' + item.name.last;
   const {email, phone} = item;
   const {age} = item.dob;
-
   const modalOpacity = useSharedValue(0);
   const modalScale = useSharedValue(0);
-
   const openModal = () => {
     setIsModalVisible(true);
     modalOpacity.value = withSpring(1);
     modalScale.value = withSpring(1);
   };
-
   const closeModal = () => {
     modalOpacity.value = withSpring(0);
     modalScale.value = withSpring(0);
     setIsModalVisible(false);
   };
-
   const animatedStyle = useAnimatedStyle(() => {
     return {
       opacity: modalOpacity.value,
