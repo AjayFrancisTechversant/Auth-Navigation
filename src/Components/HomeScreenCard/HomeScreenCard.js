@@ -38,13 +38,11 @@ const HomeScreenCard = ({item}) => {
       </View>
       <Modal
         transparent
-        animationType="fade"
         visible={isModalVisible}
         onRequestClose={() => {
           setIsModalVisible(false);
         }}>
         <View style={screenStyles.modalFullScreenBackground}>
-          <View style={screenStyles.modalContainer}>
             <View style={screenStyles.userContainer}>
               <Text style={screenStyles.title}>
                 {`${item.name.title}. ${item.name.first} ${item.name.last}`}
@@ -70,7 +68,6 @@ const HomeScreenCard = ({item}) => {
               </View>
             </View>
           </View>
-        </View>
       </Modal>
     </TouchableOpacity>
   );
