@@ -14,6 +14,7 @@ import {persistor, store} from './src/Redux/Store/Store';
 import HomeTabStack from './src/Services/Navigation/Stacks/HomeTabStack';
 import {ScreenContextProvider} from './src/Contexts/ScreenContext';
 import ParallaxCarousel from './src/modules/ParallaxCarousel/ParallaxCarousel';
+import SampleComponent from './src/Components/SampleComponent/SampleComponent';
 
 PermissionsAndroid.request(PermissionsAndroid.PERMISSIONS.POST_NOTIFICATIONS);
 
@@ -94,7 +95,7 @@ export default function Main() {
           <GestureHandlerRootView>
             <PaperProvider>
               <App />
-              {/* <ParallaxCarousel/> */}
+              {/* <SampleComponent /> */}
             </PaperProvider>
           </GestureHandlerRootView>
         </PersistGate>

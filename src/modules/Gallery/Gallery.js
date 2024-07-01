@@ -5,6 +5,8 @@ import {
   TouchableOpacity,
   ActivityIndicator,
   Alert,
+  Dimensions,
+  Animated,
 } from 'react-native';
 import React, {useEffect, useRef, useState} from 'react';
 import {PEXELS_API_KEY} from '../../Services/API/PexelsAPI';
@@ -24,6 +26,7 @@ const Gallery = () => {
   const topRef = useRef(null);
   const bottomRef = useRef(null);
   const [activeIndex, setActiveIndex] = useState(0);
+  const fadeAnim = useRef(new Animated.Value(1)).current;
   const screenContext = useScreenContext();
   const screenStyles = styles(
     screenContext,
@@ -32,6 +35,30 @@ const Gallery = () => {
     imageSize,
     spacing,
   );
+
+  useEffect(() => {
+    const handleOrientationChange = () => {
+      Animated.sequence([
+        Animated.timing(fadeAnim, {
+          toValue: 0,
+          duration: 0,
+          useNativeDriver: true,
+        }),
+        Animated.timing(fadeAnim, {
+          toValue: 1,
+          duration: 500,
+          useNativeDriver: true,
+        }),
+      ]).start();
+      scrollToActiveIndex(0);
+    };
+    const subscription = Dimensions.addEventListener(
+      'change',
+      handleOrientationChange,
+    );
+    return () => subscription?.remove();
+  }),
+    [];
   const width = screenContext.windowWidth;
 
   useEffect(() => {
@@ -84,7 +111,7 @@ const Gallery = () => {
   }
 
   return (
-    <View style={screenStyles.canvas}>
+    <Animated.View style={[screenStyles.canvas, {opacity: fadeAnim}]}>
       <FlatList
         ref={topRef}
         horizontal
@@ -133,7 +160,7 @@ const Gallery = () => {
           );
         }}
       />
-    </View>
+    </Animated.View>
   );
 };
 
