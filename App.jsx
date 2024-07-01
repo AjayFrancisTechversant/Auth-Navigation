@@ -93,8 +93,8 @@ export default function Main() {
         <PersistGate loading={null} persistor={persistor}>
           <GestureHandlerRootView>
             <PaperProvider>
-              {/* <App /> */}
-              <ParallaxCarousel/>
+              <App />
+              {/* <ParallaxCarousel/> */}
             </PaperProvider>
           </GestureHandlerRootView>
         </PersistGate>

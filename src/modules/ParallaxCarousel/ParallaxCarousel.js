@@ -1,9 +1,22 @@
-import {View, Text, FlatList, Image} from 'react-native';
-import React from 'react';
+import {View, Image, Animated} from 'react-native';
+import React, {useRef} from 'react';
 import {useScreenContext} from '../../Contexts/ScreenContext';
 import styles from './Style';
 
+const pic1=require('../../Assets/Images/parallaxCarousalPics/pic1.webp')
+const pic2=require('../../Assets/Images/parallaxCarousalPics/pic2.jpeg')
+const pic3=require('../../Assets/Images/parallaxCarousalPics/pic3.jpeg')
+const pic4=require('../../Assets/Images/parallaxCarousalPics/pic4.jpeg')
+const pic5=require('../../Assets/Images/parallaxCarousalPics/pic5.webp')
+const pic6=require('../../Assets/Images/parallaxCarousalPics/pic6.webp')
+const pic7=require('../../Assets/Images/parallaxCarousalPics/pic7.jpeg')
+const pic8=require('../../Assets/Images/parallaxCarousalPics/pic8.jpeg')
+const pic9=require('../../Assets/Images/parallaxCarousalPics/pic9.jpeg')
+
+
 const ParallaxCarousel = () => {
+  const scrollX = useRef(new Animated.Value(0)).current;
+
   const screenContext = useScreenContext();
   const screenStyles = styles(
     screenContext,
@@ -13,17 +26,7 @@ const ParallaxCarousel = () => {
   const height = screenContext.windowHeight;
   const width = screenContext.windowWidth;
 
-  const images = [
-    'https://images.pexels.com/photos/26690674/pexels-photo-26690674/free-photo-of-peary-caribou-walking-in-the-snow.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1',
-    'https://images.pexels.com/photos/26645620/pexels-photo-26645620/free-photo-of-palm-tree-leaning-over-the-beach.jpeg',
-    'https://images.pexels.com/photos/26791775/pexels-photo-26791775/free-photo-of-flower.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1',
-    'https://images.pexels.com/photos/26780932/pexels-photo-26780932/free-photo-of-a-bicycle-parked-in-front-of-a-brick-building.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1',
-    'https://images.pexels.com/photos/26775316/pexels-photo-26775316/free-photo-of-al-farooq-mosque-old-dubai.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1',
-    'https://images.pexels.com/photos/26771161/pexels-photo-26771161/free-photo-of-a-person-with-blue-hair-wearing-a-hoodie-with-the-word-survival.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1',
-    'https://images.pexels.com/photos/26770395/pexels-photo-26770395/free-photo-of-a-black-and-white-photo-of-a-sheep-with-long-hair.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1',
-    'https://images.pexels.com/photos/26761029/pexels-photo-26761029/free-photo-of-a-black-and-white-photo-of-a-gate-with-the-words-the-house-of-the-future.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1',
-    'https://images.pexels.com/photos/26757499/pexels-photo-26757499/free-photo-of-a-house-is-in-the-middle-of-a-forest.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1',
-  ];
+  const images = [ pic1,pic2,pic3,pic4,pic5,pic6,pic7,pic8,pic9 ];
   const data = images.map((image, index) => ({
     key: String(index),
     photo: image,
@@ -33,29 +36,46 @@ const ParallaxCarousel = () => {
   }));
   return (
     <View style={screenStyles.canvas}>
-      <FlatList
+      <Animated.FlatList
+        onScroll={Animated.event(
+          [{nativeEvent: {contentOffset: {x: scrollX}}}],
+          {useNativeDriver: true},
+        )}
         data={data}
         pagingEnabled
         horizontal
         showsHorizontalScrollIndicator={false}
         keyExtractor={item => item.key}
-        renderItem={({item, index}) => (
-          <View style={screenStyles.renderItemContainer}>
-            <View style={screenStyles.imageSuperWrapper}>
-              <View style={screenStyles.imageWrapper}>
+        renderItem={({item, index}) => {
+          const translateX = scrollX.interpolate({
+            inputRange: [
+              (index - 1) * width,
+              index * width,
+              (index + 1) * width,
+            ],
+            outputRange: [-width * 0.7, 0, width * 0.7],
+          });
+          return (
+            <View style={screenStyles.renderItemContainer}>
+              <View style={screenStyles.imageSuperWrapper}>
+                <View style={screenStyles.imageWrapper}>
+                  <Animated.Image
+                    style={[
+                      screenStyles.ImageStyle,
+                      {transform: [{translateX}]},
+                    ]}
+                    source={ item.photo}
+                    resizeMode="cover"
+                  />
+                </View>
                 <Image
-                  style={screenStyles.ImageStyle}
-                  source={{uri: item.photo}}
-                  resizeMode="cover"
+                  style={[screenStyles.avatarImageStyle]}
+                  source={{uri: item.avatar_url}}
                 />
               </View>
-              <Image
-                style={screenStyles.avatarImageStyle}
-                source={{uri: item.avatar_url}}
-              />
             </View>
-          </View>
-        )}
+          );
+        }}
       />
     </View>
   );
