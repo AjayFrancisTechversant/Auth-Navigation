@@ -44,62 +44,64 @@ const HomeScreenCard = ({item}) => {
     screenContext[screenContext.isPortrait ? 'windowHeight' : 'windowWidth'],
   );
   return (
-    <TouchableOpacity
-      onPress={() => openModal()}
-      style={screenStyles.cardContainer}>
-      <Image
-        style={screenStyles.image}
-        source={{
-          uri: item.picture.large,
-        }}
-      />
-      <View style={screenStyles.detailsContainer}>
-        <Text style={screenStyles.title}>{name}</Text>
-        <Text>{email}</Text>
-        <Text>{phone}</Text>
-        <Text>Age: {age}</Text>
-      </View>
-      <View style={screenStyles.buttonsContainer}>
-        <LikeDislikeButton item={item} />
-        <AddFriendButton item={item} />
-      </View>
-      <Modal
-        transparent
-        visible={isModalVisible}
-        onRequestClose={() => closeModal()}>
-        <View style={screenStyles.modalFullScreenBackground}>
-          <Animated.View style={[screenStyles.userContainer, animatedStyle]}>
-            <TouchableOpacity style={screenStyles.closeButton}
-            onPress={()=>closeModal()}
-            >
-              <FontAwesome name="close" size={25} />
-            </TouchableOpacity>
-            <Text style={screenStyles.title}>
-              {`${item.name.title}. ${item.name.first} ${item.name.last}`}
-            </Text>
-            <Image
-              style={screenStyles.modalImage}
-              source={{
-                uri: item.picture.large,
-              }}
-            />
-            <View style={screenStyles.modalButtonsContainer}>
-              <LikeDislikeButton item={item} />
-              <AddFriendButton item={item} />
-            </View>
-            <View style={screenStyles.descContainer}>
-              <Text>Age: {item.dob.age}</Text>
-              <Text>Gender: {item.gender}</Text>
-              <Text>Email: {item.email}</Text>
-              <Text>
-                Location: {item.location.state}, {item.location.country}
-              </Text>
-              <Text>Phone: {item.phone}</Text>
-            </View>
-          </Animated.View>
+   <View>
+      <TouchableOpacity
+        onPress={() => openModal()}
+        style={screenStyles.cardContainer}>
+        <Image
+          style={screenStyles.image}
+          source={{
+            uri: item.picture.large,
+          }}
+        />
+        <View style={screenStyles.detailsContainer}>
+          <Text style={screenStyles.title}>{name}</Text>
+          <Text>{email}</Text>
+          <Text>{phone}</Text>
+          <Text>Age: {age}</Text>
         </View>
-      </Modal>
-    </TouchableOpacity>
+        <View style={screenStyles.buttonsContainer}>
+          <LikeDislikeButton item={item} />
+          <AddFriendButton item={item} />
+        </View>
+        <Modal
+          transparent
+          visible={isModalVisible}
+          onRequestClose={() => closeModal()}>
+          <View style={screenStyles.modalFullScreenBackground}>
+            <Animated.View style={[screenStyles.userContainer, animatedStyle]}>
+              <TouchableOpacity style={screenStyles.closeButton}
+              onPress={()=>closeModal()}
+              >
+                <FontAwesome name="close" size={25} />
+              </TouchableOpacity>
+              <Text style={screenStyles.title}>
+                {`${item.name.title}. ${item.name.first} ${item.name.last}`}
+              </Text>
+              <Image
+                style={screenStyles.modalImage}
+                source={{
+                  uri: item.picture.large,
+                }}
+              />
+              <View style={screenStyles.modalButtonsContainer}>
+                <LikeDislikeButton item={item} />
+                <AddFriendButton item={item} />
+              </View>
+              <View style={screenStyles.descContainer}>
+                <Text>Age: {item.dob.age}</Text>
+                <Text>Gender: {item.gender}</Text>
+                <Text>Email: {item.email}</Text>
+                <Text>
+                  Location: {item.location.state}, {item.location.country}
+                </Text>
+                <Text>Phone: {item.phone}</Text>
+              </View>
+            </Animated.View>
+          </View>
+        </Modal>
+      </TouchableOpacity>
+   </View>
   );
 };
 
