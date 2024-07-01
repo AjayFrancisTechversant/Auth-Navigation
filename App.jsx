@@ -15,6 +15,7 @@ import HomeTabStack from './src/Services/Navigation/Stacks/HomeTabStack';
 import {ScreenContextProvider} from './src/Contexts/ScreenContext';
 import ParallaxCarousel from './src/modules/ParallaxCarousel/ParallaxCarousel';
 import SampleComponent from './src/Components/SampleComponent/SampleComponent';
+import Skia from './src/modules/Skia/Skia';
 
 PermissionsAndroid.request(PermissionsAndroid.PERMISSIONS.POST_NOTIFICATIONS);
 
@@ -94,8 +95,8 @@ export default function Main() {
         <PersistGate loading={null} persistor={persistor}>
           <GestureHandlerRootView>
             <PaperProvider>
-              <App />
-              {/* <SampleComponent /> */}
+              {/* <App /> */}
+              <Skia />
             </PaperProvider>
           </GestureHandlerRootView>
         </PersistGate>
