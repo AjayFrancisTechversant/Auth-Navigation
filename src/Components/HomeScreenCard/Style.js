@@ -1,5 +1,6 @@
 import {StyleSheet} from 'react-native';
 import ColorPalette from '../../Assets/Themes/ColorPalette';
+import {TouchableOpacity} from 'react-native-gesture-handler';
 
 const styles = (screenContext, width, height) =>
   StyleSheet.create({
@@ -9,15 +10,18 @@ const styles = (screenContext, width, height) =>
       elevation: 5,
       backgroundColor: 'white',
     },
+    TouchableOpacity: {
+      flexDirection: 'row',
+      flex: 5/6,
+    },
     image: {
-      height: height*0.11,
-      margin: height*0.012,
-      alignSelf: 'center',
+      height: height * 0.11,
+      width: height * 0.11,
+      margin: height * 0.012,
       borderRadius: 80,
-      flex: 1 / 4,
     },
     detailsContainer: {
-      flex: 2 / 4,
+      flex:1,
       alignSelf: 'center',
     },
     title: {
@@ -26,7 +30,7 @@ const styles = (screenContext, width, height) =>
       fontFamily: 'Helvetica-Bold',
     },
     buttonsContainer: {
-      flex: 1 / 4,
+      flex: 1 / 6,
       justifyContent: 'space-evenly',
       alignItems: 'center',
     },
@@ -41,23 +45,23 @@ const styles = (screenContext, width, height) =>
       alignItems: 'center',
       backgroundColor: 'white',
       borderRadius: 20,
-      padding: height*0.03,
+      padding: height * 0.03,
     },
-    closeButton:{position:'absolute',right:10,top:10},
+    closeButton: {position: 'absolute', right: 10, top: 10},
     modalImage: {
-      height: height*0.118,
-      width: height*0.118,
+      height: height * 0.118,
+      width: height * 0.118,
       borderRadius: 10,
     },
     modalButtonsContainer: {
       flexDirection: 'row',
-      width: width*0.3,
+      width: width * 0.3,
       justifyContent: 'space-evenly',
-      marginVertical: height*0.01,
+      marginVertical: height * 0.01,
     },
     descContainer: {
       alignItems: 'center',
-      marginBottom: height*0.01,
+      marginBottom: height * 0.01,
     },
   });
 export default styles;
