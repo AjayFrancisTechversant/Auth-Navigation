@@ -1,4 +1,4 @@
-import {TouchableOpacity, View} from 'react-native';
+import {ActivityIndicator, Alert, TouchableOpacity, View} from 'react-native';
 import React, {useState, useCallback, useRef} from 'react';
 import {Canvas, Group, Image, Path, useCanvasRef, useImage} from '@shopify/react-native-skia';
 import {runOnJS} from 'react-native-reanimated';
@@ -23,6 +23,7 @@ const SkiaEditor = ({setIsEditing, image}) => {
   const [paths, setPaths] = useState(StaticVariables.EMPTY_ARRAY);
   const pathsRef = useRef(paths);
   const [isDrawing, setIsDrawing] = useState(false);
+  const [isUploadLoading, setIsUploadLoading] = useState(false)
   const canvasRef=useCanvasRef()
 
   const addNewPath = useCallback((x, y) => {
@@ -80,11 +81,15 @@ const SkiaEditor = ({setIsEditing, image}) => {
     
     const handleSave = async () => {
      try {
+      setIsUploadLoading(true)
       const snapshot = canvasRef.current?.makeImageSnapshot();
       if (snapshot) {
         const base64String = snapshot.encodeToBase64();
         const storageRef = storage().ref(`images/snapshot_${Date.now()}.png`);
         await storageRef.putString(base64String, 'base64');
+        Alert.alert('File Uploaded')
+        setIsEditing(false)
+        setIsUploadLoading(false)
       }
      } catch (error) {
       console.log(error);
@@ -102,7 +107,10 @@ const SkiaEditor = ({setIsEditing, image}) => {
         <TouchableOpacity
         onPress={handleSave }
         >
-          <Entypo name="save" size={30} color={ColorPalette.white} />
+          {isUploadLoading?
+          <ActivityIndicator color={ColorPalette.white} size={30}/>
+          :
+          <Entypo name="save" size={30} color={ColorPalette.white} />}
         </TouchableOpacity>
       </View>
       <View style={[screenStyles.canvasSkiaContainer]}>
