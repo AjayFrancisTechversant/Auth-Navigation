@@ -1,12 +1,13 @@
 import {TouchableOpacity, View} from 'react-native';
 import React, {useState, useCallback, useRef} from 'react';
-import {Canvas, Group, Image, Path, useImage} from '@shopify/react-native-skia';
+import {Canvas, Group, Image, Path, useCanvasRef, useImage} from '@shopify/react-native-skia';
 import {runOnJS} from 'react-native-reanimated';
 import {Gesture, GestureDetector} from 'react-native-gesture-handler';
 import FontAwesome5 from 'react-native-vector-icons/FontAwesome5';
 import AntDesign from 'react-native-vector-icons/AntDesign';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 import Entypo from 'react-native-vector-icons/Entypo';
+import storage from '@react-native-firebase/storage';
 import {useScreenContext} from '../../Contexts/ScreenContext';
 import styles from './Style';
 import ColorPalette from '../../Assets/Themes/ColorPalette';
@@ -22,6 +23,7 @@ const SkiaEditor = ({setIsEditing, image}) => {
   const [paths, setPaths] = useState(StaticVariables.EMPTY_ARRAY);
   const pathsRef = useRef(paths);
   const [isDrawing, setIsDrawing] = useState(false);
+  const canvasRef=useCanvasRef()
 
   const addNewPath = useCallback((x, y) => {
     setPaths(prevPaths => {
@@ -31,9 +33,9 @@ const SkiaEditor = ({setIsEditing, image}) => {
     });
   }, []);
 
-  // imgheight=image?.width(image)
-  console.log(image?.width(image));
-  console.log(image?.height(image));
+  // // imgheight=image?.width(image)
+  // console.log(image?.width(image));
+  // console.log(image?.height(image));
 
   const updatePath = useCallback((x, y) => {
     setPaths(prevPaths => {
@@ -75,6 +77,22 @@ const SkiaEditor = ({setIsEditing, image}) => {
     })
     .minDistance(1);
 
+    
+    const handleSave = async () => {
+     try {
+      const snapshot = canvasRef.current?.makeImageSnapshot();
+      if (snapshot) {
+        const base64String = snapshot.encodeToBase64();
+        const storageRef = storage().ref(`images/snapshot_${Date.now()}.png`);
+        await storageRef.putString(base64String, 'base64');
+      }
+     } catch (error) {
+      console.log(error);
+     }
+    };
+    
+    
+
   return (
     <View style={screenStyles.canvas}>
       <View style={screenStyles.headerContents}>
@@ -82,7 +100,7 @@ const SkiaEditor = ({setIsEditing, image}) => {
           <AntDesign name="left" size={30} color={ColorPalette.white} />
         </TouchableOpacity>
         <TouchableOpacity
-        // onPress={() => }
+        onPress={handleSave }
         >
           <Entypo name="save" size={30} color={ColorPalette.white} />
         </TouchableOpacity>
@@ -90,7 +108,7 @@ const SkiaEditor = ({setIsEditing, image}) => {
       <View style={[screenStyles.canvasSkiaContainer]}>
         {isDrawing ? (
           <GestureDetector gesture={gestureDraw}>
-            <Canvas style={screenStyles.canvasSkia}>
+            <Canvas ref={canvasRef} style={screenStyles.canvasSkia}>
               <Group>
                 {image && (
                   <Image
@@ -115,7 +133,7 @@ const SkiaEditor = ({setIsEditing, image}) => {
             </Canvas>
           </GestureDetector>
         ) : (
-          <Canvas style={screenStyles.canvasSkia}>
+          <Canvas ref={canvasRef} style={screenStyles.canvasSkia}>
             <Group>
               {image && (
                 <Image
