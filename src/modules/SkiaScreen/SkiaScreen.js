@@ -3,14 +3,14 @@ import React, {useState} from 'react';
 import {useScreenContext} from '../../Contexts/ScreenContext';
 import AntDesign from 'react-native-vector-icons/AntDesign';
 import ImagePicker from 'react-native-image-crop-picker';
+import {Skia} from '@shopify/react-native-skia';
 import MenuDrawerButton from '../../Components/MenuDrawerButton/MenuDrawerButton';
 import ColorPalette from '../../Assets/Themes/ColorPalette';
 import {TouchableOpacity} from 'react-native-gesture-handler';
 import SkiaEditor from '../../Components/SkiaEditor/SkiaEditor';
 import MySkiaProjects from '../../Components/MySkiaProjects/MySkiaProjects';
-import styles from './Style';
 import StaticVariables from '../../Preferences/StaticVariables';
-import {Skia} from '@shopify/react-native-skia';
+import styles from './Style';
 
 const SkiaScreen = ({navigation}) => {
   const screenContext = useScreenContext();
@@ -21,7 +21,7 @@ const SkiaScreen = ({navigation}) => {
   );
   const [isEditing, setIsEditing] = useState(true);
   const [isMyPojectsOpen, setIsMyPojectsOpen] = useState(false);
-  const [image, setImage] = useState(StaticVariables.EMPTY_STRING);
+  const [image, setImage] = useState(undefined);
 
   const handleOpenButton = async () => {
     await openImageFromGallery();
@@ -31,7 +31,6 @@ const SkiaScreen = ({navigation}) => {
       const selectedimage = await ImagePicker.openPicker({
         width: 300,
         height: 400,
-        cropping: true,
         includeBase64: true,
       });
       const imageData = Skia.Data.fromBase64(selectedimage.data);

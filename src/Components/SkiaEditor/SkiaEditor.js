@@ -31,6 +31,10 @@ const SkiaEditor = ({setIsEditing, image}) => {
     });
   }, []);
 
+  // imgheight=image?.width(image)
+  console.log(image?.width(image));
+  console.log(image?.height(image));
+
   const updatePath = useCallback((x, y) => {
     setPaths(prevPaths => {
       const newPaths = [...prevPaths];
@@ -94,8 +98,8 @@ const SkiaEditor = ({setIsEditing, image}) => {
                     fit="contain"
                     x={0}
                     y={0}
-                    width={screenContext.windowWidth}
-                    height={500}
+                    width={screenContext.windowWidth*0.9}
+                    height={screenContext.windowHeight*0.7}
                   />
                 )}
                 {paths.map((p, index) => (
@@ -119,8 +123,8 @@ const SkiaEditor = ({setIsEditing, image}) => {
                   fit="contain"
                   x={0}
                   y={0}
-                  width={screenContext.windowWidth}
-                  height={500}
+                  width={screenContext.windowWidth*0.9}
+                  height={screenContext.windowHeight*0.7}
                 />
               )}
               {paths.map((p, index) => (
@@ -165,13 +169,7 @@ const SkiaEditor = ({setIsEditing, image}) => {
           <TouchableOpacity onPress={handlePenButton}>
             <FontAwesome5 name="pen" size={30} color={ColorPalette.white} />
           </TouchableOpacity>
-          <TouchableOpacity>
-            <MaterialCommunityIcons
-              name="blur"
-              size={30}
-              color={ColorPalette.white}
-            />
-          </TouchableOpacity>
+     
         </View>
       )}
     </View>
