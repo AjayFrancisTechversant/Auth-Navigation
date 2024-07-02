@@ -18,8 +18,11 @@ const styles = (screenContext, width, height) =>
       top: height * 0.02,
       left: height * 0.02,
     },
+    plusButtonAndMyProjectsButtonContainer: {
+      flexDirection: screenContext.isPortrait ? 'column' : 'row',justifyContent:'center',alignItems:'center',gap:height*0.1
+    },
     plusButtonImageContainer: {
-      height: height * 0.5,
+      height: height * 0.4,
       width,
       alignItems: 'center',
       justifyContent: 'center',

@@ -26,7 +26,7 @@ import ColorPalette from '../../../Assets/Themes/ColorPalette';
 import DrawerContents from '../../../Components/DrawerContents/DrawerContents';
 import ReanimatedCarousel from '../../../modules/ReanimatedCarousel/ReanimatedCarousel';
 import SkiaDrag from '../../../modules/SkiaDrag/SkiaDrag';
-import Skia from '../../../modules/Skia/Skia';
+import Skia from '../../../modules/SkiaScreen/SkiaScreen';
 
 const HomeDrawerStack = () => {
   const Drawer = createDrawerNavigator();

@@ -1,6 +1,6 @@
 import {TouchableOpacity, View} from 'react-native';
 import React, {useState, useCallback, useRef} from 'react';
-import {Canvas, Path} from '@shopify/react-native-skia';
+import {Canvas, Image, Path, useImage} from '@shopify/react-native-skia';
 import {runOnJS} from 'react-native-reanimated';
 import {Gesture, GestureDetector} from 'react-native-gesture-handler';
 import FontAwesome5 from 'react-native-vector-icons/FontAwesome5';
@@ -9,7 +9,7 @@ import {useScreenContext} from '../../Contexts/ScreenContext';
 import styles from './Style';
 import ColorPalette from '../../Assets/Themes/ColorPalette';
 
-const SkiaEditor = ({setisEditing}) => {
+const SkiaEditor = ({setIsEditing, image}) => {
   const screenContext = useScreenContext();
   const screenStyles = styles(
     screenContext,
@@ -21,7 +21,7 @@ const SkiaEditor = ({setisEditing}) => {
 
   const addNewPath = useCallback((x, y) => {
     setPaths(prevPaths => {
-      const newPath = { segments: [`M ${x} ${y}`], color: '#06d6a0' };
+      const newPath = {segments: [`M ${x} ${y}`], color: '#06d6a0'};
       pathsRef.current = [...prevPaths, newPath];
       return pathsRef.current;
     });
@@ -58,13 +58,23 @@ const SkiaEditor = ({setisEditing}) => {
 
   return (
     <View style={screenStyles.canvas}>
-      <TouchableOpacity onPress={() => setisEditing(false)} style={screenStyles.goBackButton}>
-        <AntDesign name='left' size={30} color={ColorPalette.white} />
+      <TouchableOpacity
+        onPress={() => setIsEditing(false)}
+        style={screenStyles.goBackButton}>
+        <AntDesign name="left" size={30} color={ColorPalette.white} />
       </TouchableOpacity>
       <View style={[screenStyles.canvasSkiaContainer, {borderColor: 'red'}]}>
         <GestureDetector gesture={gestureDraw}>
           <View style={{flex: 1, backgroundColor: 'black'}}>
             <Canvas style={{flex: 1}}>
+                <Image
+                  image={image}
+                  fit="contain"
+                  x={0}
+                  y={0}
+                  width={screenContext.windowWidth}
+                  height={screenContext.windowHeight}
+                />
               {paths.map((p, index) => (
                 <Path
                   key={index}
@@ -77,7 +87,9 @@ const SkiaEditor = ({setisEditing}) => {
             </Canvas>
           </View>
         </GestureDetector>
-        <TouchableOpacity onPress={clearLastPath} style={screenStyles.undoButton}>
+        <TouchableOpacity
+          onPress={clearLastPath}
+          style={screenStyles.undoButton}>
           <FontAwesome5 name="undo-alt" size={30} color={ColorPalette.white} />
         </TouchableOpacity>
       </View>
