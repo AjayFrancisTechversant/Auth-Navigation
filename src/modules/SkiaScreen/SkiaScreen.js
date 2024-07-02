@@ -19,7 +19,7 @@ const SkiaScreen = ({navigation}) => {
     screenContext[screenContext.isPortrait ? 'windowWidth' : 'windowHeight'],
     screenContext[screenContext.isPortrait ? 'windowHeight' : 'windowWidth'],
   );
-  const [isEditing, setIsEditing] = useState(false);
+  const [isEditing, setIsEditing] = useState(true);
   const [isMyPojectsOpen, setIsMyPojectsOpen] = useState(false);
   const [image, setImage] = useState(undefined);
 

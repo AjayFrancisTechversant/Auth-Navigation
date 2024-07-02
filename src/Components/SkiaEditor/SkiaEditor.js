@@ -1,4 +1,4 @@
-import {ActivityIndicator, Alert, TouchableOpacity, View} from 'react-native';
+import {ActivityIndicator, Alert, Button, Modal, TouchableOpacity, View} from 'react-native';
 import React, {useState, useCallback, useRef} from 'react';
 import {Canvas, Group, Image, Path, useCanvasRef, useImage} from '@shopify/react-native-skia';
 import {runOnJS} from 'react-native-reanimated';
@@ -8,6 +8,7 @@ import AntDesign from 'react-native-vector-icons/AntDesign';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 import Entypo from 'react-native-vector-icons/Entypo';
 import storage from '@react-native-firebase/storage';
+import ColorPicker, { Panel1, Swatches, Preview, OpacitySlider, HueSlider } from 'reanimated-color-picker';
 import {useScreenContext} from '../../Contexts/ScreenContext';
 import styles from './Style';
 import ColorPalette from '../../Assets/Themes/ColorPalette';
@@ -25,18 +26,23 @@ const SkiaEditor = ({setIsEditing, image}) => {
   const [isDrawing, setIsDrawing] = useState(false);
   const [isUploadLoading, setIsUploadLoading] = useState(false)
   const canvasRef=useCanvasRef()
+  const [showColorPickerModal, setShowColorPickerModal] = useState(false);
+  const [penColor, setPenColor] = useState(ColorPalette.white)
+
+  const onSelectColor = ({ hex }) => {
+    setPenColor(hex)
+    console.log(penColor);
+  };
 
   const addNewPath = useCallback((x, y) => {
     setPaths(prevPaths => {
-      const newPath = {segments: [`M ${x} ${y}`], color: '#06d6a0'};
+      const newPath = {segments: [`M ${x} ${y}`], color: penColor};
       pathsRef.current = [...prevPaths, newPath];
       return pathsRef.current;
     });
-  }, []);
+  }, [penColor]);
 
-  // // imgheight=image?.width(image)
-  // console.log(image?.width(image));
-  // console.log(image?.height(image));
+
 
   const updatePath = useCallback((x, y) => {
     setPaths(prevPaths => {
@@ -168,6 +174,13 @@ const SkiaEditor = ({setIsEditing, image}) => {
       </View>
       {isDrawing ? (
         <View style={screenStyles.toolsContainer}>
+          <TouchableOpacity onPress={()=>{setShowColorPickerModal(true)}}>
+            <MaterialCommunityIcons
+              name="format-color-fill"
+              size={30}
+              color={ColorPalette.white}
+            />
+          </TouchableOpacity>
           <TouchableOpacity onPress={clearLastPath}>
             <FontAwesome5
               name="undo-alt"
@@ -198,6 +211,17 @@ const SkiaEditor = ({setIsEditing, image}) => {
      
         </View>
       )}
+        <Modal visible={showColorPickerModal} animationType='slide'>
+        <ColorPicker style={{ width: '70%' }} value='red' onComplete={onSelectColor}>
+          <Preview />
+          <Panel1 />
+          <HueSlider />
+          <OpacitySlider />
+          <Swatches />
+        </ColorPicker>
+
+        <Button title='Ok' onPress={() => setShowColorPickerModal(false)} />
+      </Modal>
     </View>
   );
 };
