@@ -1,18 +1,31 @@
 import {TouchableOpacity, View} from 'react-native';
 import React, {useState} from 'react';
-import {
-  Canvas,
-  Path,
-  Group,
-  Circle,
-} from '@shopify/react-native-skia';
+import {Canvas, Path, Group, Circle} from '@shopify/react-native-skia';
 import {useSharedValue, withDecay, runOnJS} from 'react-native-reanimated';
 import {Gesture, GestureDetector} from 'react-native-gesture-handler';
-import FontAwesome5 from 'react-native-vector-icons/FontAwesome5'
+import FontAwesome5 from 'react-native-vector-icons/FontAwesome5';
 import {useScreenContext} from '../../Contexts/ScreenContext';
 import styles from './Style';
 import ColorPalette from '../../Assets/Themes/ColorPalette';
 
+function SkiaDrag(props) {
+  return (
+    <View style={props.screenStyles.canvasSkiaContainer}>
+      <GestureDetector gesture={props.gestureDrag}>
+        <Canvas style={props.screenStyles.canvasSkia}>
+          <Group>
+            <Circle
+              cx={props.translateX}
+              cy={props.translateY}
+              r={20}
+              color="#3E3E"
+            />
+          </Group>
+        </Canvas>
+      </GestureDetector>
+    </View>
+  );
+}
 
 const Skia = () => {
   const screenContext = useScreenContext();
@@ -21,16 +34,9 @@ const Skia = () => {
     screenContext[screenContext.isPortrait ? 'windowWidth' : 'windowHeight'],
     screenContext[screenContext.isPortrait ? 'windowHeight' : 'windowWidth'],
   );
-  const width = screenContext.windowWidth;
-  const height = screenContext.windowHeight;
-  const translateX = useSharedValue(width / 2);
-  const translateY = useSharedValue(height / 4);
   const [paths, setPaths] = useState([]);
 
-  const leftBoundary = 0;
-  const rightBoundary = width;
-  const topBoundary = 0;
-  const bottomBoundary = height / 2;
+ 
 
   const addNewPath = (x, y) => {
     setPaths(prevPaths => [
@@ -38,7 +44,7 @@ const Skia = () => {
       {
         segments: [`M ${x} ${y}`],
         color: '#06d6a0',
-      }
+      },
     ]);
   };
 
@@ -55,7 +61,6 @@ const Skia = () => {
   const clearPaths = () => {
     setPaths(prevPaths => prevPaths.slice(0, prevPaths.length - 1));
   };
-console.log(paths);
   const gestureDraw = Gesture.Pan()
     .onStart(g => {
       runOnJS(addNewPath)(g.x, g.y);
@@ -65,21 +70,7 @@ console.log(paths);
     })
     .minDistance(1);
 
-  const gestureDrag = Gesture.Pan()
-    .onChange(e => {
-      translateX.value += e.changeX;
-      translateY.value += e.changeY;
-    })
-    .onEnd(e => {
-      translateX.value = withDecay({
-        velocity: e.velocityX / 4,
-        clamp: [leftBoundary, rightBoundary],
-      });
-      translateY.value = withDecay({
-        velocity: e.velocityY / 4,
-        clamp: [topBoundary, bottomBoundary],
-      });
-    });
+
 
   return (
     <View style={screenStyles.canvas}>
@@ -100,17 +91,8 @@ console.log(paths);
           </View>
         </GestureDetector>
         <TouchableOpacity onPress={clearPaths} style={screenStyles.undoButton}>
-          <FontAwesome5 name='undo-alt' size={30} color={ColorPalette.white}/>
+          <FontAwesome5 name="undo-alt" size={30} color={ColorPalette.white} />
         </TouchableOpacity>
-      </View>
-      <View style={screenStyles.canvasSkiaContainer}>
-        <GestureDetector gesture={gestureDrag}>
-          <Canvas style={screenStyles.canvasSkia}>
-            <Group>
-              <Circle cx={translateX} cy={translateY} r={20} color="#3E3E" />
-            </Group>
-          </Canvas>
-        </GestureDetector>
       </View>
     </View>
   );

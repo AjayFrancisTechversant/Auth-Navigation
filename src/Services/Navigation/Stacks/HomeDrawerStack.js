@@ -26,6 +26,7 @@ import HomeScreen from '../../../modules/HomeScreen/HomeScreen';
 import ColorPalette from '../../../Assets/Themes/ColorPalette';
 import DrawerContents from '../../../Components/DrawerContents/DrawerContents';
 import ReanimatedCarousel from '../../../modules/ReanimatedCarousel/ReanimatedCarousel';
+import SkiaDrag from '../../../modules/SkiaDrag/SkiaDrag';
 
 const HomeDrawerStack = () => {
   const Drawer = createDrawerNavigator();
@@ -90,6 +91,15 @@ const HomeDrawerStack = () => {
         }}
         name="Skia"
         component={Skia}
+      />
+       <Drawer.Screen
+        options={{
+          drawerIcon: () => (
+            <Ionicons name="logo-react" color={ColorPalette.green} size={20} />
+          ),
+        }}
+        name="SkiaDrag"
+        component={SkiaDrag}
       />
       <Drawer.Screen
         options={{
