@@ -214,10 +214,10 @@ const SkiaEditor = ({setIsEditing, image}) => {
         <Modal visible={showColorPickerModal} animationType='slide'>
         <ColorPicker style={{ width: '70%' }} value='red' onComplete={onSelectColor}>
           <Preview />
-          <Panel1 />
+          {/* <Panel1 /> */}
           <HueSlider />
-          <OpacitySlider />
-          <Swatches />
+          {/* <OpacitySlider /> */}
+          {/* <Swatches /> */}
         </ColorPicker>
 
         <Button title='Ok' onPress={() => setShowColorPickerModal(false)} />
