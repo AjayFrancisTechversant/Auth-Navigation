@@ -22,7 +22,6 @@ const SkiaEditor = ({setIsEditing, image}) => {
   const [paths, setPaths] = useState(StaticVariables.EMPTY_ARRAY);
   const pathsRef = useRef(paths);
   const [isDrawing, setIsDrawing] = useState(false);
-  const [isDrawToolsVisible, setIsDrawToolsVisible] = useState(false);
 
   const addNewPath = useCallback((x, y) => {
     setPaths(prevPaths => {
@@ -45,7 +44,6 @@ const SkiaEditor = ({setIsEditing, image}) => {
   }, []);
 
   const handlePenButton = () => {
-    setIsDrawToolsVisible(true);
     setIsDrawing(true);
   };
   const clearLastPath = useCallback(() => {
@@ -59,11 +57,9 @@ const SkiaEditor = ({setIsEditing, image}) => {
   const handleCancelDrawing = () => {
     setPaths(StaticVariables.EMPTY_ARRAY);
     setIsDrawing(false);
-    setIsDrawToolsVisible(false);
   };
   const handleFinishDrawing = () => {
-    setIsDrawToolsVisible(false);
-    setIsDrawing(false)
+    setIsDrawing(false);
   };
 
   const gestureDraw = Gesture.Pan()
@@ -88,7 +84,33 @@ const SkiaEditor = ({setIsEditing, image}) => {
         </TouchableOpacity>
       </View>
       <View style={[screenStyles.canvasSkiaContainer]}>
-      {isDrawing? <GestureDetector gesture={gestureDraw}>
+        {isDrawing ? (
+          <GestureDetector gesture={gestureDraw}>
+            <Canvas style={screenStyles.canvasSkia}>
+              <Group>
+                {image && (
+                  <Image
+                    image={image}
+                    fit="contain"
+                    x={0}
+                    y={0}
+                    width={screenContext.windowWidth}
+                    height={500}
+                  />
+                )}
+                {paths.map((p, index) => (
+                  <Path
+                    key={index}
+                    path={p.segments.join(' ')}
+                    strokeWidth={3}
+                    style="stroke"
+                    color={p.color}
+                  />
+                ))}
+              </Group>
+            </Canvas>
+          </GestureDetector>
+        ) : (
           <Canvas style={screenStyles.canvasSkia}>
             <Group>
               {image && (
@@ -101,45 +123,20 @@ const SkiaEditor = ({setIsEditing, image}) => {
                   height={500}
                 />
               )}
-              { paths.map((p, index) => (
-                  <Path
-                    key={index}
-                    path={p.segments.join(' ')}
-                    strokeWidth={3}
-                    style="stroke"
-                    color={p.color}
-                  />
-                ))}
+              {paths.map((p, index) => (
+                <Path
+                  key={index}
+                  path={p.segments.join(' ')}
+                  strokeWidth={3}
+                  style="stroke"
+                  color={p.color}
+                />
+              ))}
             </Group>
           </Canvas>
-        </GestureDetector>
-        :
-        <Canvas style={screenStyles.canvasSkia}>
-        <Group>
-          {image && (
-            <Image
-              image={image}
-              fit="contain"
-              x={0}
-              y={0}
-              width={screenContext.windowWidth}
-              height={500}
-            />
-          )}
-          {paths.map((p, index) => (
-              <Path
-                key={index}
-                path={p.segments.join(' ')}
-                strokeWidth={3}
-                style="stroke"
-                color={p.color}
-              />
-            ))}
-        </Group>
-      </Canvas>
-      }
+        )}
       </View>
-      {isDrawToolsVisible ? (
+      {isDrawing ? (
         <View style={screenStyles.toolsContainer}>
           <TouchableOpacity onPress={clearLastPath}>
             <FontAwesome5
