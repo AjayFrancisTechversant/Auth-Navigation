@@ -1,10 +1,10 @@
 import {TouchableOpacity, View} from 'react-native';
-import React, {useState} from 'react';
-import {Canvas, Path,} from '@shopify/react-native-skia';
-import { runOnJS} from 'react-native-reanimated';
+import React, {useState, useCallback, useRef} from 'react';
+import {Canvas, Path} from '@shopify/react-native-skia';
+import {runOnJS} from 'react-native-reanimated';
 import {Gesture, GestureDetector} from 'react-native-gesture-handler';
 import FontAwesome5 from 'react-native-vector-icons/FontAwesome5';
-import AntDesign from 'react-native-vector-icons/AntDesign'
+import AntDesign from 'react-native-vector-icons/AntDesign';
 import {useScreenContext} from '../../Contexts/ScreenContext';
 import styles from './Style';
 import ColorPalette from '../../Assets/Themes/ColorPalette';
@@ -17,30 +17,36 @@ const SkiaEditor = ({setisEditing}) => {
     screenContext[screenContext.isPortrait ? 'windowHeight' : 'windowWidth'],
   );
   const [paths, setPaths] = useState([]);
+  const pathsRef = useRef(paths);
 
-  const addNewPath = (x, y) => {
-    setPaths(prevPaths => [
-      ...prevPaths,
-      {
-        segments: [`M ${x} ${y}`],
-        color: '#06d6a0',
-      },
-    ]);
-  };
+  const addNewPath = useCallback((x, y) => {
+    setPaths(prevPaths => {
+      const newPath = { segments: [`M ${x} ${y}`], color: '#06d6a0' };
+      pathsRef.current = [...prevPaths, newPath];
+      return pathsRef.current;
+    });
+  }, []);
 
-  const updatePath = (x, y) => {
+  const updatePath = useCallback((x, y) => {
     setPaths(prevPaths => {
       const newPaths = [...prevPaths];
       const index = newPaths.length - 1;
       if (newPaths[index]?.segments) {
         newPaths[index].segments.push(`L ${x} ${y}`);
       }
+      pathsRef.current = newPaths;
       return newPaths;
     });
-  };
-  const clearPaths = () => {
-    setPaths(prevPaths => prevPaths.slice(0, prevPaths.length - 1));
-  };
+  }, []);
+
+  const clearLastPath = useCallback(() => {
+    setPaths(prevPaths => {
+      const newPaths = prevPaths.slice(0, -1);
+      pathsRef.current = newPaths;
+      return newPaths;
+    });
+  }, []);
+
   const gestureDraw = Gesture.Pan()
     .onStart(g => {
       runOnJS(addNewPath)(g.x, g.y);
@@ -49,14 +55,15 @@ const SkiaEditor = ({setisEditing}) => {
       runOnJS(updatePath)(g.x, g.y);
     })
     .minDistance(1);
+
   return (
     <View style={screenStyles.canvas}>
-      <TouchableOpacity onPress={()=>setisEditing(false)} style={screenStyles.goBackButton}>
-<AntDesign name='left' size={30} color={ColorPalette.white} />
+      <TouchableOpacity onPress={() => setisEditing(false)} style={screenStyles.goBackButton}>
+        <AntDesign name='left' size={30} color={ColorPalette.white} />
       </TouchableOpacity>
       <View style={[screenStyles.canvasSkiaContainer, {borderColor: 'red'}]}>
         <GestureDetector gesture={gestureDraw}>
-          <View style={{flex: 1, backgroundColor: 'red'}}>
+          <View style={{flex: 1, backgroundColor: 'black'}}>
             <Canvas style={{flex: 1}}>
               {paths.map((p, index) => (
                 <Path
@@ -70,7 +77,7 @@ const SkiaEditor = ({setisEditing}) => {
             </Canvas>
           </View>
         </GestureDetector>
-        <TouchableOpacity onPress={clearPaths} style={screenStyles.undoButton}>
+        <TouchableOpacity onPress={clearLastPath} style={screenStyles.undoButton}>
           <FontAwesome5 name="undo-alt" size={30} color={ColorPalette.white} />
         </TouchableOpacity>
       </View>
@@ -78,4 +85,4 @@ const SkiaEditor = ({setisEditing}) => {
   );
 };
 
-export default SkiaEditor;
+export default React.memo(SkiaEditor);

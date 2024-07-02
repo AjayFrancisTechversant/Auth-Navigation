@@ -7,11 +7,16 @@ const styles = (screenContext, width, height) =>
       backgroundColor: ColorPalette.white,
       flex: 1,
     },
-    heading:{fontSize:20,alignSelf:'center',marginTop:height*0.02,fontWeight:'bold'},
+    heading: {
+      fontSize: 20,
+      alignSelf: 'center',
+      marginTop: height * 0.02,
+      fontWeight: 'bold',
+    },
     menuButton: {
       position: 'absolute',
-      top: height*0.02,
-      left: height*0.02,
+      top: height * 0.02,
+      left: height * 0.02,
     },
     plusButtonImageContainer: {
       height: height * 0.5,

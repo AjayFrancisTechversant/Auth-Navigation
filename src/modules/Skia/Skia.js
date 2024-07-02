@@ -1,13 +1,13 @@
 import {View, Text} from 'react-native';
 import React, {useState} from 'react';
 import {useScreenContext} from '../../Contexts/ScreenContext';
-import styles from './Style';
 import AntDesign from 'react-native-vector-icons/AntDesign';
 import MenuDrawerButton from '../../Components/MenuDrawerButton/MenuDrawerButton';
 import ColorPalette from '../../Assets/Themes/ColorPalette';
 import {TouchableOpacity} from 'react-native-gesture-handler';
 import SkiaEditor from '../../Components/SkiaEditor/SkiaEditor';
 import MySkiaProjects from '../../Components/MySkiaProjects/MySkiaProjects';
+import styles from './Style';
 
 const Skia = ({navigation}) => {
   const screenContext = useScreenContext();
