@@ -53,10 +53,10 @@ const Skia = () => {
     });
   };
   const clearPaths = () => {
-    setPaths([]);
+    setPaths(prevPaths => prevPaths.slice(0, prevPaths.length - 1));
   };
 console.log(paths);
-  const pan = Gesture.Pan()
+  const gestureDraw = Gesture.Pan()
     .onStart(g => {
       runOnJS(addNewPath)(g.x, g.y);
     })
@@ -65,7 +65,7 @@ console.log(paths);
     })
     .minDistance(1);
 
-  const gesture = Gesture.Pan()
+  const gestureDrag = Gesture.Pan()
     .onChange(e => {
       translateX.value += e.changeX;
       translateY.value += e.changeY;
@@ -84,7 +84,7 @@ console.log(paths);
   return (
     <View style={screenStyles.canvas}>
       <View style={[screenStyles.canvasSkiaContainer, {borderColor: 'red'}]}>
-        <GestureDetector gesture={pan}>
+        <GestureDetector gesture={gestureDraw}>
           <View style={{flex: 1, backgroundColor: 'black'}}>
             <Canvas style={{flex: 1}}>
               {paths.map((p, index) => (
@@ -93,7 +93,7 @@ console.log(paths);
                   path={p.segments.join(' ')}
                   strokeWidth={3}
                   style="stroke"
-                  color={'red'}
+                  color={p.color}
                 />
               ))}
             </Canvas>
@@ -104,7 +104,7 @@ console.log(paths);
         </TouchableOpacity>
       </View>
       <View style={screenStyles.canvasSkiaContainer}>
-        <GestureDetector gesture={gesture}>
+        <GestureDetector gesture={gestureDrag}>
           <Canvas style={screenStyles.canvasSkia}>
             <Group>
               <Circle cx={translateX} cy={translateY} r={20} color="#3E3E" />
