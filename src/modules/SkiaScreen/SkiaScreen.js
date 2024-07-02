@@ -19,7 +19,7 @@ const SkiaScreen = ({navigation}) => {
     screenContext[screenContext.isPortrait ? 'windowWidth' : 'windowHeight'],
     screenContext[screenContext.isPortrait ? 'windowHeight' : 'windowWidth'],
   );
-  const [isEditing, setIsEditing] = useState(true);
+  const [isEditing, setIsEditing] = useState(false);
   const [isMyPojectsOpen, setIsMyPojectsOpen] = useState(false);
   const [image, setImage] = useState(undefined);
 
@@ -29,8 +29,7 @@ const SkiaScreen = ({navigation}) => {
   const openImageFromGallery = async () => {
     try {
       const selectedimage = await ImagePicker.openPicker({
-        width: 300,
-        height: 400,
+        cropping:true,
         includeBase64: true,
       });
       const imageData = Skia.Data.fromBase64(selectedimage.data);
