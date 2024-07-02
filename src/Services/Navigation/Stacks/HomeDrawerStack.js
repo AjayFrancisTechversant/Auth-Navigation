@@ -21,12 +21,12 @@ import DatePicker from '../../../modules/DatePickerScreen/DatePickerScreen';
 import Calender from '../../../modules/Calender/Calender';
 import i18njs from '../../../modules/I18njs/I18njs';
 import RNPaper from '../../../modules/RNPaper/RNPaper';
-import Skia from '../../../modules/Skia/Skia';
 import HomeScreen from '../../../modules/HomeScreen/HomeScreen';
 import ColorPalette from '../../../Assets/Themes/ColorPalette';
 import DrawerContents from '../../../Components/DrawerContents/DrawerContents';
 import ReanimatedCarousel from '../../../modules/ReanimatedCarousel/ReanimatedCarousel';
 import SkiaDrag from '../../../modules/SkiaDrag/SkiaDrag';
+import Skia from '../../../modules/Skia/Skia';
 
 const HomeDrawerStack = () => {
   const Drawer = createDrawerNavigator();

@@ -3,11 +3,34 @@ import ColorPalette from '../../Assets/Themes/ColorPalette';
 
 const styles = (screenContext, width, height) =>
   StyleSheet.create({
-    canvas: {backgroundColor: 'white', flex: 1},
-    canvasSkiaContainer:{borderWidth:1,flex:1/2},
-    canvasSkia: {height: '100%', width},
-    canvasSkia2: {height: '100%', width},
-    undoButton:{position:'absolute',alignItems:'center',justifyContent:'center',borderRadius:10,top:20,right:20},
-
+    canvas: {
+      backgroundColor: ColorPalette.white,
+      flex: 1,
+    },
+    heading:{fontSize:20,alignSelf:'center',marginTop:height*0.02,fontWeight:'bold'},
+    menuButton: {
+      position: 'absolute',
+      top: height*0.02,
+      left: height*0.02,
+    },
+    plusButtonImageContainer: {
+      height: height * 0.5,
+      width,
+      alignItems: 'center',
+      justifyContent: 'center',
+    },
+    myProjectsButton: {
+      backgroundColor: ColorPalette.green,
+      height: height * 0.05,
+      width: width * 0.3,
+      alignItems: 'center',
+      justifyContent: 'center',
+      borderRadius: 10,
+      alignSelf: 'center',
+    },
+    myProjectsText: {
+      color: ColorPalette.white,
+      fontWeight: 'bold',
+    },
   });
 export default styles;
