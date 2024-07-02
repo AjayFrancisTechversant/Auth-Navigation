@@ -4,26 +4,19 @@ import ColorPalette from '../../Assets/Themes/ColorPalette';
 const styles = (screenContext, width, height) =>
   StyleSheet.create({
     canvas: {
-      backgroundColor: ColorPalette.white,
+      backgroundColor:ColorPalette.black,
       flex: 1,
     },
-    goBackButton: {
-      position: 'absolute',
-      top: height * 0.02,
-      left: height * 0.02,
-      zIndex: 1,
-    },
-    canvasSkiaContainer: {
+    headerContents:{margin:20,flexDirection:'row',justifyContent:'space-between'},
+    
+    canvasSkiaContainer: {alignSelf:'center',
       borderWidth: 1,
-      flex: 1,
+      height: screenContext.isPortrait ? height * 0.7 : width * 0.8,
+      width: screenContext.isPortrait ? width * 0.9 : height * 0.6,
+      borderColor:ColorPalette.gray,borderRadius:5
+      
     },
-    undoButton: {
-      position: 'absolute',
-      alignItems: 'center',
-      justifyContent: 'center',
-      borderRadius: 10,
-      top: 20,
-      right: 20,
-    },
+    canvasSkia: {flex: 1},
+    toolsContainer:{flexDirection:'row',gap:width*0.03,borderWidth:2,borderRadius:10,margin:height*0.02,alignSelf:'center',padding:height*0.01,borderColor:ColorPalette.white}
   });
 export default styles;
