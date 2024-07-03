@@ -43,7 +43,7 @@ const SkiaEditor = ({setIsEditing, image}) => {
   const [isUploadLoading, setIsUploadLoading] = useState(false);
   const canvasRef = useCanvasRef();
   const [showColorPickerModal, setShowColorPickerModal] = useState(false);
-  const [penColor, setPenColor] = useState(ColorPalette.white);
+  const [penColor, setPenColor] = useState(ColorPalette.black);
 
   const onSelectColor = ({hex}) => {
     setPenColor(hex);

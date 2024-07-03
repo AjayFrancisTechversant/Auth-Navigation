@@ -19,8 +19,8 @@ const SkiaScreen = ({navigation}) => {
     screenContext[screenContext.isPortrait ? 'windowWidth' : 'windowHeight'],
     screenContext[screenContext.isPortrait ? 'windowHeight' : 'windowWidth'],
   );
-  const [isEditing, setIsEditing] = useState(false);
-  const [isMyProjectsOpen, setIsMyProjectsOpen] = useState(true);
+  const [isEditing, setIsEditing] = useState(true);
+  const [isMyProjectsOpen, setIsMyProjectsOpen] = useState(false);
   const [image, setImage] = useState(undefined);
 
   const handleOpenButton = async () => {

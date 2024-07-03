@@ -8,14 +8,18 @@ const styles = (screenContext, width, height) =>
       flex: 1,
     },
     headerContents: {
-      margin: 20,
+      margin: height*0.02,
+      width:screenContext.isPortrait?width*0.9:height*0.95,
       flexDirection: 'row',
       justifyContent: 'space-between',
+      position:screenContext.isPortrait?'static':'absolute'
     },
     canvasSkiaContainer: {
-      alignSelf: 'center',
-      height: screenContext.isPortrait ? width * 0.9 : width * 0.7,
-      width: screenContext.isPortrait ? width * 0.9 : width * 0.7,
+      alignSelf: screenContext.isPortrait?'center':'auto',
+      marginLeft:screenContext.isPortrait?0:width*0.2,
+      marginTop:screenContext.isPortrait?0:height*0.015,
+      height:  width * 0.9,
+      width:  width * 0.9,
       borderRadius: 5,
       backgroundColor: ColorPalette.white,
     },
