@@ -9,7 +9,6 @@ import ColorPalette from '../../Assets/Themes/ColorPalette';
 import {TouchableOpacity} from 'react-native-gesture-handler';
 import SkiaEditor from '../../Components/SkiaEditor/SkiaEditor';
 import MySkiaProjects from '../../Components/MySkiaProjects/MySkiaProjects';
-import StaticVariables from '../../Preferences/StaticVariables';
 import styles from './Style';
 
 const SkiaScreen = ({navigation}) => {
@@ -19,7 +18,7 @@ const SkiaScreen = ({navigation}) => {
     screenContext[screenContext.isPortrait ? 'windowWidth' : 'windowHeight'],
     screenContext[screenContext.isPortrait ? 'windowHeight' : 'windowWidth'],
   );
-  const [isEditing, setIsEditing] = useState(true);
+  const [isEditing, setIsEditing] = useState(false);
   const [isMyProjectsOpen, setIsMyProjectsOpen] = useState(false);
   const [image, setImage] = useState(undefined);
 
