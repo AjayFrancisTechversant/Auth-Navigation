@@ -100,10 +100,6 @@ const SkiaEditor = ({setIsEditing, image}) => {
     })
     .minDistance(1);
 
-const Compress=()=>{
-
-}
-
 const uploadToCloud = async () => {
   try {
     setIsUploadLoading(true);
@@ -134,7 +130,6 @@ const uploadToCloud = async () => {
 };
 
   const handleSave = async () => {
-    //compress
     await uploadToCloud();
   };
 
