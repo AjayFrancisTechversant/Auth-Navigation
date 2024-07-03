@@ -15,6 +15,7 @@ const styles = (screenContext, width, height) =>
       height: height / 4,
     },
     fullScreenImage: {
+      marginTop: screenContext.isPortrait ? height * 0.01 : width * 0.01,
       height: screenContext.isPortrait ? height * 0.9 : width * 0.9,
       width: screenContext.isPortrait ? width * 0.95 : height * 0.9,
       alignSelf: 'center',
