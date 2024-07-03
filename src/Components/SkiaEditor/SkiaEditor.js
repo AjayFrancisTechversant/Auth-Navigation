@@ -1,6 +1,21 @@
-import {ActivityIndicator, Alert, Button, Modal, TouchableOpacity, View} from 'react-native';
+import {
+  ActivityIndicator,
+  Alert,
+  Button,
+  Modal,
+  Text,
+  TouchableOpacity,
+  View,
+} from 'react-native';
 import React, {useState, useCallback, useRef} from 'react';
-import {Canvas, Group, Image, Path, useCanvasRef, useImage} from '@shopify/react-native-skia';
+import {
+  Canvas,
+  Group,
+  Image,
+  Path,
+  useCanvasRef,
+  useImage,
+} from '@shopify/react-native-skia';
 import {runOnJS} from 'react-native-reanimated';
 import {Gesture, GestureDetector} from 'react-native-gesture-handler';
 import FontAwesome5 from 'react-native-vector-icons/FontAwesome5';
@@ -8,7 +23,8 @@ import AntDesign from 'react-native-vector-icons/AntDesign';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 import Entypo from 'react-native-vector-icons/Entypo';
 import storage from '@react-native-firebase/storage';
-import ColorPicker, { Panel1, Swatches, Preview, OpacitySlider, HueSlider } from 'reanimated-color-picker';
+import ColorPicker, {Preview, HueSlider} from 'reanimated-color-picker';
+import SimpleLineIcons from 'react-native-vector-icons/SimpleLineIcons';
 import {useScreenContext} from '../../Contexts/ScreenContext';
 import styles from './Style';
 import ColorPalette from '../../Assets/Themes/ColorPalette';
@@ -24,25 +40,26 @@ const SkiaEditor = ({setIsEditing, image}) => {
   const [paths, setPaths] = useState(StaticVariables.EMPTY_ARRAY);
   const pathsRef = useRef(paths);
   const [isDrawing, setIsDrawing] = useState(false);
-  const [isUploadLoading, setIsUploadLoading] = useState(false)
-  const canvasRef=useCanvasRef()
+  const [isUploadLoading, setIsUploadLoading] = useState(false);
+  const canvasRef = useCanvasRef();
   const [showColorPickerModal, setShowColorPickerModal] = useState(false);
-  const [penColor, setPenColor] = useState(ColorPalette.white)
+  const [penColor, setPenColor] = useState(ColorPalette.white);
 
-  const onSelectColor = ({ hex }) => {
-    setPenColor(hex)
+  const onSelectColor = ({hex}) => {
+    setPenColor(hex);
     console.log(penColor);
   };
 
-  const addNewPath = useCallback((x, y) => {
-    setPaths(prevPaths => {
-      const newPath = {segments: [`M ${x} ${y}`], color: penColor};
-      pathsRef.current = [...prevPaths, newPath];
-      return pathsRef.current;
-    });
-  }, [penColor]);
-
-
+  const addNewPath = useCallback(
+    (x, y) => {
+      setPaths(prevPaths => {
+        const newPath = {segments: [`M ${x} ${y}`], color: penColor};
+        pathsRef.current = [...prevPaths, newPath];
+        return pathsRef.current;
+      });
+    },
+    [penColor],
+  );
 
   const updatePath = useCallback((x, y) => {
     setPaths(prevPaths => {
@@ -84,25 +101,27 @@ const SkiaEditor = ({setIsEditing, image}) => {
     })
     .minDistance(1);
 
-    
-    const handleSave = async () => {
-     try {
-      setIsUploadLoading(true)
+  const uploadToCloud = async () => {
+    try {
+      setIsUploadLoading(true);
       const snapshot = canvasRef.current?.makeImageSnapshot();
       if (snapshot) {
         const base64String = snapshot.encodeToBase64();
         const storageRef = storage().ref(`images/snapshot_${Date.now()}.png`);
         await storageRef.putString(base64String, 'base64');
-        Alert.alert('File Uploaded')
-        setIsEditing(false)
-        setIsUploadLoading(false)
+        Alert.alert('File Uploaded');
+        setIsEditing(false);
+        setIsUploadLoading(false);
       }
-     } catch (error) {
+    } catch (error) {
       console.log(error);
-     }
-    };
-    
-    
+    }
+  };
+
+  const handleSave = async () => {
+    //compress
+    await uploadToCloud();
+  };
 
   return (
     <View style={screenStyles.canvas}>
@@ -110,13 +129,12 @@ const SkiaEditor = ({setIsEditing, image}) => {
         <TouchableOpacity onPress={() => setIsEditing(false)}>
           <AntDesign name="left" size={30} color={ColorPalette.white} />
         </TouchableOpacity>
-        <TouchableOpacity
-        onPress={handleSave }
-        >
-          {isUploadLoading?
-          <ActivityIndicator color={ColorPalette.white} size={30}/>
-          :
-          <Entypo name="save" size={30} color={ColorPalette.white} />}
+        <TouchableOpacity onPress={handleSave}>
+          {isUploadLoading ? (
+            <ActivityIndicator color={ColorPalette.white} size={30} />
+          ) : (
+            <Entypo name="save" size={30} color={ColorPalette.white} />
+          )}
         </TouchableOpacity>
       </View>
       <View style={[screenStyles.canvasSkiaContainer]}>
@@ -130,8 +148,8 @@ const SkiaEditor = ({setIsEditing, image}) => {
                     fit="contain"
                     x={0}
                     y={0}
-                    width={screenContext.windowWidth*0.9}
-                    height={screenContext.windowHeight*0.7}
+                    width={screenContext.windowWidth * 0.9}
+                    height={screenContext.windowHeight * 0.7}
                   />
                 )}
                 {paths.map((p, index) => (
@@ -155,8 +173,8 @@ const SkiaEditor = ({setIsEditing, image}) => {
                   fit="contain"
                   x={0}
                   y={0}
-                  width={screenContext.windowWidth*0.9}
-                  height={screenContext.windowHeight*0.7}
+                  width={screenContext.windowWidth * 0.9}
+                  height={screenContext.windowHeight * 0.7}
                 />
               )}
               {paths.map((p, index) => (
@@ -174,7 +192,10 @@ const SkiaEditor = ({setIsEditing, image}) => {
       </View>
       {isDrawing ? (
         <View style={screenStyles.toolsContainer}>
-          <TouchableOpacity onPress={()=>{setShowColorPickerModal(true)}}>
+          <TouchableOpacity
+            onPress={() => {
+              setShowColorPickerModal(true);
+            }}>
             <MaterialCommunityIcons
               name="format-color-fill"
               size={30}
@@ -208,19 +229,30 @@ const SkiaEditor = ({setIsEditing, image}) => {
           <TouchableOpacity onPress={handlePenButton}>
             <FontAwesome5 name="pen" size={30} color={ColorPalette.white} />
           </TouchableOpacity>
-     
         </View>
       )}
-        <Modal visible={showColorPickerModal} animationType='slide'>
-        <ColorPicker style={{ width: '70%' }} value='red' onComplete={onSelectColor}>
-          <Preview />
-          {/* <Panel1 /> */}
-          <HueSlider />
-          {/* <OpacitySlider /> */}
-          {/* <Swatches /> */}
-        </ColorPicker>
-
-        <Button title='Ok' onPress={() => setShowColorPickerModal(false)} />
+      <Modal
+        onRequestClose={() => setShowColorPickerModal(false)}
+        transparent
+        visible={showColorPickerModal}
+        animationType="fade">
+        <View style={screenStyles.modalFullScreenBackground}>
+          <View style={screenStyles.modalView}>
+            <ColorPicker value={ColorPalette.red} onComplete={onSelectColor}>
+              <Preview
+                hideText
+                hideInitialColor
+                style={screenStyles.colorPreviewStyle}
+              />
+              <HueSlider style={screenStyles.colorSliderStyle} adaptSpectrum />
+            </ColorPicker>
+            <TouchableOpacity
+              style={screenStyles.ModalOKButton}
+              onPress={() => setShowColorPickerModal(false)}>
+              <Text style={screenStyles.OKText}>OK</Text>
+            </TouchableOpacity>
+          </View>
+        </View>
       </Modal>
     </View>
   );
