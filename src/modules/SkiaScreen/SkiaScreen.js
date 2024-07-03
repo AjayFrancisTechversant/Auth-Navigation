@@ -19,8 +19,8 @@ const SkiaScreen = ({navigation}) => {
     screenContext[screenContext.isPortrait ? 'windowWidth' : 'windowHeight'],
     screenContext[screenContext.isPortrait ? 'windowHeight' : 'windowWidth'],
   );
-  const [isEditing, setIsEditing] = useState(true);
-  const [isMyPojectsOpen, setIsMyPojectsOpen] = useState(false);
+  const [isEditing, setIsEditing] = useState(false);
+  const [isMyProjectsOpen, setIsMyProjectsOpen] = useState(true);
   const [image, setImage] = useState(undefined);
 
   const handleOpenButton = async () => {
@@ -44,8 +44,8 @@ const SkiaScreen = ({navigation}) => {
     <View style={screenStyles.canvas}>
       {isEditing ? (
         <SkiaEditor image={image} setIsEditing={setIsEditing} />
-      ) : isMyPojectsOpen ? (
-        <MySkiaProjects setIsMyPojectsOpen={setIsMyPojectsOpen} />
+      ) : isMyProjectsOpen ? (
+        <MySkiaProjects setIsMyProjectsOpen={setIsMyProjectsOpen} />
       ) : (
         <View>
           <Text style={screenStyles.heading}>Skia Editor</Text>
@@ -66,7 +66,7 @@ const SkiaScreen = ({navigation}) => {
               </TouchableOpacity>
             </View>
             <TouchableOpacity
-              onPress={() => setIsMyPojectsOpen(true)}
+              onPress={() => setIsMyProjectsOpen(true)}
               style={screenStyles.myProjectsButton}>
               <Text style={screenStyles.myProjectsText}>My Projects</Text>
             </TouchableOpacity>
