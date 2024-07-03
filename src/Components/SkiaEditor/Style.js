@@ -4,7 +4,7 @@ import ColorPalette from '../../Assets/Themes/ColorPalette';
 const styles = (screenContext, width, height) =>
   StyleSheet.create({
     canvas: {
-      backgroundColor: ColorPalette.black,
+      backgroundColor: ColorPalette.white,
       flex: 1,
     },
     headerContents: {zIndex:1,
@@ -29,17 +29,17 @@ const styles = (screenContext, width, height) =>
     toolsContainer: {
       flexDirection:screenContext.isPortrait? 'row':'column',
       gap: width * 0.03,
-      borderWidth: 2,
+      borderWidth: 1,
       borderRadius: 10,
       margin: height * 0.02,
       alignSelf: 'center',
       padding: height * 0.01,
-      borderColor: ColorPalette.white,
+      borderColor: ColorPalette.gray,
     },
     modalFullScreenBackground: {
       flex: 1,
       justifyContent: 'center',
-      backgroundColor: ColorPalette.transBlack,
+      backgroundColor: ColorPalette.lightGreen,
     },
     modalView: {
       alignSelf: 'center',
@@ -54,17 +54,18 @@ const styles = (screenContext, width, height) =>
       height: width * 0.1,
       borderRadius: 10,
     },
-    colorSliderStyle: {width: width * 0.7, margin: height * 0.01},
+    colorSliderStyle: {width: width * 0.7, margin: height * 0.01,alignSelf:'center'},
+    swatchStyle:{borderRadius:5},
     ModalOKButton: {
       height: height * 0.05,
       width: width * 0.4,
-      backgroundColor: ColorPalette.white,
+      backgroundColor: ColorPalette.green,
       justifyContent: 'center',
       alignItems: 'center',
       borderRadius: 10,
       alignSelf: 'center',
       margin: height * 0.02,
     },
-    OKText: {color: ColorPalette.black},
+    OKText: {color: ColorPalette.white},
   });
 export default styles;

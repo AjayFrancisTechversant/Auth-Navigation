@@ -24,7 +24,11 @@ import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityI
 import Entypo from 'react-native-vector-icons/Entypo';
 import storage from '@react-native-firebase/storage';
 import ImageResizer from '@bam.tech/react-native-image-resizer';
-import ColorPicker, {Preview, HueSlider} from 'reanimated-color-picker';
+import ColorPicker, {
+  Preview,
+  HueSlider,
+  Swatches,
+} from 'reanimated-color-picker';
 import {useScreenContext} from '../../Contexts/ScreenContext';
 import styles from './Style';
 import ColorPalette from '../../Assets/Themes/ColorPalette';
@@ -44,6 +48,17 @@ const SkiaEditor = ({setIsEditing, image}) => {
   const canvasRef = useCanvasRef();
   const [showColorPickerModal, setShowColorPickerModal] = useState(false);
   const [penColor, setPenColor] = useState(ColorPalette.black);
+  const swatchColors = [
+    ColorPalette.white,
+    ColorPalette.black,
+    ColorPalette.blue,
+    ColorPalette.yellow,
+    ColorPalette.orange,
+    ColorPalette.green,
+    ColorPalette.red,
+    ColorPalette.gold,
+    ColorPalette.gray,
+  ];
 
   const onSelectColor = ({hex}) => {
     setPenColor(hex);
@@ -137,17 +152,17 @@ const SkiaEditor = ({setIsEditing, image}) => {
     <View style={screenStyles.canvas}>
       <View style={screenStyles.headerContents}>
         <TouchableOpacity onPress={() => setIsEditing(false)}>
-          <AntDesign name="left" size={30} color={ColorPalette.white} />
+          <AntDesign name="left" size={30} color={ColorPalette.green} />
         </TouchableOpacity>
         <TouchableOpacity onPress={handleSave}>
           {isUploadLoading ? (
-            <ActivityIndicator color={ColorPalette.white} size={30} />
+            <ActivityIndicator color={ColorPalette.green} size={30} />
           ) : (
-            <Entypo name="save" size={30} color={ColorPalette.white} />
+            <Entypo name="save" size={30} color={ColorPalette.green} />
           )}
         </TouchableOpacity>
       </View>
-     <View style={screenStyles.canvasAndToolsContainer}>
+      <View style={screenStyles.canvasAndToolsContainer}>
         <View style={[screenStyles.canvasSkiaContainer]}>
           {isDrawing ? (
             <GestureDetector gesture={gestureDraw}>
@@ -219,48 +234,48 @@ const SkiaEditor = ({setIsEditing, image}) => {
         </View>
         <View style={screenStyles.toolsContainer}>
           {isDrawing ? (
-             <>
-                <TouchableOpacity
-                  onPress={() => {
-                    setShowColorPickerModal(true);
-                  }}>
-                  <MaterialCommunityIcons
-                    name="format-color-fill"
-                    size={30}
-                    color={ColorPalette.white}
-                  />
-                </TouchableOpacity>
-                <TouchableOpacity onPress={clearLastPath}>
-                  <FontAwesome5
-                    name="undo-alt"
-                    size={30}
-                    color={ColorPalette.white}
-                  />
-                </TouchableOpacity>
-                <TouchableOpacity onPress={handleCancelDrawing}>
-                  <MaterialCommunityIcons
-                    name="close"
-                    size={30}
-                    color={ColorPalette.white}
-                  />
-                </TouchableOpacity>
-                <TouchableOpacity onPress={handleFinishDrawing}>
-                  <MaterialCommunityIcons
-                    name="check"
-                    size={30}
-                    color={ColorPalette.white}
-                  />
-                </TouchableOpacity>
-             </>
+            <>
+              <TouchableOpacity
+                onPress={() => {
+                  setShowColorPickerModal(true);
+                }}>
+                <MaterialCommunityIcons
+                  name="format-color-fill"
+                  size={30}
+                  color={ColorPalette.green}
+                />
+              </TouchableOpacity>
+              <TouchableOpacity onPress={clearLastPath}>
+                <MaterialCommunityIcons
+                  name="undo"
+                  size={30}
+                  color={ColorPalette.green}
+                />
+              </TouchableOpacity>
+              <TouchableOpacity onPress={handleCancelDrawing}>
+                <MaterialCommunityIcons
+                  name="close"
+                  size={30}
+                  color={ColorPalette.green}
+                />
+              </TouchableOpacity>
+              <TouchableOpacity onPress={handleFinishDrawing}>
+                <MaterialCommunityIcons
+                  name="check"
+                  size={30}
+                  color={ColorPalette.green}
+                />
+              </TouchableOpacity>
+            </>
           ) : (
             <>
               <TouchableOpacity onPress={handlePenButton}>
-                <FontAwesome5 name="pen" size={30} color={ColorPalette.white} />
+                <FontAwesome5 name="pen" size={30} color={ColorPalette.green} />
               </TouchableOpacity>
             </>
           )}
         </View>
-     </View>
+      </View>
       <Modal
         onRequestClose={() => setShowColorPickerModal(false)}
         transparent
@@ -268,13 +283,17 @@ const SkiaEditor = ({setIsEditing, image}) => {
         animationType="fade">
         <View style={screenStyles.modalFullScreenBackground}>
           <View style={screenStyles.modalView}>
-            <ColorPicker value={ColorPalette.red} onComplete={onSelectColor}>
+            <ColorPicker value={penColor} onComplete={onSelectColor}>
               <Preview
                 hideText
                 hideInitialColor
                 style={screenStyles.colorPreviewStyle}
               />
               <HueSlider style={screenStyles.colorSliderStyle} adaptSpectrum />
+              <Swatches
+                colors={swatchColors}
+                swatchStyle={screenStyles.swatchStyle}
+              />
             </ColorPicker>
             <TouchableOpacity
               style={screenStyles.ModalOKButton}
