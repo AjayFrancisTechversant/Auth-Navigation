@@ -147,9 +147,43 @@ const SkiaEditor = ({setIsEditing, image}) => {
           )}
         </TouchableOpacity>
       </View>
-      <View style={[screenStyles.canvasSkiaContainer]}>
-        {isDrawing ? (
-          <GestureDetector gesture={gestureDraw}>
+     <View style={screenStyles.canvasAndToolsContainer}>
+        <View style={[screenStyles.canvasSkiaContainer]}>
+          {isDrawing ? (
+            <GestureDetector gesture={gestureDraw}>
+              <Canvas ref={canvasRef} style={screenStyles.canvasSkia}>
+                <Group>
+                  {image && (
+                    <Image
+                      image={image}
+                      fit="contain"
+                      x={0}
+                      y={0}
+                      width={
+                        screenContext.isPortrait
+                          ? screenContext.windowWidth * 0.9
+                          : screenContext.windowWidth * 0.7
+                      }
+                      height={
+                        screenContext.isPortrait
+                          ? screenContext.windowWidth * 0.9
+                          : screenContext.windowWidth * 0.7
+                      }
+                    />
+                  )}
+                  {paths.map((p, index) => (
+                    <Path
+                      key={index}
+                      path={p.segments.join(' ')}
+                      strokeWidth={3}
+                      style="stroke"
+                      color={p.color}
+                    />
+                  ))}
+                </Group>
+              </Canvas>
+            </GestureDetector>
+          ) : (
             <Canvas ref={canvasRef} style={screenStyles.canvasSkia}>
               <Group>
                 {image && (
@@ -181,82 +215,52 @@ const SkiaEditor = ({setIsEditing, image}) => {
                 ))}
               </Group>
             </Canvas>
-          </GestureDetector>
-        ) : (
-          <Canvas ref={canvasRef} style={screenStyles.canvasSkia}>
-            <Group>
-              {image && (
-                <Image
-                  image={image}
-                  fit="contain"
-                  x={0}
-                  y={0}
-                  width={
-                    screenContext.isPortrait
-                      ? screenContext.windowWidth * 0.9
-                      : screenContext.windowWidth * 0.7
-                  }
-                  height={
-                    screenContext.isPortrait
-                      ? screenContext.windowWidth * 0.9
-                      : screenContext.windowWidth * 0.7
-                  }
-                />
-              )}
-              {paths.map((p, index) => (
-                <Path
-                  key={index}
-                  path={p.segments.join(' ')}
-                  strokeWidth={3}
-                  style="stroke"
-                  color={p.color}
-                />
-              ))}
-            </Group>
-          </Canvas>
-        )}
-      </View>
-      {isDrawing ? (
-        <View style={screenStyles.toolsContainer}>
-          <TouchableOpacity
-            onPress={() => {
-              setShowColorPickerModal(true);
-            }}>
-            <MaterialCommunityIcons
-              name="format-color-fill"
-              size={30}
-              color={ColorPalette.white}
-            />
-          </TouchableOpacity>
-          <TouchableOpacity onPress={clearLastPath}>
-            <FontAwesome5
-              name="undo-alt"
-              size={30}
-              color={ColorPalette.white}
-            />
-          </TouchableOpacity>
-          <TouchableOpacity onPress={handleCancelDrawing}>
-            <MaterialCommunityIcons
-              name="close"
-              size={30}
-              color={ColorPalette.white}
-            />
-          </TouchableOpacity>
-          <TouchableOpacity onPress={handleFinishDrawing}>
-            <MaterialCommunityIcons
-              name="check"
-              size={30}
-              color={ColorPalette.white}
-            />
-          </TouchableOpacity>
+          )}
         </View>
-      ) : (
         <View style={screenStyles.toolsContainer}>
-          <TouchableOpacity onPress={handlePenButton}>
-            <FontAwesome5 name="pen" size={30} color={ColorPalette.white} />
-          </TouchableOpacity>
+          {isDrawing ? (
+             <>
+                <TouchableOpacity
+                  onPress={() => {
+                    setShowColorPickerModal(true);
+                  }}>
+                  <MaterialCommunityIcons
+                    name="format-color-fill"
+                    size={30}
+                    color={ColorPalette.white}
+                  />
+                </TouchableOpacity>
+                <TouchableOpacity onPress={clearLastPath}>
+                  <FontAwesome5
+                    name="undo-alt"
+                    size={30}
+                    color={ColorPalette.white}
+                  />
+                </TouchableOpacity>
+                <TouchableOpacity onPress={handleCancelDrawing}>
+                  <MaterialCommunityIcons
+                    name="close"
+                    size={30}
+                    color={ColorPalette.white}
+                  />
+                </TouchableOpacity>
+                <TouchableOpacity onPress={handleFinishDrawing}>
+                  <MaterialCommunityIcons
+                    name="check"
+                    size={30}
+                    color={ColorPalette.white}
+                  />
+                </TouchableOpacity>
+             </>
+          ) : (
+            <>
+              <TouchableOpacity onPress={handlePenButton}>
+                <FontAwesome5 name="pen" size={30} color={ColorPalette.white} />
+              </TouchableOpacity>
+            </>
+          )}
         </View>
-      )}
+     </View>
       <Modal
         onRequestClose={() => setShowColorPickerModal(false)}
         transparent
