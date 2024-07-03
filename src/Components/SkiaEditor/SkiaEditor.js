@@ -161,13 +161,13 @@ const SkiaEditor = ({setIsEditing, image}) => {
                       y={0}
                       width={
                         screenContext.isPortrait
-                          ? screenContext.windowWidth * 0.9
-                          : screenContext.windowWidth * 0.7
+                          ? screenContext.windowWidth * 0.85
+                          : screenContext.windowHeight * 0.85
                       }
                       height={
                         screenContext.isPortrait
-                          ? screenContext.windowWidth * 0.9
-                          : screenContext.windowWidth * 0.7
+                          ? screenContext.windowWidth * 0.85
+                          : screenContext.windowHeight * 0.85
                       }
                     />
                   )}
@@ -194,13 +194,13 @@ const SkiaEditor = ({setIsEditing, image}) => {
                     y={0}
                     width={
                       screenContext.isPortrait
-                        ? screenContext.windowWidth * 0.9
-                        : screenContext.windowWidth * 0.7
+                        ? screenContext.windowWidth * 0.85
+                        : screenContext.windowHeight * 0.85
                     }
                     height={
                       screenContext.isPortrait
-                        ? screenContext.windowWidth * 0.9
-                        : screenContext.windowWidth * 0.7
+                        ? screenContext.windowWidth * 0.85
+                        : screenContext.windowHeight * 0.85
                     }
                   />
                 )}
