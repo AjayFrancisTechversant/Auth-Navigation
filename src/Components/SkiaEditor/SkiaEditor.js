@@ -23,8 +23,8 @@ import AntDesign from 'react-native-vector-icons/AntDesign';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 import Entypo from 'react-native-vector-icons/Entypo';
 import storage from '@react-native-firebase/storage';
+import ImageResizer from '@bam.tech/react-native-image-resizer';
 import ColorPicker, {Preview, HueSlider} from 'reanimated-color-picker';
-import SimpleLineIcons from 'react-native-vector-icons/SimpleLineIcons';
 import {useScreenContext} from '../../Contexts/ScreenContext';
 import styles from './Style';
 import ColorPalette from '../../Assets/Themes/ColorPalette';
@@ -47,7 +47,6 @@ const SkiaEditor = ({setIsEditing, image}) => {
 
   const onSelectColor = ({hex}) => {
     setPenColor(hex);
-    console.log(penColor);
   };
 
   const addNewPath = useCallback(
@@ -101,22 +100,38 @@ const SkiaEditor = ({setIsEditing, image}) => {
     })
     .minDistance(1);
 
-  const uploadToCloud = async () => {
-    try {
-      setIsUploadLoading(true);
-      const snapshot = canvasRef.current?.makeImageSnapshot();
-      if (snapshot) {
-        const base64String = snapshot.encodeToBase64();
-        const storageRef = storage().ref(`images/snapshot_${Date.now()}.png`);
-        await storageRef.putString(base64String, 'base64');
-        Alert.alert('File Uploaded');
-        setIsEditing(false);
-        setIsUploadLoading(false);
-      }
-    } catch (error) {
-      console.log(error);
+const Compress=()=>{
+
+}
+
+const uploadToCloud = async () => {
+  try {
+    setIsUploadLoading(true);
+    const snapshot = canvasRef.current?.makeImageSnapshot();
+    if (snapshot) {
+      const base64String = snapshot.encodeToBase64();
+      const uri = `data:image/png;base64,${base64String}`;
+      const resizedImage = await ImageResizer.createResizedImage(
+        uri,
+        screenContext.windowWidth, // new width
+        screenContext.windowHeight, // new height
+        'PNG',
+        50 // quality
+      );
+      const response = await fetch(resizedImage.uri);
+      const blob = await response.blob();
+      const storageRef = storage().ref(`images/snapshot_${Date.now()}.png`);
+      await storageRef.put(blob);
+      Alert.alert('File Uploaded');
+      setIsEditing(false);
     }
-  };
+  } catch (error) {
+    console.log(error);
+    Alert.alert('Error', 'File upload failed. Please try again.');
+  } finally {
+    setIsUploadLoading(false);
+  }
+};
 
   const handleSave = async () => {
     //compress

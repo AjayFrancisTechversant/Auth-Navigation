@@ -12,15 +12,11 @@ const styles = (screenContext, width, height) =>
       flexDirection: 'row',
       justifyContent: 'space-between',
     },
-
     canvasSkiaContainer: {
       alignSelf: 'center',
-      borderWidth: 1,
-      borderStyle: 'dashed',
       height: screenContext.isPortrait ? height * 0.7 : width * 0.8,
-      width: screenContext.isPortrait ? width * 0.9 : height * 0.6,
-      borderColor: ColorPalette.gray,
-      borderRadius: 5,
+      width: screenContext.isPortrait ? width * 0.9 : height * 0.6,   
+      borderRadius: 5,backgroundColor:ColorPalette.white
     },
     canvasSkia: {flex: 1},
     toolsContainer: {
