@@ -6,6 +6,7 @@ import {TouchableOpacity} from 'react-native-gesture-handler';
 import storage from '@react-native-firebase/storage';
 import styles from './Style';
 import ColorPalette from '../../Assets/Themes/ColorPalette';
+import MySkiaProjectsCard from '../MySkiaProjectsCard/MySkiaProjectsCard';
 
 const MySkiaProjects = ({setIsMyProjectsOpen}) => {
   const screenContext = useScreenContext();
@@ -14,7 +15,7 @@ const MySkiaProjects = ({setIsMyProjectsOpen}) => {
     screenContext[screenContext.isPortrait ? 'windowWidth' : 'windowHeight'],
     screenContext[screenContext.isPortrait ? 'windowHeight' : 'windowWidth'],
   );
-  
+
   const [imageUrls, setImageUrls] = useState([]);
   const [loading, setLoading] = useState(true);
 
@@ -37,15 +38,11 @@ const MySkiaProjects = ({setIsMyProjectsOpen}) => {
     fetchImages();
   }, [fetchImages]);
 
+
+
   const renderItem = useCallback(
     ({item}) => (
-      <View style={screenStyles.card}>
-        <Image
-          source={{uri: item}}
-          style={screenStyles.imageThumbnail}
-          resizeMode="contain"
-        />
-      </View>
+      <MySkiaProjectsCard item={item} />
     ),
     [screenStyles],
   );
@@ -66,7 +63,7 @@ const MySkiaProjects = ({setIsMyProjectsOpen}) => {
           data={imageUrls}
           renderItem={renderItem}
           numColumns={numberOfColumns}
-          key={(screenContext.isPortrait ? 'portrait' : 'landscape')}
+          key={screenContext.isPortrait ? 'portrait' : 'landscape'}
           keyExtractor={(item, index) => index.toString()}
         />
       )}
