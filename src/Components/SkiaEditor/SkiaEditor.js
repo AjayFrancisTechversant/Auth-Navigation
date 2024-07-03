@@ -100,34 +100,34 @@ const SkiaEditor = ({setIsEditing, image}) => {
     })
     .minDistance(1);
 
-const uploadToCloud = async () => {
-  try {
-    setIsUploadLoading(true);
-    const snapshot = canvasRef.current?.makeImageSnapshot();
-    if (snapshot) {
-      const base64String = snapshot.encodeToBase64();
-      const uri = `data:image/png;base64,${base64String}`;
-      const resizedImage = await ImageResizer.createResizedImage(
-        uri,
-        screenContext.windowWidth, // new width
-        screenContext.windowHeight, // new height
-        'PNG',
-        50 // quality
-      );
-      const response = await fetch(resizedImage.uri);
-      const blob = await response.blob();
-      const storageRef = storage().ref(`images/snapshot_${Date.now()}.png`);
-      await storageRef.put(blob);
-      Alert.alert('File Uploaded');
-      setIsEditing(false);
+  const uploadToCloud = async () => {
+    try {
+      setIsUploadLoading(true);
+      const snapshot = canvasRef.current?.makeImageSnapshot();
+      if (snapshot) {
+        const base64String = snapshot.encodeToBase64();
+        const uri = `data:image/png;base64,${base64String}`;
+        const resizedImage = await ImageResizer.createResizedImage(
+          uri,
+          screenContext.windowWidth, // new width
+          screenContext.windowHeight, // new height
+          'PNG',
+          50, // quality
+        );
+        const response = await fetch(resizedImage.uri);
+        const blob = await response.blob();
+        const storageRef = storage().ref(`images/snapshot_${Date.now()}.png`);
+        await storageRef.put(blob);
+        Alert.alert('File Uploaded');
+        setIsEditing(false);
+      }
+    } catch (error) {
+      console.log(error);
+      Alert.alert('Error', 'File upload failed. Please try again.');
+    } finally {
+      setIsUploadLoading(false);
     }
-  } catch (error) {
-    console.log(error);
-    Alert.alert('Error', 'File upload failed. Please try again.');
-  } finally {
-    setIsUploadLoading(false);
-  }
-};
+  };
 
   const handleSave = async () => {
     await uploadToCloud();
@@ -158,8 +158,16 @@ const uploadToCloud = async () => {
                     fit="contain"
                     x={0}
                     y={0}
-                    width={screenContext.windowWidth * 0.9}
-                    height={screenContext.windowHeight * 0.7}
+                    width={
+                      screenContext.isPortrait
+                        ? screenContext.windowWidth * 0.9
+                        : screenContext.windowWidth * 0.7
+                    }
+                    height={
+                      screenContext.isPortrait
+                        ? screenContext.windowWidth * 0.9
+                        : screenContext.windowWidth * 0.7
+                    }
                   />
                 )}
                 {paths.map((p, index) => (
@@ -183,8 +191,16 @@ const uploadToCloud = async () => {
                   fit="contain"
                   x={0}
                   y={0}
-                  width={screenContext.windowWidth * 0.9}
-                  height={screenContext.windowHeight * 0.7}
+                  width={
+                    screenContext.isPortrait
+                      ? screenContext.windowWidth * 0.9
+                      : screenContext.windowWidth * 0.7
+                  }
+                  height={
+                    screenContext.isPortrait
+                      ? screenContext.windowWidth * 0.9
+                      : screenContext.windowWidth * 0.7
+                  }
                 />
               )}
               {paths.map((p, index) => (

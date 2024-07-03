@@ -30,6 +30,7 @@ const SkiaScreen = ({navigation}) => {
     try {
       const selectedimage = await ImagePicker.openPicker({
         cropping:true,
+        freeStyleCropEnabled:true,
         includeBase64: true,
       });
       const imageData = Skia.Data.fromBase64(selectedimage.data);
