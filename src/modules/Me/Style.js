@@ -87,8 +87,8 @@ const styles = (screenContext, width, height) =>
     },
     threeIconTitle: {
       fontFamily: 'Rajdhani-Medium',
-      
     },
+    toolTipArrowSize:{width: 15, height: 14},
     threeIconSubtitle: {
       alignSelf: 'center',
       fontFamily: 'Rajdhani-Bold',

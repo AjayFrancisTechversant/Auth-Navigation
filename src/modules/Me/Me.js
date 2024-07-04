@@ -145,6 +145,7 @@ const Me = () => {
         <View style={screenStyles.threeIconContainer}>
           <View style={screenStyles.threeIconButton}>
             <Tooltip
+              arrowSize={screenStyles.toolTipArrowSize}
               isVisible={showLikedToolTip}
               onClose={() => setShowLikedToolTip(false)}
               content={
@@ -168,6 +169,7 @@ const Me = () => {
 
           <View style={screenStyles.threeIconButton}>
             <Tooltip
+              arrowSize={screenStyles.toolTipArrowSize}
               isVisible={showFriendsToolTip}
               onClose={() => setShowFriendsToolTip(false)}
               content={
@@ -190,6 +192,7 @@ const Me = () => {
           </View>
           <View style={screenStyles.threeIconButton}>
             <Tooltip
+              arrowSize={screenStyles.toolTipArrowSize}
               isVisible={showAchievementsToolTip}
               onClose={() => setShowAchievementsToolTip(false)}
               content={
