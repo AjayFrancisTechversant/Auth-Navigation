@@ -8,7 +8,6 @@ import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityI
 import Feather from 'react-native-vector-icons/Feather';
 import EvilIcons from 'react-native-vector-icons/EvilIcons';
 import OfflineDBFetch from '../../../modules/OfflineDBFetch/OfflineDBFetch';
-import Charts from '../../../modules/Charts/Charts';
 import BooksFirestore from '../../../modules/BooksFirestore/BooksFirestore';
 import BooksRealtimeDatabase from '../../../modules/BooksRealtimeDatabase/BooksRealtimeDatabase';
 import Listing from '../../../modules/Listing/Listing';
@@ -28,6 +27,8 @@ import ReanimatedCarousel from '../../../modules/ReanimatedCarousel/ReanimatedCa
 import SkiaDrag from '../../../modules/SkiaDrag/SkiaDrag';
 import Skia from '../../../modules/SkiaScreen/SkiaScreen';
 import Spotify from '../../../modules/Spotify/Spotify';
+import GiftedCharts from '../../../modules/GiftedCharts/GiftedCharts';
+import Echarts from '../../../modules/ECharts/Echarts';
 
 const HomeDrawerStack = () => {
   const Drawer = createDrawerNavigator();
@@ -137,6 +138,19 @@ const HomeDrawerStack = () => {
         name="OfflineDBFetch"
         component={OfflineDBFetch}
       />
+       <Drawer.Screen
+        options={{
+          drawerIcon: () => (
+            <MaterialCommunityIcons
+              name="chart-arc"
+              color={ColorPalette.green}
+              size={20}
+            />
+          ),
+        }}
+        name="ECharts"
+        component={Echarts}
+      />
       <Drawer.Screen
         options={{
           drawerIcon: () => (
@@ -147,8 +161,8 @@ const HomeDrawerStack = () => {
             />
           ),
         }}
-        name="Charts"
-        component={Charts}
+        name="Gifted-Charts"
+        component={GiftedCharts}
       />
       <Drawer.Screen
         options={{

@@ -6,7 +6,7 @@ import {useScreenContext} from '../../Contexts/ScreenContext';
 import ColorPalette from '../../Assets/Themes/ColorPalette';
 import styles from './Style';
 
-const Charts = ({navigation}) => {
+const GiftedCharts = ({navigation}) => {
   const pieData = [
     {value: 37, label: 'ETH', color: ColorPalette.pink},
     {value: 44, label: 'BTC', color: ColorPalette.violet},
@@ -128,4 +128,4 @@ const Charts = ({navigation}) => {
   );
 };
 
-export default Charts;
+export default GiftedCharts;

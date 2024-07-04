@@ -25,11 +25,11 @@ const LikeDislikeButton = ({item}) => {
       message: liked ? 'Disliked' : 'Liked',
       duration: 700,
       floating: true,
-      backgroundColor: liked ? ColorPalette.red : ColorPalette.green,
+      backgroundColor: liked ? ColorPalette.white : ColorPalette.green,
       titleStyle: screenStyles.flashMessageTitleStyle,
       style: screenStyles.flashMessageStyle,
       animationDuration: 50,
-      color: ColorPalette.white,
+      color: liked ? ColorPalette.green : ColorPalette.white,
       titleStyle: screenStyles.flashMessageTitleStyle,
     });
     Animated.sequence([
