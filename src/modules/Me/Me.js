@@ -15,6 +15,7 @@ import {KeyboardAwareScrollView} from 'react-native-keyboard-aware-scroll-view';
 import {TextInput} from 'react-native-paper';
 import {useSelector} from 'react-redux';
 import auth from '@react-native-firebase/auth';
+import Tooltip from 'react-native-walkthrough-tooltip';
 import {GoogleSignin} from '@react-native-google-signin/google-signin';
 import ColorPalette from '../../Assets/Themes/ColorPalette';
 import OptionCard from '../../Components/OptionCard/OptionCard';
@@ -22,8 +23,8 @@ import {useScreenContext} from '../../Contexts/ScreenContext';
 import StaticVariables from '../../Preferences/StaticVariables';
 import styles from './Style';
 
-const profilePageBG=require('../../Assets/Images/profilePageBG.jpg')
-const profilePicDummy=require('../../Assets/Images/profilePicDummy.webp')
+const profilePageBG = require('../../Assets/Images/profilePageBG.jpg');
+const profilePicDummy = require('../../Assets/Images/profilePicDummy.webp');
 
 const Me = () => {
   const likeCount = useSelector(state => state.Likes.likedUsers.length);
@@ -36,6 +37,9 @@ const Me = () => {
   const [email, setEmail] = useState();
   const [tempEmail, setTempEmail] = useState();
   const [isEditing, setIsEditing] = useState(false);
+  const [showLikedToolTip, setShowLikedToolTip] = useState(false);
+  const [showFriendsToolTip, setShowFriendsToolTip] = useState(false);
+  const [showAchievementsToolTip, setShowAchievementsToolTip] = useState(false);
   const handleLogout = async () => {
     GoogleSignin.signOut();
     auth()
@@ -87,10 +91,7 @@ const Me = () => {
         </ImageBackground>
 
         <View style={screenStyles.userDetailsContainer}>
-          <Image
-            style={screenStyles.profilePicture}
-            source={profilePicDummy}
-          />
+          <Image style={screenStyles.profilePicture} source={profilePicDummy} />
           <Text style={screenStyles.username}>{username}</Text>
           {isEditing ? (
             <View style={screenStyles.editContainer}>
@@ -141,27 +142,73 @@ const Me = () => {
             </View>
           )}
         </View>
-
         <View style={screenStyles.threeIconContainer}>
-          <TouchableOpacity style={screenStyles.threeIconButton}>
-            <AntDesign name="heart" color={ColorPalette.red} size={30} />
-            <Text style={screenStyles.threeIconTitle}>Liked</Text>
-            <Text style={screenStyles.threeIconSubtitle}>{likeCount}</Text>
-          </TouchableOpacity>
-          <TouchableOpacity style={screenStyles.threeIconButton}>
-            <FontAwesome5
-              name="user-friends"
-              color={ColorPalette.blue}
-              size={30}
-            />
-            <Text style={screenStyles.threeIconTitle}>Friends</Text>
-            <Text style={screenStyles.threeIconSubtitle}>{friendsCount}</Text>
-          </TouchableOpacity>
-          <TouchableOpacity style={screenStyles.threeIconButton}>
-            <FontAwesome5 name="trophy" color={ColorPalette.yellow} size={30} />
-            <Text style={screenStyles.threeIconTitle}>Achivements</Text>
-            <Text style={screenStyles.threeIconSubtitle}>2</Text>
-          </TouchableOpacity>
+          <View style={screenStyles.threeIconButton}>
+            <Tooltip
+              isVisible={showLikedToolTip}
+              onClose={() => setShowLikedToolTip(false)}
+              content={
+                <View>
+                  <Text style={screenStyles.threeIconSubtitle}>
+                    {likeCount}
+                  </Text>
+                </View>
+              }>
+              <TouchableOpacity onPress={() => setShowLikedToolTip(true)}>
+                <AntDesign
+                  name="heart"
+                  color={ColorPalette.red}
+                  size={30}
+                  style={screenStyles.threeIcons}
+                />
+                <Text style={screenStyles.threeIconTitle}>Liked</Text>
+              </TouchableOpacity>
+            </Tooltip>
+          </View>
+
+          <View style={screenStyles.threeIconButton}>
+            <Tooltip
+              isVisible={showFriendsToolTip}
+              onClose={() => setShowFriendsToolTip(false)}
+              content={
+                <View>
+                  <Text style={screenStyles.threeIconSubtitle}>
+                    {friendsCount}
+                  </Text>
+                </View>
+              }>
+              <TouchableOpacity onPress={() => setShowFriendsToolTip(true)}>
+                <FontAwesome5
+                  name="user-friends"
+                  color={ColorPalette.blue}
+                  size={30}
+                  style={screenStyles.threeIcons}
+                />
+                <Text style={screenStyles.threeIconTitle}>Friends</Text>
+              </TouchableOpacity>
+            </Tooltip>
+          </View>
+          <View style={screenStyles.threeIconButton}>
+            <Tooltip
+              isVisible={showAchievementsToolTip}
+              onClose={() => setShowAchievementsToolTip(false)}
+              content={
+                <View>
+                  <Text style={screenStyles.threeIconSubtitle}>2</Text>
+                </View>
+              }>
+              <TouchableOpacity
+                onPress={() => setShowAchievementsToolTip(true)}>
+                <FontAwesome5
+                  name="trophy"
+                  color={ColorPalette.yellow}
+                  size={30}
+                  style={screenStyles.threeIcons}
+                />
+                <Text style={screenStyles.threeIconTitle}>Achivements</Text>
+              </TouchableOpacity>
+            </Tooltip>
+          </View>
         </View>
         <View style={screenStyles.OptionCardContainer}>
           <OptionCard

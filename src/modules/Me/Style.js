@@ -78,6 +78,8 @@ const styles = (screenContext, width, height) =>
       flexDirection: 'row',
       marginVertical: height*0.025,
       borderColor: 'blue',
+      alignItems:'center',
+      justifyContent:'center'
     },
     threeIconButton: {
       flex: 1 / 3,
@@ -85,12 +87,14 @@ const styles = (screenContext, width, height) =>
     },
     threeIconTitle: {
       fontFamily: 'Rajdhani-Medium',
+      
     },
     threeIconSubtitle: {
       alignSelf: 'center',
       fontFamily: 'Rajdhani-Bold',
+      color:ColorPalette.green
     },
-
+    threeIcons:{alignSelf:'center'},
     OptionCardContainer: {
       marginHorizontal: screenContext.isPortrait ? width*0.0486 : width*0.2433,
     },
