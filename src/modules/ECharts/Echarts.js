@@ -1,20 +1,47 @@
-import { View, Text } from 'react-native'
-import React from 'react'
-import { useScreenContext } from '../../Contexts/ScreenContext';
+import React from 'react';
+import {useScreenContext} from '../../Contexts/ScreenContext';
+import * as echarts from 'echarts/core';
+import {LineChart, PieChart} from 'echarts/charts';
+import {
+  GridComponent,
+  LegendComponent,
+  ToolboxComponent,
+} from 'echarts/components';
+import {SVGRenderer, SkiaChart} from '@wuba/react-native-echarts';
 import styles from './Style';
+import EChartPieComponent from '../../Components/EChartPieComponent/EChartPieComponent';
+import MenuDrawerButton from '../../Components/MenuDrawerButton/MenuDrawerButton';
+import ColorPalette from '../../Assets/Themes/ColorPalette';
+import { View } from 'react-native';
+import EChartLineComponent from '../../Components/EChartLineComponent/EChartLineComponent';
 
-const Echarts = () => {
-    const screenContext = useScreenContext();
-    const screenStyles = styles(
-      screenContext,
-      screenContext[screenContext.isPortrait ? 'windowWidth' : 'windowHeight'],
-      screenContext[screenContext.isPortrait ? 'windowHeight' : 'windowWidth'],
-    );
+echarts.use([
+  SVGRenderer,
+  LineChart,
+  GridComponent,
+  PieChart,
+  LegendComponent,
+  ToolboxComponent,
+]);
+
+const Echarts = ({navigation}) => {
+  const screenContext = useScreenContext();
+  const screenStyles = styles(
+    screenContext,
+    screenContext[screenContext.isPortrait ? 'windowWidth' : 'windowHeight'],
+    screenContext[screenContext.isPortrait ? 'windowHeight' : 'windowWidth'],
+  );
   return (
-    <View>
-      <Text>Echarts</Text>
+  
+<View style={screenStyles.canvas} >
+      <View ><EChartPieComponent /></View>
+      <View ><EChartLineComponent /></View>
+    <View style={screenStyles.menuButton}>
+        <MenuDrawerButton navigation={navigation} color={ColorPalette.green}/>
     </View>
+</View>
   )
+
 }
 
-export default Echarts
+export default Echarts;

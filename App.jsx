@@ -15,6 +15,7 @@ import {persistor, store} from './src/Redux/Store/Store';
 import HomeTabStack from './src/Services/Navigation/Stacks/HomeTabStack';
 import {ScreenContextProvider} from './src/Contexts/ScreenContext';
 import Echarts from './src/modules/ECharts/Echarts';
+import PieChart from './src/Components/EChartPieComponent/EChartPieComponent';
 
 
 PermissionsAndroid.request(PermissionsAndroid.PERMISSIONS.POST_NOTIFICATIONS);
