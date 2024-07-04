@@ -27,6 +27,7 @@ import DrawerContents from '../../../Components/DrawerContents/DrawerContents';
 import ReanimatedCarousel from '../../../modules/ReanimatedCarousel/ReanimatedCarousel';
 import SkiaDrag from '../../../modules/SkiaDrag/SkiaDrag';
 import Skia from '../../../modules/SkiaScreen/SkiaScreen';
+import Spotify from '../../../modules/Spotify/Spotify';
 
 const HomeDrawerStack = () => {
   const Drawer = createDrawerNavigator();
@@ -46,6 +47,15 @@ const HomeDrawerStack = () => {
         }}
         name="HomeScreen"
         component={HomeScreen}
+      />
+       <Drawer.Screen
+        options={{
+          drawerIcon: () => (
+            <Entypo name="spotify" color={ColorPalette.green} size={20} />
+          ),
+        }}
+        name="Spotify"
+        component={Spotify}
       />
       <Drawer.Screen
         options={{
@@ -92,7 +102,7 @@ const HomeDrawerStack = () => {
         name="Skia"
         component={Skia}
       />
-       <Drawer.Screen
+      <Drawer.Screen
         options={{
           drawerIcon: () => (
             <Ionicons name="logo-react" color={ColorPalette.green} size={20} />

@@ -14,6 +14,8 @@ import {persistor, store} from './src/Redux/Store/Store';
 import HomeTabStack from './src/Services/Navigation/Stacks/HomeTabStack';
 import {ScreenContextProvider} from './src/Contexts/ScreenContext';
 import Skia from './src/modules/SkiaScreen/SkiaScreen';
+import Spotify from './src/modules/Spotify/Spotify';
+import Me from './src/modules/Me/Me';
 
 PermissionsAndroid.request(PermissionsAndroid.PERMISSIONS.POST_NOTIFICATIONS);
 
@@ -93,7 +95,8 @@ export default function Main() {
         <PersistGate loading={null} persistor={persistor}>
           <GestureHandlerRootView>
             <PaperProvider>
-              <App />
+              {/* <App /> */}
+              <Me/>
             </PaperProvider>
           </GestureHandlerRootView>
         </PersistGate>
