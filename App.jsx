@@ -9,13 +9,12 @@ import auth from '@react-native-firebase/auth';
 import {PermissionsAndroid} from 'react-native';
 import messaging from '@react-native-firebase/messaging';
 import {PaperProvider} from 'react-native-paper';
+import FlashMessage from "react-native-flash-message";
 import AuthNativeStack from './src/Services/Navigation/Stacks/AuthNativeStack';
 import {persistor, store} from './src/Redux/Store/Store';
 import HomeTabStack from './src/Services/Navigation/Stacks/HomeTabStack';
 import {ScreenContextProvider} from './src/Contexts/ScreenContext';
-import Skia from './src/modules/SkiaScreen/SkiaScreen';
-import Spotify from './src/modules/Spotify/Spotify';
-import Me from './src/modules/Me/Me';
+
 
 PermissionsAndroid.request(PermissionsAndroid.PERMISSIONS.POST_NOTIFICATIONS);
 
@@ -84,6 +83,7 @@ const App = () => {
           />
         </Stack.Navigator>
       )}
+      <FlashMessage position="top" />
     </NavigationContainer>
   );
 };
@@ -95,8 +95,7 @@ export default function Main() {
         <PersistGate loading={null} persistor={persistor}>
           <GestureHandlerRootView>
             <PaperProvider>
-              {/* <App /> */}
-              <Me/>
+              <App />
             </PaperProvider>
           </GestureHandlerRootView>
         </PersistGate>

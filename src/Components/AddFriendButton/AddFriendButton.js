@@ -2,15 +2,36 @@ import React, {useCallback, useRef} from 'react';
 import {View, TouchableOpacity, Animated} from 'react-native';
 import {useDispatch, useSelector} from 'react-redux';
 import FontAwesome5 from 'react-native-vector-icons/FontAwesome5';
+import {showMessage} from 'react-native-flash-message';
 import ColorPalette from '../../Assets/Themes/ColorPalette';
 import {updateFriends} from '../../Redux/Slices/AddFriendSlice';
+import styles from './Style';
+import {useScreenContext} from '../../Contexts/ScreenContext';
 
 const AddFriendButton = ({item}) => {
   const dispatch = useDispatch();
   const addedFriends = useSelector(state => state.AddFriend.addedFriends);
   const friendAdded = addedFriends.some(i => i.id.value === item.id.value);
   const scaleValue = useRef(new Animated.Value(1)).current;
+
+  const screenContext = useScreenContext();
+  const screenStyles = styles(
+    screenContext,
+    screenContext[screenContext.isPortrait ? 'windowWidth' : 'windowHeight'],
+    screenContext[screenContext.isPortrait ? 'windowHeight' : 'windowWidth'],
+  );
   const handleAddFriend = useCallback(() => {
+    showMessage({
+      message: friendAdded ? 'Friend Removed' : 'Friend Added',
+      duration: 700,
+      floating: true,
+      backgroundColor: friendAdded ? ColorPalette.red : ColorPalette.green,
+      titleStyle: screenStyles.flashMessageTitleStyle,
+      style: screenStyles.flashMessageStyle,
+      animationDuration: 50,
+      color: ColorPalette.white,
+      titleStyle: screenStyles.flashMessageTitleStyle,
+    });
     Animated.sequence([
       Animated.timing(scaleValue, {
         toValue: 1.5,

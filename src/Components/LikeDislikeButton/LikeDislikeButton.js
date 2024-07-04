@@ -1,16 +1,37 @@
 import React, {useCallback, useRef, useState} from 'react';
 import {View, TouchableOpacity, Animated} from 'react-native';
 import {useDispatch, useSelector} from 'react-redux';
+import {showMessage} from 'react-native-flash-message';
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
 import ColorPalette from '../../Assets/Themes/ColorPalette';
 import {updateLikes} from '../../Redux/Slices/LikeSlice';
+import {useScreenContext} from '../../Contexts/ScreenContext';
+import styles from './Style';
 
 const LikeDislikeButton = ({item}) => {
   const dispatch = useDispatch();
   const likedUsers = useSelector(state => state.Likes.likedUsers);
   const liked = likedUsers.some(i => i.id.value === item.id.value);
   const scaleValue = useRef(new Animated.Value(1)).current;
+
+  const screenContext = useScreenContext();
+  const screenStyles = styles(
+    screenContext,
+    screenContext[screenContext.isPortrait ? 'windowWidth' : 'windowHeight'],
+    screenContext[screenContext.isPortrait ? 'windowHeight' : 'windowWidth'],
+  );
   const handleLikeDislike = useCallback(() => {
+    showMessage({
+      message: liked ? 'Disliked' : 'Liked',
+      duration: 700,
+      floating: true,
+      backgroundColor: liked ? ColorPalette.red : ColorPalette.green,
+      titleStyle: screenStyles.flashMessageTitleStyle,
+      style: screenStyles.flashMessageStyle,
+      animationDuration: 50,
+      color: ColorPalette.white,
+      titleStyle: screenStyles.flashMessageTitleStyle,
+    });
     Animated.sequence([
       Animated.timing(scaleValue, {
         toValue: 1.5,
