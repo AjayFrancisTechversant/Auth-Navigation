@@ -9,14 +9,14 @@ import auth from '@react-native-firebase/auth';
 import {PermissionsAndroid} from 'react-native';
 import messaging from '@react-native-firebase/messaging';
 import {PaperProvider} from 'react-native-paper';
-import FlashMessage from "react-native-flash-message";
+import FlashMessage from 'react-native-flash-message';
 import AuthNativeStack from './src/Services/Navigation/Stacks/AuthNativeStack';
 import {persistor, store} from './src/Redux/Store/Store';
 import HomeTabStack from './src/Services/Navigation/Stacks/HomeTabStack';
 import {ScreenContextProvider} from './src/Contexts/ScreenContext';
 import Echarts from './src/modules/ECharts/Echarts';
 import PieChart from './src/Components/EChartPieComponent/EChartPieComponent';
-
+import PDFReader from './src/modules/PDFReader/PDFReader';
 
 PermissionsAndroid.request(PermissionsAndroid.PERMISSIONS.POST_NOTIFICATIONS);
 
@@ -97,8 +97,8 @@ export default function Main() {
         <PersistGate loading={null} persistor={persistor}>
           <GestureHandlerRootView>
             <PaperProvider>
-              {/* <App /> */}
-              <Echarts/>
+              <App />
+              {/* <PDFReader /> */}
             </PaperProvider>
           </GestureHandlerRootView>
         </PersistGate>

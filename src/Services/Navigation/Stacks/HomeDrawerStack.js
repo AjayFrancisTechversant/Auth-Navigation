@@ -29,6 +29,9 @@ import Skia from '../../../modules/SkiaScreen/SkiaScreen';
 import Spotify from '../../../modules/Spotify/Spotify';
 import GiftedCharts from '../../../modules/GiftedCharts/GiftedCharts';
 import Echarts from '../../../modules/ECharts/Echarts';
+import WebView from '../../../modules/WebViewScreen/WebViewScreen';
+import WebViewScreen from '../../../modules/WebViewScreen/WebViewScreen';
+import PDFReader from '../../../modules/PDFReader/PDFReader';
 
 const HomeDrawerStack = () => {
   const Drawer = createDrawerNavigator();
@@ -49,7 +52,7 @@ const HomeDrawerStack = () => {
         name="HomeScreen"
         component={HomeScreen}
       />
-       <Drawer.Screen
+      <Drawer.Screen
         options={{
           drawerIcon: () => (
             <Entypo name="spotify" color={ColorPalette.green} size={20} />
@@ -138,7 +141,33 @@ const HomeDrawerStack = () => {
         name="OfflineDBFetch"
         component={OfflineDBFetch}
       />
-       <Drawer.Screen
+      <Drawer.Screen
+        options={{
+          drawerIcon: () => (
+            <MaterialCommunityIcons
+              name="web"
+              color={ColorPalette.green}
+              size={20}
+            />
+          ),
+        }}
+        name="WebView"
+        component={WebViewScreen}
+      />
+      <Drawer.Screen
+        options={{
+          drawerIcon: () => (
+            <FontAwesome6
+              name="file-pdf"
+              color={ColorPalette.green}
+              size={20}
+            />
+          ),
+        }}
+        name="PDF Reader"
+        component={PDFReader}
+      />
+      <Drawer.Screen
         options={{
           drawerIcon: () => (
             <MaterialCommunityIcons
