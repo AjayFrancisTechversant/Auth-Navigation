@@ -101,8 +101,7 @@ export default function Main() {
           <GestureHandlerRootView>
             <PaperProvider>
               {/* <App /> */}
-              {/* <VideoPlayerScreen /> */}
-              <PDFReader/>
+              <VideoPlayerScreen />
             </PaperProvider>
           </GestureHandlerRootView>
         </PersistGate>

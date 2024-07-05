@@ -1,34 +1,87 @@
-import {View, Alert, TouchableOpacity} from 'react-native';
+import {
+  View,
+  Alert,
+  TouchableOpacity,
+  Text,
+  ActivityIndicator,
+} from 'react-native';
 import React, {useState} from 'react';
 import Pdf from 'react-native-pdf';
+import RNFS from 'react-native-fs';
 import AntDesign from 'react-native-vector-icons/AntDesign';
 import {useScreenContext} from '../../Contexts/ScreenContext';
 import MenuDrawerButton from '../../Components/MenuDrawerButton/MenuDrawerButton';
 import ColorPalette from '../../Assets/Themes/ColorPalette';
 import styles from './Style';
-import {Text} from 'react-native';
 
 const PDFReader = ({navigation}) => {
   const [isPDFOpen, setIsPDFOpen] = useState(false);
+  const [isDownloading, setIsDownloading] = useState(false);
+  const [downloadPercentage, setDownloadPercentage] = useState(0);
   const screenContext = useScreenContext();
   const screenStyles = styles(
     screenContext,
     screenContext[screenContext.isPortrait ? 'windowWidth' : 'windowHeight'],
     screenContext[screenContext.isPortrait ? 'windowHeight' : 'windowWidth'],
   );
+  
+  const handleOpenPdf = async () => {
+    const filePath = `${RNFS.DocumentDirectoryPath}/samplePdf.pdf`;
+    const fileExists = await RNFS.exists(filePath);
+    
+    if (fileExists) {
+      setIsPDFOpen(true);
+    } else {
+      try {
+        await downloadPdf(filePath);
+        setIsPDFOpen(true);
+      } catch (error) {
+        console.log(error);
+      }
+    }
+  };
+
+  const downloadPdf = async (filePath) => {
+    try {
+      const options = {
+        fromUrl: 'http://samples.leanpub.com/thereactnativebook-sample.pdf',
+        toFile: filePath,
+        progress: pro => {
+          setDownloadPercentage(Math.ceil((pro.bytesWritten * 100) / pro.contentLength));
+        },
+      };
+      setIsDownloading(true);
+      await RNFS.downloadFile(options).promise;
+      setIsDownloading(false);
+      setDownloadPercentage(0)
+    } catch (error) {
+      Alert.alert('Download failed', error.message);
+      console.log(error);
+    }
+  };
   return (
     <View style={screenStyles.canvas}>
       {!isPDFOpen ? (
         <View>
-          <MenuDrawerButton
-            navigation={navigation}
-            color={ColorPalette.green}
-          />
+         <View style={screenStyles.menuButton}>
+            <MenuDrawerButton
+              navigation={navigation}
+              color={ColorPalette.green}
+            />
+         </View>
           <TouchableOpacity
-            onPress={() => {
-              setIsPDFOpen(true);
-            }}>
-            <Text>OpenPDF</Text>
+            style={screenStyles.OpenPdfButton}
+            onPress={handleOpenPdf}>
+            {isDownloading ? (
+              <View>
+                <ActivityIndicator color={ColorPalette.white} size={30} />
+                <Text style={screenStyles.DownloadPDFText}>
+                  {downloadPercentage} %
+                </Text>
+              </View>
+            ) : (
+              <Text style={screenStyles.DownloadPDFText}>DownloadPDF</Text>
+            )}
           </TouchableOpacity>
         </View>
       ) : (
@@ -41,7 +94,7 @@ const PDFReader = ({navigation}) => {
           <Pdf
             trustAllCerts={false}
             source={{
-              uri: 'http://samples.leanpub.com/thereactnativebook-sample.pdf',
+              uri: `file://${RNFS.DocumentDirectoryPath}/samplePdf.pdf`,
             }}
             onLoadProgress={percent => {
               // console.log('percent', percent)

@@ -1,7 +1,15 @@
-import {View, Text, TouchableOpacity, BackHandler} from 'react-native';
+import {
+  View,
+  Text,
+  TouchableOpacity,
+  BackHandler,
+  Alert,
+  ActivityIndicator,
+} from 'react-native';
 import React, {useEffect, useState} from 'react';
 import {createThumbnail} from 'react-native-create-thumbnail';
 import RNFS from 'react-native-fs';
+import Ionicons from 'react-native-vector-icons/Ionicons';
 import {useScreenContext} from '../../Contexts/ScreenContext';
 import VideoPlayerComponent from '../../Components/VideoPlayerComponent/VideoPlayerComponent';
 import MenuDrawerButton from '../../Components/MenuDrawerButton/MenuDrawerButton';
@@ -9,9 +17,11 @@ import ColorPalette from '../../Assets/Themes/ColorPalette';
 import styles from './Style';
 
 const VideoPlayerScreen = ({navigation}) => {
-  const screenContext = useScreenContext();
   const [showVideoPlayerComponent, setShowVideoPlayerComponent] =
     useState(false);
+  const [isDownloading, setIsDownloading] = useState(false);
+
+  const screenContext = useScreenContext();
   const screenStyles = styles(
     screenContext,
     screenContext[screenContext.isPortrait ? 'windowWidth' : 'windowHeight'],
@@ -19,7 +29,7 @@ const VideoPlayerScreen = ({navigation}) => {
   );
 
   useEffect(() => {
-    copyAndCreateThumbnail();
+    downloadAVideo();
     const backHandler = BackHandler.addEventListener(
       'hardwareBackPress',
       () => {
@@ -32,20 +42,26 @@ const VideoPlayerScreen = ({navigation}) => {
     return () => backHandler.remove();
   }, [showVideoPlayerComponent]);
 
-  const copyAndCreateThumbnail = async () => {
-    const assetPath = '../../Assets/Videos/sampleVideo1.mp4';
-    const destPath = `${RNFS.DocumentDirectoryPath}/sample-video.mp4`;
+  const downloadAVideo = async () => {
+    const filePath = `${RNFS.DocumentDirectoryPath}/sampleVideo.pdf`;
+    const fileExists = await RNFS.exists(filePath);
 
-    try {
-      await RNFS.copyFileAssets(assetPath, destPath);
-      createThumbnail({
-        timeStamp: 10000,
-        url: `file://${destPath}`,
-      })
-        .then(response => console.log('Thumbnail created:', response))
-        .catch(err => console.log('Error creating thumbnail:', err));
-    } catch (err) {
-      console.log('Error copying file:', err);
+    if (fileExists) {
+      //
+    } else {
+      try {
+        const options = {
+          fromUrl:
+            'https://www.pexels.com/download/video/3209828/?fps=25.0&h=1080&w=1920',
+          toFile: filePath,
+        };
+        setIsDownloading(true);
+        await RNFS.downloadFile(options).promise;
+        setIsDownloading(false);
+      } catch (error) {
+        Alert.alert('Download failed', error.message);
+        console.log(error);
+      }
     }
   };
 
@@ -60,9 +76,20 @@ const VideoPlayerScreen = ({navigation}) => {
             />
           </View>
           <Text style={screenStyles.heading}>VideoPlayer</Text>
-          <TouchableOpacity onPress={() => setShowVideoPlayerComponent(true)}>
-            <Text>Play Video</Text>
-          </TouchableOpacity>
+          <View style={screenStyles.thumbnailButtonContainer}>
+            {isDownloading ? (
+              <ActivityIndicator color={ColorPalette.green} size={50} />
+            ) : (
+              <TouchableOpacity
+                onPress={() => setShowVideoPlayerComponent(true)}>
+                <Ionicons
+                  name="play-circle"
+                  color={ColorPalette.green}
+                  size={80}
+                />
+              </TouchableOpacity>
+            )}
+          </View>
         </View>
       ) : (
         <VideoPlayerComponent

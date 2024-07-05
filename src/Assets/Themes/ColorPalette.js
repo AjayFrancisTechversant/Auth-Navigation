@@ -1,3 +1,4 @@
+
 export default ColorPalette = {
   green: '#5ead97',
   red: '#bd2424',
@@ -16,5 +17,6 @@ export default ColorPalette = {
   gold:'#FFD700',
   gray:'#808080',
   transWhite:'rgba(255,255,255,0.3)',
-  transBlack:'rgba(0,0,0,0.7)'
+  transBlack:'rgba(0,0,0,0.7)',
+  transparent:'transparent'
 };
