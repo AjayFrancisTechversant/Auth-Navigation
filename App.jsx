@@ -20,6 +20,8 @@ import PDFReader from './src/modules/PDFReader/PDFReader';
 import VideoPlayerScreen from './src/modules/VideoPlayerScreen/VideoPlayerScreen';
 import VideoPlayerComponent from './src/Components/VideoPlayerComponent/VideoPlayerComponent';
 import ClipBoard from './src/modules/ClipBoard/ClipBoard';
+import Spotify from './src/modules/Spotify/Spotify';
+import CameraScreen from './src/Components/CameraScreen/CameraScreen';
 
 PermissionsAndroid.request(PermissionsAndroid.PERMISSIONS.POST_NOTIFICATIONS);
 
@@ -100,8 +102,8 @@ export default function Main() {
         <PersistGate loading={null} persistor={persistor}>
           <GestureHandlerRootView>
             <PaperProvider>
-              {/* <App /> */}
-              <VideoPlayerScreen />
+              {/* <Spotify /> */}
+              <App />
             </PaperProvider>
           </GestureHandlerRootView>
         </PersistGate>

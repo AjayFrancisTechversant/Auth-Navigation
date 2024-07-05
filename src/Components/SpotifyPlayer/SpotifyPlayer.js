@@ -1,16 +1,11 @@
-import {
-  View,
-  Text,
-  TouchableOpacity,
-  Image,
-  ScrollView,
-} from 'react-native';
+import {View, Text, TouchableOpacity, Image, ScrollView} from 'react-native';
 import React from 'react';
 import {useScreenContext} from '../../Contexts/ScreenContext';
 import AntDesign from 'react-native-vector-icons/AntDesign';
 import Entypo from 'react-native-vector-icons/Entypo';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
+import {Skeleton} from '@rneui/themed';
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
 import styles from './Style';
 import LinearGradient from 'react-native-linear-gradient';
@@ -18,7 +13,7 @@ import ColorPalette from '../../Assets/Themes/ColorPalette';
 
 const WeekndAlbumCover = require('../../Assets/Images/WeekndAlbumCover.png');
 
-const SpotifyPlayer = () => {
+const SpotifyPlayer = ({setPlayerModalVisible}) => {
   const screenContext = useScreenContext();
   const screenStyles = styles(
     screenContext,
@@ -26,12 +21,14 @@ const SpotifyPlayer = () => {
     screenContext[screenContext.isPortrait ? 'windowHeight' : 'windowWidth'],
   );
   return (
-    <ScrollView style={screenStyles.canvas} showsVerticalScrollIndicator={false}>
+    <ScrollView
+      style={screenStyles.canvas}
+      showsVerticalScrollIndicator={false}>
       <LinearGradient
         style={screenStyles.linearGradientStyle}
         colors={[ColorPalette.lightGreen, ColorPalette.white]}>
         <View style={screenStyles.header}>
-          <TouchableOpacity>
+          <TouchableOpacity onPress={()=>setPlayerModalVisible(false)}>
             <AntDesign name="down" color={ColorPalette.green} size={30} />
           </TouchableOpacity>
           <Text style={screenStyles.headerText}>PLAYING FROM PLAYLIST</Text>
@@ -112,7 +109,20 @@ const SpotifyPlayer = () => {
         <Text style={screenStyles.lyricsText}>LYRICS</Text>
       </LinearGradient>
 
-      <View style={screenStyles.lyricsBox}></View>
+      <View style={screenStyles.lyricsBox}>
+        <Skeleton style={screenStyles.skel1} />
+        <Skeleton style={screenStyles.skel2} />
+        <Skeleton style={screenStyles.skel3} />
+        <Skeleton style={screenStyles.skel4} />
+        <Skeleton style={screenStyles.skel4} />
+        <Skeleton style={screenStyles.skel3} />
+        <Skeleton style={screenStyles.skel2} />
+        <Skeleton style={screenStyles.skel3} />
+        <Skeleton style={screenStyles.skel4} />
+        <Skeleton style={screenStyles.skel4} />
+        <Skeleton style={screenStyles.skel2} />
+        <Skeleton style={screenStyles.skel4} />
+      </View>
     </ScrollView>
   );
 };

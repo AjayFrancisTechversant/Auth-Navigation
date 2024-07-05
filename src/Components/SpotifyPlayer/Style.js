@@ -48,6 +48,30 @@ const styles = (screenContext, width, height) =>
       borderRadius: 20,
       alignSelf: 'center',
       marginBottom: height * 0.05,
+      padding: width * 0.1,
+    },
+    skel1: {
+      width:screenContext.isPortrait? width * 0.7:height*0.7,
+      backgroundColor: ColorPalette.green,
+      borderRadius: 10,height:height*0.02
+    },
+    skel2: {
+      width:screenContext.isPortrait? width * 0.6:height*0.6,
+      backgroundColor: ColorPalette.green,
+      marginTop: width * 0.03,
+      borderRadius: 10,height:height*0.02
+    },
+    skel3: {
+      marginTop: width * 0.03,
+      width:screenContext.isPortrait? width * 0.5:height*0.5,
+      backgroundColor: ColorPalette.green,
+      borderRadius: 10,height:height*0.02
+    },
+    skel4: {
+      marginTop: width * 0.03,
+      width:screenContext.isPortrait? width * 0.4:height*0.4,      backgroundColor: ColorPalette.green,
+      borderRadius: 10,
+      height:height*0.02
     },
   });
 export default styles;

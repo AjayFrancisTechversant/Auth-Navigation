@@ -5,10 +5,12 @@ import {
   BackHandler,
   Alert,
   ActivityIndicator,
+  Image,
+  ImageBackground,
 } from 'react-native';
 import React, {useEffect, useState} from 'react';
-import {createThumbnail} from 'react-native-create-thumbnail';
 import RNFS from 'react-native-fs';
+import {createThumbnail} from 'react-native-create-thumbnail';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import {useScreenContext} from '../../Contexts/ScreenContext';
 import VideoPlayerComponent from '../../Components/VideoPlayerComponent/VideoPlayerComponent';
@@ -20,6 +22,7 @@ const VideoPlayerScreen = ({navigation}) => {
   const [showVideoPlayerComponent, setShowVideoPlayerComponent] =
     useState(false);
   const [isDownloading, setIsDownloading] = useState(false);
+  const [thumbnailPath, setThumbnailPath] = useState('');
 
   const screenContext = useScreenContext();
   const screenStyles = styles(
@@ -29,7 +32,7 @@ const VideoPlayerScreen = ({navigation}) => {
   );
 
   useEffect(() => {
-    downloadAVideo();
+    initialFn();
     const backHandler = BackHandler.addEventListener(
       'hardwareBackPress',
       () => {
@@ -42,13 +45,15 @@ const VideoPlayerScreen = ({navigation}) => {
     return () => backHandler.remove();
   }, [showVideoPlayerComponent]);
 
-  const downloadAVideo = async () => {
+  const initialFn = async () => {
+    await downloadVideo();
+    await makeThumbnailFn();
+  };
+
+  const downloadVideo = async () => {
     const filePath = `${RNFS.DocumentDirectoryPath}/sampleVideo.pdf`;
     const fileExists = await RNFS.exists(filePath);
-
-    if (fileExists) {
-      //
-    } else {
+    if (!fileExists) {
       try {
         const options = {
           fromUrl:
@@ -65,6 +70,17 @@ const VideoPlayerScreen = ({navigation}) => {
     }
   };
 
+  const makeThumbnailFn = async () => {
+    try {
+      thumbnail = await createThumbnail({
+        url: `file://${RNFS.DocumentDirectoryPath}/sampleVideo.pdf`,
+        timeStamp: 4000,
+      });
+      setThumbnailPath(thumbnail.path);
+    } catch (error) {
+      console.log(error);
+    }
+  };
   return (
     <View style={screenStyles.canvas}>
       {!showVideoPlayerComponent ? (
@@ -80,14 +96,22 @@ const VideoPlayerScreen = ({navigation}) => {
             {isDownloading ? (
               <ActivityIndicator color={ColorPalette.green} size={50} />
             ) : (
-              <TouchableOpacity
-                onPress={() => setShowVideoPlayerComponent(true)}>
-                <Ionicons
-                  name="play-circle"
-                  color={ColorPalette.green}
-                  size={80}
-                />
-              </TouchableOpacity>
+              <View>
+                <ImageBackground
+                  source={{uri: thumbnailPath}}
+                  style={screenStyles.backgroundImageStyle}
+                  resizeMode="cover">
+                  <TouchableOpacity
+                    style={screenStyles.playIcon}
+                    onPress={() => setShowVideoPlayerComponent(true)}>
+                    <Ionicons
+                      name="play-circle"
+                      color={ColorPalette.green}
+                      size={80}
+                    />
+                  </TouchableOpacity>
+                </ImageBackground>
+              </View>
             )}
           </View>
         </View>

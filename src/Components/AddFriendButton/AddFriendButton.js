@@ -25,11 +25,9 @@ const AddFriendButton = ({item}) => {
       message: friendAdded ? 'Friend Removed' : 'Friend Added',
       duration: 700,
       floating: true,
-      backgroundColor: friendAdded ? ColorPalette.white : ColorPalette.green,
-      titleStyle: screenStyles.flashMessageTitleStyle,
-      style: screenStyles.flashMessageStyle,
+      position: 'top',
+      type: friendAdded ? 'danger' : 'success',
       animationDuration: 50,
-      color: friendAdded ? ColorPalette.green : ColorPalette.white,
       titleStyle: screenStyles.flashMessageTitleStyle,
     });
     Animated.sequence([
