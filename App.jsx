@@ -17,6 +17,9 @@ import {ScreenContextProvider} from './src/Contexts/ScreenContext';
 import Echarts from './src/modules/ECharts/Echarts';
 import PieChart from './src/Components/EChartPieComponent/EChartPieComponent';
 import PDFReader from './src/modules/PDFReader/PDFReader';
+import VideoPlayerScreen from './src/modules/VideoPlayerScreen/VideoPlayerScreen';
+import VideoPlayerComponent from './src/Components/VideoPlayerComponent/VideoPlayerComponent';
+import ClipBoard from './src/modules/ClipBoard/ClipBoard';
 
 PermissionsAndroid.request(PermissionsAndroid.PERMISSIONS.POST_NOTIFICATIONS);
 
@@ -97,8 +100,9 @@ export default function Main() {
         <PersistGate loading={null} persistor={persistor}>
           <GestureHandlerRootView>
             <PaperProvider>
-              <App />
-              {/* <PDFReader /> */}
+              {/* <App /> */}
+              {/* <VideoPlayerScreen /> */}
+              <PDFReader/>
             </PaperProvider>
           </GestureHandlerRootView>
         </PersistGate>

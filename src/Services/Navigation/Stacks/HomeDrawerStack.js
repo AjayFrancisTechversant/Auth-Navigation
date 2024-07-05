@@ -32,6 +32,8 @@ import Echarts from '../../../modules/ECharts/Echarts';
 import WebView from '../../../modules/WebViewScreen/WebViewScreen';
 import WebViewScreen from '../../../modules/WebViewScreen/WebViewScreen';
 import PDFReader from '../../../modules/PDFReader/PDFReader';
+import VideoPlayerScreen from '../../../modules/VideoPlayerScreen/VideoPlayerScreen';
+import ClipBoard from '../../../modules/ClipBoard/ClipBoard';
 
 const HomeDrawerStack = () => {
   const Drawer = createDrawerNavigator();
@@ -52,6 +54,15 @@ const HomeDrawerStack = () => {
         name="HomeScreen"
         component={HomeScreen}
       />
+       <Drawer.Screen
+        options={{
+          drawerIcon: () => (
+            <Entypo name="video" color={ColorPalette.green} size={20} />
+          ),
+        }}
+        name="Video Player"
+        component={VideoPlayerScreen}
+      />
       <Drawer.Screen
         options={{
           drawerIcon: () => (
@@ -69,6 +80,15 @@ const HomeDrawerStack = () => {
         }}
         name="RN Paper"
         component={RNPaper}
+      />
+        <Drawer.Screen
+        options={{
+          drawerIcon: () => (
+            <Entypo name="clipboard" color={ColorPalette.green} size={20} />
+          ),
+        }}
+        name="ClipBoard"
+        component={ClipBoard}
       />
       <Drawer.Screen
         options={{
