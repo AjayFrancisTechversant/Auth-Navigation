@@ -14,14 +14,8 @@ import AuthNativeStack from './src/Services/Navigation/Stacks/AuthNativeStack';
 import {persistor, store} from './src/Redux/Store/Store';
 import HomeTabStack from './src/Services/Navigation/Stacks/HomeTabStack';
 import {ScreenContextProvider} from './src/Contexts/ScreenContext';
-import Echarts from './src/modules/ECharts';
-import PieChart from './src/Components/EChartPieComponent';
-import PDFReader from './src/modules/PDFReader';
-import VideoPlayerScreen from './src/modules/VideoPlayerScreen';
-import VideoPlayerComponent from './src/Components/VideoPlayerComponent';
-import ClipBoard from './src/modules/ClipBoard';
-import Spotify from './src/modules/Spotify';
-import CameraScreen from './src/Components/CameraScreen';
+import CommentsScreen from './src/modules/CommentsScreen';
+
 
 PermissionsAndroid.request(PermissionsAndroid.PERMISSIONS.POST_NOTIFICATIONS);
 
@@ -102,7 +96,8 @@ export default function Main() {
         <PersistGate loading={null} persistor={persistor}>
           <GestureHandlerRootView>
             <PaperProvider>
-              <App />
+              {/* <App /> */}
+              <CommentsScreen/>
             </PaperProvider>
           </GestureHandlerRootView>
         </PersistGate>

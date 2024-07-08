@@ -2,6 +2,7 @@ import React from 'react';
 import {createDrawerNavigator} from '@react-navigation/drawer';
 import Entypo from 'react-native-vector-icons/Entypo';
 import Ionicons from 'react-native-vector-icons/Ionicons';
+import FontAwesome from 'react-native-vector-icons/FontAwesome'
 import FontAwesome6 from 'react-native-vector-icons/FontAwesome6';
 import AntDesign from 'react-native-vector-icons/AntDesign';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
@@ -15,7 +16,7 @@ import Notes from '../../../../modules/Notes';
 import ImageUploader from '../../../../modules/ImageUploader';
 import RNElements from '../../../../modules/RNElements';
 import Locator from '../../../../modules/Locator';
-import VL from '../../../../modules/VL';
+import VL from '../../../../modules/CommentsScreen';
 import DatePicker from '../../../../modules/DatePickerScreen';
 import Calender from '../../../../modules/Calender';
 import i18njs from '../../../../modules/I18njs';
@@ -29,11 +30,11 @@ import Skia from '../../../../modules/SkiaScreen';
 import Spotify from '../../../../modules/Spotify';
 import GiftedCharts from '../../../../modules/GiftedCharts';
 import Echarts from '../../../../modules/ECharts';
-import WebView from '../../../../modules/WebViewScreen';
 import WebViewScreen from '../../../../modules/WebViewScreen';
 import PDFReader from '../../../../modules/PDFReader';
 import VideoPlayerScreen from '../../../../modules/VideoPlayerScreen';
 import ClipBoard from '../../../../modules/ClipBoard';
+import CommentsScreen from '../../../../modules/CommentsScreen';
 
 const HomeDrawerStack = () => {
   const Drawer = createDrawerNavigator();
@@ -62,6 +63,15 @@ const HomeDrawerStack = () => {
         }}
         name="Video Player"
         component={VideoPlayerScreen}
+      />
+      <Drawer.Screen
+        options={{
+          drawerIcon: () => (
+            <FontAwesome name="comment" color={ColorPalette.green} size={20} />
+          ),
+        }}
+        name="Comments"
+        component={CommentsScreen}
       />
       <Drawer.Screen
         options={{
@@ -270,15 +280,7 @@ const HomeDrawerStack = () => {
         name="Locator"
         component={Locator}
       />
-      <Drawer.Screen
-        options={{
-          drawerIcon: () => (
-            <Entypo name="list" color={ColorPalette.green} size={20} />
-          ),
-        }}
-        name="Virtualised List"
-        component={VL}
-      />
+      
       <Drawer.Screen
         options={{
           drawerIcon: () => (

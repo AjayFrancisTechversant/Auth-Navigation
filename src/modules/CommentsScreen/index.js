@@ -8,7 +8,7 @@ import CommentsContainer from '../../Components/CommentsContainer';
 import StaticVariables from '../../Preferences/StaticVariables';
 import styles from './Style';
 
-const VL = ({navigation}) => {
+const CommentsScreen = ({navigation}) => {
   const [comments, setComments] = useState(StaticVariables.EMPTY_ARRAY);
   const [loading, setLoading] = useState(true);
 
@@ -52,4 +52,4 @@ const VL = ({navigation}) => {
   );
 };
 
-export default React.memo(VL);
+export default React.memo(CommentsScreen);

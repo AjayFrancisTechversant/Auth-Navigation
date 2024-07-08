@@ -3,6 +3,7 @@ import React from 'react';
 import {useScreenContext} from '../../Contexts/ScreenContext';
 import ColorPalette from '../../Assets/Themes/ColorPalette';
 import styles from './Style';
+import CommentCard from '../CommentCard';
 
 const CommentsContainer = ({loading, comments}) => {
   const emptyComponent = () => {
@@ -27,10 +28,7 @@ const CommentsContainer = ({loading, comments}) => {
           getItemCount={data => data.length}
           getItem={(data, index) => data[index]}
           renderItem={({item}) => (
-            <View style={screenStyles.commentCard}>
-              <Text style={screenStyles.commentTitle}>{item.id}</Text>
-              <Text>{item.body}</Text>
-            </View>
+            <CommentCard item={item}></CommentCard>
           )}
           ListEmptyComponent={emptyComponent}
           ListHeaderComponent={<View style={screenStyles.separator}></View>}
