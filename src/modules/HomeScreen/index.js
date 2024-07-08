@@ -63,7 +63,7 @@ const HomeScreen = ({navigation}) => {
     }
     setIsLoading(false);
   };
-  const fetchMore = async () => {
+  const fetchMore = useCallback(async () => {
     if (isLoading) return;
     setIsLoading(true);
     try {
@@ -73,9 +73,9 @@ const HomeScreen = ({navigation}) => {
       console.log(err.message);
     }
     setIsLoading(false);
-  };
+  }, [isLoading, currentPage]);
 
-  const useScrollToTop = () => {
+  const scrollToTop = () => {
     flatListRef.current.scrollToOffset({animated: true, offset: 0});
   };
 
@@ -141,16 +141,18 @@ const HomeScreen = ({navigation}) => {
               <HomeScreenCard item={item} />
             </View>
           )}
-          onEndReached={!searchText && fetchMore}
+          onEndReached={() => !searchText && fetchMore()}
           onEndReachedThreshold={0.5}
-          ListFooterComponent={isLoading && <ActivityIndicator size="large" />}
+          ListFooterComponent={() =>
+            isLoading && <ActivityIndicator size="large" />
+          }
         />
       </View>
       <FAB
         visible={isFabVisible}
         icon="arrow-up-bold"
         style={screenStyles.fab}
-        onPress={useScrollToTop}
+        onPress={() => scrollToTop()}
         theme={{
           colors: {
             primaryContainer: ColorPalette.green,
