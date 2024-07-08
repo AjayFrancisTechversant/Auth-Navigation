@@ -76,7 +76,7 @@ const HomeScreen = ({navigation}) => {
   }, [isLoading, currentPage]);
 
   const scrollToTop = () => {
-    flatListRef.current.scrollToOffset({animated: true, offset: 0});
+    flatListRef.current.scrollToIndex({ animated: true, index: 0 });
   };
 
   const onScroll = ({nativeEvent}) => {
