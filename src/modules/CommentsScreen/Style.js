@@ -1,5 +1,4 @@
 import {StyleSheet} from 'react-native';
-import ColorPalette from '../../Assets/Themes/ColorPalette';
 
 const styles = (screenContext, width, height) =>
   StyleSheet.create({
@@ -12,14 +11,14 @@ const styles = (screenContext, width, height) =>
       left: height * 0.025,
       top: height * 0.025,
     },
-    plusButton: {
-      position: 'absolute',
-      right: height * 0.025,
-      top:height*0.025
-    },
     heading: {
       fontSize: 20,
       fontWeight: 'bold',
+    },
+    plusButtonContainer: {
+      position: 'absolute',
+      right: height * 0.025,
+      top: height * 0.025,
     },
     headingContainer: {
       justifyContent: 'center',

@@ -1,6 +1,5 @@
 import {View, Text, TouchableOpacity} from 'react-native';
 import React, {useEffect} from 'react';
-import Entypo from 'react-native-vector-icons/Entypo';
 import {useScreenContext} from '../../Contexts/ScreenContext';
 import MenuDrawerButton from '../../Components/MenuDrawerButton';
 import ColorPalette from '../../Assets/Themes/ColorPalette';
@@ -9,6 +8,7 @@ import CommentsContainer from '../../Components/CommentsContainer';
 import {useDispatch, useSelector} from 'react-redux';
 import {fetchAllComments} from '../../Redux/Slices/CommentsSlice';
 import styles from './Style';
+import AddCommentButton from '../../Components/AddCommentButton';
 
 const CommentsScreen = ({navigation}) => {
   const dispatch = useDispatch();
@@ -16,9 +16,18 @@ const CommentsScreen = ({navigation}) => {
   useEffect(() => {
     fetchInitialComments();
   }, []);
+
   const fetchInitialComments = async () => {
     try {
       await dispatch(fetchAllComments());
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  const handleAddComment = () => {
+    try {
+      //
     } catch (error) {
       console.log(error);
     }
@@ -38,9 +47,9 @@ const CommentsScreen = ({navigation}) => {
           color={ColorPalette.lightOrange}
         />
       </View>
-      <TouchableOpacity style={screenStyles.plusButton}>
-        <Entypo name="plus" color={ColorPalette.lightOrange} size={30} />
-      </TouchableOpacity>
+      <View style={screenStyles.plusButtonContainer}>
+        <AddCommentButton/>
+      </View>
       <View style={[screenStyles.flexDRow, screenStyles.headingContainer]}>
         <Text style={screenStyles.heading}>Comments</Text>
         <ChatIcon fill={ColorPalette.lightOrange} width={30} height={30} />

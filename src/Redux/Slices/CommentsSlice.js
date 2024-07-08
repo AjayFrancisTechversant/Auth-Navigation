@@ -16,6 +16,9 @@ export const fetchAllComments = createAsyncThunk(
   },
 );
 
+// export const addComment=createAsyncThunk('comments/addComment',
+// )
+
 const CommentsSlice = createSlice({
   name: 'Comments',
   initialState,
