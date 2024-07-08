@@ -1,29 +1,26 @@
-import {View, Text} from 'react-native';
-import React, {useEffect, useState} from 'react';
+import {View, Text, TouchableOpacity} from 'react-native';
+import React, {useEffect} from 'react';
+import Entypo from 'react-native-vector-icons/Entypo';
 import {useScreenContext} from '../../Contexts/ScreenContext';
 import MenuDrawerButton from '../../Components/MenuDrawerButton';
 import ColorPalette from '../../Assets/Themes/ColorPalette';
 import ChatIcon from '../../Assets/SVGs/chatIcon.svg';
 import CommentsContainer from '../../Components/CommentsContainer';
-import StaticVariables from '../../Preferences/StaticVariables';
+import {useDispatch, useSelector} from 'react-redux';
+import {fetchAllComments} from '../../Redux/Slices/CommentsSlice';
 import styles from './Style';
 
 const CommentsScreen = ({navigation}) => {
-  const [comments, setComments] = useState(StaticVariables.EMPTY_ARRAY);
-  const [loading, setLoading] = useState(true);
-
+  const dispatch = useDispatch();
+  const {comments, loading, error} = useSelector(state => state.Comments);
   useEffect(() => {
-    fetchComments();
+    fetchInitialComments();
   }, []);
-  const fetchComments = async () => {
+  const fetchInitialComments = async () => {
     try {
-      const res = await fetch('https://jsonplaceholder.typicode.com/comments');
-      const data = await res.json();
-      setComments(data);
-      setLoading(false);
+      await dispatch(fetchAllComments());
     } catch (error) {
       console.log(error);
-      setLoading(false);
     }
   };
 
@@ -41,6 +38,9 @@ const CommentsScreen = ({navigation}) => {
           color={ColorPalette.lightOrange}
         />
       </View>
+      <TouchableOpacity style={screenStyles.plusButton}>
+        <Entypo name="plus" color={ColorPalette.lightOrange} size={30} />
+      </TouchableOpacity>
       <View style={[screenStyles.flexDRow, screenStyles.headingContainer]}>
         <Text style={screenStyles.heading}>Comments</Text>
         <ChatIcon fill={ColorPalette.lightOrange} width={30} height={30} />

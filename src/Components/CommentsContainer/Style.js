@@ -24,20 +24,9 @@ const styles = (screenContext, width, height) =>
       margin: height*0.0376,
       alignSelf: 'center',
     },
-    commentCard: {
-      borderRadius: 20,
-      backgroundColor: 'white',
-      padding: height*0.025,
-      elevation: 5,
-      marginTop: height*0.0125,
-      marginHorizontal: width*0.0243,
-    },
+  
     separator: {
       height: 5,
-    },
-    commentTitle: {
-      fontWeight: 'bold',
-      color: ColorPalette.lightOrange,
     },
   });
 export default styles;

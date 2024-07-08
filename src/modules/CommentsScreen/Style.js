@@ -9,8 +9,13 @@ const styles = (screenContext, width, height) =>
     },
     MenuDrawerButton: {
       position: 'absolute',
-      left: 20,
-      top: 20,
+      left: height * 0.025,
+      top: height * 0.025,
+    },
+    plusButton: {
+      position: 'absolute',
+      right: height * 0.025,
+      top:height*0.025
     },
     heading: {
       fontSize: 20,
@@ -18,8 +23,8 @@ const styles = (screenContext, width, height) =>
     },
     headingContainer: {
       justifyContent: 'center',
-      margin: height*0.0250,
-      gap: 10,
+      margin: height * 0.025,
+      gap: height * 0.01,
     },
     flexDRow: {
       flexDirection: 'row',

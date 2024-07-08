@@ -1,13 +1,13 @@
 import {View, Text, Modal, TouchableOpacity} from 'react-native';
 import React, {useState} from 'react';
-import {useScreenContext} from '../../Contexts/ScreenContext';
 import FontAwesome from 'react-native-vector-icons/FontAwesome';
-import styles from './Style';
 import Animated, {
   useAnimatedStyle,
   useSharedValue,
   withSpring,
 } from 'react-native-reanimated';
+import {useScreenContext} from '../../Contexts/ScreenContext';
+import styles from './Style';
 
 const CommentCard = ({item}) => {
   const [isModalVisible, setIsModalVisible] = useState(false);
@@ -40,7 +40,7 @@ const CommentCard = ({item}) => {
   return (
     <View style={screenStyles.commentCard}>
       <TouchableOpacity onPress={() => openModal()}>
-        <Text style={screenStyles.commentTitle}>{item.id}</Text>
+        <Text style={screenStyles.commentTitle}>{item.user.username}</Text>
         <Text>{item.body}</Text>
       </TouchableOpacity>
       <Modal
@@ -48,14 +48,15 @@ const CommentCard = ({item}) => {
         visible={isModalVisible}
         onRequestClose={() => closeModal()}>
         <View style={screenStyles.modalFullScreenBackground}>
-          <Animated.View style={[screenStyles.userContainer, animatedStyle]}>
+          <Animated.View
+            style={[screenStyles.modalCommentContainer, animatedStyle]}>
             <TouchableOpacity
               style={screenStyles.closeButton}
               onPress={() => closeModal()}>
               <FontAwesome name="close" size={25} />
             </TouchableOpacity>
-            <Text style={screenStyles.title}>hi</Text>
-            <View style={screenStyles.descContainer}></View>
+            <Text style={screenStyles.commentTitle}>{item.user.username}</Text>
+            <Text>{item.body}</Text>
           </Animated.View>
         </View>
       </Modal>

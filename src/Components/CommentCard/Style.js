@@ -14,29 +14,22 @@ const styles = (screenContext, width, height) =>
     commentTitle: {
       fontWeight: 'bold',
       color: ColorPalette.lightOrange,
+      fontFamily: 'Helvetica-Bold',
+      fontSize: 15,
     },
     modalFullScreenBackground: {
       flex: 1,
       justifyContent: 'center',
       backgroundColor: ColorPalette.transBlack,
     },
-    userContainer: {
+    modalCommentContainer: {
       alignSelf: 'center',
       width: screenContext.isPortrait ? width * 0.8 : height * 0.7,
-      alignItems: 'center',
       backgroundColor: 'white',
       borderRadius: 20,
       padding: height * 0.03,
     },
     closeButton: {position: 'absolute', right: 10, top: 10},
-    title: {
-      fontSize: 15,
-      color: ColorPalette.green,
-      fontFamily: 'Helvetica-Bold',
-    },
-    descContainer: {
-      alignItems: 'center',
-      marginBottom: height * 0.01,
-    },
+
   });
 export default styles;

@@ -32,6 +32,7 @@ const CommentsContainer = ({loading, comments}) => {
           )}
           ListEmptyComponent={emptyComponent}
           ListHeaderComponent={<View style={screenStyles.separator}></View>}
+          ListFooterComponent={<View style={screenStyles.separator}></View>}
           keyExtractor={item => item.id.toString()}
           initialNumToRender={10}
           persistentScrollbar
