@@ -68,4 +68,4 @@ const LikeDislikeButton = ({item}) => {
   );
 };
 
-export default LikeDislikeButton;
+export default React.memo(LikeDislikeButton);

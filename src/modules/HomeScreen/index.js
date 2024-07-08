@@ -26,12 +26,11 @@ const HomeScreen = ({navigation}) => {
   const [searchResults, setSearchResults] = useState(
     StaticVariables.EMPTY_ARRAY,
   );
-  const [isLoading, setIsLoading] = useState(false);
   const [currentPage, setCurrentPage] = useState(1);
   const flatListRef = useRef(null);
   const [isFabVisible, setIsFabVisible] = useState(false);
   const dispatch = useDispatch();
-  const {users} = useSelector(state => state.Users);
+  const {users, loading, error} = useSelector(state => state.Users);
 
   const search = useCallback(
     text => {
@@ -49,34 +48,36 @@ const HomeScreen = ({navigation}) => {
   useEffect(() => {
     search(searchText);
   }, [searchText]);
-
   useEffect(() => {
     fetchInitialUsers();
   }, []);
 
-  const fetchInitialUsers = async () => {
-    setIsLoading(true);
+  useEffect(() => {
+    if (error) {
+      Alert.alert('Error Ocurred while Fetching');
+    }
+  }, [error, dispatch]);
+
+  const fetchInitialUsers = useCallback(async () => {
     try {
       await dispatch(fetchUsers(currentPage));
     } catch (err) {
       console.log(err.message);
     }
-    setIsLoading(false);
-  };
+  }, [dispatch, currentPage]);
+
   const fetchMore = useCallback(async () => {
-    if (isLoading) return;
-    setIsLoading(true);
+    if (loading) return; // Prevent fetching while already loading
     try {
       await dispatch(fetchUsers(currentPage + 1));
-      setCurrentPage(currentPage + 1);
+      setCurrentPage(prevPage => prevPage + 1);
     } catch (err) {
       console.log(err.message);
     }
-    setIsLoading(false);
-  }, [isLoading, currentPage]);
+  }, [dispatch, currentPage, loading]);
 
   const scrollToTop = () => {
-    flatListRef.current.scrollToIndex({ animated: true, index: 0 });
+    flatListRef.current.scrollToIndex({animated: true, index: 0});
   };
 
   const onScroll = ({nativeEvent}) => {
@@ -92,6 +93,20 @@ const HomeScreen = ({navigation}) => {
     screenContext[screenContext.isPortrait ? 'windowHeight' : 'windowWidth'],
   );
 
+  const renderItem = useCallback(
+    ({item}) => (
+      <View style={screenStyles.homeScreenCardContainer}>
+        <HomeScreenCard item={item} />
+      </View>
+    ),
+    [screenStyles],
+  );
+
+  const ListEmptyComponent = useCallback(
+    () => <Text>Nothing to Display!!</Text>,
+    [],
+  );
+
   return (
     <View style={screenStyles.canvas}>
       <View style={screenStyles.container}>
@@ -99,7 +114,7 @@ const HomeScreen = ({navigation}) => {
           onScroll={onScroll}
           ref={flatListRef}
           showsVerticalScrollIndicator={false}
-          ListEmptyComponent={!isLoading && <Text>Nothing to Display!!</Text>}
+          ListEmptyComponent={!loading && ListEmptyComponent}
           ListHeaderComponent={
             <>
               <LinearGradient
@@ -136,15 +151,11 @@ const HomeScreen = ({navigation}) => {
             searchText === StaticVariables.EMPTY_STRING ? users : searchResults
           }
           keyExtractor={item => Math.random().toString(36).substring(2)}
-          renderItem={({item}) => (
-            <View style={screenStyles.homeScreenCardContainer}>
-              <HomeScreenCard item={item} />
-            </View>
-          )}
+          renderItem={renderItem}
           onEndReached={() => !searchText && fetchMore()}
-          onEndReachedThreshold={0.5}
+          onEndReachedThreshold={0.1}
           ListFooterComponent={() =>
-            isLoading && <ActivityIndicator size="large" />
+            loading && <ActivityIndicator size="large" />
           }
         />
       </View>
@@ -164,4 +175,4 @@ const HomeScreen = ({navigation}) => {
   );
 };
 
-export default HomeScreen;
+export default React.memo(HomeScreen);

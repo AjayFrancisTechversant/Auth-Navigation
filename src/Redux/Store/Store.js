@@ -10,7 +10,7 @@ const persistConfig = {
   key: 'root',
   storage: AsyncStorage,
   // Optionally, you can blacklist certain reducers or whitelist only specific ones
-  // whitelist: ['Likes'],
+  whitelist: ['Likes','AddFriend'],
   blacklist: ['Users']
 };
 

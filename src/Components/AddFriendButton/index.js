@@ -68,4 +68,4 @@ const AddFriendButton = ({item}) => {
   );
 };
 
-export default AddFriendButton;
+export default React.memo(AddFriendButton);
