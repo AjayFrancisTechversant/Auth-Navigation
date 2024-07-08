@@ -3,7 +3,7 @@ import {SafeAreaView, View, Text, TouchableOpacity, ScrollView} from 'react-nati
 import Clipboard from '@react-native-clipboard/clipboard';
 import {useScreenContext} from '../../Contexts/ScreenContext';
 import styles from './Style';
-import MenuDrawerButton from '../../Components/MenuDrawerButton/MenuDrawerButton';
+import MenuDrawerButton from '../../Components/MenuDrawerButton';
 import ColorPalette from '../../Assets/Themes/ColorPalette';
 import {TextInput} from 'react-native-paper';
 

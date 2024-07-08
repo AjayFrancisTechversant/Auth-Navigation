@@ -4,11 +4,11 @@ import {useScreenContext} from '../../Contexts/ScreenContext';
 import AntDesign from 'react-native-vector-icons/AntDesign';
 import ImagePicker from 'react-native-image-crop-picker';
 import {Skia} from '@shopify/react-native-skia';
-import MenuDrawerButton from '../../Components/MenuDrawerButton/MenuDrawerButton';
+import MenuDrawerButton from '../../Components/MenuDrawerButton';
 import ColorPalette from '../../Assets/Themes/ColorPalette';
 import {TouchableOpacity} from 'react-native-gesture-handler';
-import SkiaEditor from '../../Components/SkiaEditor/SkiaEditor';
-import MySkiaProjects from '../../Components/MySkiaProjects/MySkiaProjects';
+import SkiaEditor from '../../Components/SkiaEditor';
+import MySkiaProjects from '../../Components/MySkiaProjects';
 import styles from './Style';
 
 const SkiaScreen = ({navigation}) => {

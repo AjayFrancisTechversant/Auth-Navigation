@@ -2,7 +2,7 @@ import {View, Text, FlatList, TouchableOpacity, Alert} from 'react-native';
 import React, {useEffect, useState} from 'react';
 import {TextInput} from 'react-native-paper';
 import firestore from '@react-native-firebase/firestore';
-import FireStoreCard from '../../Components/FireStoreCard/FireStoreCard';
+import FireStoreCard from '../../Components/FireStoreCard';
 import {useScreenContext} from '../../Contexts/ScreenContext';
 import StaticVariables from '../../Preferences/StaticVariables';
 import styles from './Style';

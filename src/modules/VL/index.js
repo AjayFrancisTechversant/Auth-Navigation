@@ -1,10 +1,10 @@
 import {View, Text} from 'react-native';
 import React, {useEffect, useState} from 'react';
 import {useScreenContext} from '../../Contexts/ScreenContext';
-import MenuDrawerButton from '../../Components/MenuDrawerButton/MenuDrawerButton';
+import MenuDrawerButton from '../../Components/MenuDrawerButton';
 import ColorPalette from '../../Assets/Themes/ColorPalette';
 import ChatIcon from '../../Assets/SVGs/chatIcon.svg';
-import CommentsContainer from '../../Components/CommentsContainer/CommentsContainer';
+import CommentsContainer from '../../Components/CommentsContainer';
 import StaticVariables from '../../Preferences/StaticVariables';
 import styles from './Style';
 

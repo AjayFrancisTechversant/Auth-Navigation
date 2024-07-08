@@ -18,7 +18,7 @@ import auth from '@react-native-firebase/auth';
 import Tooltip from 'react-native-walkthrough-tooltip';
 import {GoogleSignin} from '@react-native-google-signin/google-signin';
 import ColorPalette from '../../Assets/Themes/ColorPalette';
-import OptionCard from '../../Components/OptionCard/OptionCard';
+import OptionCard from '../../Components/OptionCard';
 import {useScreenContext} from '../../Contexts/ScreenContext';
 import StaticVariables from '../../Preferences/StaticVariables';
 import styles from './Style';

@@ -12,7 +12,7 @@ import {TextInput} from 'react-native-paper';
 import Entypo from 'react-native-vector-icons/Entypo';
 import {database} from '../../DB/Database';
 import {useScreenContext} from '../../Contexts/ScreenContext';
-import Card from '../../Components/Card/Card';
+import Card from '../../Components/Card';
 import ColorPalette from '../../Assets/Themes/ColorPalette';
 import StaticVariables from '../../Preferences/StaticVariables';
 import styles from './Style';

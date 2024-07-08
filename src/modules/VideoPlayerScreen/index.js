@@ -13,8 +13,8 @@ import RNFS from 'react-native-fs';
 import {createThumbnail} from 'react-native-create-thumbnail';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import {useScreenContext} from '../../Contexts/ScreenContext';
-import VideoPlayerComponent from '../../Components/VideoPlayerComponent/VideoPlayerComponent';
-import MenuDrawerButton from '../../Components/MenuDrawerButton/MenuDrawerButton';
+import VideoPlayerComponent from '../../Components/VideoPlayerComponent';
+import MenuDrawerButton from '../../Components/MenuDrawerButton';
 import ColorPalette from '../../Assets/Themes/ColorPalette';
 import styles from './Style';
 

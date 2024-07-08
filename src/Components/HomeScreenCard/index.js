@@ -7,8 +7,8 @@ import Animated, {
 } from 'react-native-reanimated';
 import FontAwesome from 'react-native-vector-icons/FontAwesome';
 import {useScreenContext} from '../../Contexts/ScreenContext';
-import LikeDislikeButton from '../LikeDislikeButton/LikeDislikeButton';
-import AddFriendButton from '../AddFriendButton/AddFriendButton';
+import LikeDislikeButton from '../LikeDislikeButton';
+import AddFriendButton from '../AddFriendButton';
 import styles from './Style';
 
 const HomeScreenCard = ({item}) => {

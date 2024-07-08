@@ -14,9 +14,9 @@ import Animated, {
   useSharedValue,
   withSpring,
 } from 'react-native-reanimated';
-import HomeScreen from '../HomeScreen/HomeScreen';
+import HomeScreen from '../HomeScreen';
 import ColorPalette from '../../Assets/Themes/ColorPalette';
-import SliderButton from '../../Components/SliderButton/SliderButton';
+import SliderButton from '../../Components/SliderButton';
 import {useScreenContext} from '../../Contexts/ScreenContext';
 import styles from './Style';
 

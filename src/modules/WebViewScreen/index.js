@@ -2,7 +2,7 @@ import {View, Text} from 'react-native';
 import React from 'react';
 import {WebView} from 'react-native-webview';
 import {useScreenContext} from '../../Contexts/ScreenContext';
-import MenuDrawerButton from '../../Components/MenuDrawerButton/MenuDrawerButton';
+import MenuDrawerButton from '../../Components/MenuDrawerButton';
 import ColorPalette from '../../Assets/Themes/ColorPalette';
 import styles from './Style';
 

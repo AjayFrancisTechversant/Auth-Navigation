@@ -6,7 +6,7 @@ import {TouchableOpacity} from 'react-native-gesture-handler';
 import storage from '@react-native-firebase/storage';
 import styles from './Style';
 import ColorPalette from '../../Assets/Themes/ColorPalette';
-import MySkiaProjectsCard from '../MySkiaProjectsCard/MySkiaProjectsCard';
+import MySkiaProjectsCard from '../MySkiaProjectsCard';
 
 const MySkiaProjects = ({setIsMyProjectsOpen}) => {
   const screenContext = useScreenContext();

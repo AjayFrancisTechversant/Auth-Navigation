@@ -10,7 +10,7 @@ import Pdf from 'react-native-pdf';
 import RNFS from 'react-native-fs';
 import AntDesign from 'react-native-vector-icons/AntDesign';
 import {useScreenContext} from '../../Contexts/ScreenContext';
-import MenuDrawerButton from '../../Components/MenuDrawerButton/MenuDrawerButton';
+import MenuDrawerButton from '../../Components/MenuDrawerButton';
 import ColorPalette from '../../Assets/Themes/ColorPalette';
 import styles from './Style';
 

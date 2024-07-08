@@ -4,7 +4,7 @@ import {FlatList} from 'react-native-gesture-handler';
 import {useScreenContext} from '../../Contexts/ScreenContext';
 import {AllUsersData} from '../../Data/Data';
 import {database} from '../../DB/Database';
-import MenuDrawerButton from '../../Components/MenuDrawerButton/MenuDrawerButton';
+import MenuDrawerButton from '../../Components/MenuDrawerButton';
 import styles from './Style';
 
 const OfflineDBFetch = ({navigation}) => {

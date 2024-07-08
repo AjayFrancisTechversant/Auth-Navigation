@@ -2,7 +2,7 @@ import {Text, View, TouchableOpacity, FlatList, Image} from 'react-native';
 import React, {useState} from 'react';
 import {TextInput} from 'react-native-paper';
 import {useScreenContext} from '../../Contexts/ScreenContext';
-import Card from '../../Components/Card/Card';
+import Card from '../../Components/Card';
 import ColorPalette from '../../Assets/Themes/ColorPalette';
 import StaticVariables from '../../Preferences/StaticVariables';
 import styles from './Style';

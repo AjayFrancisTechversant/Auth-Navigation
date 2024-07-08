@@ -9,11 +9,11 @@ import {
 } from 'echarts/components';
 import {SVGRenderer, SkiaChart} from '@wuba/react-native-echarts';
 import styles from './Style';
-import EChartPieComponent from '../../Components/EChartPieComponent/EChartPieComponent';
-import MenuDrawerButton from '../../Components/MenuDrawerButton/MenuDrawerButton';
+import EChartPieComponent from '../../Components/EChartPieComponent';
+import MenuDrawerButton from '../../Components/MenuDrawerButton';
 import ColorPalette from '../../Assets/Themes/ColorPalette';
 import { View } from 'react-native';
-import EChartLineComponent from '../../Components/EChartLineComponent/EChartLineComponent';
+import EChartLineComponent from '../../Components/EChartLineComponent';
 
 echarts.use([
   SVGRenderer,

@@ -5,11 +5,11 @@ import FontAwesome6 from 'react-native-vector-icons/FontAwesome6';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 import FontAwesome from 'react-native-vector-icons/FontAwesome';
 import Ionicons from 'react-native-vector-icons/Ionicons';
-import HomeDrawerStack from './HomeDrawerStack';
-import Booking from '../../../modules/Booking/Booking';
-import Gallery from '../../../modules/Gallery/Gallery';
-import Me from '../../../modules/Me/Me';
-import ParallaxCarousel from '../../../modules/ParallaxCarousel/ParallaxCarousel';
+import HomeDrawerStack from '../HomeDrawerStack';
+import Booking from '../../../../modules/Booking';
+import Gallery from '../../../../modules/Gallery';
+import Me from '../../../../modules/Me';
+import ParallaxCarousel from '../../../../modules/ParallaxCarousel';
 
 const HomeTabStack = () => {
   const HomeTabStack = createBottomTabNavigator();
