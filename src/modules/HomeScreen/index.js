@@ -1,3 +1,4 @@
+import React, {useEffect, useRef, useState, useCallback} from 'react';
 import {
   View,
   Image,
@@ -6,66 +7,79 @@ import {
   ActivityIndicator,
   Text,
 } from 'react-native';
-import React, {useEffect, useRef, useState} from 'react';
 import LinearGradient from 'react-native-linear-gradient';
 import {FAB} from 'react-native-paper';
+import {useDispatch, useSelector} from 'react-redux';
+import {fetchUsers} from '../../Redux/Slices/UsersSlice';
 import {useScreenContext} from '../../Contexts/ScreenContext';
 import MenuDrawerButton from '../../Components/MenuDrawerButton';
 import SearchBar from '../../Components/SearchBar';
 import HomeScreenCard from '../../Components/HomeScreenCard';
-import {getUsers} from '../../Services/API/getUsers';
 import ColorPalette from '../../Assets/Themes/ColorPalette';
 import StaticVariables from '../../Preferences/StaticVariables';
 import styles from './Style';
 
-const NetFriends_logo_with_sidelabel=require('../../Assets/Images/Logo/NetFriends_logo_with_sidelabel.png')
+const NetFriends_logo_with_sidelabel = require('../../Assets/Images/Logo/NetFriends_logo_with_sidelabel.png');
 
 const HomeScreen = ({navigation}) => {
   const [searchText, setSearchText] = useState(StaticVariables.EMPTY_STRING);
-  const [searchResults, setSearchResults] = useState(StaticVariables.EMPTY_ARRAY);
-  const [users, setUsers] = useState(StaticVariables.EMPTY_ARRAY);
+  const [searchResults, setSearchResults] = useState(
+    StaticVariables.EMPTY_ARRAY,
+  );
   const [isLoading, setIsLoading] = useState(false);
   const [currentPage, setCurrentPage] = useState(1);
   const flatListRef = useRef(null);
   const [isFabVisible, setIsFabVisible] = useState(false);
 
-  const search = searchText => {
-    setSearchResults(
-      users.filter(i =>
-        (i.name.first + ' ' + i.name.last)
-          .toLowerCase()
-          .includes(searchText.toLocaleLowerCase()),
-      ),
-    );
-  };
+  const dispatch = useDispatch();
+  const {users} = useSelector(state => state.Users);
+
+  const search = useCallback(
+    text => {
+      setSearchResults(
+        users.filter(i =>
+          (i.name.first + ' ' + i.name.last)
+            .toLowerCase()
+            .includes(text.toLowerCase()),
+        ),
+      );
+    },
+    [users],
+  );
+
   useEffect(() => {
     search(searchText);
   }, [searchText]);
 
-  const initialFetch = async () => {
-    setIsLoading(true);
-    let users = await getUsers(currentPage);
-    setUsers(users);
+  useEffect(() => {
+    fetchInitialUsers();
+  }, [dispatch, currentPage]);
 
+  const fetchInitialUsers = async () => {
+    setIsLoading(true);
+    try {
+      await dispatch(fetchUsers(currentPage));
+    } catch (err) {
+      console.log(err.message);
+    }
     setIsLoading(false);
   };
   const fetchMore = async () => {
     if (isLoading) return;
     setIsLoading(true);
-    const nextPage = currentPage + 1;
-    let usersList = await getUsers(nextPage);
-    setUsers([...users, ...usersList]);
-    setCurrentPage(nextPage);
+    try {
+      await dispatch(fetchUsers(currentPage + 1));
+      setCurrentPage(currentPage + 1);
+    } catch (err) {
+      console.log(err.message);
+    }
     setIsLoading(false);
   };
-
-  useEffect(() => {
-    initialFetch();
-  }, []);
 
   const useScrollToTop = () => {
     flatListRef.current.scrollToOffset({animated: true, offset: 0});
   };
+
   const onScroll = ({nativeEvent}) => {
     const currentScrollPosition =
       Math.floor(nativeEvent?.contentOffset?.y) ?? 0;
@@ -78,6 +92,7 @@ const HomeScreen = ({navigation}) => {
     screenContext[screenContext.isPortrait ? 'windowWidth' : 'windowHeight'],
     screenContext[screenContext.isPortrait ? 'windowHeight' : 'windowWidth'],
   );
+
   return (
     <View style={screenStyles.canvas}>
       <View style={screenStyles.container}>
@@ -95,7 +110,10 @@ const HomeScreen = ({navigation}) => {
                 style={screenStyles.headerContainer}>
                 <View style={screenStyles.headerContents}>
                   <View style={screenStyles.menuDrawerButtonContainer}>
-                    <MenuDrawerButton navigation={navigation} color={ColorPalette.white} />
+                    <MenuDrawerButton
+                      navigation={navigation}
+                      color={ColorPalette.white}
+                    />
                   </View>
                   <View style={screenStyles.logoContainer}>
                     <TouchableOpacity>
@@ -115,17 +133,17 @@ const HomeScreen = ({navigation}) => {
               </View>
             </>
           }
-          data={searchText == StaticVariables.EMPTY_STRING ? users : searchResults}
+          data={
+            searchText === StaticVariables.EMPTY_STRING ? users : searchResults
+          }
           keyExtractor={item => Math.random().toString(36).substring(2)}
           renderItem={({item}) => (
             <View style={screenStyles.homeScreenCardContainer}>
-              <HomeScreenCard
-                item={item}
-              />
+              <HomeScreenCard item={item} />
             </View>
           )}
           onEndReached={!searchText && fetchMore}
-          onEndReachedThreshold={0.1}
+          onEndReachedThreshold={0.5}
           ListFooterComponent={isLoading && <ActivityIndicator size="large" />}
         />
       </View>
@@ -133,7 +151,7 @@ const HomeScreen = ({navigation}) => {
         visible={isFabVisible}
         icon="arrow-up-bold"
         style={screenStyles.fab}
-        onPress={() => useScrollToTop()}
+        onPress={useScrollToTop}
         theme={{
           colors: {
             primaryContainer: ColorPalette.green,

@@ -3,6 +3,7 @@ import {persistReducer, persistStore} from 'redux-persist';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import LikesReducer from '../Slices/LikeSlice';
 import AddFriendReducer from '../Slices/AddFriendSlice';
+import UsersReducer from '../Slices/UsersSlice';
 
 // Configure persist options
 const persistConfig = {
@@ -10,13 +11,14 @@ const persistConfig = {
   storage: AsyncStorage,
   // Optionally, you can blacklist certain reducers or whitelist only specific ones
   // whitelist: ['Likes'],
-  // blacklist: ['AddFriend']
+  blacklist: ['Users']
 };
 
 //combine all reducers into rootreducers
 const rootReducer = combineReducers({
   Likes: LikesReducer,
   AddFriend: AddFriendReducer,
+  Users:UsersReducer
 });
 
 // Create a persisted reducer
