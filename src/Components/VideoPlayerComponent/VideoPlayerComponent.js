@@ -29,7 +29,7 @@ const VideoPlayerComponent = ({setShowVideoPlayerComponent}) => {
       <TouchableOpacity
         style={screenStyles.backButton}
         onPress={() => setShowVideoPlayerComponent(false)}>
-        <AntDesign name="left" size={30} color={ColorPalette.green} />
+        <AntDesign name="left" size={30} color={ColorPalette.white} />
       </TouchableOpacity>
       <Video
         repeat

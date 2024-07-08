@@ -3,7 +3,7 @@ import ColorPalette from '../../Assets/Themes/ColorPalette';
 
 const styles = (screenContext, width, height) =>
   StyleSheet.create({
-    videoPlayerContainer: {flex: 1},
+    videoPlayerContainer: {flex: 1,backgroundColor:ColorPalette.black},
     VideoPlayer: {
       flex: 1,
     },
