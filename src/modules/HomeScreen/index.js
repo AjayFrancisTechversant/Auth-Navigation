@@ -30,7 +30,6 @@ const HomeScreen = ({navigation}) => {
   const [currentPage, setCurrentPage] = useState(1);
   const flatListRef = useRef(null);
   const [isFabVisible, setIsFabVisible] = useState(false);
-
   const dispatch = useDispatch();
   const {users} = useSelector(state => state.Users);
 
@@ -53,7 +52,7 @@ const HomeScreen = ({navigation}) => {
 
   useEffect(() => {
     fetchInitialUsers();
-  }, [dispatch, currentPage]);
+  }, []);
 
   const fetchInitialUsers = async () => {
     setIsLoading(true);
