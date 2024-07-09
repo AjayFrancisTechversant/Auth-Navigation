@@ -11,8 +11,9 @@ import Animated, {
 } from 'react-native-reanimated';
 import {TextInput} from 'react-native-paper';
 import StaticVariables from '../../Preferences/StaticVariables';
+import {addNewComment} from '../../Services/API/CommentsAPIs';
 
-const AddCommentButton = () => {
+const AddCommentButton = ({handleAddComment}) => {
   const [isModalVisible, setIsModalVisible] = useState(false);
   const [newCommentDetails, setNewCommentDetails] = useState({
     postId: 0,
@@ -43,6 +44,15 @@ const AddCommentButton = () => {
   const handlePlusButton = () => {
     openModal();
   };
+  const handlePostButton = () => {
+    handleAddComment(newCommentDetails);
+    setNewCommentDetails({
+      postId: 0,
+      userId: 0,
+      body: StaticVariables.EMPTY_STRING,
+    });
+    closeModal();
+  };
   const handleCancel = () => {
     setNewCommentDetails({
       postId: 0,
@@ -51,6 +61,7 @@ const AddCommentButton = () => {
     });
     closeModal();
   };
+
   const screenContext = useScreenContext();
   const screenStyles = styles(
     screenContext,
@@ -123,7 +134,9 @@ const AddCommentButton = () => {
               activeOutlineColor={ColorPalette.lightOrange}
             />
             <View style={screenStyles.buttonsContainer}>
-              <TouchableOpacity style={screenStyles.postButton}>
+              <TouchableOpacity
+                onPress={handlePostButton}
+                style={screenStyles.postButton}>
                 <Text style={screenStyles.postButtonText}>Post</Text>
               </TouchableOpacity>
               <TouchableOpacity

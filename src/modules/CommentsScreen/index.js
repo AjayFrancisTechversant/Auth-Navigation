@@ -6,9 +6,10 @@ import ColorPalette from '../../Assets/Themes/ColorPalette';
 import ChatIcon from '../../Assets/SVGs/chatIcon.svg';
 import CommentsContainer from '../../Components/CommentsContainer';
 import {useDispatch, useSelector} from 'react-redux';
-import {fetchAllComments} from '../../Redux/Slices/CommentsSlice';
+import {addComment, fetchAllComments} from '../../Redux/Slices/CommentsSlice';
 import styles from './Style';
 import AddCommentButton from '../../Components/AddCommentButton';
+import {addNewComment} from '../../Services/API/CommentsAPIs';
 
 const CommentsScreen = ({navigation}) => {
   const dispatch = useDispatch();
@@ -24,10 +25,10 @@ const CommentsScreen = ({navigation}) => {
       console.log(error);
     }
   };
-
-  const handleAddComment = () => {
+console.log(comments);
+  const handleAddComment = async newCommentDetails => {
     try {
-      //
+      await dispatch(addComment(newCommentDetails));
     } catch (error) {
       console.log(error);
     }
@@ -48,7 +49,7 @@ const CommentsScreen = ({navigation}) => {
         />
       </View>
       <View style={screenStyles.plusButtonContainer}>
-        <AddCommentButton/>
+        <AddCommentButton handleAddComment={handleAddComment} />
       </View>
       <View style={[screenStyles.flexDRow, screenStyles.headingContainer]}>
         <Text style={screenStyles.heading}>Comments</Text>

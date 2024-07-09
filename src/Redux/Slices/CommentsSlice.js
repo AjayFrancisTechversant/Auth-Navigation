@@ -1,6 +1,6 @@
 import {createAsyncThunk, createSlice} from '@reduxjs/toolkit';
 import StaticVariables from '../../Preferences/StaticVariables';
-import {getAllComments} from '../../Services/API/CommentsAPIs';
+import {addNewComment, getAllComments} from '../../Services/API/CommentsAPIs';
 
 const initialState = {
   comments: StaticVariables.EMPTY_ARRAY,
@@ -16,8 +16,14 @@ export const fetchAllComments = createAsyncThunk(
   },
 );
 
-// export const addComment=createAsyncThunk('comments/addComment',
-// )
+export const addComment = createAsyncThunk(
+  'comments/addComment',
+  async (newCommentDetails) => {
+    const response = await addNewComment(newCommentDetails);
+    console.log(response);
+    return response;
+  },
+);
 
 const CommentsSlice = createSlice({
   name: 'Comments',
@@ -36,6 +42,18 @@ const CommentsSlice = createSlice({
       .addCase(fetchAllComments.rejected, (state, action) => {
         state.loading = false;
         state.error = action.error.message ?? 'Error fetching users';
+      })
+      .addCase(addComment.pending, state => {
+        state.loading = true;
+        state.error = null;
+      })
+      .addCase(addComment.fulfilled, (state, action) => {
+        state.loading = false;
+        state.comments.push(action.payload);
+      })
+      .addCase(addComment.rejected, (state, action) => {
+        state.loading = false;
+        state.error = action.error.message ?? 'Error adding comment';
       });
   },
 });

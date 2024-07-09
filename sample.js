@@ -1,5 +1,7 @@
-const data=[{"__changes": null, "_isEditing": false, "_preparedState": null, "_raw": {"_changed": "", "_status": "created", "age": 78, "email": "lea.rodrigues@example.com", 
-"gender": "female", "id": "8baiInvCDggv3KzW", "name": "Lea Rodrigues", "phone": "(54) 1096-7834"}, "_subscribers": [], "collection": {"_cache": [], "_subscribers": [], "changes": [], "database": [], "modelClass": [ ]}}, {"__changes": null, "_isEditing": false, "_preparedState": null, "_raw": {"_changed": "", "_status": "created", "age": 52, "email": "amanda.little@example.com", "gender": "female", "id": "XaPpWvwkl81E7zuZ", "name": "Amanda Little", "phone": "021-503-0940"}, "_subscribers": [], "collection": {"_cache": [], "_subscribers": [], "changes": [], "database": [], "modelClass": [ ]}}, {"__changes": null, "_isEditing": false, "_preparedState": null, "_raw": {"_changed": "", "_status": "created", "age": 78, "email": "lea.rodrigues@example.com", "gender": "female", "id": "khJsBs6ky3rreXNt", "name": "Lea Rodrigues", "phone": "(54) 1096-7834"}, "_subscribers": [], "collection": {"_cache": [], "_subscribers": [], "changes": [], "database": [], "modelClass": [ ]}}, {"__changes": null, "_isEditing": false, "_preparedState": null, "_raw": {"_changed": "", "_status": "created", "age": 52, "email": "amanda.little@example.com", "gender": "female", "id": "0MxruXXGjiMSOt05", "name": "Amanda Little", 
-"phone": "021-503-0940"}, "_subscribers": [], "collection": {"_cache": [], "_subscribers": [], "changes": [], "database": [], "modelClass": [ ]}}]
+console.log(JSON.stringify({
+    body: 'This makes all sense to me!',
+    postId: 3,
+    userId: 5,
+  }));
 
-console.log(data[0]);
+  {"body": "Ste", "id": 341, "postId": "1", "user": {"fullName": "Emma Miller", "id": 5, "username": "emmaj"}}
