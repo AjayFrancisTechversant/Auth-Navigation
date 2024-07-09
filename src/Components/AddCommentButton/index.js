@@ -2,16 +2,15 @@ import {Modal, Text, TouchableOpacity, View} from 'react-native';
 import React, {useState} from 'react';
 import Entypo from 'react-native-vector-icons/Entypo';
 import FontAwesome from 'react-native-vector-icons/FontAwesome';
-import {useScreenContext} from '../../Contexts/ScreenContext';
-import styles from './Style';
 import Animated, {
   useAnimatedStyle,
   useSharedValue,
   withSpring,
 } from 'react-native-reanimated';
 import {TextInput} from 'react-native-paper';
+import {useScreenContext} from '../../Contexts/ScreenContext';
 import StaticVariables from '../../Preferences/StaticVariables';
-import {addNewComment} from '../../Services/API/CommentsAPIs';
+import styles from './Style';
 
 const AddCommentButton = ({handleAddComment}) => {
   const [isModalVisible, setIsModalVisible] = useState(false);

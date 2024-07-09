@@ -1,20 +1,19 @@
-import {View, Text, TouchableOpacity} from 'react-native';
+import {View, Text} from 'react-native';
+import {useDispatch, useSelector} from 'react-redux';
 import React, {useEffect} from 'react';
 import {useScreenContext} from '../../Contexts/ScreenContext';
 import MenuDrawerButton from '../../Components/MenuDrawerButton';
 import ColorPalette from '../../Assets/Themes/ColorPalette';
 import ChatIcon from '../../Assets/SVGs/chatIcon.svg';
 import CommentsContainer from '../../Components/CommentsContainer';
-import {useDispatch, useSelector} from 'react-redux';
 import {
   addComment,
   deleteAComment,
   fetchAllComments,
   updateAComment,
 } from '../../Redux/Slices/CommentsSlice';
-import styles from './Style';
 import AddCommentButton from '../../Components/AddCommentButton';
-import {updateComment} from '../../Services/API/CommentsAPIs';
+import styles from './Style';
 
 const CommentsScreen = ({navigation}) => {
   const dispatch = useDispatch();
@@ -61,7 +60,6 @@ const CommentsScreen = ({navigation}) => {
     screenContext[screenContext.isPortrait ? 'windowWidth' : 'windowHeight'],
     screenContext[screenContext.isPortrait ? 'windowHeight' : 'windowWidth'],
   );
-  // console.log(comments);
   return (
     <View style={screenStyles.canvas}>
       <View style={screenStyles.MenuDrawerButton}>

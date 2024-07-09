@@ -97,7 +97,6 @@ export default function Main() {
           <GestureHandlerRootView>
             <PaperProvider>
               <App />
-              {/* <CommentsScreen/> */}
             </PaperProvider>
           </GestureHandlerRootView>
         </PersistGate>

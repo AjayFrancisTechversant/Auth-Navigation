@@ -2,8 +2,8 @@ import {View, Text, VirtualizedList, ActivityIndicator} from 'react-native';
 import React from 'react';
 import {useScreenContext} from '../../Contexts/ScreenContext';
 import ColorPalette from '../../Assets/Themes/ColorPalette';
-import styles from './Style';
 import CommentCard from '../CommentCard';
+import styles from './Style';
 
 const CommentsContainer = ({
   loading,

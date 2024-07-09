@@ -98,7 +98,6 @@ const CommentsSlice = createSlice({
         state.comments = state.comments.map(comment =>
           comment.id === action.payload.id ? action.payload : comment,
         );
-        //logical mistake
       })
       .addCase(updateAComment.rejected, (state, action) => {
         state.loading = false;

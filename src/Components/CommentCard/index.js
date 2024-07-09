@@ -6,10 +6,10 @@ import Animated, {
   useSharedValue,
   withSpring,
 } from 'react-native-reanimated';
-import {useScreenContext} from '../../Contexts/ScreenContext';
-import styles from './Style';
-import StaticVariables from '../../Preferences/StaticVariables';
 import {TextInput} from 'react-native-paper';
+import {useScreenContext} from '../../Contexts/ScreenContext';
+import StaticVariables from '../../Preferences/StaticVariables';
+import styles from './Style';
 
 const CommentCard = ({item, handleDeleteComment, handleUpdateComment}) => {
   const [isModalVisible, setIsModalVisible] = useState(false);
@@ -51,7 +51,7 @@ const CommentCard = ({item, handleDeleteComment, handleUpdateComment}) => {
   };
   const handelSaveEditing = async () => {
     await handleUpdateComment(updatingMessageDetails);
-    closeModal()
+    closeModal();
   };
   const handleCancelEditing = () => {
     setUpdatingMessageDetails({
@@ -71,7 +71,6 @@ const CommentCard = ({item, handleDeleteComment, handleUpdateComment}) => {
     screenContext[screenContext.isPortrait ? 'windowWidth' : 'windowHeight'],
     screenContext[screenContext.isPortrait ? 'windowHeight' : 'windowWidth'],
   );
-  // console.log(updatingMessageDetails);
   return (
     <View style={screenStyles.commentCard}>
       <TouchableOpacity onPress={() => openModal()}>
