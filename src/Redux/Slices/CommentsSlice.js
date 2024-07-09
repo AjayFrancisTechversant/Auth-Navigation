@@ -1,6 +1,11 @@
 import {createAsyncThunk, createSlice} from '@reduxjs/toolkit';
 import StaticVariables from '../../Preferences/StaticVariables';
-import {addNewComment, getAllComments} from '../../Services/API/CommentsAPIs';
+import {
+  addNewComment,
+  deleteComment,
+  getAllComments,
+  updateComment,
+} from '../../Services/API/CommentsAPIs';
 
 const initialState = {
   comments: StaticVariables.EMPTY_ARRAY,
@@ -18,9 +23,24 @@ export const fetchAllComments = createAsyncThunk(
 
 export const addComment = createAsyncThunk(
   'comments/addComment',
-  async (newCommentDetails) => {
+  async newCommentDetails => {
     const response = await addNewComment(newCommentDetails);
-    console.log(response);
+    return response;
+  },
+);
+
+export const deleteAComment = createAsyncThunk(
+  'comments/deleteAComment',
+  async id => {
+    const response = await deleteComment(id);
+    return response;
+  },
+);
+
+export const updateAComment = createAsyncThunk(
+  'comments/updateAComment',
+  async updatingCommentDetails => {
+    const response = await updateComment(updatingCommentDetails);
     return response;
   },
 );
@@ -54,6 +74,35 @@ const CommentsSlice = createSlice({
       .addCase(addComment.rejected, (state, action) => {
         state.loading = false;
         state.error = action.error.message ?? 'Error adding comment';
+      })
+      .addCase(deleteAComment.pending, state => {
+        state.loading = true;
+        state.error = null;
+      })
+      .addCase(deleteAComment.fulfilled, (state, action) => {
+        state.loading = false;
+        state.comments = state.comments.filter(
+          comment => comment.id !== action.payload,
+        );
+      })
+      .addCase(deleteAComment.rejected, (state, action) => {
+        state.loading = false;
+        state.error = action.error.message ?? 'Error deleting comment';
+      })
+      .addCase(updateAComment.pending, state => {
+        state.loading = true;
+        state.error = null;
+      })
+      .addCase(updateAComment.fulfilled, (state, action) => {
+        state.loading = false;
+        state.comments = state.comments.map(comment =>
+          comment.id === action.payload.id ? action.payload : comment,
+        );
+        //logical mistake
+      })
+      .addCase(updateAComment.rejected, (state, action) => {
+        state.loading = false;
+        state.error = action.error.message ?? 'Error updating comment';
       });
   },
 });

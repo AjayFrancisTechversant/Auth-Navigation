@@ -30,6 +30,34 @@ const styles = (screenContext, width, height) =>
       padding: height * 0.03,
     },
     closeButton: {position: 'absolute', right: 10, top: 10},
-
+    buttonsContainer: {
+      flexDirection: 'row',
+      justifyContent: 'center',
+      gap: width * 0.1,
+      margin: height * 0.02,
+    },
+    editButton: {
+      borderColor: ColorPalette.lightOrange,
+      borderWidth: 1.5,
+      padding: height * 0.01,
+      justifyContent: 'center',
+      alignItems: 'center',
+      borderRadius: 10,
+    },
+    editButtonText: {
+      color: ColorPalette.lightOrange,
+      fontWeight: 'bold',
+    },
+    deleteButton: {
+      backgroundColor: ColorPalette.red,
+      padding: height * 0.01,
+      justifyContent: 'center',
+      alignItems: 'center',
+      borderRadius: 10,
+    },
+    deleteButtonText: {
+      color: ColorPalette.white,
+      fontWeight: 'bold',
+    },
   });
 export default styles;

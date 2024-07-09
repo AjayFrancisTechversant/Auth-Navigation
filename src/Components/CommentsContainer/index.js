@@ -5,7 +5,12 @@ import ColorPalette from '../../Assets/Themes/ColorPalette';
 import styles from './Style';
 import CommentCard from '../CommentCard';
 
-const CommentsContainer = ({loading, comments}) => {
+const CommentsContainer = ({
+  loading,
+  comments,
+  handleDeleteComment,
+  handleUpdateComment,
+}) => {
   const emptyComponent = () => {
     return (
       <View style={screenStyles.emptyComponentContainer}>
@@ -28,7 +33,10 @@ const CommentsContainer = ({loading, comments}) => {
           getItemCount={data => data.length}
           getItem={(data, index) => data[index]}
           renderItem={({item}) => (
-            <CommentCard item={item}></CommentCard>
+            <CommentCard
+              item={item}
+              handleDeleteComment={handleDeleteComment}
+              handleUpdateComment={handleUpdateComment}></CommentCard>
           )}
           ListEmptyComponent={emptyComponent}
           ListHeaderComponent={<View style={screenStyles.separator}></View>}

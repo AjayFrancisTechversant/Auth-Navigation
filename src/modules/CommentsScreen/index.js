@@ -6,10 +6,15 @@ import ColorPalette from '../../Assets/Themes/ColorPalette';
 import ChatIcon from '../../Assets/SVGs/chatIcon.svg';
 import CommentsContainer from '../../Components/CommentsContainer';
 import {useDispatch, useSelector} from 'react-redux';
-import {addComment, fetchAllComments} from '../../Redux/Slices/CommentsSlice';
+import {
+  addComment,
+  deleteAComment,
+  fetchAllComments,
+  updateAComment,
+} from '../../Redux/Slices/CommentsSlice';
 import styles from './Style';
 import AddCommentButton from '../../Components/AddCommentButton';
-import {addNewComment} from '../../Services/API/CommentsAPIs';
+import {updateComment} from '../../Services/API/CommentsAPIs';
 
 const CommentsScreen = ({navigation}) => {
   const dispatch = useDispatch();
@@ -25,10 +30,26 @@ const CommentsScreen = ({navigation}) => {
       console.log(error);
     }
   };
-console.log(comments);
   const handleAddComment = async newCommentDetails => {
     try {
       await dispatch(addComment(newCommentDetails));
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  const handleDeleteComment = async id => {
+    //newly added comments wont be deleted because those comments are not reflected in the server,delete api is done asynchrounously in the api
+    try {
+      await dispatch(deleteAComment(id));
+    } catch (error) {
+      console.log(error);
+    }
+  };
+  const handleUpdateComment = async updatingCommentDetails => {
+    //cannot update a newly added comment bcos its not updated in the server
+    try {
+      await dispatch(updateAComment(updatingCommentDetails));
     } catch (error) {
       console.log(error);
     }
@@ -40,6 +61,7 @@ console.log(comments);
     screenContext[screenContext.isPortrait ? 'windowWidth' : 'windowHeight'],
     screenContext[screenContext.isPortrait ? 'windowHeight' : 'windowWidth'],
   );
+  // console.log(comments);
   return (
     <View style={screenStyles.canvas}>
       <View style={screenStyles.MenuDrawerButton}>
@@ -57,7 +79,9 @@ console.log(comments);
       </View>
       <CommentsContainer
         comments={comments}
-        loading={loading}></CommentsContainer>
+        loading={loading}
+        handleDeleteComment={handleDeleteComment}
+        handleUpdateComment={handleUpdateComment}></CommentsContainer>
     </View>
   );
 };

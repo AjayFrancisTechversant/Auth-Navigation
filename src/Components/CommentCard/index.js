@@ -8,9 +8,16 @@ import Animated, {
 } from 'react-native-reanimated';
 import {useScreenContext} from '../../Contexts/ScreenContext';
 import styles from './Style';
+import StaticVariables from '../../Preferences/StaticVariables';
+import {TextInput} from 'react-native-paper';
 
-const CommentCard = ({item}) => {
+const CommentCard = ({item, handleDeleteComment, handleUpdateComment}) => {
   const [isModalVisible, setIsModalVisible] = useState(false);
+  const [isEditing, setIsEditing] = useState(false);
+  const [updatingMessageDetails, setUpdatingMessageDetails] = useState({
+    id: null,
+    editedBody: StaticVariables.EMPTY_STRING,
+  });
   const modalOpacity = useSharedValue(0);
   const modalScale = useSharedValue(0);
   const openModal = () => {
@@ -31,12 +38,40 @@ const CommentCard = ({item}) => {
       transform: [{scale: modalScale.value}],
     };
   });
+
+  const handleCloseButton = () => {
+    closeModal();
+    setTimeout(() => {
+      setIsEditing(false);
+    }, 300);
+  };
+  const handleEditbutton = async id => {
+    setUpdatingMessageDetails({id, editedBody: item.body});
+    setIsEditing(true);
+  };
+  const handelSaveEditing = async () => {
+    await handleUpdateComment(updatingMessageDetails);
+    closeModal()
+  };
+  const handleCancelEditing = () => {
+    setUpdatingMessageDetails({
+      id: 0,
+      editedBody: StaticVariables.EMPTY_STRING,
+    });
+    setIsEditing(false);
+  };
+  const handleDelete = async id => {
+    await handleDeleteComment(id);
+    closeModal();
+  };
+
   const screenContext = useScreenContext();
   const screenStyles = styles(
     screenContext,
     screenContext[screenContext.isPortrait ? 'windowWidth' : 'windowHeight'],
     screenContext[screenContext.isPortrait ? 'windowHeight' : 'windowWidth'],
   );
+  // console.log(updatingMessageDetails);
   return (
     <View style={screenStyles.commentCard}>
       <TouchableOpacity onPress={() => openModal()}>
@@ -46,17 +81,65 @@ const CommentCard = ({item}) => {
       <Modal
         transparent
         visible={isModalVisible}
-        onRequestClose={() => closeModal()}>
+        onRequestClose={handleCloseButton}>
         <View style={screenStyles.modalFullScreenBackground}>
           <Animated.View
             style={[screenStyles.modalCommentContainer, animatedStyle]}>
             <TouchableOpacity
               style={screenStyles.closeButton}
-              onPress={() => closeModal()}>
+              onPress={handleCloseButton}>
               <FontAwesome name="close" size={25} />
             </TouchableOpacity>
             <Text style={screenStyles.commentTitle}>{item.user.username}</Text>
-            <Text>{item.body}</Text>
+            {!isEditing ? (
+              <Text>{item.body}</Text>
+            ) : (
+              <TextInput
+                style={screenStyles.textInput}
+                value={updatingMessageDetails.editedBody}
+                onChangeText={e =>
+                  setUpdatingMessageDetails({
+                    ...updatingMessageDetails,
+                    editedBody: e,
+                  })
+                }
+                mode="outlined"
+                multiline
+                numberOfLines={3}
+                selectionColor={ColorPalette.lightOrange}
+                underlineColor={ColorPalette.lightOrange}
+                activeUnderlineColor={ColorPalette.lightOrange}
+                outlineColor={ColorPalette.lightOrange}
+                activeOutlineColor={ColorPalette.lightOrange}
+              />
+            )}
+            {!isEditing ? (
+              <View style={screenStyles.buttonsContainer}>
+                <TouchableOpacity
+                  onPress={() => handleEditbutton(item.id)}
+                  style={screenStyles.editButton}>
+                  <Text style={screenStyles.editButtonText}>Edit</Text>
+                </TouchableOpacity>
+                <TouchableOpacity
+                  onPress={() => handleDelete(item.id)}
+                  style={screenStyles.deleteButton}>
+                  <Text style={screenStyles.deleteButtonText}>Delete</Text>
+                </TouchableOpacity>
+              </View>
+            ) : (
+              <View style={screenStyles.buttonsContainer}>
+                <TouchableOpacity
+                  onPress={handelSaveEditing}
+                  style={screenStyles.editButton}>
+                  <Text style={screenStyles.editButtonText}>save</Text>
+                </TouchableOpacity>
+                <TouchableOpacity
+                  onPress={handleCancelEditing}
+                  style={screenStyles.deleteButton}>
+                  <Text style={screenStyles.deleteButtonText}>Cancel</Text>
+                </TouchableOpacity>
+              </View>
+            )}
           </Animated.View>
         </View>
       </Modal>

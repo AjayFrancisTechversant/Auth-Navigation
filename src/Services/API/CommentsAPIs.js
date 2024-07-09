@@ -11,9 +11,9 @@ export const getAllComments = async () => {
 };
 
 //add a new comment
-export const addNewComment = async (newCommentDetails) => {
+export const addNewComment = async newCommentDetails => {
   try {
-    const {body,postId,userId}=newCommentDetails
+    const {body, postId, userId} = newCommentDetails;
     let response = await axios.post(
       'https://dummyjson.com/comments/add',
       {
@@ -27,10 +27,33 @@ export const addNewComment = async (newCommentDetails) => {
     );
     return response.data;
   } catch (error) {
-    console.log(error,'jj');
+    console.log(error);
   }
 };
 //delete a comment
-
+export const deleteComment = async id => {
+  try {
+    let response = await axios.delete(`https://dummyjson.com/comments/${id}`);
+    return response.data.id;
+  } catch (error) {
+    console.log(error);
+  }
+};
 //update a comment
-
+export const updateComment = async updatingCommentDetails => {
+  try {
+    const {id, editedBody} = updatingCommentDetails;
+    let response = await axios.put(
+      `https://dummyjson.com/comments/${id}`,
+      {
+        body: editedBody,
+      },
+      {
+        headers: {'Content-Type': 'application/json'},
+      },
+    );
+    return response.data;
+  } catch (error) {
+    console.log(error);
+  }
+};
